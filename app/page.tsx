@@ -1,213 +1,177 @@
-'use client';
-import Link from 'next/link';
-import Image from 'next/image'; // Recommended for better performance
+"use client";
+import Link from "next/link";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { GraduationCap, ArrowRight, Brain, Globe, Shield, Zap, BarChart3, MessageCircle, Award } from "lucide-react";
 
-export default function LandingPage() {
+const stats = [
+  { label: "Active Learners", value: "2.4M+" },
+  { label: "Courses Available", value: "850+" },
+  { label: "Certified Teachers", value: "12,000+" },
+  { label: "States Covered", value: "36" },
+];
+
+const features = [
+  { icon: Brain, title: "AI-Powered Learning", desc: "Adaptive learning pathways that evolve with your progress using advanced AI and ML algorithms." },
+  { icon: Globe, title: "Multilingual Support", desc: "Content available in 22 Indian languages with real-time translation, subtitles, and ISL support." },
+  { icon: Shield, title: "Secure Assessment", desc: "AI-proctored examinations with biometric authentication and blockchain-verified certificates." },
+  { icon: Zap, title: "Offline Access", desc: "Download lessons and continue learning without internet. Optimized for low-bandwidth environments." },
+  { icon: BarChart3, title: "Advanced Analytics", desc: "Predictive analytics with dropout risk detection, engagement tracking, and personalized insights." },
+  { icon: MessageCircle, title: "24x7 AI Support", desc: "Instant responses from AI tutors, escalation to human experts, and collaborative discussion forums." },
+];
+
+const container = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.08 } } };
+const item = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } };
+
+export default function Home() {
   return (
-    <div className="gradient-hero min-h-screen flex flex-col overflow-x-hidden bg-white">
-      {/* Navbar */}
-      <nav className="px-6 md:px-16 py-4 flex items-center justify-between sticky top-0 z-[100] bg-white/95 backdrop-blur-xl border-b border-gray-200">
-        <div className="flex items-center gap-4 flex-1">
-          <Image
-            src="/sb_logo.png"
-            alt="National Institute of Open Schooling (NIOS) Logo"
-            width={180}
-            height={48}
-            className="h-24 w-auto object-contain"
-            priority
-          />
-          <div className="h-8 w-px bg-gray-200 hidden sm:block" />
-          <div className="text-xl md:text-2xl text-red-600 font-extrabold tracking-tight">
-            Learning Management System
+    <div className="min-h-screen bg-background">
+      <header className="sticky top-0 z-50 bg-white/50 backdrop-blur border-b border-slate-100 border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className=" rounded-lg bg-primary flex items-center justify-center">
+              <Image 
+                src="/sb_logo.png" 
+                alt="NIOS LMS" 
+                width={100} 
+                height={36}
+              />
+            </div>
+           
           </div>
-        </div>
-
-        <div className="flex gap-6 md:gap-8 items-center">
-          {['Courses', 'Resources', 'About NIOS', 'Help'].map((l) => (
-            <a
-              key={l}
-              href="#"
-              className="text-sm font-semibold text-slate-600 hover:text-orange-600 transition-colors hidden md:block"
-            >
-              {l}
-            </a>
-          ))}
-
-          <Link href="/login">
-            <button
-              id="landing-login-btn"
-              className="bg-orange-600 hover:bg-orange-700 text-white px-6 md:px-7 py-2.5 rounded-2xl font-bold text-sm md:text-base transition-all active:scale-95 shadow-md"
-            >
-              Sign In →
-            </button>
-          </Link>
-        </div>
-      </nav>
-
-      {/* Hero Section */}
-      <section className="px-6 md:px-16 py-20 md:py-28 min-h-[90vh] flex flex-col items-center justify-center text-center relative overflow-hidden">
-        <div className="max-w-5xl mx-auto animate-fade-in relative z-10">
-          <span className="inline-block px-5 py-2 bg-orange-100 text-orange-700 rounded-full text-sm font-semibold mb-6 tracking-wide shadow-sm">
-            🚀 Powered by AI · Aligned with NEP 2020
-          </span>
-
-          <h1 className="text-5xl md:text-6xl lg:text-8xl leading-[1.05] font-extrabold text-slate-900 mb-8 tracking-tighter">
-            The Future of Open Schooling is{' '}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-orange via-brand-red to-brand-orange animate-gradient-x">
-              Intelligent
-            </span>
-            .
-          </h1>
-
-          <p className="text-lg md:text-xl text-slate-600 mb-12 max-w-3xl mx-auto leading-relaxed">
-            An inclusive, adaptive, and AI-driven ecosystem empowering millions of learners across India. 
-            Personalized learning, anytime, anywhere.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/login">
-              <button
-                id="get-started-btn"
-                className="bg-red-900 hover:bg-orange-700 text-white px-12 py-4.5 rounded-2xl font-bold text-lg w-full sm:w-auto transition-all active:scale-[0.98] shadow-lg shadow-orange-600/20"
-              >
-                Get Started Free →
-              </button>
+          <div className="flex items-center gap-3">
+            <Link href="/login" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Sign In</Link>
+            <Link href="/portal" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-orange-400 text-white text-sm font-medium hover:bg-orange-300 transition-colors">
+            Portal  <ArrowRight className="w-4 h-4" />
             </Link>
-            <button className="px-10 py-4.5 border-2 border-slate-200 rounded-2xl font-bold text-lg hover:bg-slate-50 transition-all w-full sm:w-auto text-slate-600 hover:text-slate-900">
-              Watch Platform Tour
-            </button>
           </div>
         </div>
-
-        {/* Decorative Background for Hero */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full -z-10 bg-radial from-orange-100/30 to-transparent blur-3xl opacity-60" />
-      </section>
-
-      {/* Features Grid - Fully Responsive */}
-      <section className="px-6 md:px-16 py-24 bg-slate-50">
-        <div className="flex flex-col items-center mb-20 text-center">
-          <h2 className="text-4xl md:text-6xl font-extrabold text-slate-900 mb-6 tracking-tight">Core Intelligence</h2>
-          <p className="text-slate-500 max-w-2xl text-lg md:text-xl font-medium">
-            Advanced modules designed for the next generation of digital education, pushing the boundaries of AI in India.
-          </p>
+      </header>
+      <section className="relative text-white overflow-hidden">
+        <video autoPlay muted loop className="absolute inset-0 w-full h-full object-cover z-0">
+          <source src="/hero.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-white/10 z-10"></div> {/* Optional overlay for better text readability */}
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 z-20">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-3xl">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 text-white rounded-full bg-orange-500/90 border border-orange-500/30 text-orange-300 text-xs font-medium mb-6">
+          <span className="w-1.5 h-1.5 rounded-full bg-orange-600  text-white animate-pulse" />
+          Aligned with NEP 2020
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
-          {[
-            { icon: '🧠', title: 'Adaptive Learning', desc: 'AI-driven pathways that evolve with your unique progress, style, and learning pace.' },
-            { icon: '🌐', title: 'Multilingual Support', desc: 'Real-time translation and transcription in 22+ official Indian languages.' },
-            { icon: '🤟', title: 'Inclusive Design', desc: 'Embedded Indian Sign Language (ISL) and comprehensive screen reader support.' },
-            { icon: '🛡️', title: 'Secure Assessments', desc: 'Secure, bias-free examinations with behavioral analysis and live proctoring.' },
-            { icon: '📊', title: 'Predictive Success', desc: 'Early warning systems and personalized intervention modeling for every student.' },
-            { icon: '🤝', title: 'National Network', desc: 'Connect with a vast network of study centers and collaborative faculty hubs.' },
-          ].map((f, i) => (
-            <div
-              key={i}
-              className="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_60px_rgba(0,0,0,0.1)] hover:border-brand-orange/20 transition-all duration-500 group animate-slide-up"
-            >
-              <div className="text-6xl mb-10 group-hover:scale-125 transition-transform duration-500 pointer-events-none">
-                {f.icon}
-              </div>
-              <h3 className="text-2xl font-bold mb-5 text-slate-900">{f.title}</h3>
-              <p className="text-slate-500 leading-relaxed text-base font-medium opacity-80">{f.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* National Integrations */}
-      <section className="px-6 md:px-16 py-28 text-center bg-white">
-        <p className="text-xs font-bold text-brand-orange tracking-[4px] uppercase mb-16 opacity-70">
-          OFFICIALLY INTEGRATED WITH NATIONAL STACK
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl text-red-900 font-bold leading-tight mb-6">
+          India's Most Advanced{" "}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-300">Open Schooling</span>{" "}
+          Platform
+        </h1>
+        <p className="text-lg text-black/80 mb-8 leading-relaxed max-w-2xl">
+          AI-driven learning management system enabling personalized, inclusive, and adaptive education for learners across India — from admission to certification.
         </p>
-        <div className="flex flex-wrap justify-center gap-6 md:gap-10 max-w-5xl mx-auto">
-          {['DIKSHA', 'SWAYAM', 'DigiLocker', 'ULLAS', 'ABC', 'UDISE+'].map((n) => (
-            <div
-              key={n}
-              className="px-12 py-5 bg-slate-50 text-slate-700 rounded-2xl text-lg font-bold border border-slate-100 shadow-sm hover:shadow-lg hover:bg-white hover:-translate-y-1 transition-all duration-300"
+        {/* <div className="flex flex-wrap gap-4">
+          <Link href="/register">
+            <motion.button
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-orange-500 hover:bg-orange-400 text-white font-semibold transition-colors shadow-lg"
             >
-              {n}
-            </div>
+          Start Learning Free <ArrowRight className="w-4 h-4" />
+            </motion.button>
+          </Link>
+          <Link href="/login">
+            <motion.button
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          className="inline-flex items-center gap-2 px-6 py-3 bg-amber-50 rounded-xl border border-white/20 hover:border-white/40 text-red-900 font-semibold transition-colors"
+            >
+          Sign In to Continue
+            </motion.button>
+          </Link>
+        </div> */}
+          </motion.div>
+        </div>
+        <div className="relative bg-white border-t border-black/10 z-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <motion.div variants={container} initial="hidden" animate="show" className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+          {stats.map((stat) => (
+            <motion.div key={stat.label} variants={item} className="text-center">
+          <p className="text-3xl font-bold text-orange-400">{stat.value}</p>
+          <p className="text-sm text-red-300 mt-1">{stat.label}</p>
+            </motion.div>
           ))}
+        </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* CTA Section - Fixed with Brand Red */}
-      <section className="px-6 md:px-16 py-28 bg-white overflow-hidden">
-        <div className="max-w-6xl mx-auto rounded-[3.5rem] p-16 md:p-24 text-center relative overflow-hidden bg-slate-950 shadow-3xl">
-          {/* Ambient Glow */}
-          <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-from)_0%,_transparent_50%)] from-brand-orange/20" />
-          
-          <div className="relative z-10">
-            <div className="text-7xl mb-10">🏅</div>
-            <h2 className="text-4xl md:text-6xl font-extrabold mb-8 text-white leading-[1.1] tracking-tight">
-              Begin Your Learning <br className="hidden md:block" /> Journey Today
-            </h2>
-            <p className="text-lg md:text-2xl text-slate-400 mb-16 max-w-3xl mx-auto font-medium leading-relaxed opacity-80 font-inter">
-              Join millions of learners across India. Access world-class quality education from anywhere, anytime — fully free.
+      <section className="py-20 lg:py-24 bg-slate-50  ">
+        <div className="max-w-7xl mx-auto px-4  sm:px-6 lg:px-8 ">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl font-bold mb-4">Everything You Need to Learn and Teach</h2>
+            <p className="text-muted-foreground max-w-xl mx-auto">
+              A complete ecosystem for learners, teachers, and administrators — built for India's diverse educational needs.
             </p>
+          </div>
+          <motion.div variants={container} initial="hidden" whileInView="show" viewport={{ once: true }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {features.map((feat) => {
+              const Icon = feat.icon;
+              return (
+                <motion.div key={feat.title} variants={item}
+                  className="p-6 rounded-2xl border border-slate-300 bg-card hover:border-primary/30 hover:shadow-md transition-all group"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                    <Icon className="w-5 h-5 text-orange-600" />
+                  </div>
+                  <h3 className="font-semibold mb-2">{feat.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{feat.desc}</p>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </div>
+      </section>
 
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+      <section className="py-16 bg-muted/50 border-y border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-sm font-medium text-muted-foreground mb-6 uppercase tracking-wide">Integrated with National Education Platforms</p>
+          <div className="flex flex-wrap justify-center gap-8">
+            {["DIKSHA", "SWAYAM", "DigiLocker", "ULLAS", "ABC", "UDISE+"].map((name) => (
+              <div key={name} className="px-4 py-2 rounded-lg bg-card border border-slate-300 text-sm font-semibold text-foreground/70">{name}</div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className=" text-white">
+            <Award className="w-10 h-10 text-orange-400 mx-auto mb-4" />
+            <h2 className="text-3xl text-black font-bold mb-4">Begin Your Learning Journey Today</h2>
+            <p className="text-blue-400/80 mb-8">Join millions of learners across India. Access quality education from anywhere, anytime — free of cost.</p>
+            <div className="flex justify-center gap-4 flex-wrap">
               <Link href="/login">
-                <button className="bg-brand-orange hover:bg-orange-700 text-white px-14 py-5 rounded-2xl font-black text-xl w-full sm:w-auto transition-all active:scale-95 shadow-xl shadow-orange-600/40 transform hover:-translate-y-1">
-                  Register as Student →
-                </button>
+                <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-orange-500 hover:bg-orange-400 text-white font-semibold transition-colors"
+                >
+                  Register as Student <ArrowRight className="w-4 h-4" />
+                </motion.button>
               </Link>
-              <Link href="/login">
-                <button className="px-14 py-5 border-2 border-white/20 text-white rounded-2xl font-bold text-xl hover:bg-white/10 transition-all w-full sm:w-auto backdrop-blur-sm">
-                  Sign In
-                </button>
+              <Link href="/login" className="inline-flex items-center px-6 py-3 rounded-xl bg-amber-50 border border-white/20 hover:border-white/40 text-red-900 font-semibold transition-colors">
+                Sign In
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="mt-auto px-6 md:px-16 py-20 border-t border-slate-100 bg-white">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
-          <div className="md:col-span-2">
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-orange-600 to-red-600 flex items-center justify-center text-2xl text-white shadow-lg">
-                🎓
-              </div>
-              <div className="text-2xl font-extrabold text-black tracking-tighter">NIOS LMS</div>
-            </div>
-            <p className="text-slate-600 max-w-md leading-relaxed">
-              Autonomous organization under the Ministry of Education, Government of India. 
-              Providing quality education with equity and excellence.
-            </p>
+      <footer className="border-t border-slate-200 py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
+          <div className="flex items-center gap-2">
+            <GraduationCap className="w-4 h-4 text-orange-700" />
+            <span>Samskrit Bharti AI-Driven LMS — Ministry of Education, Government of India</span>
           </div>
-
-          <div>
-            <h4 className="text-sm font-bold text-black mb-8 uppercase tracking-widest">Resources</h4>
-            <nav className="flex flex-col gap-4 text-sm text-slate-600">
-              {['Academic Materials', 'TMA Guidelines', 'Course Catalog', 'Exam Schedule'].map((l) => (
-                <a key={l} href="#" className="hover:text-orange-600 transition-colors">
-                  {l}
-                </a>
-              ))}
-            </nav>
-          </div>
-
-          <div>
-            <h4 className="text-sm font-bold text-black mb-8 uppercase tracking-widest">Support</h4>
-            <nav className="flex flex-col gap-4 text-sm text-slate-600">
-              {['Helpdesk', 'Grievance Redressal', 'Accessibility FAQs', 'Security Audit'].map((l) => (
-                <a key={l} href="#" className="hover:text-orange-600 transition-colors">
-                  {l}
-                </a>
-              ))}
-            </nav>
-          </div>
-        </div>
-
-        <div className="mt-20 pt-8 border-t border-slate-100 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <span>© 2026 National Institute of Open Schooling. NEP 2020 Compliant.</span>
-          <div className="flex gap-6">
-            <a href="#" className="hover:text-black transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-black transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-black transition-colors">Security Status</a>
+          <div className="flex items-center gap-4">
+            <a href="#" className="hover:text-foreground transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-foreground transition-colors">Terms of Use</a>
+            <a href="#" className="hover:text-foreground transition-colors">Contact</a>
           </div>
         </div>
       </footer>

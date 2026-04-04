@@ -1,8 +1,9 @@
 import DashboardLayout from '@/components/DashboardLayout';
+import { User2Icon } from 'lucide-react';
 import Link from 'next/link';
 
 const platformStats = [
-  { icon: '👥', label: 'Total Learners', value: '1,24,892', change: '+8,421 this month', up: true, color: 'var(--primary-600)' },
+  { icon: User2Icon, label: 'Total Learners', value: '1,24,892', change: '+8,421 this month', up: true, color: 'var(--primary-600)' },
   { icon: '👩‍🏫', label: 'Active Teachers', value: '3,208', change: '+112 this month', up: true, color: 'var(--success)' },
   { icon: '📚', label: 'Published Courses', value: '642', change: '24 awaiting review', up: true, color: 'var(--accent-500)' },
   { icon: '💰', label: 'Revenue (INR)', value: '₹48.6L', change: '+12% vs last month', up: true, color: 'var(--primary-500)' },

@@ -1,6 +1,9 @@
 'use client';
+
 import Link from 'next/link';
 import { useState } from 'react';
+import { GraduationCap, Users, Shield, User, Fingerprint, UserCheck, UserCog } from 'lucide-react';
+
 
 export default function LoginPage() {
   const [role, setRole] = useState<'learner' | 'teacher' | 'parent' | 'admin' | 'guest'>('learner');
@@ -8,11 +11,13 @@ export default function LoginPage() {
   const [biometricAuth, setBiometricAuth] = useState(false);
 
   const roles = [
-    { id: 'learner', label: 'Learner', icon: '🎓' },
-    { id: 'teacher', label: 'Teacher', icon: '👩‍🏫' },
-    { id: 'parent', label: 'Parent', icon: '👨‍👩‍👧' },
-    { id: 'admin', label: 'Admin', icon: '🏛️' },
-    { id: 'guest', label: 'Guest', icon: '👤' },
+
+    { id: 'learner', label: 'Learner', icon: <GraduationCap className="w-6 h-6" /> },
+    { id: 'teacher', label: 'Teacher', icon: <UserCog className="w-6 h-6" /> },
+    { id: 'parent', label: 'Parent', icon: <Users className="w-6 h-6" /> },
+    { id: 'admin', label: 'Admin', icon: <Shield className="w-6 h-6" /> },
+    { id: 'guest', label: 'Guest', icon: <User className="w-6 h-6" /> },
+
   ] as const;
 
   const dashMap = { 
@@ -45,13 +50,13 @@ export default function LoginPage() {
       <div className="w-full max-w-md animate-fade-in z-10">
         {/* Logo */}
         <div className="flex flex-col items-center gap-4 mb-10 text-center">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-orange to-brand-red flex items-center justify-center text-3xl text-white shadow-xl shadow-orange-600/30">
-            🎓
-          </div>
-          <div>
-            <h1 className="text-3xl font-extrabold text-slate-900 tracking-tighter">NIOS LMS</h1>
-            <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mt-1">National Institute of Open Schooling</p>
-          </div>
+          
+          
+            <img src="/sb_logo.png" alt="NIOS Logo" className="w-40 rounded-full from-primary-500 to-primary-700 p-1" />
+              <div className="text-xs pt-2 text-center text-slate-500 tracking-tight">
+        AI-Powered Learning Management System
+      </div>
+          
         </div>
 
         <div className="bg-white p-8 md:p-10 rounded-[2.5rem] border border-slate-100 shadow-[0_20px_60px_rgba(0,0,0,0.06)] relative overflow-hidden">
@@ -71,7 +76,9 @@ export default function LoginPage() {
                   : 'text-slate-400 hover:text-slate-600 hover:bg-slate-100'
                 }`}
               >
-                <span className="text-xl">{r.icon}</span>
+
+  <div className="p-1 rounded-lg bg-slate-50">{r.icon}</div>
+
                 <span className="text-[10px] font-bold uppercase tracking-tight">{r.label}</span>
               </button>
             ))}
@@ -80,7 +87,7 @@ export default function LoginPage() {
           <form onSubmit={handleLogin} className="space-y-5">
             <div className="space-y-2">
               <label className="text-sm font-bold text-slate-700 ml-1" htmlFor="login-id">
-                {role === 'learner' ? 'Enrollment No. / Aadhaar' : role === 'teacher' ? 'Faculty ID / Email' : 'Admin ID / Email'}
+                {role === 'learner' ? 'Enrollment No. / Aadhaar' : role === 'teacher' ? 'Faculty ID / Email' : 'Admin ID / Email ' }
               </label>
               <input 
                 id="login-id" 
@@ -128,13 +135,13 @@ export default function LoginPage() {
               🇮🇳 Aadhaar SSO
             </button>
             <button id="login-biometric" onClick={handleBiometric} className="flex items-center justify-center gap-3 py-4 border-2 border-slate-100 rounded-2xl text-slate-600 font-bold hover:bg-slate-50 hover:border-slate-200 transition-all">
-              🛡️ Biometric Login
+              <Fingerprint className="w-5 h-5" /> Biometric Login
             </button>
           </div>
 
           {biometricAuth && (
             <div className="absolute inset-0 bg-slate-900/90 backdrop-blur-md flex flex-col items-center justify-center text-white z-50 animate-fade-in">
-              <div className="text-6xl mb-6 animate-pulse">🖐️</div>
+              <Fingerprint className="w-24 h-24 mx-auto mb-6 animate-pulse text-orange-400" />
               <div className="text-xl font-bold">Authenticating...</div>
               <p className="text-slate-400 text-sm mt-2">Verifying Fingerprint/Face ID</p>
             </div>

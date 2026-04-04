@@ -1,7 +1,10 @@
 
-@import "tailwindcss" layer(base);
-@import "tailwindcss" layer(components);
-@import "tailwindcss" layer(utilities);
+@import "tailwindcss";
+
+@theme {
+  --color-brand-orange: rgb(249 115 22);
+  --color-brand-red: rgb(239 68 68);
+}
 
 /* Custom CSS Variables */
 :root {
@@ -58,4 +61,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
 
+.dark .glassmorphism {
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
