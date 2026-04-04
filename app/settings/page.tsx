@@ -1,191 +1,213 @@
 'use client';
+
 import DashboardLayout from '@/components/DashboardLayout';
 import { useState } from 'react';
-import {
-   Paintbrush,
-   Accessibility,
-   LifeBuoy,
-   BrickWallShield,
+import { 
+  Paintbrush, 
+  Accessibility, 
+  ShieldCheck, 
+  Bell, 
+  Globe, 
+  Download, 
+  Trash2, 
+  User, 
+  Lock, 
+  Eye, 
+  LifeBuoy, 
+  Monitor, 
+  Zap, 
+  Sparkles,
+  ChevronRight,
+  Fingerprint,
+  Mail,
+  Shield,
+  Palette,
+  CheckCircle,
+  Users
 } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
 
 export default function SettingsPage() {
-   const [fontSize, setFontSize] = useState(16);
-   const [contrast, setContrast] = useState('Standard');
-   const [language, setLanguage] = useState('English');
-   const [theme, setTheme] = useState('Dark');
+  const { user } = useAuth();
+  const [activeTab, setActiveTab] = useState('General');
 
-   return (
-      <DashboardLayout title="Account & Accessibility" subtitle="Customize your learning environment to suit your preferences">
-         <div style={{ maxWidth: '800px', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-            <section>
-               <h3  className='flex font-semibold mb-1.25 gap-2 items-center ' >
-                  <Paintbrush size={18} className='text-orange-500' /> Appearance
-               </h3>
-               <div className="  " style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem', padding: '1.5rem' }}>
-                  {[
-                     { name: 'Dark', desc: 'Eye comfort (Default)', active: theme === 'Dark' },
-                     { name: 'Light', desc: 'Standard clarity', active: theme === 'Light' },
-                     { name: 'High Contrast', desc: 'Maximum visibility', active: theme === 'High Contrast' },
-                  ].map((t) => (
-                     <div
-                        key={t.name}
-                        onClick={() => setTheme(t.name)}
-                        className={`p-5 rounded-xl cursor-pointer transition-all duration-200 ease-in-out border ${
-                           t.active
-                              ? 'bg-orange-300 border-1 border-slate-300 shadow-md'
-                              : 'bg-slate-50 border border-gray-200 hover:bg-slate-100'
-                        }`}
-                     >
-                        <div className="font-semibold text-sm mb-1">{t.name}</div>
-                        <div className="text-xs text-muted">{t.desc}</div>
-                       {/* < div className="mt-2 h-1.5 rounded-full bg-gradient-to-r from-orange-400 to-orange-600" /> */}
-                     </div>
-                    
-                  ))}
-               </div>
-               {/* <div className='border-b-1 border-slate-300'></div> */}
+  if (!user) return null;
+
+  return (
+    <DashboardLayout 
+      title="Advanced Platform Configuration" 
+      subtitle="Customize your regional, security, and accessibility preferences for a personalized NIOS experience"
+    >
+      <div className="grid lg:grid-cols-[280px_1fr] gap-10 items-start animate-fade-in pb-20 max-w-7xl mx-auto">
+        
+        {/* Sidebar Tabs */}
+        <div className="space-y-4">
+           {['General', 'Security', 'Accessibility', 'Privacy', 'Support'].map((tab) => (
+             <button 
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`w-full p-4 rounded-2xl flex items-center justify-between transition-all group ${
+                  activeTab === tab ? 'bg-slate-900 text-white shadow-xl translate-x-2' : 'bg-white border border-slate-100 text-slate-400 hover:border-brand-orange/20 hover:text-slate-900'
+                }`}
+             >
+                <div className="flex items-center gap-3">
+                   {tab === 'General' && <Paintbrush size={18} />}
+                   {tab === 'Security' && <ShieldCheck size={18} />}
+                   {tab === 'Accessibility' && <Accessibility size={18} />}
+                   {tab === 'Privacy' && <Eye size={18} />}
+                   {tab === 'Support' && <LifeBuoy size={18} />}
+                   <span className="text-[10px] font-black uppercase tracking-widest">{tab}</span>
+                </div>
+                <ChevronRight size={14} className={activeTab === tab ? 'text-brand-orange' : 'opacity-0'} />
+             </button>
+           ))}
            
-            </section>
+           <div className="p-8 rounded-[2.5rem] bg-orange-50 border border-orange-100 mt-10">
+              <Sparkles className="text-brand-orange mb-4" size={24} />
+              <h4 className="text-[10px] font-black text-brand-orange uppercase tracking-widest mb-2">Alpha Participation</h4>
+              <p className="text-[8px] font-medium text-slate-500 uppercase tracking-widest leading-relaxed">
+                 You are currently enrolled in our early-access learning node. Features may update frequently.
+              </p>
+           </div>
+        </div>
 
-            <section>
-               <h3 className="flex items-center gap-2 font-semibold mb-1.25">
-                  <Accessibility size={18} className="text-orange-500" /> Accessibility Settings
-               </h3>
-               <div className="card flex flex-col gap-8 p-8">
-                  <div className="flex items-center justify-between">
-                     <div>
-                        <div className="font-semibold text-sm mb-1 text-slate-900">Text Size</div>
-                        <div className="text-xs text-slate-500">Adjust readability for your comfort.</div>
-                     </div>
-                     <div className="flex  items-center gap-4">
-                        <button
-                           className="bg-amber-600 text-white rounded-md px-2 py-1 text-sm font-bold hover:bg-amber-700 transition-colors"
-                           onClick={() => setFontSize(Math.max(12, fontSize - 2))}
-                        >
-                           A-
-                        </button>
-                        <span className="font-bold">{fontSize}px</span>
-                        <button
-                           className="bg-amber-600 text-white rounded-md px-2 py-1 text-sm font-bold hover:bg-amber-700 transition-colors"
-                           onClick={() => setFontSize(Math.min(24, fontSize + 2))}
-                        >
-                           A+
-                        </button>
-                     </div>
-                  </div>
-
-                  <hr className="border-t border-gray-200 m-0" />
-
-                  <div className="flex items-center justify-between">
-                     <div>
-                        <div className="font-semibold text-sm mb-1 text-slate-900">Interface Language</div>
-                        <div className="text-xs text-slate-500">Choose your preferred Indian language.</div>
-                     </div>
-                     <select
-                        className="form-select border-1 border-amber-500 w-44"
-                        value={language}
-                        onChange={(e) => setLanguage(e.target.value)}
-                     >
-                        {['English', 'Hindi', 'Marathi', 'Tamil', 'Malayalam', 'Bengali', 'Sanskrit'].map((l) => (
-                           <option key={l}>{l}</option>
-                        ))}
-                     </select>
-                  </div>
-
-                  <hr className="border-t border-gray-200 m-0" />
-
-                  <div className="flex items-center justify-between">
-                     <div>
-                        <div className="font-semibold text-sm mb-1 text-slate-900">
-                           Indian Sign Language (ISL) Icons
+        {/* Settings Content Area */}
+        <div className="space-y-8">
+           
+           {/* Section 1: Appearance */}
+           {activeTab === 'General' && (
+             <div className="space-y-8 animate-fade-in">
+                <div className="p-10 rounded-[3.5rem] bg-white border border-slate-100 shadow-sm">
+                   <div className="flex items-center gap-3 mb-10">
+                      <Palette className="text-brand-orange" size={24} />
+                      <h3 className="text-lg font-black text-slate-900 uppercase tracking-tight">Theme & Visuals</h3>
+                   </div>
+                   <div className="grid md:grid-cols-3 gap-6">
+                      {[
+                        { name: 'Samskrit Bharti (Dark)', desc: 'High end contrast (Default)', active: true },
+                        { name: 'National Blue', desc: 'Standard clarity', active: false },
+                        { name: 'Monochrome', desc: 'Classic accessibility', active: false },
+                      ].map((t) => (
+                        <div key={t.name} className={`p-6 rounded-[2.5rem] border transition-all cursor-pointer ${
+                          t.active ? 'bg-slate-900 text-white border-slate-900 shadow-xl' : 'bg-slate-50 border-slate-100 text-slate-400 hover:border-brand-orange/20'
+                        }`}>
+                           <div className="text-[10px] font-black uppercase tracking-widest mb-1">{t.name}</div>
+                           <p className="text-[8px] font-black uppercase tracking-widest opacity-50">{t.desc}</p>
                         </div>
-                        <div className="text-xs text-slate-500">
-                           Show sign language interpretations for key visual navigation.
+                      ))}
+                   </div>
+                </div>
+
+                <div className="p-10 rounded-[3.5rem] bg-white border border-slate-100 shadow-sm">
+                   <div className="flex items-center gap-3 mb-10">
+                      <Globe className="text-brand-orange" size={24} />
+                      <h3 className="text-lg font-black text-slate-900 uppercase tracking-tight">Regional Settings</h3>
+                   </div>
+                   <div className="space-y-6">
+                      {[
+                        { label: 'Language Preference', value: 'Hindi (Native)', btn: 'Change Language' },
+                        { label: 'Timezone Cluster', value: 'India (GMT+5:30)', btn: 'Sync Time' },
+                      ].map((s, i) => (
+                        <div key={i} className="flex flex-col md:flex-row items-center justify-between p-6 bg-slate-50 border border-slate-100 rounded-3xl gap-6">
+                           <div className="text-center md:text-left">
+                              <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">{s.label}</div>
+                              <div className="text-sm font-black text-slate-900">{s.value}</div>
+                           </div>
+                           <button className="px-8 py-3 bg-white border border-slate-200 text-slate-900 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:border-brand-orange transition-all">
+                              {s.btn}
+                           </button>
                         </div>
+                      ))}
+                   </div>
+                </div>
+             </div>
+           )}
+
+           {activeTab === 'Security' && (
+             <div className="space-y-8 animate-fade-in">
+                <div className="p-10 rounded-[3.5rem] bg-slate-900 text-white relative overflow-hidden group">
+                   <div className="absolute top-0 right-0 w-64 h-64 bg-brand-orange/5 rounded-full blur-3xl group-hover:scale-150 transition-all duration-1000" />
+                   <div className="flex items-center gap-4 mb-10">
+                      <Shield className="text-brand-orange" size={24} />
+                      <h3 className="text-lg font-black uppercase tracking-tight text-white">Trust & Authentication</h3>
+                   </div>
+                   <div className="space-y-4">
+                      {[
+                        { label: '2-Factor Authentication', status: 'Enforced', icon: <CheckCircle className="text-emerald-500" size={14} /> },
+                        { label: 'Biometric Gateway', status: 'Active (FaceID)', icon: <Fingerprint className="text-brand-orange" size={14} /> },
+                        { label: 'External Node Access', status: 'Restricted', icon: <Lock className="text-slate-500" size={14} /> },
+                      ].map((s, i) => (
+                        <div key={i} className="flex items-center justify-between p-6 bg-white/5 border border-white/10 rounded-3xl group cursor-default">
+                           <div className="flex items-center gap-3">
+                              <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest">{s.label}</span>
+                           </div>
+                           <div className="flex items-center gap-3 text-[10px] font-black text-white uppercase tracking-widest">
+                              {s.icon} {s.status}
+                           </div>
+                        </div>
+                      ))}
+                   </div>
+                   <button className="w-full mt-10 py-5 bg-brand-orange text-white rounded-[2rem] font-black text-[10px] uppercase tracking-widest hover:bg-orange-600 transition-all shadow-xl shadow-orange-500/20 active:scale-95">
+                      Refresh Security Audit
+                   </button>
+                </div>
+             </div>
+           )}
+
+           {activeTab === 'Accessibility' && (
+             <div className="p-10 rounded-[3.5rem] bg-white border border-slate-100 shadow-sm space-y-10 animate-fade-in">
+                <div className="flex items-center gap-3 mb-10">
+                   <Accessibility className="text-brand-orange" size={24} />
+                   <h3 className="text-lg font-black text-slate-900 uppercase tracking-tight">Inclusive Learning</h3>
+                </div>
+                <div className="space-y-6">
+                   {[
+                     { label: 'Text Size Calibration', value: '18px (Personalized)', icon: <Zap size={14} /> },
+                     { label: 'Sign Language Aids (ISL)', value: 'Disabled', icon: <Users size={14} /> },
+                     { label: 'Dyslexic Friendly Font', value: 'Active', icon: <Sparkles size={14} /> },
+                   ].map((s, i) => (
+                     <div key={i} className="flex items-center justify-between p-8 bg-slate-50 border border-slate-100 rounded-[3rem] group">
+                        <div className="flex items-center gap-4">
+                           <div className="w-10 h-10 rounded-2xl bg-white border border-slate-100 flex items-center justify-center text-brand-orange">
+                              {s.icon}
+                           </div>
+                           <div className="text-left font-black tracking-tight">
+                              <div className="text-[10px] text-slate-400 uppercase tracking-widest mb-1">{s.label}</div>
+                              <div className="text-sm text-slate-900">{s.value}</div>
+                           </div>
+                        </div>
+                        <button className="px-8 py-3 bg-white border border-slate-200 text-slate-900 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:border-brand-orange transition-all">
+                           Calibrate
+                        </button>
                      </div>
-                     <button className="bg-amber-500 text-white rounded-md px-2 py-1 text-sm font-bold hover:bg-amber-600 transition-colors border border-red-100">Enable ISL Aids</button>
-                  </div>
+                   ))}
+                </div>
+             </div>
+           )}
 
-                  <hr className="border-t border-gray-200 m-0" />
-
-                  <div className="flex items-center justify-between">
-                     <div>
-                        <div className="font-semibold text-sm mb-1 text-slate-900">Gesture-based Navigation</div>
-                        <div className="text-xs text-slate-500">Use mouse or hand gestures for non-tactile interaction.</div>
-                     </div>
-                     <span className="bg-amber-100 text-amber-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Experimental</span>
-                  </div>
-               </div>
-            </section>
-
-            <section>
-               <h3 className="mb-5 font-semibold flex items-center gap-2">
-                 <BrickWallShield size={18} className="text-orange-500" /> Security & Privacy
-               </h3>
-               <div className="bg-white shadow-sm rounded-2xl flex flex-col gap-8 p-8">
-                 <div className="flex items-center justify-between">
-                   <div>
-                     <div className="font-semibold text-sm text-slate-900 mb-1">IP Protection (DRM)</div>
-                     <div className="text-xs text-slate-500">Enable Digital Rights Management for course materials.</div>
-                   </div>
-                   <button className="bg-amber-600 text-white text-xs font-semibold px-3 py-1.5 rounded-md hover:bg-amber-700 transition">
-                     Manage IP Keys
-                   </button>
+           {/* Data Zone */}
+           <div className="p-12 rounded-[4rem] bg-red-50/50 border-2 border-dashed border-red-200/50 relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-red-500/5 rounded-full blur-3xl group-hover:scale-150 transition-all duration-1000" />
+              <div className="flex flex-col lg:flex-row items-center gap-10">
+                 <div className="w-16 h-16 rounded-[2.5rem] bg-red-500 text-white flex items-center justify-center shrink-0 shadow-xl shadow-red-500/20">
+                    <Trash2 size={24} />
                  </div>
-
-                 <div className="border-t border-gray-200" />
-
-                 <div className="flex items-center justify-between">
-                   <div>
-                     <div className="font-semibold text-sm text-slate-900 mb-1">Data Sovereignty (Personal Info)</div>
-                     <div className="text-xs text-slate-500">Download or request deletion of your academic data.</div>
-                   </div>
-                   <div className="flex gap-2">
-                     <button className="bg-transparent border border-slate-300 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-md hover:bg-slate-100 transition">
-                        Download My Data
-                     </button>
-                     <button className="bg-transparent border border-red-200 text-red-600 text-xs font-semibold px-3 py-1.5 rounded-md hover:bg-red-50 transition">
-                        Request Deletion
-                     </button>
-                   </div>
+                 <div className="flex-1 text-center lg:text-left">
+                    <h3 className="text-2xl font-black text-red-600 mb-2 uppercase tracking-tight">Sovereign Data Storage</h3>
+                    <p className="text-[10px] font-medium text-slate-500 uppercase tracking-widest leading-relaxed max-w-2xl">
+                       Full control over your academic footprint. Download your complete platform telemetry or request a secure registry purge. These actions are irreversible.
+                    </p>
                  </div>
-
-                 <div className="border-t border-gray-200" />
-
-                 <div className="flex items-center justify-between">
-                   <div>
-                     <div className="font-semibold text-sm text-slate-900 mb-1">Privacy Mode</div>
-                     <div className="text-xs text-slate-500">Hide your profile from regional peer search.</div>
-                   </div>
-                   <label className="inline-flex items-center cursor-pointer">
-                     <input
-                        type="checkbox"
-                        id="privacy-peer"
-                        defaultChecked
-                        className="h-5 w-5 text-amber-600 border-gray-300 rounded"
-                     />
-                   </label>
+                 <div className="flex gap-3">
+                    <button className="px-10 py-5 bg-white border border-red-100 text-red-600 rounded-[2.5rem] font-black text-[10px] uppercase tracking-widest hover:bg-red-50 transition-all shadow-xl shadow-red-200/50">
+                       Request Purge
+                    </button>
                  </div>
-               </div>
-            </section>
+              </div>
+           </div>
 
-            <section>
-               <h3 className="mb-5 flex items-center gap-2 text-slate-900 font-semibold">
-                 <LifeBuoy size={18} className="text-orange-500" /> Support
-               </h3>
-               <div className="bg-white shadow-sm rounded-2xl p-6">
-                 <p className="text-sm text-slate-500 mb-4">Facing technical issues? Raise a ticket or chat with support.</p>
-                 <div className="flex flex-wrap gap-3">
-                   <button className="bg-amber-600 text-white text-xs font-semibold px-3 py-1.5 rounded-md hover:bg-amber-700 transition">
-                     Raise Grievance Ticket
-                   </button>
-                   <button className="bg-transparent border border-slate-300 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-md hover:bg-slate-100 transition">
-                     Help Docs & Tutorials
-                   </button>
-                 </div>
-               </div>
-            </section>
-         </div>
-      </DashboardLayout>
-   );
+        </div>
+      </div>
+    </DashboardLayout>
+  );
 }

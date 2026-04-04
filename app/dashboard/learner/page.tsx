@@ -1,169 +1,167 @@
 'use client';
+
 import DashboardLayout from '@/components/DashboardLayout';
+import { 
+  Play, 
+  Clock, 
+  CheckCircle2, 
+  TrendingUp, 
+  Sparkles, 
+  BookOpen, 
+  Calendar, 
+  Award,
+  ChevronRight,
+  Zap,
+  Target,
+  ArrowRight
+} from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
 import Link from 'next/link';
 
 const stats = [
-  { icon: '📚', label: 'Enrolled Courses', value: '12', change: '+3', color: 'from-blue-500 to-indigo-500', up: true },
-  { icon: '✅', label: 'Lessons Complete', value: '187', change: '+24', color: 'from-emerald-500 to-teal-500', up: true },
-  { icon: '📝', label: 'Pending Tasks', value: '3', change: '-1', color: 'from-orange-500 to-red-500', up: false },
-  { icon: '🏅', label: 'Badges Earned', value: '23', change: '+2', color: 'from-purple-500 to-pink-500', up: true },
+  { label: 'Overall Progress', value: '72%', icon: TrendingUp, color: 'text-brand-orange bg-orange-50' },
+  { label: 'Course Completed', value: '04', icon: CheckCircle2, color: 'text-emerald-500 bg-emerald-50' },
+  { label: 'Study Hours', value: '128h', icon: Clock, color: 'text-blue-500 bg-blue-50' },
+  { label: 'Achievements', value: '12', icon: Award, color: 'text-purple-500 bg-purple-50' },
 ];
 
-const courses = [
-  { id: 1, icon: '🔬', title: 'Advanced Physics (Class 12)', progress: 82, subject: 'Science', lessons: '28/32', difficulty: 'Medium', next: 'Quantum Mechanics' },
-  { id: 2, icon: '📐', title: 'Mathematics Mastery', progress: 67, subject: 'Maths', lessons: '22/35', difficulty: 'Hard', next: 'Calculus Intro' },
-  { id: 3, icon: '📖', title: 'English Literature', progress: 94, subject: 'English', lessons: '19/20', difficulty: 'Easy', next: 'Final Review' },
-];
-
-const liveClasses = [
-  { subject: '🔴 LIVE Physics', teacher: 'Dr. R. Mehta', time: 'Now - 4:30 PM', platform: 'Zoom', status: 'live' },
-  { subject: '📐 Mathematics', teacher: 'Prof. A. Verma', time: 'Today 6:00 PM', platform: 'Google Meet', status: 'upcoming' },
-];
-
-const achievements = [
-  { icon: '🔥', title: '15 Day Streak', subtitle: 'Legendary consistency!' },
-  { icon: '⭐', title: 'Top 5% Performer', subtitle: 'Science category' },
+const nextLessons = [
+  { title: 'Algebraic Identities', subject: 'Mathematics', duration: '45 mins', progress: 45, type: 'Video' },
+  { title: 'Thermodynamics Part 2', subject: 'Science', duration: '20 mins', progress: 10, type: 'Reading' },
 ];
 
 export default function LearnerDashboard() {
+  const { user } = useAuth();
+
+  if (!user) return null;
+
   return (
-    <DashboardLayout title="Dashboard" subtitle="Arjun Sharma · Class 10 | Roll: 10023 · 🔥 15 Day Streak">
-      
-      {/* AI Success Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        {[
-          { icon: '🧠', title: 'AI Study Plan', score: '92%', gradient: 'from-emerald-400 to-green-500', desc: 'Optimized for board exams' },
-          { icon: '📈', title: 'Success Prediction', score: '87%', gradient: 'from-blue-400 to-indigo-500', desc: 'Grade A probability' },
-          { icon: '⚡', title: 'Focus Score', score: '94%', gradient: 'from-orange-400 to-red-500', desc: 'Peak performance zone' },
-        ].map((card, i) => (
-          <div key={i} className="glass-card group p-8 rounded-4xl border border-white/20 backdrop-blur-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 cursor-default relative overflow-hidden">
-            <div className={`absolute inset-0 bg-gradient-to-br ${card.gradient} opacity-5 blur-xl -z-10`}></div>
-            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">{card.icon}</div>
-            <h3 className="text-2xl font-black mb-2 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">{card.title}</h3>
-            <div className="text-3xl font-black mb-1 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">{card.score}</div>
-            <p className="text-slate-500 dark:text-slate-400 text-sm">{card.desc}</p>
-          </div>
-        ))}
-      </div>
-
-      <div className="grid lg:grid-cols-[2.2fr_1fr] gap-8">
-
-        {/* Main Content */}
-        <div className="space-y-8">
-          
-          {/* Quick Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {stats.map((s, i) => (
-              <div key={i} className="glass-card group p-6 rounded-3xl relative overflow-hidden hover:shadow-xl hover:shadow-{s.color.replace('from-','')} transition-all duration-500">
-                <div className={`absolute inset-0 bg-gradient-to-br ${s.color} opacity-3 blur-xl -z-10`}></div>
-                <div className="text-3xl mb-3">{s.icon}</div>
-                <div className="text-2xl font-black text-slate-900 dark:text-white mb-1">{s.value}</div>
-                <div className="text-sm font-semibold text-slate-600 dark:text-slate-300">{s.label}</div>
-                <div className={`text-xs font-bold mt-2 px-2 py-1 rounded-full ${s.up ? 'bg-emerald-100 text-emerald-700' : 'bg-orange-100 text-orange-700'}`}>
-                  {s.change}
-                </div>
+    <DashboardLayout 
+      title="Academic Console" 
+      subtitle={`Welcome back, ${user.name.split(' ')[0]} · ${user.details.class} Stream`}
+    >
+      <div className="space-y-12 animate-fade-in pb-20">
+        
+        {/* Progress Headline */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+           <div className="lg:col-span-2 p-12 rounded-[4rem] bg-slate-900 text-white relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-brand-orange/10 rounded-full blur-3xl group-hover:scale-150 transition-all duration-1000" />
+              <div className="flex flex-col md:flex-row items-center gap-10 relative z-10">
+                 <div className="w-24 h-24 rounded-[3rem] bg-brand-orange text-white flex items-center justify-center shrink-0 shadow-2xl animate-float">
+                    <Target size={40} />
+                 </div>
+                 <div className="text-center md:text-left space-y-4">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 rounded-full text-[10px] font-black uppercase tracking-widest text-brand-orange">Weekly Goal Active</div>
+                    <h3 className="text-3xl font-black tracking-tight leading-none">Finish 3 Lessons this week to reach <span className="text-brand-orange">Silver Tier</span>.</h3>
+                    <p className="text-slate-400 text-sm font-medium">You have completed 65% of your target. Keep going!</p>
+                 </div>
+                 <div className="flex-1" />
+                 <button className="px-10 py-5 bg-white text-slate-900 rounded-[2rem] font-black text-[10px] uppercase tracking-widest hover:bg-brand-orange hover:text-white transition-all shadow-xl active:scale-95 whitespace-nowrap">
+                    Resume Physics <Play size={12} className="inline ml-1" />
+                 </button>
               </div>
-            ))}
-          </div>
+           </div>
 
-          {/* Courses */}
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-black bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">Active Courses</h2>
-              <Link href="/courses" className="btn btn-ghost font-bold">View All →</Link>
-            </div>
-            <div className="space-y-4">
-              {courses.map((course) => (
-                <div key={course.id} className="glass-card group p-8 rounded-4xl border hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-800 dark:to-slate-900 opacity-50 -z-10 blur-sm"></div>
-                  <div className="flex items-start gap-6">
-                    <div className="flex-shrink-0 w-20 h-20 rounded-3xl bg-gradient-to-br from-blue-400 to-indigo-400 flex items-center justify-center text-3xl font-bold text-white shadow-2xl group-hover:scale-110 transition-transform">
-                      {course.icon}
-                    </div>
-                    <div className="flex-1 min-w-0 pt-2">
-                      <h3 className="text-xl font-black mb-1 text-slate-900 dark:text-white line-clamp-1">{course.title}</h3>
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        <span className="px-3 py-1 bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-800 text-xs font-bold rounded-full">{course.subject}</span>
-                        <span className="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded-full">{course.lessons}</span>
-                      </div>
-                      <div className="mb-4">
-                        <div className="flex items-center justify-between mb-2 text-sm">
-                          <span className="text-slate-500">Progress</span>
-                          <span className="font-bold text-slate-900 dark:text-white">{course.progress}%</span>
-                        </div>
-                        <div className="w-full bg-slate-200/50 dark:bg-slate-700 rounded-2xl h-3 relative overflow-hidden">
-                          <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-indigo-400 h-full rounded-2xl shadow-inner shimmer" style={{width: `${course.progress}%`, boxShadow: '0 0 20px rgba(59, 130, 246, 0.4)'}}></div>
-                        </div>
-                      </div>
-                    </div>
-                    <Link href={`/courses/${course.id}`} className="btn bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-black shadow-xl hover:shadow-2xl hover:-translate-y-0.5 whitespace-nowrap px-8 py-4 rounded-3xl transition-all duration-300 group-hover:scale-[1.05]">
-                      Continue
-                      <span className="ml-2">→</span>
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
+           <div className="p-10 rounded-[4rem] bg-white border border-slate-100 shadow-sm flex flex-col justify-between group relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-purple-50 rounded-full blur-3xl group-hover:scale-150 transition-all duration-1000" />
+              <div className="flex items-center justify-between mb-8">
+                 <div className="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center shadow-sm">
+                    <Sparkles size={24} />
+                 </div>
+                 <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">AI Tutor Online</span>
+              </div>
+              <p className="text-sm font-black text-slate-900 leading-tight">"You spent 2 hours on Trigonometry yesterday. Ready for a quick recap?"</p>
+              <button className="w-full mt-6 py-4 bg-slate-50 text-slate-400 hover:text-slate-900 rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all hover:bg-purple-50 hover:text-purple-600 border border-transparent hover:border-purple-100">
+                 Start Recap Session
+              </button>
+           </div>
         </div>
 
-        {/* Sidebar - Quick Actions */}
-        <div className="space-y-6 lg:sticky lg:top-8 lg:h-screen lg:overflow-y-auto">
-          
-          {/* Live Classes */}
-          <div className="glass-card p-6 rounded-4xl space-y-4">
-            <div className="flex items-center justify-between">
-              <h3 className="font-black text-xl text-slate-900 dark:text-white">Live Now</h3>
-              <Link href="/live" className="text-orange-500 font-bold hover:underline text-sm">Full Schedule →</Link>
-            </div>
-            <div className="space-y-3">
-              {liveClasses.map((cls, i) => (
-                <div key={i} className={`p-4 rounded-2xl flex items-center gap-4 ${cls.status === 'live' ? 'bg-gradient-to-r from-red-500/10 to-orange-500/10 border-red-200 border backdrop-blur-sm animate-pulse' : 'bg-slate-50 dark:bg-slate-800/50 border-slate-200 border'}`}>
-                  <div className="w-3 h-3 rounded-full bg-gradient-to-r from-red-400 to-orange-400 shadow-lg animate-ping"></div>
-                  <div className="flex-1 min-w-0">
-                    <div className="font-bold text-sm text-slate-900 dark:text-white truncate">{cls.subject}</div>
-                    <div className="text-xs text-slate-500">{cls.teacher}</div>
-                  </div>
-                  <span className="px-3 py-1 bg-white dark:bg-slate-800 text-xs font-bold rounded-full shadow-sm">
-                    {cls.time}
-                  </span>
-                  <Link href="/live" className="btn btn-sm bg-white dark:bg-slate-800 shadow-lg hover:shadow-xl border hover:bg-slate-50 dark:hover:bg-slate-700 text-orange-600 font-bold">
-                    Join
-                  </Link>
+        {/* Action Stats */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+           {stats.map((s) => (
+             <div key={s.label} className="p-8 rounded-[3.5rem] bg-white border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all group">
+                <div className={`w-14 h-14 rounded-2xl ${s.color} flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform`}>
+                   <s.icon size={24} />
                 </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Achievements */}
-          <div className="glass-card p-6 rounded-4xl space-y-4">
-            <h3 className="font-black text-xl text-slate-900 dark:text-white mb-4">Recent Achievements</h3>
-            <div className="space-y-3">
-              {achievements.map((ach, i) => (
-                <div key={i} className="flex items-center gap-3 p-3 bg-gradient-to-r from-emerald-50 to-green-50 dark:from-emerald-950/50 rounded-2xl group hover:shadow-md transition-all">
-                  <div className="text-2xl group-hover:scale-125 transition-transform">{ach.icon}</div>
-                  <div>
-                    <div className="font-bold text-slate-900 dark:text-white">{ach.title}</div>
-                    <div className="text-sm text-slate-500">{ach.subtitle}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* AI Tutor */}
-          <div className="glass-card p-8 text-center rounded-4xl group cursor-pointer hover:shadow-2xl hover:-translate-y-2 transition-all relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-400 to-pink-400 opacity-5 blur-xl -z-10"></div>
-            <div className="text-6xl animate-bounce mb-6 mx-auto">🤖</div>
-            <h4 className="text-2xl font-black mb-3 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">AI Study Assistant</h4>
-            <p className="text-slate-600 dark:text-slate-300 mb-8">24/7 explanations, hints, practice problems</p>
-            <Link href="/ai-tutor" className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-black py-4 px-6 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-300 block group-hover:scale-[1.02]">
-              Open AI Tutor →
-            </Link>
-          </div>
-
+                <div className="text-4xl font-black text-slate-900 tracking-tighter mb-1">{s.value}</div>
+                <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{s.label}</div>
+             </div>
+           ))}
         </div>
+
+        <div className="grid lg:grid-cols-3 gap-10">
+           {/* Learning Path */}
+           <div className="lg:col-span-2 space-y-8">
+              <div className="flex items-center justify-between px-4">
+                 <h3 className="text-2xl font-black text-slate-900 uppercase tracking-[0.05em]">Continue Learning</h3>
+                 <Link href="/courses" className="text-[10px] font-black text-brand-orange uppercase tracking-widest hover:underline decoration-2 underline-offset-4">Browse Catalog</Link>
+              </div>
+
+              <div className="grid gap-4">
+                 {nextLessons.map((lesson, i) => (
+                   <div key={i} className="group p-8 rounded-[3.5rem] bg-white border border-slate-100 hover:border-brand-orange/20 hover:shadow-2xl hover:shadow-slate-200/50 transition-all flex flex-col md:flex-row items-center gap-10">
+                      <div className="w-20 h-20 rounded-[2.5rem] bg-slate-50 text-slate-400 group-hover:bg-slate-900 group-hover:text-white transition-all flex items-center justify-center shrink-0 shadow-inner">
+                         {lesson.type === 'Video' ? <Play size={32} /> : <BookOpen size={32} />}
+                      </div>
+                      
+                      <div className="flex-1 text-center md:text-left">
+                         <div className="flex items-center justify-center md:justify-start gap-4 mb-2">
+                            <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">{lesson.subject}</span>
+                            <span className="text-[8px] font-black text-brand-orange uppercase tracking-widest px-2 py-0.5 bg-orange-50 rounded-full">{lesson.type}</span>
+                         </div>
+                         <h4 className="text-xl font-black text-slate-900 group-hover:text-brand-orange transition-colors">{lesson.title}</h4>
+                         <div className="flex items-center justify-center md:justify-start gap-3 mt-4">
+                            <div className="w-32 h-1.5 bg-slate-50 rounded-full overflow-hidden">
+                               <div className="h-full bg-slate-900 group-hover:bg-brand-orange transition-all duration-1000" style={{ width: `${lesson.progress}%` }} />
+                            </div>
+                            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{lesson.progress}% Done</span>
+                         </div>
+                      </div>
+
+                      <button className="px-10 py-5 bg-slate-50 text-slate-900 rounded-[2rem] font-black text-[10px] uppercase tracking-widest hover:bg-slate-900 hover:text-white transition-all shadow-sm group-hover:shadow-xl active:scale-95 whitespace-nowrap">
+                         Start Lesson <ArrowRight size={14} className="inline ml-1" />
+                      </button>
+                   </div>
+                 ))}
+              </div>
+           </div>
+
+           {/* Schedule & Deadlines */}
+           <div className="space-y-8">
+              <div className="flex items-center justify-between px-4">
+                 <h3 className="text-2xl font-black text-slate-900 uppercase tracking-[0.05em]">Deadline Queue</h3>
+              </div>
+              
+              <div className="p-10 rounded-[4rem] bg-white border border-slate-100 shadow-sm space-y-8">
+                 {[
+                   { title: 'Quantum Quiz', date: 'Tomorrow', time: '10:00 AM', status: 'Urgent', color: 'text-red-500 bg-red-50' },
+                   { title: 'History TMA', date: '15 Apr 2026', time: '11:59 PM', status: 'Due Soon', color: 'text-amber-500 bg-amber-50' },
+                   { title: 'Science Lab', date: '18 Apr 2026', time: '02:00 PM', status: 'Upcoming', color: 'text-blue-500 bg-blue-50' },
+                 ].map((item, i) => (
+                   <div key={i} className="flex gap-6 group cursor-pointer">
+                      <div className={`w-12 h-12 rounded-2xl flex flex-col items-center justify-center shrink-0 border border-transparent group-hover:border-slate-100 transition-all ${item.color}`}>
+                         <Calendar size={18} />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                         <div className="flex justify-between items-start mb-1">
+                            <h4 className="text-sm font-black text-slate-900 truncate tracking-tight">{item.title}</h4>
+                            <span className={`text-[8px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full ${item.color}`}>{item.status}</span>
+                         </div>
+                         <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{item.date} · {item.time}</p>
+                      </div>
+                   </div>
+                 ))}
+                 
+                 <div className="pt-6 border-t border-slate-50">
+                    <button className="w-full py-4 bg-slate-900 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest shadow-xl hover:bg-brand-orange transition-all">
+                       Sync with Google Calendar
+                    </button>
+                 </div>
+              </div>
+           </div>
+        </div>
+
       </div>
     </DashboardLayout>
   );

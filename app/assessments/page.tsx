@@ -1,261 +1,174 @@
 'use client';
+
 import DashboardLayout from '@/components/DashboardLayout';
 import { useState } from 'react';
-
-const assessments = [
-  { id: 1, title: 'Physics Unit 4 Quiz', subject: 'Science', type: 'MCQ', questions: 20, duration: '30 min', due: 'Apr 5, 2026', status: 'pending', score: null },
-  { id: 2, title: 'Algebra Practice Test', subject: 'Mathematics', type: 'Mixed', questions: 15, duration: '25 min', due: 'Apr 3, 2026', status: 'pending', score: null },
-  { id: 3, title: 'English Comprehension', subject: 'English', type: 'Subjective', questions: 5, duration: '40 min', due: 'Mar 28, 2026', status: 'completed', score: 82 },
-  { id: 4, title: 'History - Modern India', subject: 'Social Science', type: 'MCQ', questions: 25, duration: '35 min', due: 'Mar 20, 2026', status: 'completed', score: 76 },
-  { id: 5, title: 'Final Term Assessment', subject: 'Science', type: 'Mixed', questions: 50, duration: '90 min', due: 'Apr 20, 2026', status: 'upcoming', score: null },
-];
-
-const sampleQuiz = {
-  title: 'Physics Unit 4 Quiz',
-  questions: [
-    {
-      id: 1,
-      q: 'Which of Newton\'s laws states that an object at rest stays at rest unless acted on by an external force?',
-      options: ['Newton\'s First Law', 'Newton\'s Second Law', 'Newton\'s Third Law', 'Law of Gravitation'],
-      correct: 0,
-    },
-    {
-      id: 2,
-      q: 'What is the SI unit of Force?',
-      options: ['Joule', 'Newton', 'Pascal', 'Watt'],
-      correct: 1,
-    },
-    {
-      id: 3,
-      q: 'If mass = 5 kg and acceleration = 3 m/s², what is the force?',
-      options: ['8 N', '15 N', '1.67 N', '53 N'],
-      correct: 1,
-    },
-  ],
-};
+import { 
+  Clock, 
+  CheckCircle2, 
+  BarChart3, 
+  Calendar, 
+  Trophy, 
+  BookOpen,
+  ChevronRight,
+  Timer,
+  AlertCircle,
+  Undo2,
+  Sparkles,
+  Zap,
+  FileText,
+  ArrowRight
+} from 'lucide-react';
+import { MOCK_ASSESSMENTS } from '@/lib/mock-data';
+import { useAuth } from '@/contexts/AuthContext';
 
 export default function AssessmentsPage() {
+  const { user } = useAuth();
   const [activeTab, setActiveTab] = useState<'list' | 'quiz'>('list');
-  const [answers, setAnswers] = useState<Record<number, number>>({});
-  const [submitted, setSubmitted] = useState(false);
-  const [timeLeft, setTimeLeft] = useState('29:45');
+  const [selectedAssessment, setSelectedAssessment] = useState<any>(null);
 
-  function startQuiz() {
-    setActiveTab('quiz');
-    setAnswers({});
-    setSubmitted(false);
-  }
+  if (!user) return null;
 
-  function selectAnswer(qId: number, optIdx: number) {
-    if (!submitted) setAnswers(prev => ({ ...prev, [qId]: optIdx }));
-  }
-
-  function submitQuiz() { setSubmitted(true); }
-
-  const score = submitted
-    ? Math.round((sampleQuiz.questions.filter(q => answers[q.id] === q.correct).length / sampleQuiz.questions.length) * 100)
-    : 0;
+  const stats = [
+    { label: 'Pending', value: '3', icon: Clock, color: 'text-amber-500 bg-amber-50' },
+    { label: 'Completed', value: '12', icon: CheckCircle2, color: 'text-emerald-500 bg-emerald-50' },
+    { label: 'Avg. Score', value: '88%', icon: BarChart3, color: 'text-blue-500 bg-blue-50' },
+    { label: 'Upcoming', value: '2', icon: Calendar, color: 'text-purple-500 bg-purple-50' },
+  ];
 
   return (
-    <DashboardLayout title="Assessments" subtitle="Quizzes, tests, and TMA submissions">
-
+    <DashboardLayout 
+      title="Academic Assessments" 
+      subtitle="Track your progress through quizzes, exams, and assignments"
+    >
       {activeTab === 'list' ? (
-        <>
-          {/* Filters */}
-          <div className="flex gap-3 mb-5 flex-wrap items-center">
-            {['All', 'Pending', 'Completed', 'Upcoming'].map((f) => (
-              <button key={f} id={`assessment-filter-${f.toLowerCase()}`} className="btn btn-ghost btn-sm">{f}</button>
-            ))}
-            <div className="ml-auto">
-              <input className="form-input" id="assessment-search" placeholder="🔍 Search assessments..." style={{ width: '220px', fontSize: '0.83rem' }} />
-            </div>
-          </div>
-
-          {/* Stats */}
-          <div className="grid grid-4 gap-4 mb-6">
-            {[
-              { label: 'Pending', value: '2', icon: '⏳', color: '#f59e0b' },
-              { label: 'Completed', value: '2', icon: '✅', color: '#22c55e' },
-              { label: 'Avg. Score', value: '79%', icon: '📊', color: '#3771f8' },
-              { label: 'Upcoming', value: '1', icon: '📅', color: '#a855f7' },
-            ].map((s) => (
-              <div key={s.label} className="stat-card">
-                <div className="stat-icon" style={{ background: `${s.color}15` }}>
-                  <span style={{ fontSize: '1.2rem' }}>{s.icon}</span>
+        <div className="space-y-10 animate-fade-in">
+          {/* Stats Grid */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            {stats.map((s, i) => (
+              <div key={i} className="p-6 rounded-[2.5rem] bg-white border border-slate-100 shadow-sm transition-all hover:shadow-xl group">
+                <div className={`w-12 h-12 rounded-2xl ${s.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                  <s.icon size={20} />
                 </div>
-                <div className="stat-value" style={{ color: s.color }}>{s.value}</div>
-                <div className="stat-label">{s.label}</div>
+                <div className="text-2xl font-black text-slate-900 tracking-tighter mb-1">{s.value}</div>
+                <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{s.label}</div>
               </div>
             ))}
           </div>
 
-          {/* Assessments list */}
-          <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
-            <div className="table-wrap">
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th>Assessment</th>
-                    <th>Type</th>
-                    <th>Questions</th>
-                    <th>Duration</th>
-                    <th>Due Date</th>
-                    <th>Status / Score</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {assessments.map((a) => (
-                    <tr key={a.id}>
-                      <td>
-                        <div className="font-semibold" style={{ color: 'var(--text-primary)', fontSize: '0.9rem' }}>{a.title}</div>
-                        <div className="text-xs text-muted">{a.subject}</div>
-                      </td>
-                      <td><span className="badge badge-muted">{a.type}</span></td>
-                      <td className="text-muted">{a.questions} Qs</td>
-                      <td className="text-muted">{a.duration}</td>
-                      <td>
-                        <span style={{
-                          fontSize: '0.83rem',
-                          color: a.status === 'pending' ? 'var(--warning)' : 'var(--text-muted)',
-                        }}>
-                          {a.due}
-                        </span>
-                      </td>
-                      <td>
-                        {a.status === 'completed'
-                          ? <span className="badge badge-success">✅ {a.score}%</span>
-                          : a.status === 'upcoming'
-                            ? <span className="badge badge-muted">📅 Upcoming</span>
-                            : <span className="badge badge-warning">⏳ Pending</span>
-                        }
-                      </td>
-                      <td>
-                        {a.status === 'pending' ? (
-                          <button id={`start-quiz-${a.id}`} className="btn btn-primary btn-sm" onClick={startQuiz}>Start →</button>
-                        ) : a.status === 'completed' ? (
-                          <button className="btn btn-ghost btn-sm">Review</button>
-                        ) : (
-                          <button className="btn btn-ghost btn-sm" disabled>Locked</button>
-                        )}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+          {/* Assessment List */}
+          <div className="space-y-6">
+            <div className="flex items-center justify-between mb-8">
+               <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight">Active Evaluations</h3>
+               <div className="flex gap-2">
+                 {['All', 'Quizzes', 'Assignments'].map((f) => (
+                   <button key={f} className="px-4 py-2 text-[10px] font-black rounded-xl text-slate-400 uppercase tracking-widest hover:text-slate-900 transition-colors">{f}</button>
+                 ))}
+               </div>
+            </div>
+
+            <div className="grid gap-4">
+               {MOCK_ASSESSMENTS.map((a) => (
+                 <div key={a.id} className="group p-6 rounded-[2rem] bg-white border border-slate-100 hover:border-brand-orange/20 hover:shadow-2xl hover:shadow-slate-200/50 transition-all flex flex-col md:flex-row items-center gap-6">
+                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 ${
+                      a.status === 'Completed' ? 'bg-emerald-50 text-emerald-500' : 'bg-orange-50 text-brand-orange'
+                    }`}>
+                      {a.type === 'Quiz' ? <Zap size={24} /> : a.type === 'Assignment' ? <FileText size={24} /> : <BookOpen size={24} />}
+                    </div>
+                    <div className="flex-1 text-center md:text-left">
+                       <div className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">{a.subject} · {a.type}</div>
+                       <h4 className="text-lg font-black text-slate-900 group-hover:text-brand-orange transition-colors">{a.title}</h4>
+                    </div>
+                    <div className="flex items-center gap-8 px-8 border-x border-slate-50 hidden md:flex">
+                       <div className="text-center">
+                          <div className="text-[10px] font-black text-slate-400 uppercase mb-1">Due Date</div>
+                          <div className="text-xs font-black text-slate-900 uppercase tracking-tighter">{a.dueDate}</div>
+                       </div>
+                       <div className="text-center min-w-[80px]">
+                          <div className="text-[10px] font-black text-slate-400 uppercase mb-1">Status</div>
+                          <div className={`text-[10px] font-black uppercase tracking-widest ${
+                            a.status === 'Completed' ? 'text-emerald-500' : 'text-orange-500 underline decoration-2'
+                          }`}>{a.status}</div>
+                       </div>
+                    </div>
+                    <div>
+                       {a.status === 'Completed' ? (
+                         <div className="px-6 py-3 bg-slate-50 rounded-xl text-[10px] font-black text-emerald-600 uppercase tracking-widest flex items-center gap-2">
+                           <CheckCircle2 size={14} /> SCORE: {a.score}%
+                         </div>
+                       ) : (
+                         <button 
+                          onClick={() => { setSelectedAssessment(a); setActiveTab('quiz'); }}
+                          className="px-8 py-4 bg-slate-900 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-brand-orange transition-all shadow-xl active:scale-95 flex items-center gap-2"
+                         >
+                           Start Module <ChevronRight size={14} />
+                         </button>
+                       )}
+                    </div>
+                 </div>
+               ))}
             </div>
           </div>
-        </>
+        </div>
       ) : (
-        /* Quiz View */
-        <div style={{ maxWidth: '760px', margin: '0 auto' }}>
-          {!submitted ? (
-            <>
-              {/* Quiz Header */}
-              <div className="card" style={{
-                display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                padding: '1rem 1.5rem', marginBottom: '1.5rem',
-                background: 'rgba(55,113,248,0.08)', borderColor: 'rgba(55,113,248,0.3)',
-              }}>
-                <div>
-                  <div className="font-semibold" style={{ color: 'var(--text-primary)' }}>{sampleQuiz.title}</div>
-                  <div className="text-xs text-muted">{sampleQuiz.questions.length} questions · Browser locked mode</div>
-                </div>
-                <div style={{
-                  background: 'var(--bg-card)', borderRadius: 'var(--radius-md)',
-                  padding: '0.5rem 1rem', fontFamily: 'monospace',
-                  color: parseInt(timeLeft) < 5 ? 'var(--danger)' : 'var(--warning)',
-                  fontWeight: 700, fontSize: '1.1rem',
-                }}>
-                  ⏱ {timeLeft}
-                </div>
+        <div className="max-w-4xl mx-auto animate-slide-up">
+           <div className="mb-8 flex items-center justify-between">
+              <button 
+                onClick={() => setActiveTab('list')}
+                className="flex items-center gap-2 text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-slate-900 transition-colors"
+              >
+                <Undo2 size={16} /> Back to List
+              </button>
+              <div className="px-6 py-3 bg-red-50 text-red-600 rounded-2xl border border-red-100 flex items-center gap-3">
+                 <Timer size={18} className="animate-pulse" />
+                 <span className="text-lg font-black tracking-tighter">29:45</span>
+              </div>
+           </div>
+
+           <div className="p-10 rounded-[3rem] bg-white border border-slate-100 shadow-sm space-y-12 relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-2 bg-slate-100">
+                <div className="h-full bg-brand-orange w-1/3 transition-all duration-1000" />
               </div>
 
-              {/* Questions */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-                {sampleQuiz.questions.map((q, qi) => (
-                  <div key={q.id} className="card animate-slide-up">
-                    <div className="flex items-start gap-3 mb-4">
-                      <div style={{
-                        width: '30px', height: '30px', borderRadius: '50%', flexShrink: 0,
-                        background: answers[q.id] !== undefined ? 'rgba(55,113,248,0.2)' : 'var(--bg-hover)',
-                        display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        fontWeight: 700, fontSize: '0.85rem',
-                        color: answers[q.id] !== undefined ? 'var(--primary-300)' : 'var(--text-muted)',
-                      }}>
-                        {qi + 1}
+              <div className="space-y-4">
+                 <div className="flex items-center gap-2">
+                   <span className="px-3 py-1 bg-brand-orange text-white text-[10px] font-black uppercase rounded-lg tracking-widest">Question 04 / 20</span>
+                   <span className="text-[10px] font-black text-slate-300 uppercase tracking-[0.2em]">— {selectedAssessment?.subject}</span>
+                 </div>
+                 <h2 className="text-2xl font-black text-slate-900 leading-tight">Which of Newton's laws states that an object at rest stays at rest unless acted on by an external force?</h2>
+              </div>
+
+              <div className="grid gap-4">
+                 {[
+                   "Newton's First Law of Motion",
+                   "Newton's Second Law of Motion",
+                   "Newton's Third Law of Motion",
+                   "The Law of Universal Gravitation"
+                 ].map((opt, i) => (
+                   <button key={i} className="group p-6 text-left rounded-3xl border-2 border-slate-50 hover:border-brand-orange/30 hover:bg-orange-50 transition-all flex items-center gap-6">
+                      <div className="w-10 h-10 rounded-xl bg-slate-50 text-slate-400 font-black text-sm flex items-center justify-center group-hover:bg-brand-orange group-hover:text-white transition-colors">
+                        {String.fromCharCode(65 + i)}
                       </div>
-                      <h4 style={{ flex: 1, fontWeight: 500, fontSize: '1rem', color: 'var(--text-primary)' }}>{q.q}</h4>
-                    </div>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.625rem', paddingLeft: '2.5rem' }}>
-                      {q.options.map((opt, oi) => (
-                        <button
-                          key={oi}
-                          id={`q${q.id}-opt${oi}`}
-                          onClick={() => selectAnswer(q.id, oi)}
-                          style={{
-                            display: 'flex', alignItems: 'center', gap: '0.875rem',
-                            padding: '0.875rem 1rem',
-                            borderRadius: 'var(--radius-md)',
-                            border: answers[q.id] === oi
-                              ? '1.5px solid var(--primary-400)'
-                              : '1px solid var(--border)',
-                            background: answers[q.id] === oi ? 'rgba(55,113,248,0.1)' : 'var(--bg-hover)',
-                            cursor: 'pointer',
-                            transition: 'all 0.15s ease',
-                            textAlign: 'left',
-                          }}
-                        >
-                          <div style={{
-                            width: '22px', height: '22px', borderRadius: '50%', flexShrink: 0,
-                            border: `2px solid ${answers[q.id] === oi ? 'var(--primary-400)' : 'var(--border-light)'}`,
-                            background: answers[q.id] === oi ? 'var(--primary-500)' : 'transparent',
-                            display: 'flex', alignItems: 'center', justifyContent: 'center',
-                          }}>
-                            {answers[q.id] === oi && <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#fff' }} />}
-                          </div>
-                          <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>{opt}</span>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                ))}
+                      <span className="text-sm font-black text-slate-600 flex-1 group-hover:text-slate-900 transition-colors">{opt}</span>
+                      <div className="w-6 h-6 rounded-full border-2 border-slate-200 group-hover:border-brand-orange transition-colors" />
+                   </button>
+                 ))}
               </div>
 
-              <div className="flex gap-3 mt-6">
-                <button id="save-quiz-draft" className="btn btn-ghost">Save Draft</button>
-                <button
-                  id="submit-quiz"
-                  className="btn btn-primary btn-lg"
-                  style={{ flex: 1 }}
-                  onClick={submitQuiz}
-                  disabled={Object.keys(answers).length < sampleQuiz.questions.length}
-                >
-                  Submit Quiz →
-                </button>
+              <div className="pt-10 flex items-center justify-between border-t border-slate-50">
+                 <button className="text-[10px] font-black text-slate-300 uppercase tracking-widest hover:text-slate-500">Skip Question</button>
+                 <button 
+                  onClick={() => setActiveTab('list')}
+                  className="px-12 py-5 bg-brand-orange text-white rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-orange-600 transition-all shadow-xl shadow-orange-500/20 active:scale-95 flex items-center gap-3"
+                 >
+                   Confirm & Next <ArrowRight size={16} />
+                 </button>
               </div>
-            </>
-          ) : (
-            /* Result */
-            <div className="card animate-slide-up" style={{ textAlign: 'center', padding: '3rem' }}>
-              <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>{score >= 70 ? '🎉' : '📚'}</div>
-              <h2 style={{ marginBottom: '0.5rem' }}>Quiz Submitted!</h2>
-              <div style={{
-                fontSize: '4rem', fontWeight: 900, fontFamily: "'Plus Jakarta Sans', sans-serif",
-                color: score >= 70 ? 'var(--success)' : 'var(--warning)',
-                margin: '1.5rem 0',
-              }}>
-                {score}%
-              </div>
-              <p className="text-sm" style={{ marginBottom: '2rem' }}>
-                You answered {sampleQuiz.questions.filter(q => answers[q.id] === q.correct).length} out of {sampleQuiz.questions.length} questions correctly.
-              </p>
-              <div className="flex gap-3 justify-center">
-                <button id="review-quiz-answers" className="btn btn-ghost">Review Answers</button>
-                <button id="back-to-assessments" className="btn btn-primary" onClick={() => { setActiveTab('list'); setSubmitted(false); }}>Back to Assessments</button>
-              </div>
-            </div>
-          )}
+           </div>
+
+           <div className="mt-8 flex items-center gap-3 justify-center">
+              <AlertCircle size={16} className="text-slate-300" />
+              <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest">Screen recording and AI proctoring active for this session</span>
+           </div>
         </div>
       )}
     </DashboardLayout>

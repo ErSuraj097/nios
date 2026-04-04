@@ -5,15 +5,16 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Lock, ArrowRight, Zap, ChevronLeft, Fingerprint, ShieldCheck, ArrowLeft } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
 
 type Role = 'learner' | 'teacher' | 'parent' | 'admin' | 'guest';
 
-const roleConfig: Record<Role, { label: string; email: string; redirect: string }> = {
-  learner: { label: 'LEARNER', email: 'student@school.com', redirect: '/dashboard/learner' },
-  teacher: { label: 'TEACHER', email: 'teacher@school.com', redirect: '/dashboard/teacher' },
-  parent: { label: 'PARENT', email: 'parent@school.com', redirect: '/dashboard/parent' },
-  admin: { label: 'ADMIN', email: 'principal@school.com', redirect: '/dashboard/admin' },
-  guest: { label: 'GUEST', email: 'guest@school.com', redirect: '/courses' },
+const roleConfig: Record<Role, { label: string; email: string; id: string; redirect: string }> = {
+  learner: { label: 'LEARNER', email: 'student@school.com', id: 'L10023', redirect: '/dashboard/learner' },
+  teacher: { label: 'TEACHER', email: 'teacher@school.com', id: 'T5001', redirect: '/dashboard/teacher' },
+  parent: { label: 'PARENT', email: 'parent@school.com', id: 'P7001', redirect: '/dashboard/parent' },
+  admin: { label: 'ADMIN', email: 'principal@school.com', id: 'A9001', redirect: '/dashboard/admin' },
+  guest: { label: 'GUEST', email: 'guest@school.com', id: 'G1001', redirect: '/dashboard/guest' },
 };
 
 export default function LoginPage() {
@@ -22,6 +23,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState('••••••••••••');
   const [isLoading, setIsLoading] = useState(false);
   const [showBiometric, setShowBiometric] = useState(false);
+  const { login } = useAuth();
 
   const handleRoleSelect = (role: Role) => {
     setActiveRole(role);
@@ -32,6 +34,7 @@ export default function LoginPage() {
     if (e) e.preventDefault();
     setIsLoading(true);
     setTimeout(() => {
+      login(roleConfig[activeRole].id);
       window.location.href = roleConfig[activeRole].redirect;
     }, 1500);
   };
@@ -69,17 +72,7 @@ export default function LoginPage() {
                 className="relative z-10 brightness-110 drop-shadow-2xl"
               />
             </div>
-   
-          
-
-            
           </motion.div>
-
-            
-
-          
-
-        
 
           <div className="max-w-xl">
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="inline-flex items-center gap-2 px-3 py-1 bg-orange-600/10 border border-orange-600/20 rounded-full mb-6">

@@ -1,6 +1,15 @@
 'use client';
 import DashboardLayout from '@/components/DashboardLayout';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  Play, FileText, PenTool, BookOpen, Video, Calendar, Download, 
+  ChevronLeft, ChevronRight, Eye, ThumbsUp, Upload, Save, 
+  FileOutput, Bot, Languages, Type, Volume2, Moon, Sun, 
+  Sparkles, X, MessageSquare, List, Info, Share2 
+} from 'lucide-react';
+import { MOCK_COURSES } from '@/lib/mock-data';
+import { useParams } from 'next/navigation';
 
 const lessons = [
   { id: 1, title: 'Introduction to Motion', type: 'video', duration: '18 min', done: true },
@@ -13,303 +22,343 @@ const lessons = [
   { id: 8, title: 'Unit Assessment', type: 'quiz', duration: '30 min', done: false },
 ];
 
-const typeIcon: Record<string, string> = {
-  video: '▶', pdf: '📄', quiz: '✏️', flipbook: '📖', live: '🎥',
+const typeIcon: Record<string, React.ComponentType<{ className?: string }>> = {
+  video: Play, pdf: FileText, quiz: PenTool, flipbook: BookOpen, live: Video,
 };
 
 const typeColor: Record<string, string> = {
-  video: '#3771f8', pdf: '#f59e0b', quiz: '#22c55e', flipbook: '#ff8c00', live: '#ef4444',
+  video: 'text-blue-500', pdf: 'text-amber-500', quiz: 'text-green-500', flipbook: 'text-orange-500', live: 'text-red-500',
 };
 
 const tabs = ['Overview', 'Notes', 'Resources', 'Discussion', 'TMA'];
 
 export default function CoursePlayerPage() {
+  const params = useParams();
+  const id = params.id as string;
+  const course = MOCK_COURSES.find(c => c.id === id) || MOCK_COURSES[0];
+
   const [activeTab, setActiveTab] = useState('Overview');
-  const [activeLesson, setActiveLesson] = useState(4);
+  const [activeLesson, setActiveLesson] = useState(1);
   const [note, setNote] = useState('');
+  
+  // Accessibility States
+  const [fontSize, setFontSize] = useState<'text-sm' | 'text-base' | 'text-lg'>('text-base');
+  const [isISLEnabled, setIsISLEnabled] = useState(false);
+  const [isSubtitlesEnabled, setIsSubtitlesEnabled] = useState(false);
+  const [isReadingAloud, setIsReadingAloud] = useState(false);
+  const [language, setLanguage] = useState('English');
+  const [showAISummary, setShowAISummary] = useState(false);
+  
+  const synth = useRef<SpeechSynthesis | null>(null);
+
+  useEffect(() => {
+    synth.current = window.speechSynthesis;
+    return () => {
+      synth.current?.cancel();
+    };
+  }, []);
+
+  const handleReadAloud = () => {
+    if (isReadingAloud) {
+      synth.current?.cancel();
+      setIsReadingAloud(false);
+    } else {
+      const utterance = new SpeechSynthesisUtterance(course.transcript || '');
+      utterance.onend = () => setIsReadingAloud(false);
+      synth.current?.speak(utterance);
+      setIsReadingAloud(true);
+    }
+  };
+
+  const toggleFontSize = () => {
+    const sizes: ('text-sm' | 'text-base' | 'text-lg')[] = ['text-sm', 'text-base', 'text-lg'];
+    const nextIndex = (sizes.indexOf(fontSize) + 1) % sizes.length;
+    setFontSize(sizes[nextIndex]);
+  };
 
   return (
-    <DashboardLayout title="Physics: Motion, Force & Energy" subtitle="Class 10 · Dr. V. Mehta · 24 Lessons">
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: '1.5rem', alignItems: 'start' }}>
+    <DashboardLayout 
+      title={course.title} 
+      subtitle={`${course.level} · ${course.teacher} · ${course.lessons} Lessons`}
+    >
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-8 items-start pb-20">
 
         {/* Main Player Area */}
-        <div>
-          {/* Calendar Sync & Export */}
-          <div className="flex justify-end gap-2 mb-3">
-             <button id="course-calendar-sync" className="btn btn-ghost btn-xs" style={{ gap: '0.4rem', fontSize: '0.75rem' }}>
-                📅 Sync to Google/Outlook Calendar
-             </button>
-             <button id="course-export-slm" className="btn btn-ghost btn-xs" style={{ gap: '0.4rem', fontSize: '0.75rem' }}>
-                📥 Offline SLM
-             </button>
+        <div className="space-y-6">
+          {/* Header Actions */}
+          <div className="flex items-center justify-between">
+             <div className="flex gap-2">
+                <span className="badge bg-brand-orange/10 text-brand-orange border-brand-orange/20 font-black uppercase tracking-widest px-3 py-1 text-[8px]">
+                   AI ENHANCED
+                </span>
+                <span className="badge bg-blue-50 text-blue-600 border-blue-100 font-black uppercase tracking-widest px-3 py-1 text-[8px]">
+                   BY-DR. MEHTA
+                </span>
+             </div>
+             <div className="flex gap-2">
+                <button className="p-2 bg-white border border-slate-100 rounded-xl text-slate-400 hover:text-slate-900 transition-all"><Share2 size={16} /></button>
+                <button className="p-2 bg-white border border-slate-100 rounded-xl text-slate-400 hover:text-slate-900 transition-all"><Calendar size={16} /></button>
+             </div>
           </div>
 
-          {/* Video Player / Flipbook Viewer */}
-          <div style={{
-            background: '#000',
-            borderRadius: 'var(--radius-lg)',
-            overflow: 'hidden',
-            aspectRatio: '16/9',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginBottom: '1.25rem',
-            position: 'relative',
-            border: activeLesson === 6 ? '1px solid var(--primary-500)' : 'none',
-          }}>
-            {activeLesson === 6 ? (
-              <div style={{
-                position: 'absolute', inset: 0,
-                background: 'linear-gradient(135deg, #1a2236 0%, #0b0f1a 100%)',
-                display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-                padding: '2rem',
-              }}>
-                <div style={{ 
-                  width: '80%', height: '80%', background: '#fff', borderRadius: '4px', position: 'relative',
-                  boxShadow: '0 20px 40px rgba(0,0,0,0.4)', display: 'flex'
-                }}>
-                   {/* mock flipbook */}
-                   <div style={{ flex: 1, borderRight: '1px solid #ddd', padding: '1.5rem', color: '#333' }}>
-                      <div style={{ height: '10px', width: '60%', background: '#eee', marginBottom: '1rem' }} />
-                      <div style={{ height: '8px', width: '90%', background: '#f5f5f5', marginBottom: '0.5rem' }} />
-                      <div style={{ height: '8px', width: '85%', background: '#f5f5f5', marginBottom: '0.5rem' }} />
-                      <div style={{ height: '8px', width: '40%', background: '#f5f5f5', marginBottom: '2rem' }} />
-                      <div style={{ fontSize: '3rem', textAlign: 'center' }}>🔬</div>
+          {/* Player Hub */}
+          <div className="relative group">
+            <div className="bg-slate-900 rounded-[3rem] overflow-hidden aspect-video shadow-2xl border border-slate-800 relative ring-8 ring-white/50">
+               {activeLesson === 6 ? (
+                 <div className="absolute inset-0 bg-slate-900 flex flex-col items-center justify-center p-12">
+                   {/* Flipbook specific UI */}
+                   <div className="text-white text-center space-y-4">
+                      <BookOpen size={48} className="mx-auto text-brand-orange" />
+                      <h4 className="font-black uppercase tracking-widest text-sm">Interactive FlipBook Active</h4>
+                      <p className="text-slate-500 text-[10px] max-w-xs mx-auto">Open the library to view full 3D interactive version of this SLM.</p>
+                      <button className="px-8 py-3 bg-brand-orange text-white rounded-2xl font-black text-[10px] uppercase tracking-widest shadow-lg shadow-orange-500/20">Expand Content</button>
                    </div>
-                   <div style={{ flex: 1, padding: '1.5rem', color: '#333' }}>
-                      <div style={{ height: '10px', width: '40%', background: '#eee', marginBottom: '1rem' }} />
-                      <div style={{ height: '8px', width: '90%', background: '#f5f5f5', marginBottom: '0.5rem' }} />
-                      <div style={{ height: '120px', width: '100%', background: 'rgba(55,113,248,0.05)', borderRadius: '4px', marginBottom: '0.5rem' }} />
-                      <div style={{ height: '8px', width: '80%', background: '#f5f5f5' }} />
-                   </div>
-                   <div style={{ position: 'absolute', bottom: '1rem', width: '100%', textAlign: 'center', color: '#999', fontSize: '0.7rem' }}>
-                      Page 14-15 of 42
-                   </div>
-                </div>
-                <div className="flex gap-4 mt-6">
-                   <button className="btn btn-ghost btn-sm" style={{ color: '#fff' }}>← Previous</button>
-                   <button className="btn btn-ghost btn-sm" style={{ color: '#fff' }}>Next →</button>
-                </div>
-              </div>
-            ) : (
-              <div style={{
-                position: 'absolute', inset: 0,
-                background: 'linear-gradient(135deg, #0b0f1a 0%, #1a2236 100%)',
-                display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1rem',
-              }}>
-                <div style={{ fontSize: '4rem' }}>🎬</div>
-                <div style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>{lessons.find(l => l.id === activeLesson)?.title}</div>
-                <button id="play-video-btn" className="btn btn-primary btn-lg" style={{ gap: '0.75rem' }}>
-                  ▶  Play Lesson
+                 </div>
+               ) : (
+                 <iframe 
+                   src={course.videoUrl} 
+                   className="w-full h-full border-0"
+                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                   allowFullScreen
+                 />
+               )}
+
+               {/* ISL Placeholder Overlay */}
+               {isISLEnabled && (
+                 <div className="absolute bottom-16 right-8 w-40 aspect-video bg-slate-800 rounded-2xl border border-slate-700 shadow-2xl overflow-hidden animate-in fade-in zoom-in slide-in-from-right-8">
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/40">
+                       <Video className="text-brand-orange opacity-40" />
+                       <div className="absolute top-2 left-2 text-[8px] font-black text-white uppercase tracking-widest bg-brand-orange px-2 py-0.5 rounded-full">ISL FEED</div>
+                    </div>
+                 </div>
+               )}
+
+               {/* Subtitles Overlay */}
+               {isSubtitlesEnabled && (
+                 <div className="absolute bottom-20 left-10 right-10 p-6 bg-black/60 backdrop-blur-md rounded-[2rem] border border-white/10 animate-in slide-in-from-bottom-4 duration-500">
+                    <p className="text-white text-center text-sm font-medium leading-relaxed italic opacity-90">
+                       "...{course.transcript?.substring(0, 150)}..."
+                    </p>
+                 </div>
+               )}
+
+               {/* Custom Player Controls Placeholder */}
+               <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="flex items-center gap-4">
+                     <button className="text-white hover:text-brand-orange"><Play fill="currentColor" /></button>
+                     <div className="text-[10px] font-black text-white/60 tracking-widest">08:24 / 18:40</div>
+                  </div>
+                  <div className="flex items-center gap-4">
+                     <button className="text-xs font-black text-white/60 hover:text-white">1.0X</button>
+                     <button className="text-xs font-black text-white/60 hover:text-white uppercase tracking-widest">HD</button>
+                  </div>
+               </div>
+            </div>
+
+            
+          </div>
+
+          {/* AI Accessibility Hub */}
+          <div className="p-6 bg-white rounded-[2.5rem] border border-slate-100 shadow-sm flex flex-wrap items-center gap-4">
+             <div className="flex items-center gap-2 pr-4 border-r border-slate-100 text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                <Info size={14} /> Tools
+             </div>
+             <button onClick={() => setIsSubtitlesEnabled(!isSubtitlesEnabled)} className={`btn-pill px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${isSubtitlesEnabled ? 'bg-slate-900 text-white' : 'bg-slate-50 text-slate-500 hover:bg-slate-100'}`}>
+                📝 Subtitles
+             </button>
+             <button onClick={() => setIsISLEnabled(!isISLEnabled)} className={`btn-pill px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${isISLEnabled ? 'bg-slate-900 text-white' : 'bg-slate-50 text-slate-500 hover:bg-slate-100'}`}>
+                🤟 ISL (Sign)
+             </button>
+             <button onClick={handleReadAloud} className={`btn-pill px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${isReadingAloud ? 'bg-emerald-500 text-white' : 'bg-slate-50 text-slate-500 hover:bg-slate-100'}`}>
+                🔊 {isReadingAloud ? 'Reading...' : 'Read Aloud'}
+             </button>
+             <div className="h-6 w-px bg-slate-100 mx-2" />
+             <div className="relative group">
+                <button className="px-6 py-3 bg-slate-50 text-slate-500 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center gap-2 hover:bg-slate-100">
+                   <Languages size={14} /> Dub: {language}
                 </button>
-              </div>
-            )}
-
-            {/* Player controls bar */}
-            <div style={{
-              position: 'absolute', bottom: 0, left: 0, right: 0,
-              background: 'linear-gradient(to top, rgba(0,0,0,0.9), transparent)',
-              padding: '1rem 1.25rem 0.875rem',
-              display: 'flex', alignItems: 'center', gap: '0.875rem',
-            }}>
-              <button id="player-play" className="btn btn-ghost btn-icon" style={{ color: '#fff' }}>▶</button>
-              <div className="progress-bar" style={{ flex: 1, height: '4px', cursor: 'pointer' }}>
-                <div className="progress-fill" style={{ width: '35%' }} />
-              </div>
-              <span style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.6)', whiteSpace: 'nowrap' }}>8:24 / 24:00</span>
-              <button id="player-captions" className="btn btn-ghost btn-sm" style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.75rem' }}>CC</button>
-              <button id="player-speed" className="btn btn-ghost btn-sm" style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.75rem' }}>1x</button>
-              <button id="player-fullscreen" className="btn btn-ghost btn-icon" style={{ color: 'rgba(255,255,255,0.7)' }}>⛶</button>
-            </div>
-          </div>
-
-          {/* Accessibility Bar */}
-          <div className="card" style={{ padding: '0.875rem 1.25rem', marginBottom: '1.25rem', display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-            <span className="text-xs text-muted font-semibold">ACCESSIBILITY</span>
-            {[
-              { id: 'acc-subtitles', label: '📝 Subtitles' },
-              { id: 'acc-isl', label: '🤟 ISL' },
-              { id: 'acc-translate', label: '🌐 Translate' },
-              { id: 'acc-tts', label: '🔊 Read Aloud' },
-              { id: 'acc-dark', label: '🌙 Dark Mode' },
-              { id: 'acc-font', label: 'Aa Font Size' },
-            ].map((a) => (
-              <button key={a.id} id={a.id} className="btn btn-ghost btn-sm" style={{ fontSize: '0.78rem' }}>{a.label}</button>
-            ))}
-          </div>
-
-          {/* Tabs */}
-          <div className="tabs" style={{ marginBottom: '1.25rem' }}>
-            {tabs.map((t) => (
-              <button key={t} id={`course-tab-${t.toLowerCase()}`} className={`tab ${activeTab === t ? 'active' : ''}`} onClick={() => setActiveTab(t)}>{t}</button>
-            ))}
-          </div>
-
-          {/* Tab Content */}
-          {activeTab === 'Overview' && (
-            <div className="card animate-fade-in">
-              <h3 style={{ marginBottom: '0.75rem' }}>Newton's Laws of Motion</h3>
-              <p style={{ marginBottom: '1rem' }}>This lesson covers all three laws of Newton, their mathematical representations, real-world applications, and solved examples. By the end, learners can predict motion outcomes using force equations.</p>
-              <div className="flex gap-3 flex-wrap mb-4">
-                <span className="badge badge-primary">📚 NCERT Aligned</span>
-                <span className="badge badge-success">✅ SCORM 1.2</span>
-                <span className="badge badge-accent">🏆 Competency: L2</span>
-              </div>
-              <div className="divider" />
-              <h4 style={{ marginBottom: '0.75rem' }}>Learning Objectives</h4>
-              <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                {['State and explain Newton\'s 3 Laws', 'Apply F=ma to solve problems', 'Distinguish between mass and weight', 'Analyze real-world force scenarios'].map((obj) => (
-                  <li key={obj} style={{ display: 'flex', gap: '0.75rem', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
-                    <span style={{ color: 'var(--success)' }}>✓</span> {obj}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {activeTab === 'Notes' && (
-            <div className="card animate-fade-in">
-              <h4 style={{ marginBottom: '1rem' }}>📝 My Notes</h4>
-              <textarea
-                id="lesson-notes"
-                className="form-input"
-                style={{ minHeight: '180px', resize: 'vertical' }}
-                placeholder="Take notes here while watching... Notes are auto-saved."
-                value={note}
-                onChange={(e) => setNote(e.target.value)}
-              />
-              <div className="flex gap-2 mt-4">
-                <button id="save-notes" className="btn btn-primary btn-sm">💾 Save Notes</button>
-                <button id="export-notes" className="btn btn-ghost btn-sm">📤 Export PDF</button>
-                <button id="ai-summarize" className="btn btn-ghost btn-sm">🤖 AI Summarize</button>
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'Resources' && (
-            <div className="card animate-fade-in">
-              <h4 style={{ marginBottom: '1rem' }}>📎 Lesson Resources</h4>
-              {[
-                { name: 'Chapter 4 SLM PDF', type: 'PDF', size: '2.4 MB' },
-                { name: 'Newton\'s Laws Flashcards', type: 'Flipbook', size: '1.1 MB' },
-                { name: 'Concept Map – Forces', type: 'Image', size: '340 KB' },
-                { name: 'Practice Problems - Set A', type: 'PDF', size: '890 KB' },
-              ].map((r, i) => (
-                <div key={i} className="flex items-center justify-between" style={{
-                  padding: '0.875rem',
-                  background: 'var(--bg-hover)',
-                  borderRadius: 'var(--radius-md)',
-                  marginBottom: '0.625rem',
-                }}>
-                  <div>
-                    <div className="font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>{r.name}</div>
-                    <div className="text-xs text-muted">{r.type} · {r.size}</div>
-                  </div>
-                  <div className="flex gap-2">
-                    <button className="btn btn-ghost btn-sm">👁 Preview</button>
-                    <button className="btn btn-primary btn-sm">⬇ Download</button>
-                  </div>
+                <div className="absolute top-full mt-2 left-0 w-40 bg-white rounded-2xl shadow-2xl border border-slate-100 p-2 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all z-30">
+                   {['English', 'Hindi', 'Sanskrit', 'Bengali'].map(l => (
+                     <button key={l} onClick={() => setLanguage(l)} className="w-full px-4 py-2 text-left text-[10px] font-black uppercase tracking-widest text-slate-500 hover:bg-brand-orange hover:text-white rounded-xl transition-all">
+                        {l}
+                     </button>
+                   ))}
                 </div>
-              ))}
-            </div>
-          )}
+             </div>
+             <button onClick={toggleFontSize} className="p-3 bg-slate-50 text-slate-500 rounded-2xl hover:bg-slate-100 transition-all">
+                <Type size={18} />
+             </button>
+             {/* AI Summary Widget Button */}
+            <button 
+              onClick={() => setShowAISummary(!showAISummary)}
+              className="p-3 bg-slate-50 text-slate-500 rounded-2xl hover:bg-slate-100 transition-all"
+            >
+              <Sparkles size={24} />
+            </button>
+             <button className="p-3 bg-slate-50 text-slate-500 rounded-2xl hover:bg-slate-100 transition-all">
+                <Moon size={18} />
+             </button>
+          </div>
 
-          {activeTab === 'Discussion' && (
-            <div className="card animate-fade-in">
-              <h4 style={{ marginBottom: '1rem' }}>💬 Lesson Discussion</h4>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '1.25rem' }}>
-                {[
-                  { user: 'Priya N.', msg: 'Can someone explain the difference between static and kinetic friction?', time: '2h ago', likes: 4 },
-                  { user: 'Dr. Mehta', msg: 'Great question! Static friction prevents start of motion, kinetic acts during motion. Check slide 14!', time: '1h ago', likes: 12, teacher: true },
-                ].map((msg, i) => (
-                  <div key={i} style={{ display: 'flex', gap: '0.875rem' }}>
-                    <div className="avatar avatar-sm" style={{ background: msg.teacher ? 'linear-gradient(135deg, #ff8c00, #c05700)' : undefined }}>
-                      {msg.user.charAt(0)}
-                    </div>
-                    <div style={{ flex: 1, background: 'var(--bg-hover)', borderRadius: 'var(--radius-md)', padding: '0.875rem' }}>
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>{msg.user}</span>
-                        {msg.teacher && <span className="badge badge-accent">Teacher</span>}
-                        <span className="text-xs text-muted">{msg.time}</span>
-                      </div>
-                      <p style={{ fontSize: '0.875rem', marginBottom: '0.5rem' }}>{msg.msg}</p>
-                      <button className="btn btn-ghost btn-sm" style={{ fontSize: '0.75rem' }}>👍 {msg.likes}</button>
-                    </div>
-                  </div>
+          {/* Bottom Content Tabs */}
+          <div className="space-y-6">
+             <div className="flex gap-4 border-b border-slate-100">
+                {tabs.map((t) => (
+                  <button 
+                    key={t} 
+                    onClick={() => setActiveTab(t)}
+                    className={`pb-4 px-2 text-xs font-black uppercase tracking-widest transition-all relative ${
+                      activeTab === t ? 'text-brand-orange' : 'text-slate-400 hover:text-slate-600'
+                    }`}
+                  >
+                    {t}
+                    {activeTab === t && <motion.div layoutId="tab-underline" className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-orange" />}
+                  </button>
                 ))}
-              </div>
-              <div className="flex gap-2">
-                <input id="discussion-input" className="form-input" style={{ flex: 1 }} placeholder="Ask your question..." />
-                <button id="post-discussion" className="btn btn-primary">Post</button>
-              </div>
-            </div>
-          )}
+             </div>
 
-          {activeTab === 'TMA' && (
-            <div className="card animate-fade-in">
-              <h4 style={{ marginBottom: '0.5rem' }}>📋 Tutor Marked Assignment</h4>
-              <p className="text-sm" style={{ marginBottom: '1.25rem' }}>Submit your TMA for Chapter 4. Must be ≥500 words. Deadline: <strong style={{ color: 'var(--warning)' }}>5 April 2026</strong></p>
-              <textarea id="tma-submission" className="form-input" style={{ minHeight: '200px', resize: 'vertical', marginBottom: '1rem' }} placeholder="Write your assignment here..." />
-              <div className="flex gap-2">
-                <button id="upload-tma-file" className="btn btn-ghost">📎 Upload File</button>
-                <button id="submit-tma" className="btn btn-primary" style={{ flex: 1 }}>Submit TMA →</button>
-              </div>
-              <p className="text-xs text-muted mt-2">Submissions are checked for plagiarism automatically.</p>
-            </div>
-          )}
+             <div className={`p-8 bg-white rounded-[3rem] border border-slate-100 shadow-sm animate-in fade-in duration-500 ${fontSize}`}>
+                {activeTab === 'Overview' && (
+                  <div className="space-y-6">
+                     <h3 className="text-2xl font-black text-slate-900 tracking-tight">{course.title}</h3>
+                     <p className="text-slate-500 leading-relaxed font-medium">{course.description}</p>
+                     <div className="grid grid-cols-2 gap-4">
+                        {course.objectives.map((obj, i) => (
+                          <div key={i} className="flex gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-100/50">
+                             <div className="w-5 h-5 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center shrink-0 mt-0.5">✓</div>
+                             <span className="text-[10px] font-black uppercase tracking-widest text-slate-900">{obj}</span>
+                          </div>
+                        ))}
+                     </div>
+                  </div>
+                )}
+                
+                {activeTab === 'Notes' && (
+                  <div className="space-y-6">
+                     <textarea
+                       className="w-full h-48 p-6 bg-slate-50 border border-slate-100 rounded-[2rem] text-sm focus:outline-none focus:ring-4 focus:ring-brand-orange/5 transition-all text-slate-600 font-medium placeholder:text-slate-400"
+                       placeholder="Take your lesson notes here... AI is listening to key points."
+                       value={note}
+                       onChange={(e) => setNote(e.target.value)}
+                     />
+                     <div className="flex gap-4">
+                        <button className="px-8 py-4 bg-slate-900 text-white rounded-[2rem] font-black text-[10px] uppercase tracking-widest hover:bg-black transition-all shadow-xl">
+                           Auto-Save Enabled
+                        </button>
+                        <button className="px-8 py-4 bg-white border border-slate-100 text-slate-500 rounded-[2rem] font-black text-[10px] uppercase tracking-widest hover:text-slate-900 transition-all">
+                           Export (MD)
+                        </button>
+                     </div>
+                  </div>
+                )}
+
+                {activeTab === 'Resources' && (
+                  <div className="grid md:grid-cols-2 gap-6">
+                     {[
+                       { name: 'Unit 1 SLM', type: 'PDF', icon: FileText },
+                       { name: 'Formula Sheet', type: 'IMG', icon: PenTool },
+                     ].map((r, i) => (
+                       <div key={i} className="group p-6 bg-slate-50 hover:bg-white border border-slate-100 rounded-[2.5rem] flex items-center justify-between transition-all hover:shadow-xl">
+                          <div className="flex items-center gap-4">
+                             <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-brand-orange group-hover:scale-110 transition-transform">
+                                <r.icon size={20} />
+                             </div>
+                             <div>
+                                <div className="text-xs font-black text-slate-900">{r.name}</div>
+                                <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{r.type} · 2.4MB</div>
+                             </div>
+                          </div>
+                          <button className="p-3 bg-white text-slate-400 hover:text-slate-900 rounded-xl shadow-sm"><Download size={18} /></button>
+                       </div>
+                     ))}
+                  </div>
+                )}
+             </div>
+          </div>
         </div>
 
-        {/* Lesson Sidebar */}
-        <div>
-          <div className="card" style={{ padding: 0, overflow: 'hidden', position: 'sticky', top: '80px' }}>
-            <div style={{ padding: '1.25rem', borderBottom: '1px solid var(--border)' }}>
-              <div className="flex items-center justify-between mb-2">
-                <h4>Course Content</h4>
-                <span className="text-xs text-muted">3/8 done</span>
+        {/* Sidebar Space */}
+        <aside className="space-y-8 lg:sticky lg:top-8">
+           {/* AI Summary Sidebar */}
+           {showAISummary && (
+             <motion.div 
+               initial={{ opacity: 0, x: 20 }}
+               animate={{ opacity: 1, x: 0 }}
+               className="p-8 bg-slate-900 rounded-[3.5rem] text-white shadow-2xl relative overflow-hidden group"
+             >
+                <div className="absolute top-0 right-0 w-32 h-32 bg-brand-orange/20 rounded-full blur-3xl" />
+                <div className="flex items-center justify-between mb-8">
+                   <h4 className="text-sm font-black uppercase tracking-tight flex items-center gap-2">
+                      <Sparkles size={18} className="text-brand-orange" /> Gemini Summary
+                   </h4>
+                   <button onClick={() => setShowAISummary(false)} className="text-white/40 hover:text-white transition-colors"><X size={18} /></button>
+                </div>
+                <div className="space-y-6">
+                   <div className="p-5 bg-white/5 border border-white/10 rounded-2xl">
+                      <div className="text-[8px] font-black text-brand-orange uppercase tracking-widest mb-2">Key Concept</div>
+                      <p className="text-xs leading-relaxed text-white/80">{course.summary}</p>
+                   </div>
+                   <div className="flex flex-col gap-3">
+                      {['3 Laws Identified', 'Solved Examples included', 'Assignment Help available'].map(t => (
+                        <div key={t} className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-slate-400">
+                           <div className="w-1.5 h-1.5 bg-brand-orange rounded-full shadow-[0_0_8px_rgba(255,107,0,1)]" /> {t}
+                        </div>
+                      ))}
+                   </div>
+                   <button className="w-full py-4 bg-brand-orange text-white rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-orange-600 transition-all">
+                      Deep Dive with AI
+                   </button>
+                </div>
+             </motion.div>
+           )}
+
+           {/* Curriculum Progress */}
+           <div className="p-8 bg-white rounded-[3.5rem] border border-slate-100 shadow-sm space-y-8">
+              <div className="space-y-4">
+                 <div className="flex items-center justify-between text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                    <span>Course Content</span>
+                    <span className="text-slate-900 font-bold">12/24</span>
+                 </div>
+                 <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
+                    <div className="h-full bg-brand-orange w-1/2" />
+                 </div>
               </div>
-              <div className="progress-bar">
-                <div className="progress-fill" style={{ width: '37.5%' }} />
+
+              <div className="space-y-2 overflow-y-auto max-h-[400px] pr-2 scrollbar-hide">
+                 {lessons.map((l) => (
+                   <button 
+                     key={l.id} 
+                     onClick={() => setActiveLesson(l.id)}
+                     className={`w-full group p-4 flex items-center gap-4 rounded-2xl transition-all ${
+                       activeLesson === l.id 
+                         ? 'bg-slate-900 text-white shadow-xl' 
+                         : 'hover:bg-slate-50 text-slate-500'
+                     }`}
+                   >
+                     <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border transition-all ${
+                       activeLesson === l.id 
+                         ? 'bg-brand-orange border-brand-orange/20 text-white' 
+                         : 'bg-white border-slate-100'
+                     }`}>
+                        {l.done ? <div className="w-2.5 h-2.5 bg-emerald-500 rounded-full shadow-[0_0_8px_rgba(16,185,129,0.5)]" /> : (l.type === 'video' ? <Play size={18} /> : <FileText size={18} />)}
+                     </div>
+                     <div className="text-left min-w-0">
+                        <div className={`text-[10px] font-black uppercase tracking-tight truncate ${activeLesson === l.id ? 'text-white' : 'text-slate-900'}`}>
+                           {l.title}
+                        </div>
+                        <div className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">{l.duration} · {l.type}</div>
+                     </div>
+                   </button>
+                 ))}
               </div>
-            </div>
-            <div style={{ overflowY: 'auto', maxHeight: '500px' }}>
-              {lessons.map((l) => (
-                <button
-                  key={l.id}
-                  id={`lesson-${l.id}`}
-                  onClick={() => setActiveLesson(l.id)}
-                  style={{
-                    width: '100%', display: 'flex', alignItems: 'flex-start', gap: '0.875rem',
-                    padding: '0.875rem 1.25rem',
-                    background: activeLesson === l.id ? 'rgba(55,113,248,0.1)' : 'transparent',
-                    borderLeft: activeLesson === l.id ? '3px solid var(--primary)' : '3px solid transparent',
-                    borderBottom: '1px solid var(--border)',
-                    transition: 'var(--transition)',
-                    textAlign: 'left',
-                    cursor: 'pointer',
-                  }}
-                >
-                  <div style={{
-                    width: '28px', height: '28px', borderRadius: '50%', flexShrink: 0,
-                    background: l.done ? 'rgba(34,197,94,0.15)' : `${typeColor[l.type]}15`,
-                    color: l.done ? 'var(--success)' : typeColor[l.type],
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: '0.8rem', fontWeight: 700,
-                  }}>
-                    {l.done ? '✓' : typeIcon[l.type]}
-                  </div>
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div className="text-sm" style={{
-                      color: activeLesson === l.id ? 'var(--primary-300)' : l.done ? 'var(--text-muted)' : 'var(--text-primary)',
-                      fontWeight: 500, lineHeight: 1.4,
-                    }}>{l.title}</div>
-                    <div className="text-xs text-muted" style={{ marginTop: '2px' }}>{l.duration}</div>
-                  </div>
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
+
+              <button className="w-full py-5 bg-slate-50 border border-slate-100 text-slate-500 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-slate-900 hover:text-white transition-all">
+                 Download Full Syllabus
+              </button>
+           </div>
+        </aside>
       </div>
     </DashboardLayout>
   );
 }
+

@@ -2,136 +2,160 @@
 
 import DashboardLayout from '@/components/DashboardLayout';
 import Link from 'next/link';
+import { 
+  Users, 
+  BarChart3, 
+  Calendar, 
+  ClipboardList, 
+  Award, 
+  MessageSquare, 
+  CreditCard, 
+  ShieldCheck,
+  TrendingUp,
+  Clock,
+  CheckCircle2
+} from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
 
 const children = [
-  { id: '10023', name: 'Arjun Sharma', grade: 'Secondary (Science)', progress: 72, attendance: '92%', lastActive: '2 hours ago' },
+  { id: '10023', name: 'Arjun Sharma', grade: 'Class 10 (Science)', progress: 72, attendance: '92%', lastActive: '2 hours ago' },
 ];
 
-const stats = [
-  { label: 'Overall Progress', value: '72%', icon: '📊', color: '#3771f8' },
-  { label: 'Attendance', value: '92%', icon: '📅', color: '#22c55e' },
-  { label: 'Upcoming TMAs', value: '3', icon: '📝', color: '#f59e0b' },
-  { label: 'Course Rank', value: '#12', icon: '🏆', color: '#ff8c00' },
+const childStats = [
+  { label: 'Overall Progress', value: '72%', icon: BarChart3, color: 'from-blue-500 to-indigo-600' },
+  { label: 'Attendance', value: '92%', icon: Calendar, color: 'from-emerald-500 to-teal-600' },
+  { label: 'Pending Tasks', value: '3', icon: ClipboardList, color: 'from-orange-500 to-red-600' },
+  { label: 'Global Rank', value: '#12', icon: Award, color: 'from-purple-500 to-pink-600' },
 ];
 
 const recentActivity = [
-  { student: 'Arjun', activity: 'Completed Quiz: Laws of Motion', time: '10:45 AM', score: '85%' },
-  { student: 'Arjun', activity: 'Submitted TMA: English Grammar', time: 'Yesterday', score: 'Pending' },
-  { student: 'Arjun', activity: 'Logged in for Live Class (Physics)', time: '31 Mar', score: '-' },
+  { activity: 'Completed Quiz: Laws of Motion', time: '10:45 AM', score: '85%', status: 'success' },
+  { activity: 'Submitted TMA: English Grammar', time: 'Yesterday', score: 'Pending', status: 'warning' },
+  { activity: 'Logged in for Live Class (Physics)', time: '31 Mar', score: '-', status: 'info' },
 ];
 
 export default function ParentDashboard() {
+  const { user } = useAuth();
+
+  if (!user) return null;
+
   return (
-    <DashboardLayout title="Parental Dashboard" subtitle="Monitoring Progress & Attendance for Arjun Sharma">
-      
-      {/* Child Selector (If multiple children) */}
-      <div className="card mb-6" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', padding: '1.25rem 1.5rem' }}>
-        <div className="avatar avatar-md" style={{ background: 'var(--primary-500)', fontSize: '1.2rem' }}>A</div>
-        <div style={{ flex: 1 }}>
-          <div className="font-semibold" style={{ fontSize: '1.1rem', color: 'var(--text-primary)' }}>{children[0].name}</div>
-          <div className="text-sm text-muted">{children[0].grade} · Roll No: {children[0].id}</div>
+    <DashboardLayout 
+      title="Guardian Portal" 
+      subtitle={`Welcome back, ${user.name} · Managing ${children.length} Scholar(s)`}
+    >
+      {/* Child Overview Card */}
+      <div className="p-8 mb-8 rounded-[2.5rem] bg-white border border-slate-100 shadow-sm flex flex-col md:flex-row items-center gap-8 group">
+        <div className="w-24 h-24 rounded-3xl bg-slate-100 flex items-center justify-center text-3xl font-black text-slate-400 group-hover:bg-brand-orange group-hover:text-white transition-colors animate-fade-in">
+          {children[0].name.charAt(0)}
         </div>
-        <div className="flex gap-2">
-          <span className="badge badge-success">Online Now</span>
-          <button className="btn btn-ghost btn-sm">Switch Child ▼</button>
+        <div className="flex-1 text-center md:text-left">
+          <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
+            <h2 className="text-2xl font-black text-slate-900 tracking-tight">{children[0].name}</h2>
+            <span className="px-3 py-1 bg-emerald-50 text-emerald-600 text-[10px] font-black uppercase rounded-full border border-emerald-100">ONLINE</span>
+          </div>
+          <p className="text-slate-500 font-bold text-sm uppercase tracking-widest">{children[0].grade} · ROLL: {children[0].id}</p>
+          <div className="flex items-center justify-center md:justify-start gap-4 mt-4">
+             <div className="flex items-center gap-1.5 text-xs font-black text-slate-400">
+               <Clock size={14} /> ACTIVE {children[0].lastActive}
+             </div>
+             <div className="flex items-center gap-1.5 text-xs font-black text-slate-400">
+               <CheckCircle2 size={14} className="text-emerald-500" /> VERIFIED GEN-ID
+             </div>
+          </div>
         </div>
+        <button className="px-8 py-4 bg-slate-900 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-black transition-all shadow-xl active:scale-95">
+          Switch Profile
+        </button>
       </div>
 
-      {/* Stats */}
-      <div className="grid grid-4 gap-4 mb-6">
-        {stats.map((s) => (
-          <div key={s.label} className="stat-card">
-            <div className="stat-icon" style={{ background: `${s.color}18` }}>
-              <span style={{ fontSize: '1.25rem' }}>{s.icon}</span>
+      {/* Stats Grid */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+        {childStats.map((s, i) => (
+          <div key={i} className="p-6 rounded-[2.5rem] bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all group">
+            <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${s.color} text-white flex items-center justify-center mb-4 shadow-lg opacity-80 group-hover:opacity-100 transition-opacity`}>
+              <s.icon size={20} />
             </div>
-            <div>
-              <div className="stat-value" style={{ color: s.color }}>{s.value}</div>
-              <div className="stat-label">{s.label}</div>
-            </div>
+            <div className="text-3xl font-black text-slate-900 tracking-tighter mb-1">{s.value}</div>
+            <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{s.label}</div>
           </div>
         ))}
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 340px', gap: '1.5rem' }}>
-        
-        {/* Performance Graph Placeholder */}
-        <div className="card">
-          <div className="flex items-center justify-between mb-6">
-            <h4>Performance Overview</h4>
-            <select className="form-input" style={{ width: 'auto', fontSize: '0.8rem', padding: '0.25rem 0.5rem' }}>
-              <option>Last 30 Days</option>
-              <option>Last Term</option>
-            </select>
-          </div>
-          <div style={{ 
-            height: '240px', 
-            background: 'var(--bg-hover)', 
-            borderRadius: 'var(--radius-md)', 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center',
-            border: '1px dashed var(--border)',
-            color: 'var(--text-muted)',
-            fontSize: '0.9rem'
-          }}>
-            [ Interactive Chart Coming Soon ]
-          </div>
-          <div className="grid grid-3 gap-4 mt-6">
-            <div style={{ textAlign: 'center' }}>
-              <div className="text-xs text-muted mb-1">Time Spent</div>
-              <div className="font-semibold">42h 15m</div>
-            </div>
-            <div style={{ textAlign: 'center' }}>
-              <div className="text-xs text-muted mb-1">Avg. Quiz Score</div>
-              <div className="font-semibold">78%</div>
-            </div>
-            <div style={{ textAlign: 'center' }}>
-              <div className="text-xs text-muted mb-1">Pending Tasks</div>
-              <div className="font-semibold text-accent">5</div>
-            </div>
+      <div className="grid lg:grid-cols-3 gap-8">
+        {/* Performance Visualization */}
+        <div className="lg:col-span-2 space-y-6">
+          <div className="p-8 rounded-[2.5rem] bg-white border border-slate-100 shadow-sm relative overflow-hidden">
+             <div className="flex items-center justify-between mb-8">
+               <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight">Academic Trajectory</h3>
+               <TrendingUp className="text-emerald-500" />
+             </div>
+             <div className="h-64 bg-slate-50 border border-dashed border-slate-200 rounded-[2rem] flex flex-col items-center justify-center text-slate-400 gap-4">
+                <BarChart3 size={48} className="opacity-20 translate-y-2" />
+                <span className="text-[10px] font-black uppercase tracking-widest opacity-50">Generating Real-time Telemetry...</span>
+             </div>
+             <div className="grid grid-3 gap-6 mt-8 pt-8 border-t border-slate-100">
+                <div className="text-center">
+                  <div className="text-[10px] font-black text-slate-400 uppercase mb-1">Time Spent</div>
+                  <div className="text-xl font-black text-slate-900 tracking-tight">42h 15m</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-[10px] font-black text-slate-400 uppercase mb-1">Avg. Quiz Score</div>
+                  <div className="text-xl font-black text-slate-900 tracking-tight">78%</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-[10px] font-black text-slate-400 uppercase mb-1">Consistency</div>
+                  <div className="text-xl font-black text-emerald-500 tracking-tight">HIGH</div>
+                </div>
+             </div>
           </div>
         </div>
 
         {/* Activity Feed */}
-        <div className="card">
-          <h4 className="mb-4">Recent Activity</h4>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            {recentActivity.map((a, i) => (
-              <div key={i} style={{ paddingBottom: '1rem', borderBottom: i === recentActivity.length - 1 ? 'none' : '1px solid var(--border)', display: 'flex', gap: '0.75rem' }}>
-                <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--primary-400)', marginTop: '5px' }} />
-                <div style={{ flex: 1 }}>
-                  <div className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>{a.activity}</div>
-                  <div className="text-xs text-muted">{a.time} · Score: {a.score}</div>
+        <div className="space-y-6">
+          <div className="p-8 rounded-[2.5rem] bg-white border border-slate-100 shadow-sm">
+            <h3 className="text-lg font-black text-slate-900 uppercase tracking-tight mb-8">Log Feed</h3>
+            <div className="space-y-6">
+              {recentActivity.map((a, i) => (
+                <div key={i} className="flex gap-4 group">
+                  <div className={`w-2 h-2 rounded-full mt-1.5 shrink-0 transition-transform group-hover:scale-150 ${
+                    a.status === 'success' ? 'bg-emerald-500' : a.status === 'warning' ? 'bg-orange-500' : 'bg-blue-500'
+                  }`} />
+                  <div className="flex-1 min-w-0">
+                    <div className="text-sm font-black text-slate-900 leading-tight mb-1">{a.activity}</div>
+                    <div className="text-[10px] font-bold text-slate-400 uppercase">{a.time} · Result: {a.score}</div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+            <button className="w-full mt-8 py-4 bg-slate-50 hover:bg-slate-100 text-slate-500 font-black text-[10px] uppercase rounded-2xl tracking-widest transition-all">
+              Full Activity Logs
+            </button>
           </div>
-          <button className="btn btn-ghost w-full mt-4 btn-sm">View Full Log</button>
         </div>
       </div>
 
-      {/* Parental Controls/Actions */}
-      <div className="card mt-6">
-        <h4 className="mb-4">Quick Actions</h4>
-        <div className="grid grid-4 gap-4">
-          <button className="btn btn-ghost" style={{ flexDirection: 'column', gap: '0.5rem', padding: '1.25rem', border: '1px solid var(--border)' }}>
-            <span style={{ fontSize: '1.5rem' }}>💬</span>
-            <span style={{ fontSize: '0.85rem' }}>Message Teacher</span>
-          </button>
-          <button className="btn btn-ghost" style={{ flexDirection: 'column', gap: '0.5rem', padding: '1.25rem', border: '1px solid var(--border)' }}>
-            <span style={{ fontSize: '1.5rem' }}>💳</span>
-            <span style={{ fontSize: '0.85rem' }}>Fee Payment</span>
-          </button>
-          <button className="btn btn-ghost" style={{ flexDirection: 'column', gap: '0.5rem', padding: '1.25rem', border: '1px solid var(--border)' }}>
-            <span style={{ fontSize: '1.5rem' }}>📝</span>
-            <span style={{ fontSize: '0.85rem' }}>TMA Feedback</span>
-          </button>
-          <button className="btn btn-ghost" style={{ flexDirection: 'column', gap: '0.5rem', padding: '1.25rem', border: '1px solid var(--border)' }}>
-            <span style={{ fontSize: '1.5rem' }}>🛡️</span>
-            <span style={{ fontSize: '0.85rem' }}>Privacy Settings</span>
-          </button>
+      {/* Parental Actions */}
+      <div className="mt-8 p-8 rounded-[2.5rem] bg-gradient-to-br from-slate-900 to-slate-800 text-white relative overflow-hidden group">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-brand-orange/10 rounded-full blur-3xl -mr-32 -mt-32 group-hover:scale-125 transition-transform duration-1000" />
+        <h3 className="text-xl font-black uppercase tracking-tight mb-8">Guardian Services</h3>
+        <div className="grid grid-2 md:grid-cols-4 gap-4 relative z-10">
+          {[
+            { icon: MessageSquare, label: 'Message Teacher' },
+            { icon: CreditCard, label: 'Fee Payment' },
+            { icon: ClipboardList, label: 'TMA Feedback' },
+            { icon: ShieldCheck, label: 'Control Center' },
+          ].map((action, i) => (
+            <button key={i} className="p-6 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-brand-orange/30 transition-all flex flex-col items-center gap-4 group/btn">
+              <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-brand-orange group-hover/btn:scale-110 transition-transform">
+                <action.icon size={24} />
+              </div>
+              <span className="text-[10px] font-black uppercase tracking-widest text-slate-300">{action.label}</span>
+            </button>
+          ))}
         </div>
       </div>
     </DashboardLayout>
   );
 }
+
