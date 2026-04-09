@@ -63,7 +63,7 @@ export default function LoginPage() {
         <div className="flex-1 flex flex-col justify-between p-8 lg:p-20 lg:border-r border-neutral-300/80">
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} className=" flex items-center gap-4">
             <div className="relative">
-              <div className="absolute inset-0 bg-orange-500/20 rounded-2xl blur-lg animate-pulse" />
+              <div className="absolute inset-0 bg-orange-500/20 rounded-xl blur-lg animate-pulse" />
               <Image
                 src="/sb_logo.png"
                 alt="NIOS Logo"
@@ -105,7 +105,7 @@ export default function LoginPage() {
         </div>
 
         <div className="flex-1 flex items-center justify-center p-6 lg:p-12 relative">
-          <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.3 }} className="w-full max-w-lg bg-white/80 border-slate-200 border-2 rounded-[3rem] p-10 lg:p-14 backdrop-blur-3xl shadow-2xl relative overflow-hidden">
+          <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.3 }} className="w-full max-w-xl bg-white/80 border-slate-200 border-2 rounded-md p-10 lg:p-14 backdrop-blur-3xl shadow-2xl relative overflow-hidden">
             <AnimatePresence>
               {(isLoading || showBiometric) && (
                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 bg-white/95 z-50 flex flex-col items-center justify-center p-12 text-center">
@@ -117,7 +117,7 @@ export default function LoginPage() {
                       </div>
                     ) : (
                       <>
-                        <div className="w-20 h-20 border-4 border-orange-500/20 border-t-orange-500 rounded-full animate-spin" />
+                        <div className="w-20 h-20 border-4 border-orange-500/20 border-t-orange-500 rounded-xl animate-spin" />
                         <ShieldCheck className="w-8 h-8 text-orange-500 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
                       </>
                     )}
@@ -136,7 +136,7 @@ export default function LoginPage() {
               <p className="text-neutral-600 font-medium">Continue your adaptive learning journey.</p>
             </header>
 
-            <div className="mb-10 p-1.5 rounded-3xl bg-slate-100 border-slate-200 border relative">
+            <div className="mb-10 p-1.5 rounded-xl bg-slate-100 border-slate-200 border relative">
               <div className="absolute top-0 left-8 -translate-y-1/2 px-4 py-1.5 bg-white border border-slate-200 rounded-full flex items-center gap-2 shadow-xl">
                 <Zap className="w-3 h-3 text-orange-500" />
                 <span className="text-[10px] font-black uppercase tracking-widest text-orange-500">SECURE QUICK-AUTH</span>
@@ -146,7 +146,7 @@ export default function LoginPage() {
                   <button
                     key={role}
                     onClick={() => handleRoleSelect(role)}
-                    className={`px-4 py-2.5 rounded-xl text-[10px] font-black tracking-widest uppercase transition-all flex-grow lg:flex-grow-0 ${
+                    className={`px-3 py-2.5 rounded-xl text-[10px] font-black tracking-widest uppercase transition-all flex-grow lg:flex-grow-0 ${
                       activeRole === role
                         ? 'bg-orange-600 text-white shadow-lg shadow-orange-600/30 active:scale-95'
                         : 'bg-white text-slate-500 hover:bg-slate-200 border border-transparent'
@@ -169,7 +169,7 @@ export default function LoginPage() {
                     type="text"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full bg-white border-2 border-slate-200 focus:border-orange-500 text-slate-900 rounded-2xl py-5 pl-16 pr-6 outline-none transition-all font-medium placeholder:text-neutral-400"
+                    className="w-full bg-white border-2 border-slate-200 focus:border-orange-500 text-slate-900 rounded-xl py-5 pl-16 pr-6 outline-none transition-all font-medium placeholder:text-neutral-400"
                     placeholder="Enter Enrollment ID"
                     required
                   />
@@ -189,7 +189,7 @@ export default function LoginPage() {
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full bg-white border-2 border-slate-200 focus:border-orange-500 text-slate-900 rounded-2xl py-5 pl-16 pr-6 outline-none transition-all font-medium placeholder:text-neutral-400"
+                    className="w-full bg-white border-2 border-slate-200 focus:border-orange-500 text-slate-900 rounded-xl py-5 pl-16 pr-6 outline-none transition-all font-medium placeholder:text-neutral-400"
                     placeholder="••••••••••••"
                     required
                   />
@@ -201,7 +201,7 @@ export default function LoginPage() {
                   whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.99 }}
                   type="submit"
-                  className="flex-[2] py-5.5 bg-orange-600 hover:bg-orange-500 text-white rounded-2xl font-black text-xs uppercase tracking-[0.3em] flex items-center justify-center gap-3 shadow-2xl shadow-orange-600/30 transition-all"
+                  className="flex-[2] py-5.5 bg-orange-600 hover:bg-orange-500 text-white rounded-xl font-black text-xs uppercase tracking-[0.3em] flex items-center justify-center gap-3 shadow-2xl shadow-orange-600/30 transition-all"
                 >
                   SIGN IN <ArrowRight className="w-5 h-5" />
                 </motion.button>
@@ -210,7 +210,7 @@ export default function LoginPage() {
                   whileTap={{ scale: 0.99 }}
                   onClick={handleBiometric}
                   type="button"
-                  className="flex-1 py-5.5 bg-slate-200 hover:bg-slate-300 text-slate-600 rounded-2xl flex items-center justify-center transition-all"
+                  className="flex-1 py-5.5 bg-slate-200 hover:bg-slate-300 text-slate-600 rounded-xl flex items-center justify-center transition-all"
                 >
                   <Fingerprint className="w-6 h-6" />
                 </motion.button>

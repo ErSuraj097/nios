@@ -14,164 +14,234 @@ import {
   ChevronRight,
   AlertCircle,
   Clock,
-  Sparkles
+  Sparkles,
+  Users,
+  TrendingDown
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 
-const assessments = [
-  { 
-    id: 'A1', 
-    title: 'Physics Chapter 4: Motion Quiz', 
-    stream: 'Science', 
-    dueDate: '2026-04-10', 
-    submissions: 38, 
-    totalStudents: 42, 
-    avgScore: '78%', 
-    status: 'Grading Active' 
-  },
-  { 
-    id: 'A2', 
-    title: 'Modern Algebra: Linear Equations', 
-    stream: 'Science', 
-    dueDate: '2026-04-05', 
-    submissions: 42, 
-    totalStudents: 42, 
-    avgScore: '84%', 
-    status: 'Completed' 
-  },
-  { 
-    id: 'A3', 
-    title: 'English TMA: Creative Writing', 
-    stream: 'Arts', 
-    dueDate: '2026-04-15', 
-    submissions: 12, 
-    totalStudents: 24, 
-    avgScore: 'Pnd.', 
-    status: 'Pending Submission' 
-  }
-];
+import { useState } from 'react';
+import { MOCK_ASSESSMENTS, MOCK_TEACHER_REPORTS } from '@/lib/mock-data';
 
 export default function TeacherGradesPage() {
   const { user } = useAuth();
+  const [activeTab, setActiveTab] = useState<'grades' | 'analytics' | 'reports'>('grades');
+  const [search, setSearch] = useState('');
 
-  if (!user) return null;
+  if (!user || user.role !== 'teacher') return null;
+
+  const filteredAssessments = MOCK_ASSESSMENTS.filter(a => 
+    a.title.toLowerCase().includes(search.toLowerCase()) || 
+    a.subject.toLowerCase().includes(search.toLowerCase())
+  );
+
+  const stats = [
+    { label: 'Total Students', value: '128', change: '+5', icon: Users, color: 'text-blue-500 bg-blue-400' },
+    { label: 'Avg Grade', value: '82%', change: '+3%', icon: TrendingUp, color: 'text-emerald-500 bg-green-400  ' },
+    { label: 'Pending Grading', value: '14', change: '-2', icon: Clock, color: 'text-amber-500 bg-red-400' },
+    { label: 'Reports Generated', value: '8', change: '+4', icon: FileText, color: 'text-purple-500 bg-purple-100' },
+  ];
 
   return (
-    <DashboardLayout 
-      title="Gradebook & Evaluation" 
-      subtitle="Comprehensive assessment tracking and performance analysis"
-    >
-      <div className="space-y-10 animate-fade-in">
-        {/* Analytics Headline */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-           <div className="lg:col-span-2 p-10 rounded-[3rem] bg-white border border-slate-100 shadow-sm relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-50 rounded-full blur-3xl group-hover:scale-150 transition-all duration-1000" />
-              <div className="flex flex-col md:flex-row items-center gap-8">
-                 <div className="w-20 h-20 rounded-[2rem] bg-emerald-50 text-emerald-500 flex items-center justify-center shrink-0">
-                    <TrendingUp size={32} />
-                 </div>
-                 <div className="text-center md:text-left">
-                    <h3 className="text-xl font-black text-slate-900 mb-2">Performance Trend</h3>
-                    <p className="text-slate-500 font-medium leading-relaxed max-w-sm">
-                       Overall average scores have improved by <span className="text-emerald-500 font-bold">14.2%</span> compared to the last academic quarter.
-                    </p>
-                 </div>
-                 <div className="flex-1" />
-                 <button className="px-8 py-4 bg-slate-900 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-black transition-all shadow-xl">
-                    Full Analytics
-                 </button>
+    <DashboardLayout title="Gradebook & Reports" subtitle="Real-time class performance tracking with exportable analytics">
+      <div className="space-y-12">
+        {/* Stats Grid */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          {stats.map((stat, i) => (
+            <div key={i} className="group p-8 rounded-xl bg-white/70 backdrop-blur-sm border border-slate-100 shadow-sm hover:shadow-2xl hover:shadow-slate-200/50 transition-all overflow-hidden">
+              <div className={`absolute inset-0  opacity-5 group-hover:opacity-10 transition-opacity`} />
+              {/* <div className={`w-14 h-14 ${stat.color} bg-opacity-10 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg`}>
+                <stat.icon size={24} className="text-white" />
+              </div> */}
+              <div className="text-2xl font-black text-slate-900 mb-2 relative z-10">{stat.value}</div>
+              <div className="flex items-center gap-1 text-xs font-bold text-slate-500 uppercase tracking-widest relative z-10">
+                {stat.change.startsWith('+') ? <TrendingUp size={12} className="text-emerald-500" /> : <TrendingDown size={12} className="text-red-500" />}
+                {stat.label}
               </div>
-           </div>
-
-           <div className="p-10 rounded-[3rem] bg-slate-900 text-white flex flex-col justify-between group">
-              <div className="flex items-center justify-between mb-8">
-                 <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-brand-orange">
-                    <AlertCircle size={20} />
-                 </div>
-                 <div className="text-[10px] font-black text-brand-orange uppercase tracking-widest">Action Required</div>
-              </div>
-              <div className="space-y-2">
-                 <div className="text-2xl font-black text-white tracking-tighter">03 PENDING</div>
-                 <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Grading Assignments</div>
-              </div>
-           </div>
+            </div>
+          ))}
         </div>
 
-        {/* Gradebook List */}
-        <div className="space-y-8">
-           <div className="flex flex-col md:flex-row gap-6 items-center justify-between">
-              <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight">Active Assessments</h3>
-              <div className="flex gap-3">
-                 <button className="px-6 py-4 bg-white border border-slate-100 rounded-[2rem] shadow-sm text-slate-400 font-black text-[10px] uppercase tracking-widest hover:text-slate-900 transition-colors flex items-center gap-2">
-                    <Download size={16} /> Export CSV
-                 </button>
-                 <button className="px-8 py-4 bg-brand-orange text-white rounded-[2rem] font-black text-[10px] uppercase tracking-widest hover:bg-orange-600 transition-all shadow-xl shadow-orange-500/20">
-                    Add New Entry
-                 </button>
+        {/* Tabs */}
+        <div className="flex bg-white/50 backdrop-blur-sm p-1 rounded-xl border border-slate-100/50">
+          {[
+            { tab: 'grades' as const, label: 'Gradebook', badge: '42' },
+            { tab: 'analytics' as const, label: 'Analytics' },
+            { tab: 'reports' as const, label: 'Reports', badge: 'New' }
+          ].map(({ tab, label, badge }) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`flex-1 px-4 py-3 rounded-xl font-black text-sm uppercase tracking-widest transition-all relative ${
+                activeTab === tab
+                  ? 'bg-gradient-to-r from-brand-orange to-orange-500 text-white shadow-2xl shadow-orange-500/25'
+                  : 'text-slate-500 hover:text-slate-900 hover:bg-white/70'
+              }`}
+            >
+              {label}
+              {badge && <span className="ml-2 px-2 py-0.5 bg-white/20 text-xs rounded-full">{badge}</span>}
+            </button>
+          ))}
+        </div>
+
+        {activeTab === 'grades' && (
+          <>
+            {/* Search & Filter */}
+            <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
+              <div className="relative flex-1 max-w-md">
+                <Search className="w-5 h-5 absolute left-5 top-1/2 -translate-y-1/2 text-slate-400" />
+                <input
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  placeholder="Search by student or assessment..."
+                  className="w-full pl-14 pr-6 py-4 bg-white/50 backdrop-blur-sm rounded-xl border border-slate-200 shadow-sm focus:ring-4 focus:ring-brand-orange/20 focus:outline-none transition-all"
+                />
               </div>
-           </div>
+              <button className="px-4 py-4 bg-red-900 text-white rounded-xl font-black text-sm uppercase tracking-widest hover:bg-brand-orange shadow-xl transition-all whitespace-nowrap">
+                Bulk Grade Import
+              </button>
+            </div>
 
-           <div className="grid gap-4">
-              {assessments.map((a) => (
-                <div key={a.id} className="group p-8 rounded-[3rem] bg-white border border-slate-100 hover:border-brand-orange/20 hover:shadow-2xl hover:shadow-slate-200/50 transition-all flex flex-col lg:flex-row items-center gap-10">
-                   <div className="w-16 h-16 rounded-2xl bg-slate-50 text-slate-400 flex items-center justify-center shrink-0">
-                      <FileText size={28} />
-                   </div>
-                   
-                   <div className="flex-1 text-center lg:text-left">
-                      <div className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">{a.stream}</div>
-                      <h4 className="text-lg font-black text-slate-900 group-hover:text-brand-orange transition-colors">{a.title}</h4>
-                   </div>
+            {/* Grades Table */}
+            <div className="overflow-hidden rounded-xl border border-slate-100 shadow-xl bg-white/70 backdrop-blur-sm">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="bg-gradient-to-r from-slate-50 to-slate-100 border-b border-slate-200">
+                      <th className="p-6 text-left font-black text-slate-900 uppercase tracking-wider text-sm">Assessment</th>
+                      <th className="p-6 text-right font-black text-slate-900 uppercase tracking-wider text-sm">Submissions</th>
+                      <th className="p-6 text-right font-black text-slate-900 uppercase tracking-wider text-sm">Avg Score</th>
+                      <th className="p-6 text-right font-black text-slate-900 uppercase tracking-wider text-sm">Status</th>
+                      <th className="p-6 text-right font-black text-slate-900 uppercase tracking-wider text-sm">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredAssessments.slice(0, 6).map((assessment, i) => (
+                      <tr key={assessment.id} className="border-b border-slate-100 hover:bg-orange-50 transition-colors">
+                        <td className="p-6 font-semibold text-slate-900 max-w-md">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 bg-gradient-to-br from-brand-orange to-orange-400 text-white rounded-xl flex items-center justify-center text-sm font-bold flex-shrink-0">
+                              {assessment.subject.charAt(0)}
+                            </div>
+                            <div>
+                              <div className="font-black">{assessment.title}</div>
+                              <div className="text-sm text-slate-500">{assessment.subject} • {assessment.type}</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="p-6 text-right font-mono text-lg text-slate-900">{assessment.submissions || 0}/{assessment.totalStudents || 0}</td>
+                        <td className="p-6 text-right">
+                          <div className="inline-flex items-center gap-1 px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm font-bold">
+                            {assessment.avgScore || 'N/A'}
+                          </div>
+                        </td>
+                        <td className="p-6 text-right">
+                          <span className={`px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest ${
+                            assessment.status === 'Grading Active' ? 'bg-orange-100 text-orange-700' :
+                            assessment.status === 'Completed' ? 'bg-emerald-100 text-emerald-700' :
+                            'bg-amber-100 text-amber-700'
+                          }`}>
+                            {assessment.status}
+                          </span>
+                        </td>
+                        <td className="p-6">
+                          <div className="flex items-center gap-2">
+                            <button className="p-3 text-slate-400 hover:text-brand-orange hover:bg-orange-50 rounded-xl transition-all">
+                              <Download size={16} />
+                            </button>
+                            <button className="p-3 text-slate-400 hover:text-emerald-500 hover:bg-emerald-50 rounded-xl transition-all">
+                              <CheckCircle2 size={16} />
+                            </button>
+                            <button className="p-3 text-slate-400 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition-all">
+                              <MoreVertical size={16} />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div className="text-center pt-8">
+              <button className="px-6 py-4 bg-slate-900 text-white rounded-xl font-black text-md uppercase tracking-widest hover:bg-brand-orange shadow-2xl transition-all">
+                View Complete Gradebook →
+              </button>
+            </div>
+          </>
+        )}
 
-                   <div className="flex items-center gap-12 px-12 border-x border-slate-50 hidden lg:flex">
-                      <div className="text-center min-w-[80px]">
-                         <div className="text-[10px] font-black text-slate-400 uppercase mb-1 tracking-widest">Graded</div>
-                         <div className="text-sm font-black text-slate-900">{a.submissions} / {a.totalStudents}</div>
-                      </div>
-                      <div className="text-center">
-                         <div className="text-[10px] font-black text-slate-400 uppercase mb-1 tracking-widest">Avg. Score</div>
-                         <div className="text-sm font-black text-brand-orange">{a.avgScore}</div>
-                      </div>
-                   </div>
+        {activeTab === 'analytics' && (
+          <div className="grid lg:grid-cols-2 gap-8 p-12 rounded-xl bg-gradient-to-br from-slate-50 via-white to-slate-50 border border-slate-100/50 shadow-2xl">
+            <div>
+              <h3 className="text-2xl font-black text-slate-900 mb-8 uppercase tracking-tight flex items-center gap-3">
+                Performance Trends
+              </h3>
+              <div className="space-y-6">
+                <div className="flex items-center justify-between p-6 bg-white rounded-xl border border-slate-100 shadow-sm">
+                  <span className="text-sm font-bold text-slate-500 uppercase tracking-wider">Science Stream Avg</span>
+                  <div className="text-2xl font-black text-emerald-600">87%</div>
+                </div>
+                <div className="flex items-center justify-between p-6 bg-white rounded-xl border border-slate-100 shadow-sm">
+                  <span className="text-sm font-bold text-slate-500 uppercase tracking-wider">Top Performer</span>
+                  <div className="text-2xl font-black text-brand-orange">Arjun S. (94%)</div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 className="text-2xl font-black text-slate-900 mb-8 uppercase tracking-tight flex items-center gap-3">
+                Risk Indicators
+              </h3>
+              <div className="space-y-4">
+                <div className="flex items-center justify-between p-6 bg-gradient-to-r from-orange-50 to-orange-100 rounded-xl border border-orange-200">
+                  <span className="font-bold text-slate-900">Rahul Das</span>
+                  <span className="px-3 py-1 bg-orange-200 text-orange-800 text-xs font-black uppercase tracking-widest rounded-full">High Risk (45%)</span>
+                </div>
+                <div className="flex items-center justify-between p-6 bg-gradient-to-r from-amber-50 to-amber-100 rounded-xl border border-amber-200">
+                  <span className="font-bold text-slate-900">Priya N.</span>
+                  <span className="px-3 py-1 bg-amber-200 text-amber-800 text-xs font-black uppercase tracking-widest rounded-full">Medium Risk (68%)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
-                   <div className="flex items-center gap-6">
-                      <div className="text-center min-w-[120px] hidden lg:block">
-                         <div className="text-[10px] font-black text-slate-400 uppercase mb-1 tracking-widest">Status</div>
-                         <div className={`text-[10px] font-black uppercase tracking-widest ${
-                           a.status === 'Grading Active' ? 'text-amber-500' : a.status === 'Completed' ? 'text-emerald-500' : 'text-slate-400'
-                         }`}>{a.status}</div>
-                      </div>
-                      <button className="px-8 py-4 bg-slate-900 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-brand-orange transition-all shadow-xl active:scale-95 flex items-center gap-2">
-                         Open Gradebook <ChevronRight size={14} />
-                      </button>
-                      <button className="p-4 bg-slate-50 text-slate-400 hover:text-slate-900 rounded-2xl transition-all">
-                         <MoreVertical size={16} />
-                      </button>
-                   </div>
+        {activeTab === 'reports' && (
+          <div className="space-y-6">
+            <div className="flex items-center gap-4">
+              <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight flex-1">Recent Reports</h3>
+              <button className="px-8 py-4 bg-slate-900 text-white rounded-xl font-black text-sm uppercase tracking-widest hover:bg-brand-orange shadow-xl transition-all">
+                Generate New
+              </button>
+            </div>
+            <div className="grid gap-4">
+              {MOCK_TEACHER_REPORTS.map((report) => (
+                <div key={report.id} className="group flex items-center p-8 rounded-xl bg-white border border-slate-100 hover:border-brand-orange hover:shadow-xl hover:shadow-orange-500/10 transition-all gap-6">
+                  <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-red-500 text-white rounded-xl flex items-center justify-center flex-shrink-0">
+                    <FileText size={20} />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-black text-lg text-slate-900 group-hover:text-brand-orange transition-colors">{report.title}</h4>
+                    <div className="flex items-center gap-4 text-sm text-slate-500 mt-1">
+                      <span>{report.type}</span>
+                      <span>•</span>
+                      <span>{report.period}</span>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-2xl font-black text-slate-900">{report.size}</div>
+                    <div className="text-xs font-bold text-slate-400 uppercase tracking-widest">Download</div>
+                  </div>
+                  <button className="p-4 bg-slate-50 rounded-xl text-slate-400 hover:text-slate-900 hover:bg-slate-100 transition-all ml-4">
+                    <Download size={16} />
+                  </button>
                 </div>
               ))}
-           </div>
-        </div>
-
-        {/* AI Insight Section */}
-        <div className="p-12 rounded-[4rem] bg-gradient-to-br from-brand-orange/5 via-white to-blue-50 border border-brand-orange/10 relative overflow-hidden group">
-           <div className="absolute top-0 right-0 w-64 h-64 bg-brand-orange/5 rounded-full blur-3xl group-hover:scale-150 transition-all duration-1000" />
-           <div className="flex flex-col lg:flex-row items-center gap-12">
-              <div className="w-16 h-16 rounded-[2rem] bg-brand-orange text-white flex items-center justify-center shrink-0 shadow-xl shadow-orange-500/20">
-                 <Sparkles size={24} />
-              </div>
-              <div className="flex-1 text-center lg:text-left">
-                 <h3 className="text-2xl font-black text-slate-900 mb-2">AI Success Predictor</h3>
-                 <p className="text-slate-500 font-medium leading-relaxed">
-                    Based on recent grades, <span className="text-emerald-600 font-bold">12 students</span> are likely to achieve distinction in the upcoming national exams. <span className="text-red-500 font-bold">03 students</span> may need immediate intervention.
-                 </p>
-              </div>
-              <button className="px-10 py-5 bg-white border border-slate-100 rounded-3xl font-black text-slate-900 text-[10px] uppercase tracking-widest hover:bg-slate-50 transition-all shadow-xl shadow-slate-200/50">
-                 Identify At-Risk Students
-              </button>
-           </div>
-        </div>
+            </div>
+          </div>
+        )}
       </div>
     </DashboardLayout>
   );
 }
+

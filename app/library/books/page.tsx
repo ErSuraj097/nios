@@ -13,7 +13,7 @@ export default function InteractiveSchedulePage() {
   
   if (!user) return null;
 
-  const scheduleBook = MOCK_BOOKS.find(b => b.category === 'Schedule');
+  const scheduleBook = MOCK_BOOKS.find(b => b.category === 'Schedule' && b.pages.length > 0);
 
   if (!scheduleBook) return (
     <DashboardLayout title="Error" subtitle="Schedule not found">
@@ -30,23 +30,23 @@ export default function InteractiveSchedulePage() {
       title="Interactive Schedule" 
       subtitle="Digital class calendar & academic milestones flipbook"
     >
-      <div className="flex flex-col gap-10 pb-20 max-w-6xl mx-auto">
+      <div className="flex flex-col gap-10 pb-20 max-w-8xl mx-auto">
         {/* Header Actions */}
-        <div className="flex items-center justify-between px-6">
+        <div className="flex items-center justify-between ">
            <Link 
-             href="/schedule" 
-             className="flex items-center gap-2 px-6 py-3 bg-white border border-slate-100 rounded-2xl text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-slate-900 transition-all shadow-sm"
+             href="/library" 
+             className="flex items-center gap-2 px-6 py-3 bg-white border border-slate-100 rounded-xl text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-slate-900 transition-all shadow-sm"
            >
              <ArrowLeft size={14} /> Back to Grid
            </Link>
            <div className="flex items-center gap-2">
-              <button className="p-3 bg-white border border-slate-100 rounded-2xl text-slate-400 hover:text-slate-900 transition-all shadow-sm">
+              <button className="p-3 bg-white border border-slate-100 rounded-xl text-slate-400 hover:text-slate-900 transition-all shadow-sm">
                  <Share2 size={18} />
               </button>
-              <button className="p-3 bg-white border border-slate-100 rounded-2xl text-slate-400 hover:text-slate-900 transition-all shadow-sm">
+              <button className="p-3 bg-white border border-slate-100 rounded-xl text-slate-400 hover:text-slate-900 transition-all shadow-sm">
                  <Download size={18} />
               </button>
-              <button className="p-3 bg-white border border-slate-100 rounded-2xl text-slate-400 hover:text-slate-900 transition-all shadow-sm">
+              <button className="p-3 bg-white border border-slate-100 rounded-xl text-slate-400 hover:text-slate-900 transition-all shadow-sm">
                  <Printer size={18} />
               </button>
            </div>
@@ -61,7 +61,7 @@ export default function InteractiveSchedulePage() {
         </div>
 
         {/* Help / FAQ Section */}
-        <div className="p-12 bg-white rounded-[3rem] border border-slate-100 shadow-sm text-center space-y-6">
+        <div className="p-12 bg-white rounded-xl border border-slate-100 shadow-sm text-center space-y-6">
            <h3 className="text-xl font-black text-slate-900 uppercase tracking-tighter">How to use our Interactive System</h3>
            <p className="text-slate-500 text-sm font-medium leading-relaxed max-w-2xl mx-auto uppercase tracking-widest">
               Click the edges of the pages to flip through the schedule. Use the zoom controls in the top bar for detailed reading. Our system is blockchain-verified for academic transparency.

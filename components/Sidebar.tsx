@@ -16,7 +16,18 @@ import {
   Users,
   ClipboardList,
   Shield,
-  Briefcase
+  Briefcase,
+  UserPlus,
+  Globe,
+  Headphones,
+  BookCheck,
+  Server,
+  Zap,
+  AlertCircle,
+  GraduationCap,
+  Bell,
+  Megaphone,
+  ArrowBigDownDash
 } from 'lucide-react';
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -43,7 +54,9 @@ export default function Sidebar() {
     { icon: <HomeIcon size={18} />, label: 'Dashboard', href: '/dashboard/learner' },
     { icon: <BookOpen size={18} />, label: 'My Courses', href: '/courses' },
     { icon: <Video size={18} />, label: 'Live Classes', href: '/live' },
+    
     { icon: <FileText size={18} />, label: 'Assessments', href: '/assessments', badge: '3' },
+    { icon: <MessageCircle size={18} />, label: 'Finance', href: '/student/finance'},
   ];
 
   const teacherNav: NavItem[] = [
@@ -51,11 +64,25 @@ export default function Sidebar() {
     { icon: <Users size={18} />, label: 'My Students', href: '/teacher/students' },
     { icon: <BookOpen size={18} />, label: 'My Classes', href: '/teacher/classes' },
     { icon: <ClipboardList size={18} />, label: 'Gradebook', href: '/teacher/grades', badge: '38' },
+    { icon: <Shield size={18} />, label: 'Exams', href: '/teacher/exams', badge: '4' },
+    { icon: <FileText size={18} />, label: 'Reports', href: '/teacher/reports', badge: '2' },
+    { icon: <Zap size={18} />, label: 'Announcements', href: '/teacher/announcements', badge: 'New' },
+    { icon: <Cpu size={18} />, label: 'Faculty Hub', href: '/teacher/content' },
   ];
 
   const adminNav: NavItem[] = [
     { icon: <HomeIcon size={18} />, label: 'Dashboard', href: '/dashboard/admin' },
-    { icon: <Shield size={18} />, label: 'User Admin', href: '/admin/users' },
+    { icon: <Users size={18} />, label: 'Teachers', href: '/admin/teachers', badge: 'New' },
+    { icon: <GraduationCap size={18} />, label: 'Students', href: '/admin/students', badge: 'New' },
+    { icon: <BookOpen size={18} />, label: 'Content Review', href: '/admin/content' },
+    { icon: <Bell size={18} />, label: 'Notifications', href: '/admin/notifications' },
+    { icon: <Megaphone size={18} />, label: 'Announcements', href: '/admin/announcements' },
+    { icon: <UserPlus size={18} />, label: 'Admissions', href: '/admin/admissions' },
+    { icon: <Globe size={18} />, label: 'Integrations', href: '/admin/integrations' },
+    { icon: <CreditCard size={18} />, label: 'Financial Ops', href: '/admin/finance' },
+    { icon: <Headphones size={18} />, label: 'Support & SLA', href: '/admin/support', badge: '12' },
+    { icon: <BookCheck size={18} />, label: 'Academic & Content', href: '/admin/academic' },
+    { icon: <Server size={18} />, label: 'System & Security', href: '/admin/system' },
     { icon: <FileText size={18} />, label: 'Platform Reports', href: '/admin/reports' },
     { icon: <Settings size={18} />, label: 'Site Settings', href: '/admin/settings' },
   ];
@@ -63,6 +90,12 @@ export default function Sidebar() {
   const parentNav: NavItem[] = [
     { icon: <HomeIcon size={18} />, label: 'Overview', href: '/dashboard/parent' },
     { icon: <Users size={18} />, label: 'Student Bio', href: '/profile' },
+    { icon: <FileText size={18} />, label: 'Reports', href: '/dashboard/parent/reports', badge: '3' },
+    { icon: <AlertCircle size={18} />, label: 'Alerts', href: '/dashboard/parent/alerts', badge: 'New' },
+    { icon: <ClipboardList size={18} />, label: 'Activities', href: '/dashboard/parent/activities' },
+    { icon: <Calendar size={18} />, label: 'Attendance', href: '/dashboard/parent/attendance' },
+{ icon: <MessageCircle size={18} />, label: 'PT Meetings', href: '/dashboard/parent/ptm' },
+    { icon: <FileText size={18} />, label: 'TMA Feedback', href: '/dashboard/parent/tma' },
     { icon: <CreditCard size={18} />, label: 'Fee Payment', href: '/dashboard/parent/fees' },
   ];
 
@@ -87,6 +120,7 @@ export default function Sidebar() {
   const accountNav: NavItem[] = [
     { icon: <User size={18} />, label: 'Profile', href: '/profile' },
     { icon: <Settings size={18} />, label: 'Settings', href: '/settings' },
+    {icon: <ArrowBigDownDash size={18} />, label: 'About', href: '/about' },
   ];
 
   const sections = [
@@ -131,7 +165,7 @@ export default function Sidebar() {
                 const isActive = pathname === item.href;
                 return (
                   <Link href={item.href} key={item.href} className="block group">
-                    <div className={`flex items-center gap-3.5 px-4 py-2 rounded-2xl text-sm transition-all duration-300 ${
+                    <div className={`flex items-center gap-3.5 px-4 py-2 rounded-xl text-sm transition-all duration-300 ${
                       isActive
                         ? 'bg-orange-50 text-brand-orange border border-orange-100/50 shadow-sm font-bold'
                         : 'text-slate-500 hover:bg-slate-50 hover:text-slate-800'
@@ -157,7 +191,7 @@ export default function Sidebar() {
       </nav>
 
       <div className="p-6 mt-auto border-t border-slate-50">
-        <div className="bg-slate-50 p-2 rounded-2xl flex items-center gap-3.5 hover:bg-white hover:shadow-lg hover:shadow-slate-200/50 transition-all group cursor-pointer border border-transparent hover:border-slate-100">
+        <div className="bg-slate-50 p-2 rounded-xl flex items-center gap-3.5 hover:bg-white hover:shadow-lg hover:shadow-slate-200/50 transition-all group cursor-pointer border border-transparent hover:border-slate-100">
           <div className="w-10 h-10 rounded-full bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center font-black text-white text-sm shadow-md transition-all duration-500">
             {user.name.charAt(0)}
           </div>

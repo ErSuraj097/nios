@@ -34,26 +34,24 @@ export default function GuestDashboard() {
       <div className="space-y-12 animate-fade-in pb-20">
         
         {/* Welcome Hero - Guest Version */}
-        <div className="p-12 rounded-[4rem] bg-slate-900 border border-slate-800 shadow-2xl relative overflow-hidden group">
+        <div className="p-12 rounded-xl bg-gradient-to-r from-orange-500 to-red-600 border border-slate-800 shadow-2xl relative overflow-hidden group">
            <div className="absolute top-0 right-0 w-96 h-96 bg-brand-orange/10 rounded-full blur-3xl group-hover:scale-150 transition-all duration-1000" />
-           <div className="absolute -bottom-20 -left-20 opacity-5 group-hover:opacity-10 transition-opacity">
-              <Globe size={320} className="text-white" />
-           </div>
+           
 
            <div className="relative space-y-8">
               <div className="flex items-center gap-4">
-                 <div className="px-4 py-2 bg-brand-orange/10 border border-brand-orange/30 text-brand-orange text-[10px] font-black uppercase tracking-widest rounded-full flex items-center gap-2 shadow-inner">
-                    <Sparkles size={14} className="animate-pulse" />
+                 <div className="px-4 py-2 bg-brand-orange/10 border border-slate-50 text-white text-[10px] font-black uppercase tracking-widest rounded-full flex items-center gap-2 shadow-inner">
+                    <Sparkles size={14} className="animate-pulse text-taupe-50" />
                     Guest Access Node
                  </div>
                  <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Public Catalog Awareness</div>
               </div>
 
               <h2 className="text-4xl lg:text-6xl font-black text-white tracking-tighter max-w-3xl leading-none">
-                 Democratizing Quality Education via <span className="text-brand-orange underline underline-offset-8 decoration-4">AI Intelligence</span>.
+                 Democratizing Quality Education via <span className="text-slate-800 underline underline-offset-8 decoration-4">AI Intelligence</span>.
               </h2>
 
-              <p className="text-lg font-medium text-slate-400 leading-relaxed max-w-2xl">
+              <p className="text-lg font-medium text-slate-100 leading-relaxed max-w-2xl">
                  Join over 2.4 million learners across India. Access world-class secondary and vocational education normalized by the National Institute of Open Schooling.
               </p>
 
@@ -66,6 +64,9 @@ export default function GuestDashboard() {
                  </button>
               </div>
            </div>
+           <div className="absolute -bottom-20 right-20 opacity-5 group-hover:opacity-10 transition-opacity">
+              <Globe size={320} className="text-white" />
+           </div>
         </div>
 
         {/* Why NIOS Stats */}
@@ -76,7 +77,7 @@ export default function GuestDashboard() {
              { label: 'States Covered', value: '36', icon: Globe, color: 'text-brand-orange bg-orange-50' },
              { label: 'Avg. Rating', value: '4.8/5', icon: Award, color: 'text-purple-500 bg-purple-50' },
            ].map((s, i) => (
-             <div key={i} className="p-8 rounded-[3rem] bg-white border border-slate-100 shadow-sm transition-all hover:translate-y-1">
+             <div key={i} className="p-8 rounded-xl bg-white border border-slate-100 shadow-sm transition-all hover:translate-y-1">
                <div className={`w-12 h-12 rounded-2xl ${s.color} flex items-center justify-center mb-6 shadow-sm`}>
                  <s.icon size={20} />
                </div>
@@ -95,7 +96,7 @@ export default function GuestDashboard() {
            
            <div className="grid md:grid-cols-3 gap-6">
               {featuredCourses.map((c) => (
-                <div key={c.id} className="group p-10 rounded-[3rem] bg-white border border-slate-100 hover:border-brand-orange/20 hover:shadow-2xl hover:shadow-slate-200/50 transition-all text-center relative overflow-hidden">
+                <div key={c.id} className="group p-10 rounded-xl bg-white border border-slate-100 hover:border-brand-orange/20 hover:shadow-2xl hover:shadow-slate-200/50 transition-all text-center relative overflow-hidden">
                    <div className="absolute top-0 left-0 w-full h-1.5 bg-slate-50 group-hover:bg-brand-orange transition-colors" />
                    <div className="w-16 h-16 mx-auto mb-8 rounded-[2rem] bg-slate-50 text-slate-400 group-hover:bg-slate-900 group-hover:text-white transition-all flex items-center justify-center shadow-sm">
                       <BookOpen size={24} />
@@ -112,7 +113,7 @@ export default function GuestDashboard() {
         </div>
 
         {/* AI Tutor Feature Discovery */}
-        <div className="p-12 rounded-[4rem] bg-white border border-slate-100 shadow-sm relative overflow-hidden group">
+        <div className="p-12 rounded-xl bg-white border border-slate-100 shadow-sm relative overflow-hidden group">
            <div className="absolute top-0 right-0 w-64 h-64 bg-brand-orange/5 rounded-full blur-3xl group-hover:scale-150 transition-all duration-1000" />
            <div className="flex flex-col lg:flex-row items-center gap-12">
               <div className="w-20 h-20 rounded-[2.5rem] bg-brand-orange text-white flex items-center justify-center shrink-0 shadow-xl shadow-orange-500/20">

@@ -48,7 +48,7 @@ export default function AICallInterface({ onEndCall, userName }: AICallInterface
       }, 9000),
       setTimeout(() => {
         setStatus('speaking');
-        setTranscription("That's a great question about Newton's Laws. Let me simplify it for you...");
+        setTranscription("That's a great question about NewtonsLaws. Let me simplify it for you...");
       }, 15000),
     ];
 
@@ -87,7 +87,7 @@ export default function AICallInterface({ onEndCall, userName }: AICallInterface
         <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-500/10 rounded-full blur-[120px]" />
       </div>
 
-      <div className="relative w-full max-w-6xl aspect-video bg-slate-900 rounded-[3rem] overflow-hidden border border-white/5 shadow-2xl flex">
+      <div className="relative w-full max-w-6xl aspect-video bg-slate-900 rounded-xl overflow-hidden border border-white/5 shadow-2xl flex">
         {/* Main AI Feed */}
         <div className="relative flex-1 bg-black overflow-hidden">
            <AnimatePresence mode="wait">
@@ -140,11 +140,11 @@ export default function AICallInterface({ onEndCall, userName }: AICallInterface
 
                    {/* AI Info Badge */}
                    <div className="absolute top-8 left-8 flex items-center gap-4">
-                      <div className="p-3 bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl flex items-center gap-3">
+                      <div className="p-3 bg-white/10 backdrop-blur-xl border border-white/10 rounded-xl flex items-center gap-3">
                          <div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_10px_rgba(16,185,129,1)]" />
                          <span className="text-white text-[10px] font-black uppercase tracking-widest">Aura AI Tutor · Live</span>
                       </div>
-                      <div className="px-4 py-3 bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl">
+                      <div className="px-4 py-3 bg-white/10 backdrop-blur-xl border border-white/10 rounded-xl">
                          <span className="text-white/60 text-[10px] font-black tracking-widest">{formatTime(callTime)}</span>
                       </div>
                    </div>
@@ -159,7 +159,7 @@ export default function AICallInterface({ onEndCall, userName }: AICallInterface
                animate={{ opacity: 1, y: 0 }}
                className="absolute bottom-12 left-1/2 -translate-x-1/2 w-full max-w-2xl px-8"
              >
-                <div className="p-6 bg-black/40 backdrop-blur-md rounded-3xl border border-white/10 text-center">
+                <div className="p-6 bg-black/40 backdrop-blur-md rounded-xl border border-white/10 text-center">
                    <p className="text-white font-medium leading-relaxed italic opacity-90">"{transcription}"</p>
                 </div>
              </motion.div>
@@ -171,7 +171,7 @@ export default function AICallInterface({ onEndCall, userName }: AICallInterface
            <div className="flex-1 space-y-8">
               <div className="space-y-4">
                  <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Call Status</div>
-                 <div className="p-4 bg-white/5 rounded-2xl border border-white/5 flex items-center gap-3">
+                 <div className="p-4 bg-white/5 rounded-xl border border-white/5 flex items-center gap-3">
                     <div className={`w-2 h-2 rounded-full ${status === 'listening' ? 'bg-blue-500 animate-pulse shadow-[0_0_8px_rgba(59,130,246,1)]' : 'bg-slate-700'}`} />
                     <span className="text-[10px] font-black text-white uppercase tracking-widest">
                        {status === 'connecting' ? 'INITIATING...' : status === 'speaking' ? 'AI SPEAKING...' : 'LISTENING TO YOU...'}
@@ -182,7 +182,7 @@ export default function AICallInterface({ onEndCall, userName }: AICallInterface
               {/* Local Video Feed */}
               <div className="space-y-4">
                  <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Your Feed</div>
-                 <div className="relative aspect-[4/3] bg-slate-800 rounded-3xl overflow-hidden border border-white/10 ring-4 ring-black/20">
+                 <div className="relative aspect-[4/3] bg-slate-800 rounded-xl overflow-hidden border border-white/10 ring-4 ring-black/20">
                     {isVideoEnabled ? (
                       <video 
                         ref={videoRef} 
@@ -222,19 +222,19 @@ export default function AICallInterface({ onEndCall, userName }: AICallInterface
            <div className="grid grid-cols-2 gap-3">
               <button 
                 onClick={() => setIsMuted(!isMuted)}
-                className={`p-4 rounded-2xl flex items-center justify-center transition-all ${isMuted ? 'bg-red-500 text-white' : 'bg-white/5 text-white hover:bg-white/10'}`}
+                className={`p-4 rounded-xl flex items-center justify-center transition-all ${isMuted ? 'bg-red-500 text-white' : 'bg-white/5 text-white hover:bg-white/10'}`}
               >
                 {isMuted ? <MicOff size={20} /> : <Mic size={20} />}
               </button>
               <button 
                 onClick={() => setIsVideoEnabled(!isVideoEnabled)}
-                className={`p-4 rounded-2xl flex items-center justify-center transition-all ${!isVideoEnabled ? 'bg-slate-700 text-white' : 'bg-white/5 text-white hover:bg-white/10'}`}
+                className={`p-4 rounded-xl flex items-center justify-center transition-all ${!isVideoEnabled ? 'bg-slate-700 text-white' : 'bg-white/5 text-white hover:bg-white/10'}`}
               >
                 {isVideoEnabled ? <VideoIcon size={20} /> : <VideoOff size={20} />}
               </button>
               <button 
                 onClick={onEndCall}
-                className="col-span-2 py-4 bg-red-600 hover:bg-red-700 text-white rounded-2xl flex items-center justify-center gap-3 transition-all active:scale-95 shadow-lg shadow-red-600/20"
+                className="col-span-2 py-4 bg-red-600 hover:bg-red-700 text-white rounded-xl flex items-center justify-center gap-3 transition-all active:scale-95 shadow-lg shadow-red-600/20"
               >
                 <PhoneOff size={20} />
                 <span className="text-[10px] font-black uppercase tracking-widest">Dissolve Call</span>
@@ -247,7 +247,7 @@ export default function AICallInterface({ onEndCall, userName }: AICallInterface
       <motion.div 
         animate={{ y: [0, -10, 0] }}
         transition={{ repeat: Infinity, duration: 4 }}
-        className="mt-8 flex items-center gap-3 px-6 py-3 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-xl"
+        className="mt-8 flex items-center gap-3 px-6 py-3 bg-white/5 border border-white/10 rounded-xl backdrop-blur-xl"
       >
         <Sparkles size={16} className="text-brand-orange" />
         <span className="text-[10px] font-black text-white/40 uppercase tracking-[0.2em]">Quantum AI Processing Active</span>

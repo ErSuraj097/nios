@@ -64,13 +64,13 @@ export default function AdminSettingsPage() {
       title="Global Configuration" 
       subtitle="Full control over platform-wide behavior, security, and asset management"
     >
-      <div className="max-w-6xl mx-auto space-y-12 animate-fade-in pb-20">
+      <div className="max-w-8xl mx-auto space-y-12 animate-fade-in pb-20">
         {/* System Overview Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-           <div className="lg:col-span-2 p-10 rounded-[4rem] bg-white border border-slate-100 shadow-sm relative overflow-hidden group">
+           <div className="lg:col-span-2 p-10 rounded-xl bg-white border border-slate-100 shadow-sm relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-50 rounded-full blur-3xl group-hover:scale-150 transition-all duration-1000" />
               <div className="flex flex-col md:flex-row items-center gap-10">
-                 <div className="w-16 h-16 rounded-2xl bg-emerald-50 text-emerald-500 flex items-center justify-center shrink-0">
+                 <div className="w-16 h-16 rounded-xl bg-emerald-50 text-emerald-500 flex items-center justify-center shrink-0">
                     <CheckCircle2 size={28} />
                  </div>
                  <div className="text-center md:text-left">
@@ -80,16 +80,16 @@ export default function AdminSettingsPage() {
                     </p>
                  </div>
                  <div className="flex-1" />
-                 <button className="px-8 py-4 bg-slate-900 text-white rounded-[2rem] font-black text-[10px] uppercase tracking-widest hover:bg-emerald-600 transition-all shadow-xl">
+                 <button className="px-8 py-4 bg-slate-900 text-white rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-emerald-600 transition-all shadow-xl">
                     Health Check
                  </button>
               </div>
            </div>
 
-           <div className="p-10 rounded-[4rem] bg-slate-900 text-white flex flex-col justify-between group overflow-hidden relative">
+           <div className="p-10 rounded-xl bg-slate-900 text-white flex flex-col justify-between group overflow-hidden relative">
               <div className="absolute top-0 right-0 w-32 h-32 bg-brand-orange/10 rounded-full blur-3xl group-hover:scale-150 transition-all duration-1000" />
               <div className="flex items-center justify-between mb-8">
-                 <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-brand-orange">
+                 <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-brand-orange">
                     <Cloud size={20} />
                  </div>
                  <div className="text-[10px] font-black text-brand-orange uppercase tracking-widest underline underline-offset-4 decoration-2">Maintenance Mode</div>
@@ -111,8 +111,8 @@ export default function AdminSettingsPage() {
            <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight ml-4">Core Management</h3>
            <div className="grid gap-4">
               {settings.map((s) => (
-                <div key={s.id} className="group p-10 rounded-[3rem] bg-white border border-slate-100 hover:border-brand-orange/20 hover:shadow-2xl hover:shadow-slate-200/50 transition-all flex flex-col lg:flex-row items-center gap-10">
-                   <div className="w-16 h-16 rounded-[2rem] bg-slate-50 text-slate-400 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform shadow-sm">
+                <div key={s.id} className="group p-10 rounded-xl bg-white border border-slate-100 hover:border-brand-orange/20 hover:shadow-2xl hover:shadow-slate-200/50 transition-all flex flex-col lg:flex-row items-center gap-10">
+                   <div className="w-16 h-16 rounded-xl bg-slate-50 text-slate-400 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform shadow-sm">
                       <s.icon size={26} />
                    </div>
                    
@@ -124,7 +124,7 @@ export default function AdminSettingsPage() {
                       <p className="text-sm font-medium text-slate-500 leading-relaxed max-w-xl">{s.desc}</p>
                    </div>
 
-                   <button className="px-10 py-5 bg-slate-50 text-slate-900 rounded-[2rem] font-black text-[10px] uppercase tracking-widest hover:bg-slate-900 hover:text-white transition-all shadow-sm flex items-center gap-3">
+                   <button className="px-10 py-5 bg-slate-50 text-slate-900 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-slate-900 hover:text-white transition-all shadow-sm flex items-center gap-3">
                       Configure <ChevronRight size={16} />
                    </button>
                 </div>
@@ -133,10 +133,10 @@ export default function AdminSettingsPage() {
         </div>
 
         {/* Danger Zone */}
-        <div className="p-12 rounded-[4rem] bg-red-50/50 border-2 border-dashed border-red-200/50 relative overflow-hidden group">
+        <div className="p-12 rounded-xl bg-red-50/50 border-2 border-dashed border-red-200/50 relative overflow-hidden group">
            <div className="absolute top-0 right-0 w-64 h-64 bg-red-500/5 rounded-full blur-3xl group-hover:scale-150 transition-all duration-1000" />
            <div className="flex flex-col lg:flex-row items-center gap-10">
-              <div className="w-16 h-16 rounded-[2rem] bg-red-500 text-white flex items-center justify-center shrink-0 shadow-xl shadow-red-500/20">
+              <div className="w-16 h-16 rounded-xl bg-red-500 text-white flex items-center justify-center shrink-0 shadow-xl shadow-red-500/20">
                  <AlertCircle size={24} />
               </div>
               <div className="flex-1 text-center lg:text-left">
@@ -145,7 +145,7 @@ export default function AdminSettingsPage() {
                     High-impact destructive actions. Including database wipes, migration resets, and account purges. Ensure you have a recent off-site backup before proceeding.
                  </p>
               </div>
-              <button className="px-12 py-5 bg-white border border-red-100 text-red-600 rounded-[2.5rem] font-black text-[10px] uppercase tracking-widest hover:bg-red-600 hover:text-white transition-all shadow-xl shadow-red-200/50 flex items-center gap-3">
+              <button className="px-12 py-5 bg-white border border-red-100 text-red-600 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-red-600 hover:text-white transition-all shadow-xl shadow-red-200/50 flex items-center gap-3">
                  <Trash2 size={16} /> Purge Inactive Data
               </button>
            </div>

@@ -26,6 +26,7 @@ import {
   Users
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
+import { div } from 'framer-motion/client';
 
 export default function SettingsPage() {
   const { user } = useAuth();
@@ -38,7 +39,7 @@ export default function SettingsPage() {
       title="Advanced Platform Configuration" 
       subtitle="Customize your regional, security, and accessibility preferences for a personalized NIOS experience"
     >
-      <div className="grid lg:grid-cols-[280px_1fr] gap-10 items-start animate-fade-in pb-20 max-w-7xl mx-auto">
+      <div className="grid lg:grid-cols-[280px_1fr] gap-10 items-start animate-fade-in pb-20 max-w-8xl mx-auto">
         
         {/* Sidebar Tabs */}
         <div className="space-y-4">
@@ -46,7 +47,7 @@ export default function SettingsPage() {
              <button 
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`w-full p-4 rounded-2xl flex items-center justify-between transition-all group ${
+                className={`w-full p-4 rounded-xl flex items-center justify-between transition-all group ${
                   activeTab === tab ? 'bg-slate-900 text-white shadow-xl translate-x-2' : 'bg-white border border-slate-100 text-slate-400 hover:border-brand-orange/20 hover:text-slate-900'
                 }`}
              >
@@ -62,7 +63,7 @@ export default function SettingsPage() {
              </button>
            ))}
            
-           <div className="p-8 rounded-[2.5rem] bg-orange-50 border border-orange-100 mt-10">
+           <div className="p-8 rounded-xl bg-orange-50 border border-orange-100 mt-10">
               <Sparkles className="text-brand-orange mb-4" size={24} />
               <h4 className="text-[10px] font-black text-brand-orange uppercase tracking-widest mb-2">Alpha Participation</h4>
               <p className="text-[8px] font-medium text-slate-500 uppercase tracking-widest leading-relaxed">
@@ -77,7 +78,7 @@ export default function SettingsPage() {
            {/* Section 1: Appearance */}
            {activeTab === 'General' && (
              <div className="space-y-8 animate-fade-in">
-                <div className="p-10 rounded-[3.5rem] bg-white border border-slate-100 shadow-sm">
+                <div className="p-10 rounded-xl bg-white border border-slate-100 shadow-sm">
                    <div className="flex items-center gap-3 mb-10">
                       <Palette className="text-brand-orange" size={24} />
                       <h3 className="text-lg font-black text-slate-900 uppercase tracking-tight">Theme & Visuals</h3>
@@ -88,7 +89,7 @@ export default function SettingsPage() {
                         { name: 'National Blue', desc: 'Standard clarity', active: false },
                         { name: 'Monochrome', desc: 'Classic accessibility', active: false },
                       ].map((t) => (
-                        <div key={t.name} className={`p-6 rounded-[2.5rem] border transition-all cursor-pointer ${
+                        <div key={t.name} className={`p-6 rounded-xl border transition-all cursor-pointer ${
                           t.active ? 'bg-slate-900 text-white border-slate-900 shadow-xl' : 'bg-slate-50 border-slate-100 text-slate-400 hover:border-brand-orange/20'
                         }`}>
                            <div className="text-[10px] font-black uppercase tracking-widest mb-1">{t.name}</div>
@@ -98,7 +99,7 @@ export default function SettingsPage() {
                    </div>
                 </div>
 
-                <div className="p-10 rounded-[3.5rem] bg-white border border-slate-100 shadow-sm">
+                <div className="p-10 rounded-xl bg-white border border-slate-100 shadow-sm">
                    <div className="flex items-center gap-3 mb-10">
                       <Globe className="text-brand-orange" size={24} />
                       <h3 className="text-lg font-black text-slate-900 uppercase tracking-tight">Regional Settings</h3>
@@ -108,12 +109,12 @@ export default function SettingsPage() {
                         { label: 'Language Preference', value: 'Hindi (Native)', btn: 'Change Language' },
                         { label: 'Timezone Cluster', value: 'India (GMT+5:30)', btn: 'Sync Time' },
                       ].map((s, i) => (
-                        <div key={i} className="flex flex-col md:flex-row items-center justify-between p-6 bg-slate-50 border border-slate-100 rounded-3xl gap-6">
+                        <div key={i} className="flex flex-col md:flex-row items-center justify-between p-6 bg-slate-50 border border-slate-100 rounded-xl gap-6">
                            <div className="text-center md:text-left">
                               <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">{s.label}</div>
                               <div className="text-sm font-black text-slate-900">{s.value}</div>
                            </div>
-                           <button className="px-8 py-3 bg-white border border-slate-200 text-slate-900 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:border-brand-orange transition-all">
+                           <button className="px-8 py-3 bg-white border border-slate-200 text-slate-900 rounded-xl font-black text-[10px] uppercase tracking-widest hover:border-brand-orange transition-all">
                               {s.btn}
                            </button>
                         </div>
@@ -125,8 +126,8 @@ export default function SettingsPage() {
 
            {activeTab === 'Security' && (
              <div className="space-y-8 animate-fade-in">
-                <div className="p-10 rounded-[3.5rem] bg-slate-900 text-white relative overflow-hidden group">
-                   <div className="absolute top-0 right-0 w-64 h-64 bg-brand-orange/5 rounded-full blur-3xl group-hover:scale-150 transition-all duration-1000" />
+                <div className="p-10 rounded-xl bg-slate-900 text-white relative overflow-hidden group">
+                   <div className="absolute top-0 right-0 w-64 h-64 bg-brand-orange/5 rounded-xl blur-3xl group-hover:scale-150 transition-all duration-1000" />
                    <div className="flex items-center gap-4 mb-10">
                       <Shield className="text-brand-orange" size={24} />
                       <h3 className="text-lg font-black uppercase tracking-tight text-white">Trust & Authentication</h3>
@@ -137,7 +138,7 @@ export default function SettingsPage() {
                         { label: 'Biometric Gateway', status: 'Active (FaceID)', icon: <Fingerprint className="text-brand-orange" size={14} /> },
                         { label: 'External Node Access', status: 'Restricted', icon: <Lock className="text-slate-500" size={14} /> },
                       ].map((s, i) => (
-                        <div key={i} className="flex items-center justify-between p-6 bg-white/5 border border-white/10 rounded-3xl group cursor-default">
+                        <div key={i} className="flex items-center justify-between p-6 bg-white/5 border border-white/10 rounded-xl group cursor-default">
                            <div className="flex items-center gap-3">
                               <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest">{s.label}</span>
                            </div>
@@ -147,7 +148,7 @@ export default function SettingsPage() {
                         </div>
                       ))}
                    </div>
-                   <button className="w-full mt-10 py-5 bg-brand-orange text-white rounded-[2rem] font-black text-[10px] uppercase tracking-widest hover:bg-orange-600 transition-all shadow-xl shadow-orange-500/20 active:scale-95">
+                   <button className="w-full mt-10 py-5 bg-brand-orange text-white rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-orange-600 transition-all shadow-xl shadow-orange-500/20 active:scale-95">
                       Refresh Security Audit
                    </button>
                 </div>
@@ -155,7 +156,7 @@ export default function SettingsPage() {
            )}
 
            {activeTab === 'Accessibility' && (
-             <div className="p-10 rounded-[3.5rem] bg-white border border-slate-100 shadow-sm space-y-10 animate-fade-in">
+             <div className="p-10 rounded-xl bg-white border border-slate-100 shadow-sm space-y-10 animate-fade-in">
                 <div className="flex items-center gap-3 mb-10">
                    <Accessibility className="text-brand-orange" size={24} />
                    <h3 className="text-lg font-black text-slate-900 uppercase tracking-tight">Inclusive Learning</h3>
@@ -166,9 +167,9 @@ export default function SettingsPage() {
                      { label: 'Sign Language Aids (ISL)', value: 'Disabled', icon: <Users size={14} /> },
                      { label: 'Dyslexic Friendly Font', value: 'Active', icon: <Sparkles size={14} /> },
                    ].map((s, i) => (
-                     <div key={i} className="flex items-center justify-between p-8 bg-slate-50 border border-slate-100 rounded-[3rem] group">
+                     <div key={i} className="flex items-center justify-between p-8 bg-slate-50 border border-slate-100 rounded-xl group">
                         <div className="flex items-center gap-4">
-                           <div className="w-10 h-10 rounded-2xl bg-white border border-slate-100 flex items-center justify-center text-brand-orange">
+                           <div className="w-10 h-10 rounded-xl bg-white border border-slate-100 flex items-center justify-center text-brand-orange">
                               {s.icon}
                            </div>
                            <div className="text-left font-black tracking-tight">
@@ -176,7 +177,7 @@ export default function SettingsPage() {
                               <div className="text-sm text-slate-900">{s.value}</div>
                            </div>
                         </div>
-                        <button className="px-8 py-3 bg-white border border-slate-200 text-slate-900 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:border-brand-orange transition-all">
+                        <button className="px-8 py-3 bg-white border border-slate-200 text-slate-900 rounded-xl font-black text-[10px] uppercase tracking-widest hover:border-brand-orange transition-all">
                            Calibrate
                         </button>
                      </div>
@@ -184,12 +185,76 @@ export default function SettingsPage() {
                 </div>
              </div>
            )}
+                     {activeTab === 'Privacy' && (
+             <div className="p-10 rounded-xl bg-white border border-slate-100 shadow-sm space-y-10 animate-fade-in">
+                <div className="flex items-center gap-3 mb-10">
+                   <Shield className="text-brand-orange" size={24} />
+                   <h3 className="text-lg font-black text-slate-900 uppercase tracking-tight">Privacy & Data Control</h3>
+                </div>
+                <div className="space-y-6">
+                   {[
+                     { label: 'Data Sharing Preferences', value: 'Minimal Sharing', icon: <Users size={14} />, btn: 'Review' },
+                     { label: 'Learning Progress Visibility', value: 'Private (Default)', icon: <Lock size={14} />, btn: 'Manage' },
+                     { label: 'Data Export & Deletion', value: 'Available Anytime', icon: <CheckCircle size={14} />, btn: 'Request' },
+                   ].map((s, i) => (
+                     <div key={i} className="flex items-center justify-between p-8 bg-slate-50 border border-slate-100 rounded-xl group">
+                        <div className="flex items-center gap-4">
+                           <div className="w-10 h-10 rounded-xl bg-white border border-slate-100 flex items-center justify-center text-brand-orange">
+                              {s.icon}
+                           </div>
+                           <div className="text-left font-black tracking-tight">
+                              <div className="text-[10px] text-slate-400 uppercase tracking-widest mb-1">{s.label}</div>
+                              <div className="text-sm text-slate-900">{s.value}</div>
+                           </div>
+                        </div>
+                        <button className="px-8 py-3 bg-white border border-slate-200 text-slate-900 rounded-xl font-black text-[10px] uppercase tracking-widest hover:border-brand-orange transition-all">
+                           {s.btn}
+                        </button>
+                     </div>
+                   ))}
+                </div>
+             </div>
+           )}
+
+           {activeTab === 'Support' && (
+             <div className="p-10 rounded-xl bg-white border border-slate-100 shadow-sm space-y-10 animate-fade-in">
+                <div className="flex items-center gap-3 mb-10">
+                   <Shield className="text-brand-orange" size={24} /> {/* You can replace with HelpCircle if imported */}
+                   <h3 className="text-lg font-black text-slate-900 uppercase tracking-tight">Help & Support</h3>
+                </div>
+                <div className="space-y-6">
+                   {[
+                     { label: 'Contact Support Team', value: 'Response < 4 hrs', icon: <Users size={14} />, btn: 'Contact' },
+                     { label: 'Knowledge Base / FAQs', value: 'Full Access', icon: <CheckCircle size={14} />, btn: 'Browse' },
+                     { label: 'Submit Feedback / Ticket', value: 'Open 24×7', icon: <Sparkles size={14} />, btn: 'Submit' },
+                   ].map((s, i) => (
+                     <div key={i} className="flex items-center justify-between p-8 bg-slate-50 border border-slate-100 rounded-xl group">
+                        <div className="flex items-center gap-4">
+                           <div className="w-10 h-10 rounded-xl bg-white border border-slate-100 flex items-center justify-center text-brand-orange">
+                              {s.icon}
+                           </div>
+                           <div className="text-left font-black tracking-tight">
+                              <div className="text-[10px] text-slate-400 uppercase tracking-widest mb-1">{s.label}</div>
+                              <div className="text-sm text-slate-900">{s.value}</div>
+                           </div>
+                        </div>
+                        <button className="px-8 py-3 bg-white border border-slate-200 text-slate-900 rounded-xl font-black text-[10px] uppercase tracking-widest hover:border-brand-orange transition-all">
+                           {s.btn}
+                        </button>
+                     </div>
+                   ))}
+                </div>
+             </div>
+           )}
+
+          
+
 
            {/* Data Zone */}
-           <div className="p-12 rounded-[4rem] bg-red-50/50 border-2 border-dashed border-red-200/50 relative overflow-hidden group">
+           <div className="p-12 rounded-xl bg-red-50/50 border-2 border-dashed border-red-200/50 relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-64 h-64 bg-red-500/5 rounded-full blur-3xl group-hover:scale-150 transition-all duration-1000" />
               <div className="flex flex-col lg:flex-row items-center gap-10">
-                 <div className="w-16 h-16 rounded-[2.5rem] bg-red-500 text-white flex items-center justify-center shrink-0 shadow-xl shadow-red-500/20">
+                 <div className="w-16 h-16 rounded-xl bg-red-500 text-white flex items-center justify-center shrink-0 shadow-xl shadow-red-500/20">
                     <Trash2 size={24} />
                  </div>
                  <div className="flex-1 text-center lg:text-left">
@@ -199,7 +264,7 @@ export default function SettingsPage() {
                     </p>
                  </div>
                  <div className="flex gap-3">
-                    <button className="px-10 py-5 bg-white border border-red-100 text-red-600 rounded-[2.5rem] font-black text-[10px] uppercase tracking-widest hover:bg-red-50 transition-all shadow-xl shadow-red-200/50">
+                    <button className="px-10 py-5 bg-white border border-red-100 text-red-600 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-red-50 transition-all shadow-xl shadow-red-200/50">
                        Request Purge
                     </button>
                  </div>

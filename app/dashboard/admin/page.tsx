@@ -45,7 +45,7 @@ export default function AdminDashboard() {
       subtitle={`NIOS Central Ops · Node: ${user.details.designation || 'Master Admin'}`}
     >
       {/* System Status Banner */}
-      <div className="flex items-center gap-4 p-4 mb-8 bg-emerald-50 border border-emerald-100 rounded-2xl">
+      <div className="flex items-center gap-4 p-4 mb-8 bg-emerald-50 border border-emerald-100 rounded-xl">
         <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
           <ShieldCheck size={20} />
         </div>
@@ -62,9 +62,9 @@ export default function AdminDashboard() {
       {/* Stats Grid */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
         {platformStats.map((s, i) => (
-          <div key={i} className="p-8 rounded-[2.5rem] bg-white border border-slate-100 shadow-sm group hover:shadow-2xl transition-all relative overflow-hidden">
+          <div key={i} className="p-8 rounded-xl bg-white border border-slate-100 shadow-sm group hover:shadow-2xl transition-all relative overflow-hidden">
             <div className={`absolute top-0 right-0 w-24 h-24 bg-gradient-to-br ${s.color} opacity-[0.03] rounded-full -mr-8 -mt-8`} />
-            <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${s.color} text-white flex items-center justify-center mb-6 shadow-lg opacity-80 group-hover:opacity-100 transition-opacity`}>
+            <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${s.color} text-white flex items-center justify-center mb-6 shadow-lg opacity-80 group-hover:opacity-100 transition-opacity`}>
               <s.icon size={20} />
             </div>
             <div className="text-3xl font-black text-slate-900 tracking-tighter mb-1">{s.value}</div>
@@ -85,7 +85,7 @@ export default function AdminDashboard() {
               <Link href="/admin/users" className="px-4 py-2 bg-slate-900 text-white text-[10px] font-black uppercase rounded-xl hover:bg-black transition-all">Manage Roles</Link>
             </div>
           </div>
-          <div className="bg-white rounded-[2.5rem] border border-slate-100 shadow-sm overflow-hidden">
+          <div className="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden">
             <table className="w-full text-left">
               <thead>
                 <tr className="bg-slate-50/50 border-b border-slate-100">
@@ -126,7 +126,7 @@ export default function AdminDashboard() {
 
         {/* System Health */}
         <div className="space-y-8">
-          <div className="p-8 rounded-[2.5rem] bg-white border border-slate-100 shadow-sm">
+          <div className="p-8 rounded-xl bg-white border border-slate-100 shadow-sm">
             <div className="flex items-center justify-between mb-8">
               <h3 className="font-black text-slate-900 uppercase tracking-tight">System Infrastructure</h3>
               <Activity className="text-brand-orange animate-pulse" size={20} />
@@ -149,22 +149,22 @@ export default function AdminDashboard() {
             </div>
           </div>
 
-          <div className="p-8 rounded-[2.5rem] bg-slate-900 text-white relative overflow-hidden group">
+          <div className="p-8 rounded-xl bg-slate-900 text-white relative overflow-hidden group">
             <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/10 rounded-full blur-3xl" />
             <h3 className="font-black uppercase tracking-tight mb-6">Quick Admin Actions</h3>
             <div className="grid grid-cols-1 gap-2">
               {[
-                { icon: Server, label: 'Database Backup' },
-                { icon: ShieldCheck, label: 'Security Logs' },
-                { icon: FileText, label: 'Platform Reports' },
-                { icon: Settings, label: 'System Config' },
+                { icon: ShieldCheck, label: 'Admissions & KYC', href: '/admin/admissions' },
+                { icon: Globe, label: 'Integrations Panel', href: '/admin/integrations' },
+                { icon: Server, label: 'System & Backups', href: '/admin/system' },
+                { icon: FileText, label: 'Platform Reports', href: '/admin/reports' },
               ].map((a, i) => (
-                <button key={i} className="flex items-center justify-between p-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-xs font-bold w-full text-left">
+                <Link key={i} href={a.href} className="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-xs font-bold w-full text-left">
                   <div className="flex items-center gap-3 font-black uppercase tracking-widest">
                     <a.icon size={16} className="text-brand-orange" /> {a.label}
                   </div>
                   <ArrowUpRight size={14} className="text-slate-500" />
-                </button>
+                </Link>
               ))}
             </div>
           </div>

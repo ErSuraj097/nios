@@ -11,6 +11,35 @@
 /* Custom CSS Variables */
 :root {
   --sidebar-width: 280px;
+  --font-size: 1rem;
+  --contrast-mode: default;
+}
+
+html {
+  font-size: var(--font-size, 1rem);
+}
+
+.font-sm { font-size: 0.875rem; line-height: 1.4; }
+.font-base { font-size: 1rem; line-height: 1.5; }
+.font-lg { font-size: 1.125rem; line-height: 1.6; }
+
+body.high-contrast {
+  background-color: #000;
+  color: #fff;
+}
+
+body.high-contrast * {
+  background-color: transparent !important;
+  color: #fff !important;
+  border-color: #333 !important;
+}
+
+body.high-contrast a {
+  color: #ffdd57 !important; /* yellow */
+}
+
+body.high-contrast a:hover {
+  background-color: #333;
 }
 
 /* Custom Gradients & Animations */

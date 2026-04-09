@@ -62,15 +62,15 @@ export default function ProfilePage() {
         <div className="space-y-8">
            
            {/* Profile Identity Card */}
-           <div className="p-10 rounded-[3.5rem] bg-white border border-slate-100 shadow-sm text-center relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-brand-orange/5 rounded-full blur-3xl group-hover:scale-150 transition-all duration-1000" />
+           <div className="p-10 rounded-xl   bg-white border border-slate-100 shadow-sm text-center relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-brand-orange/5 rounded-xl blur-3xl group-hover:scale-150 transition-all duration-1000" />
               
               <div className="relative mb-8">
-                 <div className="w-32 h-32 mx-auto rounded-[3rem] bg-gradient-to-br from-brand-orange to-red-500 p-1 shadow-2xl relative">
-                    <div className="w-full h-full rounded-[2.8rem] bg-white flex items-center justify-center text-4xl font-black text-slate-900 overflow-hidden">
+                 <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-brand-orange to-red-500 p-1 shadow-2xl relative">
+                    <div className="w-full h-full rounded-full bg-white flex items-center justify-center text-4xl font-black text-slate-900 overflow-hidden">
                        {user.name.charAt(0)}
                     </div>
-                    <div className="absolute -bottom-2 -right-2 w-10 h-10 rounded-2xl bg-emerald-500 border-4 border-white flex items-center justify-center text-white shadow-lg">
+                    <div className="absolute -bottom-2 -right-2 w-10 h-10 rounded-full bg-emerald-500 border-4 border-white flex items-center justify-center text-white shadow-lg">
                        <Verified size={18} />
                     </div>
                  </div>
@@ -82,38 +82,38 @@ export default function ProfilePage() {
               </p>
 
               <div className="grid grid-cols-2 gap-4 mb-8">
-                 <div className="p-4 rounded-3xl bg-slate-50 border border-slate-100">
+                 <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
                     <div className="text-[20px] font-black text-slate-900 tracking-tighter">72%</div>
                     <div className="text-[8px] font-black text-slate-400 uppercase tracking-widest">Avg. Score</div>
                  </div>
-                 <div className="p-4 rounded-3xl bg-slate-50 border border-slate-100">
+                 <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
                     <div className="text-[20px] font-black text-emerald-500 tracking-tighter">92%</div>
                     <div className="text-[8px] font-black text-slate-400 uppercase tracking-widest">Attendance</div>
                  </div>
               </div>
 
-              <button className="w-full py-5 bg-slate-900 text-white rounded-[2rem] font-black text-[10px] uppercase tracking-widest hover:bg-brand-orange transition-all shadow-xl active:scale-95 flex items-center justify-center gap-2">
+              <button className="w-full py-5 bg-slate-900 text-white rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-brand-orange transition-all shadow-xl active:scale-95 flex items-center justify-center gap-2">
                  <Edit3 size={16} /> Update Portfolio
               </button>
            </div>
 
            {/* Aadhaar & Regional Identity */}
-           <div className="p-10 rounded-[3.5rem] bg-slate-900 text-white relative overflow-hidden group">
+           <div className="p-10 rounded-xl bg-slate-900 text-white relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full blur-3xl group-hover:scale-150 transition-all duration-1000" />
               
               <div className="flex items-center gap-3 mb-8">
-                 <ShieldCheck className="text-brand-orange" size={24} />
-                 <h4 className="text-[12px] font-black uppercase tracking-widest">National Identity</h4>
+                 <ShieldCheck className="text-brand-orange" size={24} /> 
+                 <h4 className="text-[12px] font-black uppercase tracking-widest"> National Identity</h4>🇮🇳
               </div>
 
               <div className="space-y-4 relative z-10">
                  {[
-                   { label: 'Aadhaar Link', value: 'XXXX-2394', icon: <CheckCircle size={12} className="text-emerald-500" /> },
+                   { label: 'Aadhaar Link', value: 'XXXX-XXXX-2394', icon: <CheckCircle size={12} className="text-emerald-500" /> },
                    { label: 'State Region', value: 'Delhi NCR', icon: <MapPin size={12} /> },
                    { label: 'Academic Center', value: 'NIOS-10294', icon: <Globe size={12} /> },
                    { label: 'Registry', value: 'DigiLocker Synced', icon: <CheckCircle size={12} className="text-emerald-500" /> },
                  ].map((item, i) => (
-                   <div key={i} className="flex items-center justify-between py-3 border-b border-white/5 last:border-0">
+                   <div key={i} className="flex items-center justify-between border-b border-white/5 last:border-0">
                       <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{item.label}</span>
                       <div className="flex items-center gap-2 text-xs font-black text-white">
                          {item.icon}
@@ -123,13 +123,13 @@ export default function ProfilePage() {
                  ))}
               </div>
 
-              <button className="w-full mt-8 py-4 bg-white/5 hover:bg-white/10 rounded-2xl text-[10px] font-black uppercase tracking-widest text-slate-300 transition-all border border-white/10">
+              <button className="w-full mt-8 py-4 bg-white/5 hover:bg-white/10 rounded-xl text-[10px] font-black uppercase tracking-widest text-slate-300 transition-all border border-white/10">
                  View Verification Logs
               </button>
            </div>
 
            {/* Institutional Links */}
-           <div className="p-10 rounded-[3.5rem] bg-white border border-slate-100 shadow-sm">
+           <div className="p-10 rounded-xl bg-white border border-slate-100 shadow-sm">
               <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-8">Ecosystem Connections</h4>
               <div className="space-y-4">
                  {[
@@ -137,12 +137,12 @@ export default function ProfilePage() {
                    { name: 'ABC Bank', status: 'Linked', color: 'emerald' },
                    { name: 'SWAYAM Nodes', status: 'Sync', color: 'orange' },
                  ].map((p, i) => (
-                   <div key={i} className="flex items-center justify-between p-4 rounded-3xl bg-slate-50 border border-slate-100 group cursor-default">
+                   <div key={i} className="flex items-center justify-between p-4 rounded-xl bg-slate-50 border border-slate-100 group cursor-default">
                       <div className="flex items-center gap-3">
                          <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                          <span className="text-[10px] font-black text-slate-900 uppercase tracking-widest">{p.name}</span>
                       </div>
-                      <span className="text-[8px] font-black text-slate-400 uppercase">{p.status}</span>
+                      <span className="text-[8px] font-black text-orange-700 uppercase">{p.status}</span>
                    </div>
                  ))}
               </div>
@@ -161,8 +161,8 @@ export default function ProfilePage() {
               </div>
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
                  {achievements.map((a, i) => (
-                   <div key={i} className="group p-8 rounded-[3rem] bg-white border border-slate-100 hover:border-brand-orange/20 hover:shadow-2xl hover:shadow-slate-200/5 transition-all text-center relative overflow-hidden">
-                      <div className="w-16 h-16 mx-auto mb-6 rounded-3xl bg-slate-900 text-white flex items-center justify-center shadow-xl group-hover:bg-brand-orange group-hover:scale-110 transition-all duration-500">
+                   <div key={i} className="group p-8 rounded-xl bg-white border border-slate-100 hover:border-brand-orange/20 hover:shadow-2xl hover:shadow-slate-200/5 transition-all text-center relative overflow-hidden">
+                      <div className="w-16 h-16 mx-auto mb-6 rounded-xl bg-slate-900 text-white flex items-center justify-center shadow-xl group-hover:bg-brand-orange group-hover:scale-110 transition-all duration-500">
                          <a.icon size={24} />
                       </div>
                       <h4 className="text-[10px] font-black text-slate-900 uppercase tracking-widest mb-1">{a.title}</h4>
@@ -176,14 +176,14 @@ export default function ProfilePage() {
            <div className="space-y-8">
               <div className="flex items-center justify-between px-4">
                  <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight">Holistic Projects</h3>
-                 <button className="px-6 py-3 bg-slate-900 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-brand-orange transition-all shadow-xl">
+                 <button className="px-6 py-3 bg-slate-900 text-white rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-brand-orange transition-all shadow-xl">
                     Add Submission
                  </button>
               </div>
               <div className="grid md:grid-cols-3 gap-6">
                  {projects.map((p, i) => (
-                   <div key={i} className="group p-8 rounded-[3rem] bg-white border border-slate-100 hover:shadow-xl transition-all text-center">
-                      <div className="w-14 h-14 mx-auto mb-6 rounded-2xl bg-orange-50 text-brand-orange flex items-center justify-center shadow-sm">
+                   <div key={i} className="group p-8 rounded-xl bg-white border border-slate-100 hover:shadow-xl transition-all text-center">
+                      <div className="w-14 h-14 mx-auto mb-6 rounded-xl bg-orange-50 text-brand-orange flex items-center justify-center shadow-sm">
                          <Palette size={24} />
                       </div>
                       <h4 className="text-sm font-black text-slate-900 mb-2 leading-tight h-10 flex items-center justify-center">{p.title}</h4>
@@ -201,8 +201,8 @@ export default function ProfilePage() {
               <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight px-4">Official Transcripts</h3>
               <div className="grid gap-4">
                  {certificates.map((c, i) => (
-                   <div key={i} className="group p-8 rounded-[3rem] bg-white border border-slate-100 hover:border-brand-orange/20 transition-all flex items-center gap-10">
-                      <div className="w-16 h-16 rounded-2xl bg-slate-50 text-slate-400 flex items-center justify-center shrink-0 group-hover:bg-slate-900 group-hover:text-white transition-all shadow-sm">
+                   <div key={i} className="group p-8 rounded-xl bg-white border border-slate-100 hover:border-brand-orange/20 transition-all flex items-center gap-10">
+                      <div className="w-16 h-16 rounded-xl bg-slate-50 text-slate-400 flex items-center justify-center shrink-0 group-hover:bg-slate-900 group-hover:text-white transition-all shadow-sm">
                          <Scroll size={24} />
                       </div>
                       <div className="flex-1 min-w-0">
@@ -211,7 +211,7 @@ export default function ProfilePage() {
                       </div>
                       <div className="flex items-center gap-4">
                          <span className="px-4 py-2 bg-emerald-50 text-emerald-500 text-[10px] font-black uppercase rounded-full border border-emerald-100">{c.status}</span>
-                         <button className="p-4 bg-slate-50 text-slate-400 hover:text-slate-900 rounded-2xl transition-all">
+                         <button className="p-4 bg-slate-50 text-slate-400 hover:text-slate-900 rounded-xl transition-all">
                             <ArrowUpRight size={18} />
                          </button>
                       </div>
@@ -221,10 +221,10 @@ export default function ProfilePage() {
            </div>
 
            {/* Accessibility & Governance Section */}
-           <div className="p-12 rounded-[4rem] bg-gradient-to-br from-blue-50 to-white border border-blue-100 shadow-sm text-center relative overflow-hidden group">
+           <div className="p-12 rounded-xl bg-gradient-to-br from-amber-50 to-white border border-blue-100 shadow-sm text-center relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl group-hover:scale-150 transition-all duration-1000" />
               <div className="flex flex-col lg:flex-row items-center gap-12">
-                 <div className="w-16 h-16 rounded-[2rem] bg-blue-500 text-white flex items-center justify-center shrink-0 shadow-xl shadow-blue-500/20">
+                 <div className="w-16 h-16 rounded-xl bg-orange-500 text-white flex items-center justify-center shrink-0 shadow-xl shadow-blue-500/20">
                     <Accessibility size={28} />
                  </div>
                  <div className="flex-1 text-center lg:text-left">
@@ -233,7 +233,7 @@ export default function ProfilePage() {
                        Language: Hindi (Native) · Font: Standard · Contrast: Standard · ISL Aids: Off
                     </p>
                  </div>
-                 <button className="px-10 py-5 bg-white border border-blue-100 text-blue-600 rounded-[2.5rem] font-black text-[10px] uppercase tracking-widest hover:bg-blue-600 hover:text-white transition-all shadow-xl shadow-blue-500/10">
+                 <button className="px-10 py-5 bg-white border border-blue-100 text-orange-600 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-blue-600 hover:text-white transition-all shadow-xl shadow-blue-500/10">
                     Modify Settings
                  </button>
               </div>

@@ -32,6 +32,21 @@ const typeColor: Record<string, string> = {
 
 const tabs = ['Overview', 'Notes', 'Resources', 'Discussion', 'TMA'];
 
+const getEmbedUrl = (url: string) => {
+  if (!url) return '';
+  if (url.includes('youtube.com/embed/')) return url;
+  
+  let videoId = '';
+  if (url.includes('youtu.be/')) {
+    videoId = url.split('youtu.be/')[1].split(/[?#]/)[0];
+  } else if (url.includes('youtube.com/watch')) {
+    const urlParams = new URL(url).searchParams;
+    videoId = urlParams.get('v') || '';
+  }
+  
+  return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
+};
+
 export default function CoursePlayerPage() {
   const params = useParams();
   const id = params.id as string;
@@ -103,7 +118,7 @@ export default function CoursePlayerPage() {
 
           {/* Player Hub */}
           <div className="relative group">
-            <div className="bg-slate-900 rounded-[3rem] overflow-hidden aspect-video shadow-2xl border border-slate-800 relative ring-8 ring-white/50">
+            <div className="bg-slate-900 rounded-xl overflow-hidden aspect-video shadow-2xl border border-slate-800 relative ring-8 ring-white/50">
                {activeLesson === 6 ? (
                  <div className="absolute inset-0 bg-slate-900 flex flex-col items-center justify-center p-12">
                    {/* Flipbook specific UI */}
@@ -111,12 +126,12 @@ export default function CoursePlayerPage() {
                       <BookOpen size={48} className="mx-auto text-brand-orange" />
                       <h4 className="font-black uppercase tracking-widest text-sm">Interactive FlipBook Active</h4>
                       <p className="text-slate-500 text-[10px] max-w-xs mx-auto">Open the library to view full 3D interactive version of this SLM.</p>
-                      <button className="px-8 py-3 bg-brand-orange text-white rounded-2xl font-black text-[10px] uppercase tracking-widest shadow-lg shadow-orange-500/20">Expand Content</button>
+                      <button className="px-8 py-3 bg-brand-orange text-white rounded-xl font-black text-[10px] uppercase tracking-widest shadow-lg shadow-orange-500/20">Expand Content</button>
                    </div>
                  </div>
                ) : (
                  <iframe 
-                   src={course.videoUrl} 
+                   src={getEmbedUrl(course.videoUrl || '')} 
                    className="w-full h-full border-0"
                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                    allowFullScreen
@@ -125,7 +140,7 @@ export default function CoursePlayerPage() {
 
                {/* ISL Placeholder Overlay */}
                {isISLEnabled && (
-                 <div className="absolute bottom-16 right-8 w-40 aspect-video bg-slate-800 rounded-2xl border border-slate-700 shadow-2xl overflow-hidden animate-in fade-in zoom-in slide-in-from-right-8">
+                 <div className="absolute bottom-16 right-8 w-40 aspect-video bg-slate-800 rounded-xl border border-slate-700 shadow-2xl overflow-hidden animate-in fade-in zoom-in slide-in-from-right-8">
                     <div className="absolute inset-0 flex items-center justify-center bg-black/40">
                        <Video className="text-brand-orange opacity-40" />
                        <div className="absolute top-2 left-2 text-[8px] font-black text-white uppercase tracking-widest bg-brand-orange px-2 py-0.5 rounded-full">ISL FEED</div>
@@ -135,7 +150,7 @@ export default function CoursePlayerPage() {
 
                {/* Subtitles Overlay */}
                {isSubtitlesEnabled && (
-                 <div className="absolute bottom-20 left-10 right-10 p-6 bg-black/60 backdrop-blur-md rounded-[2rem] border border-white/10 animate-in slide-in-from-bottom-4 duration-500">
+                 <div className="absolute bottom-20 left-10 right-10 p-6 bg-black/60 backdrop-blur-md rounded-xl border border-white/10 animate-in slide-in-from-bottom-4 duration-500">
                     <p className="text-white text-center text-sm font-medium leading-relaxed italic opacity-90">
                        "...{course.transcript?.substring(0, 150)}..."
                     </p>
@@ -159,25 +174,25 @@ export default function CoursePlayerPage() {
           </div>
 
           {/* AI Accessibility Hub */}
-          <div className="p-6 bg-white rounded-[2.5rem] border border-slate-100 shadow-sm flex flex-wrap items-center gap-4">
+          <div className="p-4 bg-white rounded-xl border border-slate-100 shadow-sm flex flex-wrap items-center gap-4">
              <div className="flex items-center gap-2 pr-4 border-r border-slate-100 text-[10px] font-black text-slate-400 uppercase tracking-widest">
                 <Info size={14} /> Tools
              </div>
-             <button onClick={() => setIsSubtitlesEnabled(!isSubtitlesEnabled)} className={`btn-pill px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${isSubtitlesEnabled ? 'bg-slate-900 text-white' : 'bg-slate-50 text-slate-500 hover:bg-slate-100'}`}>
+             <button onClick={() => setIsSubtitlesEnabled(!isSubtitlesEnabled)} className={`btn-pill px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${isSubtitlesEnabled ? 'bg-slate-900 text-white' : 'bg-slate-50 text-slate-500 hover:bg-slate-100'}`}>
                 📝 Subtitles
              </button>
-             <button onClick={() => setIsISLEnabled(!isISLEnabled)} className={`btn-pill px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${isISLEnabled ? 'bg-slate-900 text-white' : 'bg-slate-50 text-slate-500 hover:bg-slate-100'}`}>
+             <button onClick={() => setIsISLEnabled(!isISLEnabled)} className={`btn-pill px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${isISLEnabled ? 'bg-slate-900 text-white' : 'bg-slate-50 text-slate-500 hover:bg-slate-100'}`}>
                 🤟 ISL (Sign)
              </button>
-             <button onClick={handleReadAloud} className={`btn-pill px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${isReadingAloud ? 'bg-emerald-500 text-white' : 'bg-slate-50 text-slate-500 hover:bg-slate-100'}`}>
+             <button onClick={handleReadAloud} className={`btn-pill px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${isReadingAloud ? 'bg-emerald-500 text-white' : 'bg-slate-50 text-slate-500 hover:bg-slate-100'}`}>
                 🔊 {isReadingAloud ? 'Reading...' : 'Read Aloud'}
              </button>
              <div className="h-6 w-px bg-slate-100 mx-2" />
              <div className="relative group">
-                <button className="px-6 py-3 bg-slate-50 text-slate-500 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center gap-2 hover:bg-slate-100">
+                <button className="px-6 py-3 bg-slate-50 text-slate-500 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center gap-2 hover:bg-slate-100">
                    <Languages size={14} /> Dub: {language}
                 </button>
-                <div className="absolute top-full mt-2 left-0 w-40 bg-white rounded-2xl shadow-2xl border border-slate-100 p-2 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all z-30">
+                <div className="absolute top-full mt-2 left-0 w-40 bg-white rounded-xl shadow-2xl border border-slate-100 p-2 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all z-30">
                    {['English', 'Hindi', 'Sanskrit', 'Bengali'].map(l => (
                      <button key={l} onClick={() => setLanguage(l)} className="w-full px-4 py-2 text-left text-[10px] font-black uppercase tracking-widest text-slate-500 hover:bg-brand-orange hover:text-white rounded-xl transition-all">
                         {l}
@@ -185,19 +200,21 @@ export default function CoursePlayerPage() {
                    ))}
                 </div>
              </div>
-             <button onClick={toggleFontSize} className="p-3 bg-slate-50 text-slate-500 rounded-2xl hover:bg-slate-100 transition-all">
+             <button onClick={toggleFontSize} className="p-3 bg-slate-50 text-slate-500 rounded-xl hover:bg-slate-100 transition-all">
                 <Type size={18} />
+             </button>
+             <button className="p-3 bg-slate-50 text-slate-500 rounded-xl hover:bg-slate-100 transition-all">
+                <Moon size={18} />
              </button>
              {/* AI Summary Widget Button */}
             <button 
               onClick={() => setShowAISummary(!showAISummary)}
-              className="p-3 bg-slate-50 text-slate-500 rounded-2xl hover:bg-slate-100 transition-all"
+              className="p-3 bg-slate-50 text-slate-500 rounded-xl hover:bg-slate-100 transition-all"
             >
               <Sparkles size={24} />
             </button>
-             <button className="p-3 bg-slate-50 text-slate-500 rounded-2xl hover:bg-slate-100 transition-all">
-                <Moon size={18} />
-             </button>
+
+             
           </div>
 
           {/* Bottom Content Tabs */}
@@ -217,14 +234,14 @@ export default function CoursePlayerPage() {
                 ))}
              </div>
 
-             <div className={`p-8 bg-white rounded-[3rem] border border-slate-100 shadow-sm animate-in fade-in duration-500 ${fontSize}`}>
+             <div className={`p-8 bg-white rounded-xl border border-slate-100 shadow-sm animate-in fade-in duration-500 ${fontSize}`}>
                 {activeTab === 'Overview' && (
                   <div className="space-y-6">
                      <h3 className="text-2xl font-black text-slate-900 tracking-tight">{course.title}</h3>
                      <p className="text-slate-500 leading-relaxed font-medium">{course.description}</p>
                      <div className="grid grid-cols-2 gap-4">
                         {course.objectives.map((obj, i) => (
-                          <div key={i} className="flex gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-100/50">
+                          <div key={i} className="flex gap-3 p-4 bg-slate-50 rounded-xl border border-slate-100/50">
                              <div className="w-5 h-5 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center shrink-0 mt-0.5">✓</div>
                              <span className="text-[10px] font-black uppercase tracking-widest text-slate-900">{obj}</span>
                           </div>
@@ -236,16 +253,16 @@ export default function CoursePlayerPage() {
                 {activeTab === 'Notes' && (
                   <div className="space-y-6">
                      <textarea
-                       className="w-full h-48 p-6 bg-slate-50 border border-slate-100 rounded-[2rem] text-sm focus:outline-none focus:ring-4 focus:ring-brand-orange/5 transition-all text-slate-600 font-medium placeholder:text-slate-400"
+                       className="w-full h-48 p-6 bg-slate-50 border border-slate-100 rounded-xl text-sm focus:outline-none focus:ring-4 focus:ring-brand-orange/5 transition-all text-slate-600 font-medium placeholder:text-slate-400"
                        placeholder="Take your lesson notes here... AI is listening to key points."
                        value={note}
-                       onChange={(e) => setNote(e.target.value)}
+                             onChange={(e) => setNote(e.target.value)}
                      />
                      <div className="flex gap-4">
-                        <button className="px-8 py-4 bg-slate-900 text-white rounded-[2rem] font-black text-[10px] uppercase tracking-widest hover:bg-black transition-all shadow-xl">
+                        <button className="px-8 py-4 bg-slate-900 text-white rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-black transition-all shadow-xl">
                            Auto-Save Enabled
                         </button>
-                        <button className="px-8 py-4 bg-white border border-slate-100 text-slate-500 rounded-[2rem] font-black text-[10px] uppercase tracking-widest hover:text-slate-900 transition-all">
+                        <button className="px-8 py-4 bg-white border border-slate-100 text-slate-500 rounded-xl font-black text-[10px] uppercase tracking-widest hover:text-slate-900 transition-all">
                            Export (MD)
                         </button>
                      </div>
@@ -258,9 +275,9 @@ export default function CoursePlayerPage() {
                        { name: 'Unit 1 SLM', type: 'PDF', icon: FileText },
                        { name: 'Formula Sheet', type: 'IMG', icon: PenTool },
                      ].map((r, i) => (
-                       <div key={i} className="group p-6 bg-slate-50 hover:bg-white border border-slate-100 rounded-[2.5rem] flex items-center justify-between transition-all hover:shadow-xl">
+                       <div key={i} className="group p-6 bg-slate-50 hover:bg-white border border-slate-100 rounded-xl flex items-center justify-between transition-all hover:shadow-xl">
                           <div className="flex items-center gap-4">
-                             <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-brand-orange group-hover:scale-110 transition-transform">
+                             <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-brand-orange group-hover:scale-110 transition-transform">
                                 <r.icon size={20} />
                              </div>
                              <div>
@@ -284,7 +301,7 @@ export default function CoursePlayerPage() {
              <motion.div 
                initial={{ opacity: 0, x: 20 }}
                animate={{ opacity: 1, x: 0 }}
-               className="p-8 bg-slate-900 rounded-[3.5rem] text-white shadow-2xl relative overflow-hidden group"
+               className="p-8 bg-slate-900 rounded-xl text-white shadow-2xl relative overflow-hidden group"
              >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-brand-orange/20 rounded-full blur-3xl" />
                 <div className="flex items-center justify-between mb-8">
@@ -294,7 +311,7 @@ export default function CoursePlayerPage() {
                    <button onClick={() => setShowAISummary(false)} className="text-white/40 hover:text-white transition-colors"><X size={18} /></button>
                 </div>
                 <div className="space-y-6">
-                   <div className="p-5 bg-white/5 border border-white/10 rounded-2xl">
+                   <div className="p-5 bg-white/5 border border-white/10 rounded-xl">
                       <div className="text-[8px] font-black text-brand-orange uppercase tracking-widest mb-2">Key Concept</div>
                       <p className="text-xs leading-relaxed text-white/80">{course.summary}</p>
                    </div>
@@ -305,7 +322,7 @@ export default function CoursePlayerPage() {
                         </div>
                       ))}
                    </div>
-                   <button className="w-full py-4 bg-brand-orange text-white rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-orange-600 transition-all">
+                   <button className="w-full py-4 bg-brand-orange text-white rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-orange-600 transition-all">
                       Deep Dive with AI
                    </button>
                 </div>
@@ -313,7 +330,7 @@ export default function CoursePlayerPage() {
            )}
 
            {/* Curriculum Progress */}
-           <div className="p-8 bg-white rounded-[3.5rem] border border-slate-100 shadow-sm space-y-8">
+           <div className="p-8 bg-white rounded-xl border border-slate-100 shadow-sm space-y-8">
               <div className="space-y-4">
                  <div className="flex items-center justify-between text-[10px] font-black text-slate-400 uppercase tracking-widest">
                     <span>Course Content</span>
@@ -329,7 +346,7 @@ export default function CoursePlayerPage() {
                    <button 
                      key={l.id} 
                      onClick={() => setActiveLesson(l.id)}
-                     className={`w-full group p-4 flex items-center gap-4 rounded-2xl transition-all ${
+                     className={`w-full group p-4 flex items-center gap-4 rounded-xl transition-all ${
                        activeLesson === l.id 
                          ? 'bg-slate-900 text-white shadow-xl' 
                          : 'hover:bg-slate-50 text-slate-500'
@@ -352,7 +369,7 @@ export default function CoursePlayerPage() {
                  ))}
               </div>
 
-              <button className="w-full py-5 bg-slate-50 border border-slate-100 text-slate-500 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-slate-900 hover:text-white transition-all">
+              <button className="w-full py-5 bg-slate-50 border border-slate-100 text-slate-500 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-slate-900 hover:text-white transition-all">
                  Download Full Syllabus
               </button>
            </div>

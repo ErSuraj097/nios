@@ -13,7 +13,8 @@ import {
   ChevronRight,
   Zap,
   Target,
-  ArrowRight
+  ArrowRight,
+  ShieldCheck
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import Link from 'next/link';
@@ -26,8 +27,10 @@ const stats = [
 ];
 
 const nextLessons = [
-  { title: 'Algebraic Identities', subject: 'Mathematics', duration: '45 mins', progress: 45, type: 'Video' },
-  { title: 'Thermodynamics Part 2', subject: 'Science', duration: '20 mins', progress: 10, type: 'Reading' },
+  { title: 'Algebraic Identities', subject: 'Mathematics', duration: '45 mins', progress: 75, type: 'Video' },
+  { title: 'Thermodynamics Part 2', subject: 'Science', duration: '20 mins', progress: 50, type: 'Reading' },
+  { title: 'English Grammer' , subject: 'English', duration: '30 mins', progress: 30, type: 'Video'},
+  { title: 'AI Agents' , subject: 'AI', duration: '30 mins', progress: 20, type: 'Video'}
 ];
 
 export default function LearnerDashboard() {
@@ -44,10 +47,10 @@ export default function LearnerDashboard() {
         
         {/* Progress Headline */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-           <div className="lg:col-span-2 p-12 rounded-[4rem] bg-slate-900 text-white relative overflow-hidden group">
+           <div className="lg:col-span-2 p-10 rounded-xl border-1 border-slate-100 bg-amber-50 text-slate-900 relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-64 h-64 bg-brand-orange/10 rounded-full blur-3xl group-hover:scale-150 transition-all duration-1000" />
               <div className="flex flex-col md:flex-row items-center gap-10 relative z-10">
-                 <div className="w-24 h-24 rounded-[3rem] bg-brand-orange text-white flex items-center justify-center shrink-0 shadow-2xl animate-float">
+                 <div className="w-24 h-24 rounded-xl bg-brand-orange text-white flex items-center justify-center shrink-0 shadow-2xl animate-float">
                     <Target size={40} />
                  </div>
                  <div className="text-center md:text-left space-y-4">
@@ -56,32 +59,37 @@ export default function LearnerDashboard() {
                     <p className="text-slate-400 text-sm font-medium">You have completed 65% of your target. Keep going!</p>
                  </div>
                  <div className="flex-1" />
-                 <button className="px-10 py-5 bg-white text-slate-900 rounded-[2rem] font-black text-[10px] uppercase tracking-widest hover:bg-brand-orange hover:text-white transition-all shadow-xl active:scale-95 whitespace-nowrap">
-                    Resume Physics <Play size={12} className="inline ml-1" />
+                 <button className="px-10 py-5 bg-white text-slate-900 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-brand-orange hover:text-white transition-all shadow-xl active:scale-95 whitespace-nowrap">
+                    Resume Physics <Play size={12} className="inline text-orange-600    ml-1" />
                  </button>
               </div>
            </div>
 
-           <div className="p-10 rounded-[4rem] bg-white border border-slate-100 shadow-sm flex flex-col justify-between group relative overflow-hidden">
+           <div className="p-10 rounded-xl bg-white border border-slate-100 shadow-sm flex flex-col justify-between group relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-purple-50 rounded-full blur-3xl group-hover:scale-150 transition-all duration-1000" />
               <div className="flex items-center justify-between mb-8">
-                 <div className="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center shadow-sm">
+                 <div className="w-12 h-12 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center shadow-sm">
                     <Sparkles size={24} />
                  </div>
-                 <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">AI Tutor Online</span>
+                 <Link href="/dashboard/ai-tutor">
+                 <button className="text-[10px] font-black text-green-400 uppercase cursor-pointer z-10 tracking-widest">AI Tutor Online</button>
+                 </Link>
               </div>
               <p className="text-sm font-black text-slate-900 leading-tight">"You spent 2 hours on Trigonometry yesterday. Ready for a quick recap?"</p>
-              <button className="w-full mt-6 py-4 bg-slate-50 text-slate-400 hover:text-slate-900 rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all hover:bg-purple-50 hover:text-purple-600 border border-transparent hover:border-purple-100">
-                 Start Recap Session
-              </button>
+              
+              <Link href="/ai-tutor" className='cursor-pointer'>
+                 <button className="w-full mt-6 py-4 bg-orange-50 text-slate-400 cursor-pointer  rounded-xl font-black text-[10px] uppercase tracking-widest transition-all hover:bg-orange-600 hover:text-white border border-transparent hover:border-slate-100">
+                    Start Recap Session
+                 </button>
+              </Link>
            </div>
         </div>
 
         {/* Action Stats */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
            {stats.map((s) => (
-             <div key={s.label} className="p-8 rounded-[3.5rem] bg-white border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all group">
-                <div className={`w-14 h-14 rounded-2xl ${s.color} flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform`}>
+             <div key={s.label} className="p-8 rounded-xl bg-white border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all group">
+                <div className={`w-14 h-14 rounded-xl ${s.color} flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform`}>
                    <s.icon size={24} />
                 </div>
                 <div className="text-4xl font-black text-slate-900 tracking-tighter mb-1">{s.value}</div>
@@ -100,8 +108,8 @@ export default function LearnerDashboard() {
 
               <div className="grid gap-4">
                  {nextLessons.map((lesson, i) => (
-                   <div key={i} className="group p-8 rounded-[3.5rem] bg-white border border-slate-100 hover:border-brand-orange/20 hover:shadow-2xl hover:shadow-slate-200/50 transition-all flex flex-col md:flex-row items-center gap-10">
-                      <div className="w-20 h-20 rounded-[2.5rem] bg-slate-50 text-slate-400 group-hover:bg-slate-900 group-hover:text-white transition-all flex items-center justify-center shrink-0 shadow-inner">
+                   <div key={i} className="group p-8 rounded-xl bg-white border border-slate-100 hover:border-brand-orange/20 hover:shadow-2xl hover:shadow-slate-200/50 transition-all flex flex-col md:flex-row items-center gap-10">
+                      <div className="w-20 h-20 rounded-xl bg-slate-50 text-slate-400 group-hover:bg-slate-900 group-hover:text-white transition-all flex items-center justify-center shrink-0 shadow-inner">
                          {lesson.type === 'Video' ? <Play size={32} /> : <BookOpen size={32} />}
                       </div>
                       
@@ -113,13 +121,13 @@ export default function LearnerDashboard() {
                          <h4 className="text-xl font-black text-slate-900 group-hover:text-brand-orange transition-colors">{lesson.title}</h4>
                          <div className="flex items-center justify-center md:justify-start gap-3 mt-4">
                             <div className="w-32 h-1.5 bg-slate-50 rounded-full overflow-hidden">
-                               <div className="h-full bg-slate-900 group-hover:bg-brand-orange transition-all duration-1000" style={{ width: `${lesson.progress}%` }} />
+                               <div className="h-full bg-orange-400 group-hover:bg-brand-orange transition-all duration-1000" style={{ width: `${lesson.progress}%` }} />
                             </div>
-                            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{lesson.progress}% Done</span>
+                            <span className="text-[10px] font-black text-orange-400 uppercase tracking-widest">{lesson.progress}% Done</span>
                          </div>
                       </div>
 
-                      <button className="px-10 py-5 bg-slate-50 text-slate-900 rounded-[2rem] font-black text-[10px] uppercase tracking-widest hover:bg-slate-900 hover:text-white transition-all shadow-sm group-hover:shadow-xl active:scale-95 whitespace-nowrap">
+                      <button className="px-10 py-5 bg-slate-50 text-slate-900 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-slate-900 hover:text-white transition-all shadow-sm group-hover:shadow-xl active:scale-95 whitespace-nowrap">
                          Start Lesson <ArrowRight size={14} className="inline ml-1" />
                       </button>
                    </div>
@@ -133,14 +141,14 @@ export default function LearnerDashboard() {
                  <h3 className="text-2xl font-black text-slate-900 uppercase tracking-[0.05em]">Deadline Queue</h3>
               </div>
               
-              <div className="p-10 rounded-[4rem] bg-white border border-slate-100 shadow-sm space-y-8">
+              <div className="p-10 rounded-xl bg-white border border-slate-100 shadow-sm space-y-8">
                  {[
                    { title: 'Quantum Quiz', date: 'Tomorrow', time: '10:00 AM', status: 'Urgent', color: 'text-red-500 bg-red-50' },
                    { title: 'History TMA', date: '15 Apr 2026', time: '11:59 PM', status: 'Due Soon', color: 'text-amber-500 bg-amber-50' },
                    { title: 'Science Lab', date: '18 Apr 2026', time: '02:00 PM', status: 'Upcoming', color: 'text-blue-500 bg-blue-50' },
                  ].map((item, i) => (
                    <div key={i} className="flex gap-6 group cursor-pointer">
-                      <div className={`w-12 h-12 rounded-2xl flex flex-col items-center justify-center shrink-0 border border-transparent group-hover:border-slate-100 transition-all ${item.color}`}>
+                      <div className={`w-12 h-12 rounded-xl flex flex-col items-center justify-center shrink-0 border border-transparent group-hover:border-slate-100 transition-all ${item.color}`}>
                          <Calendar size={18} />
                       </div>
                       <div className="flex-1 min-w-0">
@@ -154,7 +162,7 @@ export default function LearnerDashboard() {
                  ))}
                  
                  <div className="pt-6 border-t border-slate-50">
-                    <button className="w-full py-4 bg-slate-900 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest shadow-xl hover:bg-brand-orange transition-all">
+                    <button className="w-full py-4 bg-slate-900 text-white rounded-xl font-black text-[10px] uppercase tracking-widest shadow-xl hover:bg-brand-orange transition-all">
                        Sync with Google Calendar
                     </button>
                  </div>
@@ -162,7 +170,20 @@ export default function LearnerDashboard() {
            </div>
         </div>
 
+
       </div>
+
+  {/* Trust & Compliance Section */}
+        <div className="p-12 rounded-xl bg-slate-50 border border-slate-100 text-center">
+           <div className="flex flex-wrap justify-center gap-12 opacity-50 mb-10">
+              {['DIKSHA', 'SWAYAM', 'UDISE+', 'Govt of India', 'UNESCO Aligned'].map((t) => (
+                <span key={t} className="text-xs font-black text-slate-400 uppercase tracking-widest">{t}</span>
+              ))}
+           </div>
+           <div className="flex items-center justify-center gap-3 text-[10px] font-black text-slate-300 uppercase tracking-widest">
+              <ShieldCheck size={14} /> Official National Open Schooling Registry · Encrypted Node Access
+           </div>
+        </div>
     </DashboardLayout>
   );
 }

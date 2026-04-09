@@ -1,36 +1,134 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NIOS AI-Powered LMS Portal 🚀
 
-## Getting Started
+## 🎯 Overview
+Next.js 15+ Learning Management System with AI integration, gamification, role-based dashboards for **Learner/Teacher/Parent/Admin/Guest**.
 
-First, run the development server:
+**Live Demo Features:**
+- AI Tutor & Live Classes
+- Gamification (badges, streaks, leaderboards, challenges)
+- Parent Portal (reports, alerts, attendance, PTM, TMA feedback)
+- Virtual Orientation Tour
+- Responsive design with TailwindCSS
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🛠️ Tech Stack
+```
+Frontend: Next.js 15, TypeScript, TailwindCSS, Lucide React
+Data: Mock API (lib/mock-data.ts)
+Auth: Context-based
+Animations: Tailwind transitions
+Deployment: Vercel/Netlify ready
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Quick Start
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### 1. Clone & Install
+```bash
+git clone <repo-url>
+cd nios
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 2. Development
+```bash
+npm run dev
+# Open http://localhost:3000
+```
 
-## Learn More
+### 3. Roles & Login (Demo)
+| Role | Email | Password | Dashboard |
+|------|-------|----------|-----------|
+| Learner | student@nios.edu.in | (demo) | `/dashboard/learner`
+| Teacher | teacher@nios.edu.in | (demo) | `/dashboard/teacher`
+| Parent | parent@nios.edu.in | (demo) | `/dashboard/parent` ⭐ **NEW**
+| Admin | principal@nios.edu.in | (demo) | `/dashboard/admin`
+| Guest | guest@portal.com | (demo) | `/dashboard/guest`
 
-To learn more about Next.js, take a look at the following resources:
+**Quick Links:**
+```
+Parent Features: /dashboard/parent (reports/alerts/attendance/PTM/TMA) ⭐
+Gamification: /achievements /onboarding
+Courses: /courses
+Live: /live /schedule
+AI Tutor: /ai-tutor
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## ✨ Key Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 🎮 **Gamification System** ⭐ NEW
+```
+✅ /achievements - Badges collection, streaks, levels
+✅ /onboarding - Interactive tour for new users
+📊 Leaderboards, challenges (mock data ready)
+```
+- 5 badge tiers (Bronze→Diamond)
+- Daily/weekly missions
+- Streak bonuses & leaderboards
 
-## Deploy on Vercel
+### 👨‍👩‍👧‍👦 **Parent Portal** ⭐ NEW
+```
+✅ Reports (/dashboard/parent/reports)
+✅ Alerts & notifications
+✅ Class activities & TMA feedback
+✅ Attendance tracker
+✅ PT Meeting booking
+```
+- Mock data for all child/student metrics
+- Downloadable reports, apply for meetings
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 📚 Learning Tools
+- **Courses** with progress tracking
+- **Live Classes** schedule & join
+- **Assessments** & exams
+- **Library** flipbooks
+- **AI Tutor** chat interface
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 🎨 UI/UX
+- Glassmorphism design
+- Gradient animations
+- Responsive (mobile-first)
+- Role-based sidebars
+
+## 📁 Project Structure
+```
+app/
+├── dashboard/[role]/ - Role-specific pages
+├── achievements/ - Gamification ⭐
+├── onboarding/ - Tour ⭐
+├── courses/ - Learning content
+├── live/ - Real-time classes
+lib/mock-data.ts - All demo data ⭐
+components/Sidebar.tsx - Role nav ⭐
+```
+
+## 🎯 Gamification Data (mock-data.ts)
+```
+MOCK_BADGES (5 tiers)
+MOCK_LEADERBOARD (top 5)
+MOCK_CHALLENGES (active/expired)
+MOCK_STREAKS (subject streaks)
+MOCK_MISSIONS (daily/weekly/monthly)
+```
+
+## 🔮 Next Features (Planned)
+```
+[ ] /leaderboard page
+[ ] /challenges dashboard
+[ ] Role gamification dashboards (/dashboard/[role]/gamification)
+[ ] Topbar streak/badge display
+[ ] Real backend integration
+[ ] Push notifications
+```
+
+## 🤝 Contributing
+1. Fork & PR
+2. Follow Tailwind + TypeScript patterns
+3. Update mock-data.ts for new features
+4. Test on mobile
+
+## 📄 License
+MIT - Free for educational/commercial use.
+
+**Made with ❤️ using Next.js & AI**
+
+⭐ **Star if useful!** 👏
+

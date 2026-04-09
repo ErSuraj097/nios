@@ -165,7 +165,7 @@ export default function LoginPage() {
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }} 
             animate={{ opacity: 1, scale: 1 }}
-            className="w-full max-w-xl mx-auto bg-white border border-slate-100 rounded-[4rem] p-12 lg:p-16 shadow-2xl relative overflow-hidden"
+            className="w-full max-w-xl mx-auto bg-white border border-slate-100 rounded-xl] p-12 lg:p-16 shadow-2xl relative overflow-hidden"
           >
             {/* Loading Overlay */}
             <AnimatePresence>
@@ -214,14 +214,14 @@ export default function LoginPage() {
             </header>
 
             {/* Role Selection Tabs */}
-            <div className="grid grid-cols-5 gap-2 mb-12 p-2 bg-slate-50 rounded-[2.5rem] border border-slate-100">
+            <div className="grid grid-cols-5 gap-2 mb-12 p-2 bg-slate-50 rounded-xl border border-slate-100">
               {(Object.keys(roleConfig) as Role[]).map((role) => {
                 const Icon = roleConfig[role].icon;
                 return (
                   <button
                     key={role}
                     onClick={() => handleRoleSelect(role)}
-                    className={`flex flex-col items-center gap-2 p-4 rounded-[2rem] transition-all relative ${
+                    className={`flex flex-col items-center gap-2 p-4 rounded-xl transition-all relative ${
                       activeRole === role
                         ? 'bg-white text-brand-orange shadow-xl font-black'
                         : 'text-slate-400 hover:text-slate-600'
@@ -248,7 +248,7 @@ export default function LoginPage() {
                     type="text"
                     value={roleConfig[activeRole].id}
                     readOnly
-                    className="w-full bg-slate-50 border-2 border-transparent focus:border-brand-orange/20 focus:bg-white text-slate-900 rounded-[2rem] py-6 pl-16 pr-6 outline-none transition-all font-black tracking-tight text-lg"
+                    className="w-full bg-slate-50 border-2 border-transparent focus:border-brand-orange/20 focus:bg-white text-slate-900 rounded-xl py-6 pl-16 pr-6 outline-none transition-all font-black tracking-tight text-lg"
                   />
                 </div>
               </div>
@@ -265,7 +265,7 @@ export default function LoginPage() {
                   <input
                     type="password"
                     defaultValue="••••••••••••"
-                    className="w-full bg-slate-50 border-2 border-transparent focus:border-brand-orange/20 focus:bg-white text-slate-900 rounded-[2rem] py-6 pl-16 pr-6 outline-none transition-all font-medium"
+                    className="w-full bg-slate-50 border-2 border-transparent focus:border-brand-orange/20 focus:bg-white text-slate-900 rounded-xl py-6 pl-16 pr-6 outline-none transition-all font-medium"
                   />
                 </div>
               </div>
@@ -273,14 +273,14 @@ export default function LoginPage() {
               <div className="flex flex-col md:flex-row gap-4">
                 <button
                   type="submit"
-                  className="flex-[2] py-6 bg-slate-900 hover:bg-black text-white rounded-[2rem] font-black text-[12px] uppercase tracking-[0.3em] flex items-center justify-center gap-3 shadow-2xl transition-all active:scale-[0.98]"
+                  className="flex-[2] py-6 bg-slate-900 hover:bg-black text-white rounded-xl font-black text-[12px] uppercase tracking-[0.3em] flex items-center justify-center gap-3 shadow-2xl transition-all active:scale-[0.98]"
                 >
                   Authorize Node <ArrowRight size={18} />
                 </button>
                 <button
                   type="button"
                   onClick={handleBiometric}
-                  className="flex-1 py-6 bg-white border border-slate-100 hover:border-brand-orange/20 text-slate-400 hover:text-brand-orange rounded-[2rem] flex items-center justify-center transition-all shadow-sm active:scale-[0.98]"
+                  className="flex-1 py-6 bg-white border border-slate-100 hover:border-brand-orange/20 text-slate-400 hover:text-brand-orange rounded-xl flex items-center justify-center transition-all shadow-sm active:scale-[0.98]"
                 >
                   <Fingerprint size={28} />
                 </button>

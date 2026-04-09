@@ -13,7 +13,9 @@ import {
   ShieldCheck,
   TrendingUp,
   Clock,
-  CheckCircle2
+  CheckCircle2,
+  FileText,
+  AlertCircle
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 
@@ -45,8 +47,8 @@ export default function ParentDashboard() {
       subtitle={`Welcome back, ${user.name} · Managing ${children.length} Scholar(s)`}
     >
       {/* Child Overview Card */}
-      <div className="p-8 mb-8 rounded-[2.5rem] bg-white border border-slate-100 shadow-sm flex flex-col md:flex-row items-center gap-8 group">
-        <div className="w-24 h-24 rounded-3xl bg-slate-100 flex items-center justify-center text-3xl font-black text-slate-400 group-hover:bg-brand-orange group-hover:text-white transition-colors animate-fade-in">
+      <div className="p-8 mb-8 rounded-xl bg-white border border-slate-100 shadow-sm flex flex-col md:flex-row items-center gap-8 group">
+        <div className="w-24 h-24 rounded-xl bg-slate-100 flex items-center justify-center text-3xl font-black text-slate-400 group-hover:bg-brand-orange group-hover:text-white transition-colors animate-fade-in">
           {children[0].name.charAt(0)}
         </div>
         <div className="flex-1 text-center md:text-left">
@@ -64,7 +66,7 @@ export default function ParentDashboard() {
              </div>
           </div>
         </div>
-        <button className="px-8 py-4 bg-slate-900 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-black transition-all shadow-xl active:scale-95">
+        <button className="px-8 py-4 bg-slate-900 text-white rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-black transition-all shadow-xl active:scale-95">
           Switch Profile
         </button>
       </div>
@@ -72,8 +74,8 @@ export default function ParentDashboard() {
       {/* Stats Grid */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
         {childStats.map((s, i) => (
-          <div key={i} className="p-6 rounded-[2.5rem] bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all group">
-            <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${s.color} text-white flex items-center justify-center mb-4 shadow-lg opacity-80 group-hover:opacity-100 transition-opacity`}>
+          <div key={i} className="p-6 rounded-xl bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all group">
+            <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${s.color} text-white flex items-center justify-center mb-4 shadow-lg opacity-80 group-hover:opacity-100 transition-opacity`}>
               <s.icon size={20} />
             </div>
             <div className="text-3xl font-black text-slate-900 tracking-tighter mb-1">{s.value}</div>
@@ -85,12 +87,12 @@ export default function ParentDashboard() {
       <div className="grid lg:grid-cols-3 gap-8">
         {/* Performance Visualization */}
         <div className="lg:col-span-2 space-y-6">
-          <div className="p-8 rounded-[2.5rem] bg-white border border-slate-100 shadow-sm relative overflow-hidden">
+          <div className="p-8 rounded-xl bg-white border border-slate-100 shadow-sm relative overflow-hidden">
              <div className="flex items-center justify-between mb-8">
                <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight">Academic Trajectory</h3>
                <TrendingUp className="text-emerald-500" />
              </div>
-             <div className="h-64 bg-slate-50 border border-dashed border-slate-200 rounded-[2rem] flex flex-col items-center justify-center text-slate-400 gap-4">
+             <div className="h-64 bg-slate-50 border border-dashed border-slate-200 rounded-xl flex flex-col items-center justify-center text-slate-400 gap-4">
                 <BarChart3 size={48} className="opacity-20 translate-y-2" />
                 <span className="text-[10px] font-black uppercase tracking-widest opacity-50">Generating Real-time Telemetry...</span>
              </div>
@@ -113,7 +115,7 @@ export default function ParentDashboard() {
 
         {/* Activity Feed */}
         <div className="space-y-6">
-          <div className="p-8 rounded-[2.5rem] bg-white border border-slate-100 shadow-sm">
+          <div className="p-8 rounded-xl bg-white border border-slate-100 shadow-sm">
             <h3 className="text-lg font-black text-slate-900 uppercase tracking-tight mb-8">Log Feed</h3>
             <div className="space-y-6">
               {recentActivity.map((a, i) => (
@@ -128,7 +130,7 @@ export default function ParentDashboard() {
                 </div>
               ))}
             </div>
-            <button className="w-full mt-8 py-4 bg-slate-50 hover:bg-slate-100 text-slate-500 font-black text-[10px] uppercase rounded-2xl tracking-widest transition-all">
+            <button className="w-full mt-8 py-4 bg-slate-50 hover:bg-slate-100 text-slate-500 font-black text-[10px] uppercase rounded-xl tracking-widest transition-all">
               Full Activity Logs
             </button>
           </div>
@@ -136,25 +138,41 @@ export default function ParentDashboard() {
       </div>
 
       {/* Parental Actions */}
-      <div className="mt-8 p-8 rounded-[2.5rem] bg-gradient-to-br from-slate-900 to-slate-800 text-white relative overflow-hidden group">
+      <div className="mt-8 p-8 rounded-xl bg-gradient-to-br from-slate-900 to-slate-800 text-white relative overflow-hidden group">
         <div className="absolute top-0 right-0 w-64 h-64 bg-brand-orange/10 rounded-full blur-3xl -mr-32 -mt-32 group-hover:scale-125 transition-transform duration-1000" />
         <h3 className="text-xl font-black uppercase tracking-tight mb-8">Guardian Services</h3>
         <div className="grid grid-2 md:grid-cols-4 gap-4 relative z-10">
           {[
-            { icon: MessageSquare, label: 'Message Teacher' },
-            { icon: CreditCard, label: 'Fee Payment' },
-            { icon: ClipboardList, label: 'TMA Feedback' },
-            { icon: ShieldCheck, label: 'Control Center' },
+            { icon: MessageSquare, label: 'Message Teacher', href: '/dashboard/parent/ptm' },
+            { icon: FileText, label: 'View Reports', href: '/dashboard/parent/reports' },
+            { icon: AlertCircle, label: 'Check Alerts', href: '/dashboard/parent/alerts' },
+            { icon: ClipboardList, label: 'Class Activities', href: '/dashboard/parent/activities' },
+            { icon: Calendar, label: 'Attendance', href: '/dashboard/parent/attendance' },
+            { icon: CreditCard, label: 'Fee Payment', href: '/dashboard/parent/fees' },
           ].map((action, i) => (
-            <button key={i} className="p-6 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-brand-orange/30 transition-all flex flex-col items-center gap-4 group/btn">
-              <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-brand-orange group-hover/btn:scale-110 transition-transform">
-                <action.icon size={24} />
+            <Link key={i} href={action.href}>
+              <div className="p-6 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-brand-orange/30 transition-all cursor-pointer flex flex-col items-center gap-4 group/btn">
+                <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-brand-orange group-hover/btn:scale-110 transition-transform">
+                  <action.icon size={24} />
+                </div>
+                <span className="text-[10px] font-black uppercase tracking-widest text-slate-300">{action.label}</span>
               </div>
-              <span className="text-[10px] font-black uppercase tracking-widest text-slate-300">{action.label}</span>
-            </button>
+            </Link>
           ))}
         </div>
       </div>
+
+        {/* Trust & Compliance Section */}
+        <div className="p-12 rounded-xl bg-slate-50 border border-slate-100 text-center">
+           <div className="flex flex-wrap justify-center gap-12 opacity-50 mb-10">
+              {['DIKSHA', 'SWAYAM', 'UDISE+', 'Govt of India', 'UNESCO Aligned'].map((t) => (
+                <span key={t} className="text-xs font-black text-slate-400 uppercase tracking-widest">{t}</span>
+              ))}
+           </div>
+           <div className="flex items-center justify-center gap-3 text-[10px] font-black text-slate-300 uppercase tracking-widest">
+              <ShieldCheck size={14} /> Official National Open Schooling Registry · Encrypted Node Access
+           </div>
+        </div>
     </DashboardLayout>
   );
 }
