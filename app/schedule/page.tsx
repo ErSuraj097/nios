@@ -73,7 +73,7 @@ export default function SchedulePage() {
             {day}
           </span>
           {dayEvents.length > 0 && (
-            <div className="mt-auto w-full h-1.5 bg-gradient-to-r from-blue-400 to-blue-400 rounded-t-full mt-1 shadow-sm" />
+            <div className="mt-auto w-full h-1.5 bg-gradient-to-r from-blue-400 to-red-400 rounded-t-full mt-1 shadow-sm" />
           )}
         </button>
       );
@@ -149,7 +149,7 @@ export default function SchedulePage() {
                       </div>
                     </div>
                     {event.platform === 'Zoom' && (
-                      <button className="w-full py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl font-black text-sm uppercase tracking-widest hover:from-blue-600 hover:to-blue-700 shadow-lg transition-all">
+                      <button className="w-full py-3 bg-gradient-to-r from-blue-500 to-red-600 text-white rounded-xl font-black text-sm uppercase tracking-widest hover:from-blue-600 hover:to-red-700 shadow-lg transition-all">
                         Join Zoom Meeting
                       </button>
                     )}
@@ -358,7 +358,7 @@ export default function SchedulePage() {
                 </div>
                 <div className="grid md:grid-cols-2 gap-4">
                   {eventsOnDate(selectedDate || currentDate).map(e => (
-                    <div key={e.id} className="p-6 bg-gradient-to-r from-blue-50 to-blue-50 rounded-xl shadow-lg hover:shadow-xl transition-all">
+                    <div key={e.id} className="p-6 bg-gradient-to-r from-blue-50 to-red-50 rounded-xl shadow-lg hover:shadow-xl transition-all">
                       <div className="flex items-center gap-3 mb-4">
                         <div className={`p-2 rounded-xl ${e.type === 'Class' ? 'bg-blue-200' : e.type === 'Exam' ? 'bg-blue-200' : 'bg-blue-200'
                           }`}>

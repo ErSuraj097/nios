@@ -221,7 +221,7 @@ const AIFactorySection = () => {
 
 const QuickLinksSection = () => {
   const links = [
-    { label: "Online Admission", icon: GraduationCap, color: "from-blue-600 to-blue-800", desc: "Secondary & Sr. Secondary Admission" },
+    { label: "Online Admission", icon: GraduationCap, color: "from-blue-600 to-red-800", desc: "Secondary & Sr. Secondary Admission" },
     { label: "Course Material", icon: BookOpen, color: "from-slate-700 to-slate-900", desc: "Self Learning Material (SLM)" },
     { label: "Examination", icon: ClipboardCheck, color: "from-indigo-600 to-indigo-800", desc: "Results, DATESHEET & TMA" },
     { label: "Study Centres", icon: School, color: "from-blue-800 to-slate-900", desc: "AI / AVI / OBE Centres" },

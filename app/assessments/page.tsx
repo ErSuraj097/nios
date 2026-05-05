@@ -40,7 +40,7 @@ export default function AssessmentsPage() {
   const [timeLeft, setTimeLeft] = useState(1800); // 30 minutes
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [finalScore, setFinalScore] = useState(0);
-  const timerRef = useRef<NodeJS.Timeout>();
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (activeTab === 'quiz' && selectedAssessment) {
@@ -60,7 +60,7 @@ export default function AssessmentsPage() {
     };
   }, [activeTab, selectedAssessment]);
 
-  const filteblueAssessments = MOCK_ASSESSMENTS.filter(a =>
+  const filteredAssessments = MOCK_ASSESSMENTS.filter(a =>
     filter === 'All' || a.type === filter
   );
 
@@ -179,7 +179,7 @@ export default function AssessmentsPage() {
             </div>
 
             <div className="grid gap-4">
-              {filteblueAssessments.map((a) => (
+              {filteredAssessments.map((a) => (
                 <div key={a.id} className="group p-6 rounded-xl bg-white border border-slate-100 hover:border-blue-900/20 hover:shadow-2xl hover:shadow-slate-200/50 transition-all flex flex-col md:flex-row items-center gap-6">
                   <div className={`w-14 h-14 rounded-xl flex items-center justify-center shrink-0 ${a.status === 'Completed' ? 'bg-emerald-50 text-emerald-500' : 'bg-blue-50 text-blue-900'
                     }`}>
@@ -237,7 +237,7 @@ export default function AssessmentsPage() {
             <div className="grid md:grid-cols-3 gap-8 mb-12">
               <div className="text-center p-8 bg-slate-50 rounded-xl">
                 <div className="text-3xl font-black text-emerald-500 mb-2">{Object.keys(answers).length}/{selectedAssessment.questions?.length || 0}</div>
-                <div className="text-sm font-black text-slate-400 uppercase tracking-widest">Questions Answeblue</div>
+                <div className="text-sm font-black text-slate-400 uppercase tracking-widest">Questions Answered</div>
               </div>
               <div className="text-center p-8 bg-slate-50 rounded-xl">
                 <div className="text-3xl font-black text-blue-900 mb-2">{timeLeft > 0 ? 'Saved' : 'Auto-submitted'}</div>

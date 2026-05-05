@@ -97,7 +97,7 @@ export default function CoursesPage() {
                   </div>
                   <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-gradient-to-r from-blue-400 to-blue-900 transition-all duration-1000"
+                      className="h-full bg-gradient-to-r from-blue-400 to-red-900 transition-all duration-1000"
                       style={{ width: `${course.overallProgress}%` }}
                     />
                   </div>

@@ -12,7 +12,7 @@ export default function ParentActivities() {
 
   if (!user) return null;
 
-  const filteblueActivities = filterStatus === 'All'
+  const filteredActivities = filterStatus === 'All'
     ? MOCK_CLASS_ACTIVITIES
     : MOCK_CLASS_ACTIVITIES.filter(activity => activity.status === filterStatus);
 
@@ -48,7 +48,7 @@ export default function ParentActivities() {
 
         {/* Activities Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteblueActivities.map((activity) => (
+          {filteredActivities.map((activity) => (
             <div key={activity.id} className="group p-8 rounded-xl bg-white border-2 border-slate-100 hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-500/10 transition-all overflow-hidden">
               <div className="flex items-start justify-between mb-6">
                 <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-white shadow-lg mb-4 shrink-0 ${activity.status === 'Pending' ? 'bg-blue-500' :
@@ -88,7 +88,7 @@ export default function ParentActivities() {
           ))}
         </div>
 
-        {filteblueActivities.length === 0 && (
+        {filteredActivities.length === 0 && (
           <div className="text-center py-24 border-2 border-dashed border-slate-200 rounded-3xl bg-slate-50/50 col-span-full">
             <ClipboardList className="w-20 h-20 text-slate-300 mx-auto mb-6 opacity-50" />
             <h3 className="text-xl font-black text-slate-500 mb-2">No activities match filter</h3>
@@ -99,7 +99,7 @@ export default function ParentActivities() {
         )}
 
         {/* Quick Stats */}
-        <div className="grid lg:grid-cols-4 gap-6 p-8 rounded-xl] bg-gradient-to-r from-emerald-50 to-blue-50 border border-emerald-100/50">
+        <div className="grid lg:grid-cols-4 gap-6 p-8 rounded-xl] bg-gradient-to-r from-emerald-50 to-red-50 border border-emerald-100/50">
           <div className="text-center">
             <div className="text-3xl font-black text-emerald-600 mb-2">2</div>
             <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Pending</div>
@@ -113,7 +113,7 @@ export default function ParentActivities() {
             <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Graded</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-black bg-gradient-to-r from-emerald-500 to-blue-500 bg-clip-text text-transparent mb-2">92%</div>
+            <div className="text-3xl font-black bg-gradient-to-r from-emerald-500 to-red-500 bg-clip-text text-transparent mb-2">92%</div>
             <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest">On-time Rate</div>
           </div>
         </div>

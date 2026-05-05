@@ -131,7 +131,7 @@ export default function FinancePage() {
                                 <div className="rounded-xl border border-slate-200 p-5">
                                     <div className="flex items-center justify-between">
                                         <div>
-                                            <p className="font-semibold text-slate-900">Scholarship Cblueit</p>
+                                            <p className="font-semibold text-slate-900">Scholarship Credit</p>
                                             <p className="text-sm text-slate-500">Apr 28 · Received support</p>
                                         </div>
                                         <p className="font-semibold text-emerald-600">+$500.00</p>

@@ -204,6 +204,11 @@ export interface MockCourse {
   videoUrl?: string;
   transcript?: string;
   summary?: string;
+  level?: string;
+  teacher?: string;
+  status?: 'published' | 'pending_review' | 'archived';
+  lessons?: number;
+  duration?: string;
 }
 
 export const MOCK_COURSES: MockCourse[] = [
@@ -232,7 +237,12 @@ export const MOCK_COURSES: MockCourse[] = [
     ],
     currentStage: 'content',
     overallProgress: 80,
-    rating: 4.8
+    rating: 4.8,
+    level: 'Secondary',
+    teacher: 'Dr. Anjali Patel',
+    status: 'published',
+    lessons: 12,
+    duration: '6 hours'
   },
 
   {
@@ -260,7 +270,12 @@ export const MOCK_COURSES: MockCourse[] = [
     ],
     currentStage: 'content',
     overallProgress: 70,
-    rating: 4.7
+    rating: 4.7,
+    level: 'Senior Secondary',
+    teacher: 'Anita Desai',
+    status: 'pending_review',
+    lessons: 8,
+    duration: '4 hours'
   },
 
   {
@@ -288,7 +303,12 @@ export const MOCK_COURSES: MockCourse[] = [
     ],
     currentStage: 'content',
     overallProgress: 0,
-    rating: 4.6
+    rating: 4.6,
+    level: 'Vocational',
+    teacher: 'Kavita Iyer',
+    status: 'published',
+    lessons: 15,
+    duration: '7.5 hours'
   }
 ];
 
@@ -298,8 +318,11 @@ export interface MockAssessment {
   subject: string;
   type: 'Quiz' | 'Mock Exam' | 'Assignment';
   dueDate: string;
-  status: 'Pending' | 'Completed' | 'Missed';
+  status: 'Pending' | 'Completed' | 'Missed' | 'Grading Active';
   score?: number;
+  submissions?: number;
+  totalStudents?: number;
+  avgScore?: number | string;
   questions?: {
     id: string;
     text: string;
@@ -383,7 +406,7 @@ export interface MockAchievement {
 }
 export const MOCK_ACHIEVEMENTS: MockAchievement[] = [
   { id: 'AC1', title: 'Consistently Early', subtitle: 'Turned in 5 assignments before deadline', icon: Zap, date: '2026-03-28' },
-  { id: 'AC2', title: 'Science Whiz', subtitle: 'Scoblue 100% in Biology Unit Quiz', icon: Award, date: '2026-03-15' }
+  { id: 'AC2', title: 'Science Whiz', subtitle: 'Scored 100% in Biology Unit Quiz', icon: Award, date: '2026-03-15' }
 ];
 export interface MockEvent {
   id: string;
@@ -418,6 +441,7 @@ export interface MockBook {
   cover: string;
   pages: string[];
   category: 'Textbook' | 'Schedule' | 'Guide';
+  description?: string;
 }
 export interface MockExam {
   id: string;
@@ -524,7 +548,7 @@ export interface MockClassAnnouncement {
   id: string;
   title: string;
   message: string;
-  target: 'All Students' | 'Class 12' | 'Science Stream';
+  target: 'All Students' | 'Class 12' | 'Class 10' | 'Science Stream' | 'Humanities Stream' | 'Vocational';
   createdAt: string;
   readCount: number;
 }
@@ -813,7 +837,7 @@ export interface MockChallenge {
   points: number;
   participants: number;
   deadline: string;
-  status: 'Active' | 'Completed' | 'Expiblue';
+  status: 'Active' | 'Completed' | 'Expired';
 }
 export const MOCK_CHALLENGES: MockChallenge[] = [
   {

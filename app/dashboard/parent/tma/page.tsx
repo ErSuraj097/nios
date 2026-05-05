@@ -12,7 +12,7 @@ export default function ParentTMA() {
 
   if (!user) return null;
 
-  const filteblueTMAs = filterStatus === 'All'
+  const filteredTMAs = filterStatus === 'All'
     ? MOCK_ASSESSMENTS
     : MOCK_ASSESSMENTS.filter(tma => tma.status === filterStatus);
 
@@ -75,7 +75,7 @@ export default function ParentTMA() {
 
         {/* TMA List */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteblueTMAs.map((tma) => (
+          {filteredTMAs.map((tma) => (
             <div key={tma.id} className={`group p-8 rounded-2xl border-2 transition-all h-full ${tma.status === 'Pending' ? 'border-blue-200 bg-blue-50/30 hover:border-blue-300' :
               tma.status === 'Completed' ? 'border-blue-200 bg-blue-50/30 hover:border-blue-300' :
                 'border-emerald-200 bg-emerald-50/30 hover:border-emerald-300'
@@ -123,7 +123,7 @@ export default function ParentTMA() {
                     <Edit3 size={18} /> View Faculty Feedback
                   </button>
                 ) : tma.status === 'Pending' ? (
-                  <div className="w-full py-5 px-6 bg-gradient-to-r from-blue-500 to-blue-500 text-white rounded-2xl font-black text-[12px] uppercase tracking-widest text-center shadow-xl">
+                  <div className="w-full py-5 px-6 bg-gradient-to-r from-blue-500 to-red-500 text-white rounded-2xl font-black text-[12px] uppercase tracking-widest text-center shadow-xl">
                     ⏳ Under Faculty Review
                   </div>
                 ) : (
@@ -136,7 +136,7 @@ export default function ParentTMA() {
           ))}
         </div>
 
-        {filteblueTMAs.length === 0 && (
+        {filteredTMAs.length === 0 && (
           <div className="col-span-full text-center py-32 border-2 border-dashed border-slate-200 rounded-3xl bg-slate-50">
             <FileText className="w-24 h-24 text-slate-300 mx-auto mb-8" />
             <h3 className="text-2xl font-black text-slate-500 mb-4">No TMAs match your filter</h3>

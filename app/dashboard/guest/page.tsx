@@ -19,7 +19,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 
-const featublueCourses = [
+const featuredCourses = [
    { id: 1, title: 'Secondary Schooling: Unified Science', level: 'Class 10', learners: '124k', rating: 4.8 },
    { id: 2, title: 'Advanced Mathematics & Algebra', level: 'Class 12', learners: '85k', rating: 4.9 },
    { id: 3, title: 'Digital Literacy & Modern Life', level: 'Skill Base', learners: '42k', rating: 4.7 },
@@ -34,7 +34,7 @@ export default function GuestDashboard() {
          <div className="space-y-12 animate-fade-in pb-20">
 
             {/* Welcome Hero - Guest Version */}
-            <div className="p-12 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 border border-slate-800 shadow-2xl relative overflow-hidden group">
+            <div className="p-12 rounded-xl bg-gradient-to-r from-blue-500 to-red-600 border border-slate-800 shadow-2xl relative overflow-hidden group">
                <div className="absolute top-0 right-0 w-96 h-96 bg-blue-900/10 rounded-full blur-3xl group-hover:scale-150 transition-all duration-1000" />
 
 
@@ -74,7 +74,7 @@ export default function GuestDashboard() {
                {[
                   { label: 'Active Learners', value: '2.4M+', icon: Users, color: 'text-blue-500 bg-blue-50' },
                   { label: 'Courses Offeblue', value: '850+', icon: BookOpen, color: 'text-emerald-500 bg-emerald-50' },
-                  { label: 'States Coveblue', value: '36', icon: Globe, color: 'text-blue-900 bg-blue-50' },
+                  { label: 'States Covered', value: '36', icon: Globe, color: 'text-blue-900 bg-blue-50' },
                   { label: 'Avg. Rating', value: '4.8/5', icon: Award, color: 'text-purple-500 bg-purple-50' },
                ].map((s, i) => (
                   <div key={i} className="p-8 rounded-xl bg-white border border-slate-100 shadow-sm transition-all hover:translate-y-1">
@@ -87,7 +87,7 @@ export default function GuestDashboard() {
                ))}
             </div>
 
-            {/* Featublue Courses Selection */}
+            {/* Featured Courses Selection */}
             <div className="space-y-8">
                <div className="flex items-center justify-between border-b border-slate-50 pb-6 mx-4">
                   <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight">Academic Pathways</h3>
@@ -95,7 +95,7 @@ export default function GuestDashboard() {
                </div>
 
                <div className="grid md:grid-cols-3 gap-6">
-                  {featublueCourses.map((c) => (
+                  {featuredCourses.map((c) => (
                      <div key={c.id} className="group p-10 rounded-xl bg-white border border-slate-100 hover:border-blue-900/20 hover:shadow-2xl hover:shadow-slate-200/50 transition-all text-center relative overflow-hidden">
                         <div className="absolute top-0 left-0 w-full h-1.5 bg-slate-50 group-hover:bg-blue-900 transition-colors" />
                         <div className="w-16 h-16 mx-auto mb-8 rounded-[2rem] bg-slate-50 text-slate-400 group-hover:bg-slate-900 group-hover:text-white transition-all flex items-center justify-center shadow-sm">

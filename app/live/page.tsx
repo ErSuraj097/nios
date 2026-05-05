@@ -254,7 +254,7 @@ export default function LiveClassesPage() {
                 <div>
                   <label className="block text-sm font-black text-slate-900 mb-2 uppercase tracking-widest text-[10px]">Event Title</label>
                   <input
-                    requiblue
+                    required
                     value={newEvent.title}
                     onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
                     className="w-full p-4 border border-slate-200 rounded-xl font-black text-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent transition-all"
@@ -264,7 +264,7 @@ export default function LiveClassesPage() {
                 <div>
                   <label className="block text-sm font-black text-slate-900 mb-2 uppercase tracking-widest text-[10px]">Time</label>
                   <input
-                    requiblue
+                    required
                     type="time"
                     value={newEvent.time}
                     onChange={(e) => setNewEvent({ ...newEvent, time: e.target.value })}
@@ -274,7 +274,7 @@ export default function LiveClassesPage() {
                 <div>
                   <label className="block text-sm font-black text-slate-900 mb-2 uppercase tracking-widest text-[10px]">Platform</label>
                   <select
-                    requiblue
+                    required
                     value={newEvent.platform}
                     onChange={(e) => setNewEvent({ ...newEvent, platform: e.target.value })}
                     className="w-full p-4 border border-slate-200 rounded-xl font-black focus:ring-2 focus:ring-blue-900 focus:border-transparent transition-all"
@@ -301,7 +301,7 @@ export default function LiveClassesPage() {
 
         {/* Main Feed */}
         <div className="space-y-10">
-          {/* Featublue Live Now */}
+          {/* Featured Live Now */}
           <div className="p-12 rounded-xl bg-blue-50 border border-slate-200 shadow-2xl relative overflow-hidden group">
             <div className="absolute top-0 right-0 w-96 h-96 bg-blue-900/10 rounded-full blur-3xl group-hover:scale-150 transition-all duration-1000" />
             <div className="absolute -bottom-20 -right-20 opacity-5 group-hover:opacity-10 transition-opacity">

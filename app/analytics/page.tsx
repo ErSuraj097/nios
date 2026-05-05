@@ -25,7 +25,7 @@ const analyticsStats = [
   { label: 'Avg. Engagement', value: '62.5h', change: '+12%', up: true, icon: Clock, color: 'from-blue-500 to-indigo-600' },
   { label: 'Syllabus Coverage', value: '74%', change: 'On Track', up: true, icon: Target, color: 'from-emerald-500 to-teal-600' },
   { label: 'Course Mastery', value: 'Lvl 4', change: 'Advanced', up: true, icon: Brain, color: 'from-purple-500 to-pink-600' },
-  { label: 'Avg. Assessment', value: '82%', change: '+5%', up: true, icon: Award, color: 'from-blue-500 to-blue-600' },
+  { label: 'Avg. Assessment', value: '82%', change: '+5%', up: true, icon: Award, color: 'from-blue-500 to-red-600' },
 ];
 
 const performanceData = [

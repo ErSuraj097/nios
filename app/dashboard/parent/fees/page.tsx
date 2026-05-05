@@ -134,7 +134,7 @@ export default function ParentFeesPage() {
             <div className="p-10 rounded-xl bg-white border border-slate-100 shadow-sm relative overflow-hidden group">
                <div className="absolute top-0 right-0 w-64 h-64 bg-blue-900/5 rounded-full blur-3xl group-hover:scale-150 transition-all duration-1000" />
                <div className="flex flex-col lg:flex-row items-center gap-10">
-                  <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-blue-400 to-blue-500 flex items-center justify-center shrink-0 shadow-xl shadow-blue-500/20">
+                  <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-blue-400 to-red-500 flex items-center justify-center shrink-0 shadow-xl shadow-blue-500/20">
                      <CreditCard size={24} className="text-white" />
                   </div>
                   <div className="flex-1 text-center lg:text-left">

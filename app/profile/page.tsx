@@ -66,7 +66,7 @@ export default function ProfilePage() {
                   <div className="absolute top-0 right-0 w-32 h-32 bg-blue-900/5 rounded-xl blur-3xl group-hover:scale-150 transition-all duration-1000" />
 
                   <div className="relative mb-8">
-                     <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-blue-900 to-blue-500 p-1 shadow-2xl relative">
+                     <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-blue-900 to-red-500 p-1 shadow-2xl relative">
                         <div className="w-full h-full rounded-full bg-white flex items-center justify-center text-4xl font-black text-slate-900 overflow-hidden">
                            {user.name.charAt(0)}
                         </div>

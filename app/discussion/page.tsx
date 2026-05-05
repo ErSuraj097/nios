@@ -95,7 +95,7 @@
 //           <div className="p-8 rounded-xl bg-white border border-slate-200 shadow-lg relative overflow-hidden group">
 //               <div className="absolute top-0 right-0 w-32 h-32 bg-blue-900/5 rounded-full blur-3xl group-hover:scale-150 transition-all duration-1000" />
 //               <div className="flex gap-6 mb-6">
-//                 <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-blue-400 to-blue-500 flex items-center justify-center font-black text-white text-lg shrink-0 shadow-lg">
+//                 <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-blue-400 to-red-500 flex items-center justify-center font-black text-white text-lg shrink-0 shadow-lg">
 //                     {user.name.charAt(0)}
 //                 </div>
 //                 <textarea 
@@ -223,8 +223,8 @@
 //               </div>
 //           </div>
 
-// {/* Featublue Blog CTA */}
-// <div className="p-10 rounded-xl  bg-gradient-to-br from-blue-200 to-blue-400 text-white relative overflow-hidden group">
+// {/* Featured Blog CTA */}
+// <div className="p-10 rounded-xl  bg-gradient-to-br from-blue-200 to-red-400 text-white relative overflow-hidden group">
 //     <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-3xl group-hover:scale-150 transition-all duration-1000" />
 //     <div className="flex items-center gap-3 mb-8">
 //       <BookOpen className="text-blue-900" size={24} />
@@ -417,7 +417,7 @@ export default function DiscussionHub() {
   //       const demoTexts = [
   //         "Anyone preparing for the upcoming NIOS exam?",
   //         "The new simulation is really helpful!",
-  //         "Just scoblue 95% in Physics test! 🎉",
+  //         "Just scored 95% in Physics test! 🎉",
   //         "Can someone share notes on Thermodynamics?",
   //       ];
   //       const randomText = demoTexts[Math.floor(Math.random() * demoTexts.length)];
@@ -542,8 +542,8 @@ export default function DiscussionHub() {
               ))}
             </div>
           </div>
-          {/* Featublue Blog CTA */}
-          <div className="p-10 rounded-xl  bg-gradient-to-br from-blue-200 to-blue-400 text-white relative overflow-hidden group">
+          {/* Featured Blog CTA */}
+          <div className="p-10 rounded-xl  bg-gradient-to-br from-blue-200 to-red-400 text-white relative overflow-hidden group">
             <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-3xl group-hover:scale-150 transition-all duration-1000" />
             <div className="flex items-center gap-3 mb-8">
               <BookOpen className="text-blue-900" size={24} />
@@ -574,7 +574,7 @@ export default function DiscussionHub() {
             <div className="absolute top-0 right-0 w-32 h-32 bg-blue-900/5 rounded-full blur-3xl group-hover:scale-150 transition-all duration-1000" />
 
             <div className="flex gap-6 mb-6">
-              <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-blue-400 to-blue-500 flex items-center justify-center font-black text-white text-lg shrink-0 shadow-lg">
+              <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-blue-400 to-red-500 flex items-center justify-center font-black text-white text-lg shrink-0 shadow-lg">
                 {user.name?.charAt(0) || 'Y'}
               </div>
               <textarea

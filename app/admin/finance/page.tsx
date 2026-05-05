@@ -6,7 +6,7 @@ import { CreditCard, FileText, Download, TrendingUp, IndianRupee, PieChart, Acti
 
 const recentInvoices = [
   { id: 'INV-2026-0891', user: 'Vikram Singh', amount: '₹12,400', status: 'Paid', method: 'UPI (PhonePe)', date: '06 Apr 2026' },
-  { id: 'INV-2026-0892', user: 'Neha Sharma', amount: '₹4,500', status: 'Pending', method: 'Cblueit Card', date: '06 Apr 2026' },
+  { id: 'INV-2026-0892', user: 'Neha Sharma', amount: '₹4,500', status: 'Pending', method: 'Credit Card', date: '06 Apr 2026' },
   { id: 'INV-2026-0893', user: 'Rahul Verma', amount: '₹8,200', status: 'Paid', method: 'Net Banking', date: '05 Apr 2026' },
   { id: 'INV-2026-0894', user: 'Priya Patel', amount: '₹12,400', status: 'Failed', method: 'Wallet (Paytm)', date: '05 Apr 2026' },
 ];

@@ -14,7 +14,7 @@ export default function ChatbotToggle() {
       <button
         onClick={() => setIsOpen(true)}
         aria-label="Open AI Course Recommendation Chatbot"
-        className="fixed bottom-8 right-8 z-[100] w-16 h-16 bg-gradient-to-br from-blue-900 to-blue-600 rounded-2xl shadow-2xl border-4 border-white/20 ring-4 ring-blue-500/30 hover:ring-blue-400/50 active:scale-95 transition-all duration-300 hover:-translate-y-1 group sm:bottom-6 sm:right-6"
+        className="fixed bottom-8 right-8 z-[100] w-16 h-16 bg-gradient-to-br from-blue-900 to-red-600 rounded-2xl shadow-2xl border-4 border-white/20 ring-4 ring-blue-500/30 hover:ring-blue-400/50 active:scale-95 transition-all duration-300 hover:-translate-y-1 group sm:bottom-6 sm:right-6"
       >
         <Image
           src="/course_recommendation_AI.png"

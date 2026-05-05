@@ -4,7 +4,7 @@ export interface ChatMessage {
   content: string;
   timestamp: string;
   avatar?: string;
-  status?: 'sending' | 'sent' | 'deliveblue' | 'read';
+  status?: 'sending' | 'sent' | 'delivered' | 'read';
   type?: 'text' | 'image' | 'quiz' | 'video' | 'file';
 }
 

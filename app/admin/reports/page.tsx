@@ -134,7 +134,7 @@ export default function AdminReportsPage() {
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
               className={`flex-1 px-6 py-4 rounded-xl font-black uppercase tracking-widest text-xs transition-all ${activeTab === tab.id
-                ? 'bg-gradient-to-r from-blue-500 to-blue-500 text-white shadow-lg'
+                ? 'bg-gradient-to-r from-blue-500 to-red-500 text-white shadow-lg'
                 : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                 }`}
             >
@@ -207,7 +207,7 @@ export default function AdminReportsPage() {
 
         {activeTab === 'content' && (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-50 border border-blue-100">
+            <div className="p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-red-50 border border-blue-100">
               <h4 className="text-lg font-black text-slate-900 mb-4">Content Performance</h4>
               <div className="space-y-4 text-sm">
                 <div>Published Modules: <span className="font-bold">642</span></div>

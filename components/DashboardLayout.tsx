@@ -87,7 +87,7 @@ export default function DashboardLayout({
     );
   }
 
-  // blueirect check for dashboard path mismatch (show spinner while blueirecting)
+  // redirect check for dashboard path mismatch (show spinner while redirecting)
   if (pathname.startsWith('/dashboard/') && user?.role !== pathname.split('/')[2]) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-slate-50">

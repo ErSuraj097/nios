@@ -26,7 +26,7 @@ const children = [
 const childStats = [
   { label: 'Overall Progress', value: '72%', icon: BarChart3, color: 'from-blue-500 to-indigo-600' },
   { label: 'Attendance', value: '92%', icon: Calendar, color: 'from-emerald-500 to-teal-600' },
-  { label: 'Pending Tasks', value: '3', icon: ClipboardList, color: 'from-blue-500 to-blue-600' },
+  { label: 'Pending Tasks', value: '3', icon: ClipboardList, color: 'from-blue-500 to-red-600' },
   { label: 'Global Rank', value: '#12', icon: Award, color: 'from-purple-500 to-pink-600' },
 ];
 

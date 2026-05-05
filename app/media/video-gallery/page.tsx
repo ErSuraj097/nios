@@ -21,7 +21,7 @@ export default function VideoGalleryPage() {
       <OfficialNav />
       
       {/* Hero Section */}
-      <section className="min-h-[60vh] bg-gradient-to-br from-indigo-900 via-purple-900 to-blue-900 text-white py-24 relative overflow-hidden">
+      <section className="min-h-[60vh] bg-gradient-to-br from-indigo-900 via-purple-900 to-red-900 text-white py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,#3b82f6_0%,transparent_50%)] opacity-20" />
         <div className="container mx-auto px-4 relative z-10 text-center">
           <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full mb-8">
@@ -80,7 +80,7 @@ export default function VideoGalleryPage() {
                 className="group bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all hover:-translate-y-3 overflow-hidden border border-slate-100"
               >
                 {/* Thumbnail */}
-                <div className="relative h-48 bg-gradient-to-br from-slate-200 to-slate-300 group-hover:to-blue-500 transition-all duration-500 overflow-hidden">
+                <div className="relative h-48 bg-gradient-to-br from-slate-200 to-slate-300 group-hover:to-red-500 transition-all duration-500 overflow-hidden">
                   <div className="absolute inset-0 bg-[url('/hero.mp4')] bg-cover bg-center opacity-20" />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="bg-white/90 backdrop-blur-sm p-4 rounded-full shadow-2xl group-hover:scale-110 transition-transform">

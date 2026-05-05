@@ -21,7 +21,7 @@ import { MOCK_USERS } from '@/lib/mock-data';
 const teacherStats = [
   { icon: Users, label: 'Total Students', value: '2,847', change: '+124', up: true, color: 'from-blue-500 to-indigo-600' },
   { icon: BookOpen, label: 'Active Courses', value: '6', change: '3 pending', up: true, color: 'from-emerald-500 to-teal-600' },
-  { icon: ClipboardList, label: 'Pending TMAs', value: '38', change: '12 overdue', up: false, color: 'from-blue-500 to-blue-600' },
+  { icon: ClipboardList, label: 'Pending TMAs', value: '38', change: '12 overdue', up: false, color: 'from-blue-500 to-red-600' },
   { icon: Star, label: 'Avg. Score', value: '74%', change: '+3%', up: true, color: 'from-purple-500 to-pink-600' },
 ];
 

@@ -206,7 +206,7 @@ export default function Sidebar() {
 
       <div className="p-6 mt-auto border-t border-slate-50">
         <div className="bg-slate-50 p-2 rounded-xl flex items-center gap-3.5 hover:bg-white hover:shadow-lg hover:shadow-slate-200/50 transition-all group cursor-pointer border border-transparent hover:border-slate-100">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-blue-500 flex items-center justify-center font-black text-white text-sm shadow-md transition-all duration-500">
+          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-red-500 flex items-center justify-center font-black text-white text-sm shadow-md transition-all duration-500">
             {user.name.charAt(0)}
           </div>
           <div className="flex-1 min-w-0">

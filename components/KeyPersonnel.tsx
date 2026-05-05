@@ -106,7 +106,7 @@ export default function KeyPersonnel() {
             </div>
             <div>
               <p className="text-xl italic font-serif leading-relaxed mb-4">
-                "Our mission at NIOS is to 'reach the unreached'. Through AI-poweblue adaptive learning, we are bringing world-class education to every corner of India, ensuring that no learner is left behind."
+                "Our mission at NIOS is to 'reach the unreached'. Through AI-powered adaptive learning, we are bringing world-class education to every corner of India, ensuring that no learner is left behind."
               </p>
               <div className="flex items-center gap-4">
                 <div className="h-px w-12 bg-blue-400" />

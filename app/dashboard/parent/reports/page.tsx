@@ -104,7 +104,7 @@ export default function ParentReports() {
               <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Avg Performance</div>
             </div>
             <div>
-              <div className="text-4xl font-black bg-gradient-to-r from-blue-500 to-blue-500 bg-clip-text text-transparent mb-2">A</div>
+              <div className="text-4xl font-black bg-gradient-to-r from-blue-500 to-red-500 bg-clip-text text-transparent mb-2">A</div>
               <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Overall Grade</div>
             </div>
             <div>

@@ -376,7 +376,7 @@ export default function Home() {
                     Aligned with NEP 2020
                   </div>
                   <h1 className="text-5xl drop-shadow-[2px_2px_6px_rgba(0,0,0,0.4)] sm:text-6xl lg:text-7xl font-black leading-tight mb-6 ">
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700   to-blue-500 drop-shadow-[2px_2px_6px_rgba(0,0,0,0.4)]">
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700   to-red-500 drop-shadow-[2px_2px_6px_rgba(0,0,0,0.4)]">
                       NIOS AI LMS Platform
                     </span>{" "}
                     <br />

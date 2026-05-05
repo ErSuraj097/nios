@@ -260,7 +260,7 @@ export default function VisionMissionPage() {
 
             {/* ── Target Groups ── */}
             <section className="grid lg:grid-cols-3 gap-6">
-               <div className="lg:col-span-1 p-10 rounded-2xl bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-white shadow-xl relative overflow-hidden flex flex-col justify-between gap-8">
+               <div className="lg:col-span-1 p-10 rounded-2xl bg-gradient-to-br from-blue-900 via-blue-800 to-red-700 text-white shadow-xl relative overflow-hidden flex flex-col justify-between gap-8">
                   <div className="absolute -bottom-10 -right-10 w-48 h-48 rounded-full bg-white/5" />
                   <div className="relative z-10 space-y-4">
                      <Sparkles size={26} className="opacity-40" />

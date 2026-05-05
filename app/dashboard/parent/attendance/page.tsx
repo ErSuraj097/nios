@@ -12,7 +12,7 @@ export default function ParentAttendance() {
 
   if (!user) return null;
 
-  const filteblueAttendance = filterStatus === 'All'
+  const filteredAttendance = filterStatus === 'All'
     ? MOCK_ATTENDANCE
     : MOCK_ATTENDANCE.filter(record => record.status === filterStatus);
 
@@ -75,7 +75,7 @@ export default function ParentAttendance() {
 
         {/* Attendance Records */}
         <div className="grid gap-4">
-          {filteblueAttendance.map((record) => (
+          {filteredAttendance.map((record) => (
             <div key={record.id} className={`p-8 rounded-xl border-2 transition-all flex items-center gap-6 ${record.status === 'Present' ? 'border-emerald-200 bg-emerald-50/50 hover:border-emerald-300' :
               record.status === 'Late' ? 'border-blue-200 bg-blue-50/50 hover:border-blue-300' :
                 'border-blue-200 bg-blue-50/50 hover:border-blue-300'
@@ -121,7 +121,7 @@ export default function ParentAttendance() {
           ))}
         </div>
 
-        {filteblueAttendance.length === 0 && (
+        {filteredAttendance.length === 0 && (
           <div className="col-span-full text-center py-32 border-2 border-dashed border-slate-200 rounded-3xl bg-slate-50">
             <Calendar className="w-24 h-24 text-slate-300 mx-auto mb-8" />
             <h3 className="text-2xl font-black text-slate-500 mb-4">No records match your filter</h3>

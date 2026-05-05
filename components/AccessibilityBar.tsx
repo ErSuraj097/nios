@@ -207,7 +207,7 @@ export default function AccessibilityBar() {
               <ul>
                 <li><strong>Organization:</strong> National Institute of Open Schooling (NIOS)</li>
                 <li><strong>Functions:</strong> Open schooling, AI-driven adaptive learning, certification</li>
-                <li><strong>Powers:</strong> Academic oversight, digital cblueential issuance, compliance monitoring</li>
+                <li><strong>Powers:</strong> Academic oversight, digital credential issuance, compliance monitoring</li>
                 <li><strong>PIO Contact:</strong> pio@nios.ac.in | +91-XXXXXXXXXX</li>
                 <li><a href="/rti-full" className="font-semibold hover:text-blue-900 flex items-center gap-1">
                   Full RTI Manual <ExternalLink size={14} />

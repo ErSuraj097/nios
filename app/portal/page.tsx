@@ -9,12 +9,12 @@ import { useAuth } from '@/contexts/AuthContext';
 
 type Role = 'learner' | 'teacher' | 'parent' | 'admin' | 'guest';
 
-const roleConfig: Record<Role, { label: string; email: string; id: string; blueirect: string }> = {
-  learner: { label: 'LEARNER', email: 'student@school.com', id: 'L10023', blueirect: '/dashboard/learner' },
-  teacher: { label: 'TEACHER', email: 'teacher@school.com', id: 'T5001', blueirect: '/dashboard/teacher' },
-  parent: { label: 'PARENT', email: 'parent@school.com', id: 'P7001', blueirect: '/dashboard/parent' },
-  admin: { label: 'ADMIN', email: 'principal@school.com', id: 'A9001', blueirect: '/dashboard/admin' },
-  guest: { label: 'GUEST', email: 'guest@school.com', id: 'G1001', blueirect: '/dashboard/guest' },
+const roleConfig: Record<Role, { label: string; email: string; id: string; redirect: string }> = {
+  learner: { label: 'LEARNER', email: 'student@school.com', id: 'L10023', redirect: '/dashboard/learner' },
+  teacher: { label: 'TEACHER', email: 'teacher@school.com', id: 'T5001', redirect: '/dashboard/teacher' },
+  parent: { label: 'PARENT', email: 'parent@school.com', id: 'P7001', redirect: '/dashboard/parent' },
+  admin: { label: 'ADMIN', email: 'principal@school.com', id: 'A9001', redirect: '/dashboard/admin' },
+  guest: { label: 'GUEST', email: 'guest@school.com', id: 'G1001', redirect: '/dashboard/guest' },
 };
 
 export default function LoginPage() {
@@ -35,7 +35,7 @@ export default function LoginPage() {
     setIsLoading(true);
     setTimeout(() => {
       login(roleConfig[activeRole].id);
-      window.location.href = roleConfig[activeRole].blueirect;
+      window.location.href = roleConfig[activeRole].redirect;
     }, 1500);
   };
 
@@ -91,7 +91,7 @@ export default function LoginPage() {
                 Welcome to the Future of Learning.
               </motion.h1>
               <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }} className="text-lg lg:text-xl text-neutral-600 font-medium leading-relaxed mb-10">
-                Experience personalized education poweblue by AI. Join millions of learners and educators in a transformative journey.
+                Experience personalized education powered by AI. Join millions of learners and educators in a transformative journey.
               </motion.p>
             </div>
             <div className="max-w-xl">
@@ -176,7 +176,7 @@ export default function LoginPage() {
                     onChange={(e) => setEmail(e.target.value)}
                     className="w-full bg-white border-2 border-slate-200 focus:border-blue-500 text-slate-900 rounded-xl py-5 pl-16 pr-6 outline-none transition-all font-medium placeholder:text-neutral-400"
                     placeholder="Enter Enrollment ID"
-                    requiblue
+                    required
                   />
                 </div>
               </div>
@@ -196,7 +196,7 @@ export default function LoginPage() {
                     onChange={(e) => setPassword(e.target.value)}
                     className="w-full bg-white border-2 border-slate-200 focus:border-blue-500 text-slate-900 rounded-xl py-5 pl-16 pr-6 outline-none transition-all font-medium placeholder:text-neutral-400"
                     placeholder="••••••••••••"
-                    requiblue
+                    required
                   />
                 </div>
               </div>

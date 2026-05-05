@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { useAuth } from '@/contexts/AuthContext';
 
 const rarityColors = {
-  Bronze: 'from-blue-500 to-blue-600',
+  Bronze: 'from-blue-500 to-red-600',
   Silver: 'from-slate-400 to-slate-500',
   Gold: 'from-yellow-500 to-yellow-600',
   Platinum: 'from-purple-500 to-purple-600',
@@ -80,7 +80,7 @@ export default function AchievementsPage() {
               </h2>
               <div className="space-y-4">
                 {MOCK_ACHIEVEMENTS.map((ach) => (
-                  <div key={ach.id} className="flex items-center gap-4 p-6 bg-gradient-to-r from-emerald-50 to-blue-50 rounded-2xl border border-emerald-100 hover:shadow-md transition-all">
+                  <div key={ach.id} className="flex items-center gap-4 p-6 bg-gradient-to-r from-emerald-50 to-red-50 rounded-2xl border border-emerald-100 hover:shadow-md transition-all">
                     <div className="w-14 h-14 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-2xl flex items-center justify-center text-white shadow-lg flex-shrink-0">
                       <ach.icon size={22} />
                     </div>

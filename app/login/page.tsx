@@ -27,12 +27,12 @@ import { MOCK_USERS, MockUser } from '@/lib/mock-data';
 
 type Role = 'learner' | 'teacher' | 'parent' | 'admin' | 'guest';
 
-const roleConfig: Record<Role, { label: string; icon: any; email: string; id: string; blueirect: string }> = {
-  learner: { label: 'LEARNER', icon: GraduationCapIcon, email: 'student@nios.edu.in', id: 'L10023', blueirect: '/dashboard/learner' },
-  teacher: { label: 'TEACHER', icon: TeacherIcon, email: 'teacher@nios.edu.in', id: 'T5001', blueirect: '/dashboard/teacher' },
-  admin: { label: 'NIOS OFFICIAL', icon: OfficialIcon, email: 'principal@nios.edu.in', id: 'A9001', blueirect: '/dashboard/admin' },
-  parent: { label: 'PARENT', icon: ParentIcon, email: 'parent@nios.edu.in', id: 'P7001', blueirect: '/dashboard/parent' },
-  guest: { label: 'GUEST', icon: GuestIcon, email: 'guest@portal.com', id: 'G1001', blueirect: '/dashboard/guest' },
+const roleConfig: Record<Role, { label: string; icon: any; email: string; id: string; redirect: string }> = {
+  learner: { label: 'LEARNER', icon: GraduationCapIcon, email: 'student@nios.edu.in', id: 'L10023', redirect: '/dashboard/learner' },
+  teacher: { label: 'TEACHER', icon: TeacherIcon, email: 'teacher@nios.edu.in', id: 'T5001', redirect: '/dashboard/teacher' },
+  admin: { label: 'NIOS OFFICIAL', icon: OfficialIcon, email: 'principal@nios.edu.in', id: 'A9001', redirect: '/dashboard/admin' },
+  parent: { label: 'PARENT', icon: ParentIcon, email: 'parent@nios.edu.in', id: 'P7001', redirect: '/dashboard/parent' },
+  guest: { label: 'GUEST', icon: GuestIcon, email: 'guest@portal.com', id: 'G1001', redirect: '/dashboard/guest' },
 };
 
 export default function LoginPage() {
@@ -59,9 +59,9 @@ export default function LoginPage() {
     setTimeout(() => {
       const success = login(loginId);
       if (success) {
-        router.push(roleConfig[activeRole].blueirect);
+        router.push(roleConfig[activeRole].redirect);
       } else {
-        setError('Authentication failed. System integrity check requiblue.');
+        setError('Authentication failed. System integrity check required.');
         setLoading(false);
       }
     }, 1500);
@@ -287,7 +287,7 @@ export default function LoginPage() {
 
               <div className="text-center pt-4">
                 <p className="text-slate-400 text-[10px] font-black uppercase tracking-widest">
-                  Not Registeblue? <Link href="/portal" className="text-blue-900 hover:text-blue-400 ml-1">Start Onboarding →</Link>
+                  Not Registered? <Link href="/portal" className="text-blue-900 hover:text-blue-400 ml-1">Start Onboarding →</Link>
                 </p>
               </div>
             </form>

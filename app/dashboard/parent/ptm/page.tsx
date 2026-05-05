@@ -102,7 +102,7 @@ export default function ParentPTM() {
                   <button
                     onClick={() => applyForMeeting(slot.id)}
                     disabled={selectedSlot === slot.id}
-                    className="w-full py-5 px-8 bg-gradient-to-r from-emerald-500 to-blue-500 text-white rounded-2xl font-black text-[12px] uppercase tracking-widest shadow-xl hover:shadow-2xl active:scale-[0.98] transition-all flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed hover:from-emerald-600 hover:to-blue-600"
+                    className="w-full py-5 px-8 bg-gradient-to-r from-emerald-500 to-red-500 text-white rounded-2xl font-black text-[12px] uppercase tracking-widest shadow-xl hover:shadow-2xl active:scale-[0.98] transition-all flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed hover:from-emerald-600 hover:to-red-600"
                   >
                     {selectedSlot === slot.id ? (
                       <>
@@ -133,8 +133,8 @@ export default function ParentPTM() {
             <div className="space-y-4 text-lg font-medium leading-relaxed">
               <p>✅ <strong>Confirmation Email:</strong> Within 24 hours with Zoom/Google Meet link</p>
               <p>✅ <strong>Blockchain Record:</strong> Meeting logged permanently on-chain</p>
-              <p>✅ <strong>Automated Summary:</strong> AI-generated minutes deliveblue post-meeting</p>
-              <p>📅 <strong>Reschedule:</strong> 48 hours notice requiblue for changes</p>
+              <p>✅ <strong>Automated Summary:</strong> AI-generated minutes delivered post-meeting</p>
+              <p>📅 <strong>Reschedule:</strong> 48 hours notice required for changes</p>
             </div>
           </div>
         </div>

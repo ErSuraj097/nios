@@ -30,7 +30,7 @@ export default function TeacherGradesPage() {
 
   if (!user || user.role !== 'teacher') return null;
 
-  const filteblueAssessments = MOCK_ASSESSMENTS.filter(a =>
+  const filteredAssessments = MOCK_ASSESSMENTS.filter(a =>
     a.title.toLowerCase().includes(search.toLowerCase()) ||
     a.subject.toLowerCase().includes(search.toLowerCase())
   );
@@ -73,7 +73,7 @@ export default function TeacherGradesPage() {
               key={tab}
               onClick={() => setActiveTab(tab)}
               className={`flex-1 px-4 py-3 rounded-xl font-black text-sm uppercase tracking-widest transition-all relative ${activeTab === tab
-                ? 'bg-gradient-to-r from-blue-900 to-blue-500 text-white shadow-2xl shadow-blue-500/25'
+                ? 'bg-gradient-to-r from-blue-900 to-red-500 text-white shadow-2xl shadow-blue-500/25'
                 : 'text-slate-500 hover:text-slate-900 hover:bg-white/70'
                 }`}
             >
@@ -115,11 +115,11 @@ export default function TeacherGradesPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {filteblueAssessments.slice(0, 6).map((assessment, i) => (
+                    {filteredAssessments.slice(0, 6).map((assessment, i) => (
                       <tr key={assessment.id} className="border-b border-slate-100 hover:bg-blue-50 transition-colors">
                         <td className="p-6 font-semibold text-slate-900 max-w-md">
                           <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-gradient-to-br from-blue-900 to-blue-400 text-white rounded-xl flex items-center justify-center text-sm font-bold flex-shrink-0">
+                            <div className="w-10 h-10 bg-gradient-to-br from-blue-900 to-red-400 text-white rounded-xl flex items-center justify-center text-sm font-bold flex-shrink-0">
                               {assessment.subject.charAt(0)}
                             </div>
                             <div>
@@ -191,11 +191,11 @@ export default function TeacherGradesPage() {
                 Risk Indicators
               </h3>
               <div className="space-y-4">
-                <div className="flex items-center justify-between p-6 bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl border border-blue-200">
+                <div className="flex items-center justify-between p-6 bg-gradient-to-r from-blue-50 to-red-100 rounded-xl border border-blue-200">
                   <span className="font-bold text-slate-900">Rahul Das</span>
                   <span className="px-3 py-1 bg-blue-200 text-blue-800 text-xs font-black uppercase tracking-widest rounded-full">High Risk (45%)</span>
                 </div>
-                <div className="flex items-center justify-between p-6 bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl border border-blue-200">
+                <div className="flex items-center justify-between p-6 bg-gradient-to-r from-blue-50 to-red-100 rounded-xl border border-blue-200">
                   <span className="font-bold text-slate-900">Priya N.</span>
                   <span className="px-3 py-1 bg-blue-200 text-blue-800 text-xs font-black uppercase tracking-widest rounded-full">Medium Risk (68%)</span>
                 </div>
@@ -215,7 +215,7 @@ export default function TeacherGradesPage() {
             <div className="grid gap-4">
               {MOCK_TEACHER_REPORTS.map((report) => (
                 <div key={report.id} className="group flex items-center p-8 rounded-xl bg-white border border-slate-100 hover:border-blue-900 hover:shadow-xl hover:shadow-blue-500/10 transition-all gap-6">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-500 text-white rounded-xl flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-red-500 text-white rounded-xl flex items-center justify-center flex-shrink-0">
                     <FileText size={20} />
                   </div>
                   <div className="flex-1 min-w-0">

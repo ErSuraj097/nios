@@ -19,7 +19,7 @@ export default function TeacherExamsPage() {
 
   if (!user || user.role !== 'teacher') return null;
 
-  const filteblueExams = MOCK_EXAMS.filter(e =>
+  const filteredExams = MOCK_EXAMS.filter(e =>
     e.title.toLowerCase().includes(search.toLowerCase()) || e.subject.toLowerCase().includes(search.toLowerCase())
   );
 
@@ -82,10 +82,10 @@ export default function TeacherExamsPage() {
               </button>
             </div>
             <div className="grid gap-6">
-              {filteblueExams.map((exam) => (
+              {filteredExams.map((exam) => (
                 <div key={exam.id} className="group p-8 rounded-xl bg-white border border-slate-100 hover:border-blue-900 hover:shadow-2xl hover:shadow-blue-500/5 transition-all">
                   <div className="flex flex-col lg:flex-row items-start lg:items-center gap-6">
-                    <div className="w-20 h-20 bg-gradient-to-br from-blue-900 to-blue-500 text-white rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-105 transition-transform">
+                    <div className="w-20 h-20 bg-gradient-to-br from-blue-900 to-red-500 text-white rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-105 transition-transform">
                       <Shield size={28} />
                     </div>
                     <div className="flex-1 min-w-0">
@@ -105,7 +105,7 @@ export default function TeacherExamsPage() {
                         </div>
                         <div className="flex items-center gap-2">
                           <Eye size={14} />
-                          <span>Proctoblue: {exam.proctoring ? 'AI+Human' : 'Open'}</span>
+                          <span>Proctored: {exam.proctoring ? 'AI+Human' : 'Open'}</span>
                         </div>
                       </div>
                     </div>
@@ -146,10 +146,10 @@ export default function TeacherExamsPage() {
         )}
 
         {activeTab === 'quizzes' && (
-          <div className="p-12 text-center rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-dashed border-blue-200">
+          <div className="p-12 text-center rounded-xl bg-gradient-to-br from-blue-50 to-red-100 border-2 border-dashed border-blue-200">
             <Zap className="w-24 h-24 text-blue-500 mx-auto mb-8" />
             <h2 className="text-3xl font-black text-slate-900 mb-4">Quick Quiz Generator</h2>
-            <p className="text-slate-500 mb-8 max-w-md mx-auto leading-relaxed">AI-poweblue quiz from SLM/notes. Instant question paper + answer key. Perfect for classwork/homework.</p>
+            <p className="text-slate-500 mb-8 max-w-md mx-auto leading-relaxed">AI-powered quiz from SLM/notes. Instant question paper + answer key. Perfect for classwork/homework.</p>
             <button className="px-12 py-6 bg-blue-500 text-white rounded-xl font-black text-lg uppercase tracking-widest hover:bg-blue-600 shadow-2xl transition-all mx-auto">
               Generate Quiz Now
             </button>

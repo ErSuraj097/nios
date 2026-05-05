@@ -39,7 +39,7 @@ export const HardwareSection = () => {
   return (
     <div
       ref={containerRef}
-      className="relative bg-gradient-to-b from-black via-slate-900 to-blue-950 min-h-[300vh] md:min-h-[420vh]"
+      className="relative bg-gradient-to-b from-black via-slate-900 to-red-950 min-h-[300vh] md:min-h-[420vh]"
       role="region"
       aria-label="AI Infrastructure Capabilities"
     >
@@ -56,7 +56,7 @@ export const HardwareSection = () => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
             </span>
-            AI-POWEblue HARDWARE INFRASTRUCTURE
+            AI-POWERED HARDWARE INFRASTRUCTURE
           </div>
         </motion.div>
 
@@ -111,7 +111,7 @@ export const HardwareSection = () => {
               <div className="absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-blue-400/60 rounded-br-3xl z-10" />
 
               <div className="absolute top-8 left-8 z-30 flex items-center gap-3">
-                <div className="w-14 h-1.5 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full shadow-[0_0_20px_rgba(249,115,22,0.8)]" />
+                <div className="w-14 h-1.5 bg-gradient-to-r from-blue-400 to-red-600 rounded-full shadow-[0_0_20px_rgba(249,115,22,0.8)]" />
                 <div className="w-2 h-2 rounded-full bg-blue-400 shadow-[0_0_10px_blue] animate-pulse" />
               </div>
             </motion.div>

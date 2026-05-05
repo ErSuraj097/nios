@@ -95,7 +95,7 @@ export default function AITutorPage() {
         <div className="flex flex-col min-h-[80vh] max-h-[85vh] bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden animate-fade-in ">
           <div className="absolute top-0 inset-0 bg-gradient-to-b from-blue-50/20 to-transparent pointer-events-none" />
 
-          <div className="p-6 border-b border-slate-50 bg-gradient-to-r from-blue-50 to-blue-50  border-b border-slate-200 backdrop-blur-md z-10 flex items-center justify-between">
+          <div className="p-6 border-b border-slate-50 bg-gradient-to-r from-blue-50 to-red-50  border-b border-slate-200 backdrop-blur-md z-10 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-blue-900/10 flex items-center justify-center text-blue-900 ring-4 ring-blue-50">
                 <Sparkles size={20} />

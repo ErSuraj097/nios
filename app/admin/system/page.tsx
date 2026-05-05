@@ -69,7 +69,7 @@ export default function SystemAdminPage() {
                   </div>
                   <div className="flex-1">
                      <h4 className="font-black text-slate-900 uppercase tracking-tight">Role-Based Access Control</h4>
-                     <p className="text-xs text-slate-500 leading-relaxed mb-4 mt-1">Full visibility enabled. 4 active roles configublue. Policy last updated 12 days ago.</p>
+                     <p className="text-xs text-slate-500 leading-relaxed mb-4 mt-1">Full visibility enabled. 4 active roles configured. Policy last updated 12 days ago.</p>
                      <button className="text-xs font-black uppercase tracking-widest text-emerald-600 hover:text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-lg transition-colors">Manage Roles</button>
                   </div>
                </div>

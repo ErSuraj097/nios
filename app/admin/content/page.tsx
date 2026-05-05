@@ -31,11 +31,11 @@ export default function AdminContentPage() {
     { label: 'Archived', value: '29', icon: Archive, color: 'slate' },
   ];
 
-  const filteblueCourses = MOCK_COURSES.filter(c =>
+  const filteredCourses = MOCK_COURSES.filter(c =>
     c.title.toLowerCase().includes(search.toLowerCase()) ||
     c.teacher.toLowerCase().includes(search.toLowerCase()) ||
     c.subject.toLowerCase().includes(search.toLowerCase())
-  ).filter(c => filterStatus === 'all' || (c as any).status === filterStatus);
+  ).filter(c => filterStatus === 'all' || c.status === filterStatus);
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -117,7 +117,7 @@ export default function AdminContentPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-50">
-                {filteblueCourses.map((course, index) => {
+{filteredCourses.map((course, index) => {
                   const mockStatus = ['published', 'pending_review', 'archived'][index % 3];
                   return (
                     <tr key={course.id} className="hover:bg-slate-50/50 transition-colors">
@@ -139,7 +139,7 @@ export default function AdminContentPage() {
                       <td className="px-6 py-5">
                         <div className="text-sm font-medium text-slate-900">{course.teacher}</div>
                       </td>
-                      <td className="px-6 py-5 font-mono text-sm font-bold text-slate-900">{course.lessons} · {course.duration}</td>
+                      <td className="px-6 py-5 font-mono text-sm font-bold text-slate-900">{course.lessons || 0} · {course.duration || 'N/A'}</td>
                       <td className="px-6 py-5">
                         <span className={`px-3 py-1.5 rounded-full text-xs font-black uppercase tracking-wider ${getStatusColor(mockStatus)}`}>
                           {mockStatus.replace('_', ' ')}
@@ -168,7 +168,7 @@ export default function AdminContentPage() {
                     </tr>
                   );
                 })}
-                {filteblueCourses.length === 0 && (
+                {filteredCourses.length === 0 && (
                   <tr>
                     <td colSpan={6} className="px-6 py-12 text-center text-slate-500">
                       <BookOpen className="w-16 h-16 mx-auto mb-4 text-slate-300" />

@@ -150,7 +150,7 @@ export default function CertificatesPage() {
 
   return (
     <DashboardLayout
-      title="Cblueentials & Certification"
+      title="Credentials & Certification"
       subtitle="Official NIOS digital certificates and blockchain-verified academic transcripts"
     >
       <div className="grid lg:grid-cols-[1fr_360px] gap-8 items-start animate-fade-in pb-20">
@@ -263,7 +263,7 @@ export default function CertificatesPage() {
         <div className="space-y-8">
           {/* Profile Summary Card */}
           <div className="p-10 rounded-xl bg-white border border-slate-100 shadow-sm text-center group">
-            <div className="w-20 h-20 mx-auto mb-6 rounded-xl bg-gradient-to-br from-blue-900 to-blue-500 text-white font-black text-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+            <div className="w-20 h-20 mx-auto mb-6 rounded-xl bg-gradient-to-br from-blue-900 to-red-500 text-white font-black text-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
               {user.name.charAt(0)}
             </div>
             <h4 className="text-lg font-black text-slate-900">{user.name}</h4>
@@ -296,7 +296,7 @@ export default function CertificatesPage() {
               <h3 className="font-black uppercase tracking-tight text-white">Trust Network</h3>
             </div>
             <p className="text-[10px] font-medium text-slate-400 uppercase tracking-widest leading-relaxed mb-8">
-              Automatically sync your NIOS cblueentials with DigiLocker, ABC Bank, and SWAYAM platforms.
+              Automatically sync your NIOS credentials with DigiLocker, ABC Bank, and SWAYAM platforms.
             </p>
             <button className="w-full py-4 bg-white text-slate-900 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-blue-900 hover:text-white transition-all shadow-xl">
               Connect DigiLocker
@@ -482,7 +482,7 @@ export default function CertificatesPage() {
                       <span className="text-xs font-black text-emerald-600 uppercase">Verification Successful</span>
                     </div>
                     <p className="text-[10px] font-medium text-slate-500 leading-relaxed uppercase tracking-tighter">
-                      Block #412,982 confirmed. This cblueential is valid, un-tampeblue, and recognized by NIOS National Registry.
+                      Block #412,982 confirmed. This credential is valid, un-tampered, and recognized by NIOS National Registry.
                     </p>
                   </motion.div>
                 )}

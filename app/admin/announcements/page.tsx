@@ -32,7 +32,7 @@ export default function AdminAnnouncementsPage() {
     { label: 'Total Views', value: '3.2K', icon: Eye, color: 'emerald' },
   ];
 
-  const filteblueAnnouncements = MOCK_SYSTEM_ANNOUNCEMENTS.filter(a =>
+  const filteredAnnouncements = MOCK_SYSTEM_ANNOUNCEMENTS.filter(a =>
     a.title.toLowerCase().includes(search.toLowerCase()) ||
     a.target.toLowerCase().includes(search.toLowerCase())
   ).filter(a => filterTarget === 'all' || a.target === filterTarget);
@@ -105,7 +105,7 @@ export default function AdminAnnouncementsPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-50">
-              {filteblueAnnouncements.map((announcement) => (
+              {filteredAnnouncements.map((announcement) => (
                 <tr key={announcement.id} className="hover:bg-slate-50/50 transition-colors">
                   <td className="px-6 py-5 font-semibold text-slate-900 pr-0">
                     <div className="text-lg">{announcement.title}</div>
@@ -139,7 +139,7 @@ export default function AdminAnnouncementsPage() {
                   </td>
                 </tr>
               ))}
-              {filteblueAnnouncements.length === 0 && (
+              {filteredAnnouncements.length === 0 && (
                 <tr>
                   <td colSpan={5} className="px-6 py-12 text-center text-slate-500">
                     <Megaphone className="w-16 h-16 mx-auto mb-4 text-slate-300" />

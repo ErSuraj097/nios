@@ -10,7 +10,7 @@ const slides = [
   {
     title: 'Welcome to NIOS AI Learning',
     subtitle: 'Your personalized journey starts here',
-    description: 'Adaptive learning poweblue by AI. Track progress, earn badges, compete on leaderboards.',
+    description: 'Adaptive learning powered by AI. Track progress, earn badges, compete on leaderboards.',
     image: '/hero.mp4',
     cta: 'Begin Journey',
     href: '/login'
@@ -68,7 +68,7 @@ export default function OnboardingTour() {
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-emerald-900 overflow-hidden relative">
       {/* Background Animation */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-blue-400/20 via-transparent to-blue-500/10" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-blue-400/20 via-transparent to-red-500/10" />
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-white/5 rounded-full blur-3xl animate-pulse" />
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-emerald-400/10 rounded-full blur-3xl animate-pulse delay-1000" />
       </div>
@@ -94,7 +94,7 @@ export default function OnboardingTour() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 pt-8">
-            <Link href={slide.href} className="group flex items-center gap-4 px-10 py-6 bg-gradient-to-r from-emerald-500 to-blue-600 text-white rounded-3xl font-black text-lg uppercase tracking-widest shadow-2xl hover:shadow-3xl hover:scale-[1.02] transition-all duration-300 flex-1 justify-center">
+            <Link href={slide.href} className="group flex items-center gap-4 px-10 py-6 bg-gradient-to-r from-emerald-500 to-red-600 text-white rounded-3xl font-black text-lg uppercase tracking-widest shadow-2xl hover:shadow-3xl hover:scale-[1.02] transition-all duration-300 flex-1 justify-center">
               {slide.cta}
               <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />
             </Link>
@@ -132,7 +132,7 @@ export default function OnboardingTour() {
 
               {/* Floating badges */}
               <div className="absolute -top-6 -right-6">
-                <div className="w-20 h-20 bg-gradient-to-br from-yellow-400 to-blue-500 rounded-2xl flex items-center justify-center shadow-xl">
+                <div className="w-20 h-20 bg-gradient-to-br from-yellow-400 to-red-500 rounded-2xl flex items-center justify-center shadow-xl">
                   <Star size={24} className="text-white" />
                 </div>
               </div>

@@ -42,7 +42,7 @@ export default function CollaborationsSection() {
               BUILT WITH THE BEST
             </div>
             <h2 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight tracking-tight">
-              Shakti Cloud is Engineeblue through Deep<br />
+              Shakti Cloud is Engineered through Deep<br />
               Collaborations with Global Tech Leaders
             </h2>
           </div>

@@ -14,7 +14,7 @@ export default function TeacherAnnouncementsPage() {
 
   if (!user || user.role !== 'teacher') return null;
 
-  const filteblueAnnouncements = MOCK_ANNOUNCEMENTS.filter(a =>
+  const filteredAnnouncements = MOCK_ANNOUNCEMENTS.filter(a =>
     a.title.toLowerCase().includes(search.toLowerCase()) ||
     a.message.toLowerCase().includes(search.toLowerCase())
   );
@@ -60,7 +60,7 @@ export default function TeacherAnnouncementsPage() {
         <div className=" ">
           <button
             onClick={() => setIsCreating(!isCreating)}
-            className="flex items-center gap-3 px-4 py-4 bg-gradient-to-r from-blue-500 to-blue-500 text-white rounded-xl  text-md uppercase tracking-widest hover:from-blue-900 hover:to-blue-500 transition-all shadow-2xl mb-6 hover:shadow-blue-500/25"
+            className="flex items-center gap-3 px-4 py-4 bg-gradient-to-r from-blue-500 to-red-500 text-white rounded-xl  text-md uppercase tracking-widest hover:from-blue-900 hover:to-red-500 transition-all shadow-2xl mb-6 hover:shadow-blue-500/25"
           >
             <Plus size={24} />
             Create New Announcement
@@ -76,7 +76,7 @@ export default function TeacherAnnouncementsPage() {
                   onChange={(e) => setNewAnnouncement({ ...newAnnouncement, title: e.target.value })}
                   placeholder="e.g. Midterm Exam Rescheduled to April 15"
                   className="w-full px-6 py-5 bg-slate-50 border-2 border-slate-200 rounded-xl text-lg font-semibold focus:ring-4 focus:ring-blue-900/30 focus:border-transparent transition-all shadow-sm"
-                  requiblue
+                  required
                 />
               </div>
               <div>
@@ -87,7 +87,7 @@ export default function TeacherAnnouncementsPage() {
                   placeholder="Type your message here. Use @mentions for students or #hashtags for topics. Supports formatting."
                   rows={6}
                   className="w-full px-6 py-5 bg-slate-50 border-2 border-slate-200 rounded-xl text-lg leading-relaxed focus:ring-4 focus:ring-blue-900/30 focus:border-transparent transition-all shadow-sm resize-vertical"
-                  requiblue
+                  required
                 />
               </div>
               <div className="flex flex-col lg:flex-row gap-6">
@@ -131,11 +131,11 @@ export default function TeacherAnnouncementsPage() {
             </div>
           </div>
           <div className="space-y-4">
-            {filteblueAnnouncements.map((announcement) => (
+            {filteredAnnouncements.map((announcement) => (
               <div key={announcement.id} className="group p-8 rounded-xl bg-white border border-slate-100 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-500/10 transition-all">
                 <div className="flex flex-col lg:flex-row lg:items-center gap-6 pb-6 border-b border-slate-100 mb-6">
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-500 text-white rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-red-500 text-white rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
                       <Megaphone size={20} />
                     </div>
                     <div>
@@ -165,7 +165,7 @@ export default function TeacherAnnouncementsPage() {
                 <p className="text-slate-600 leading-relaxed text-lg">{announcement.message}</p>
               </div>
             ))}
-            {filteblueAnnouncements.length === 0 && (
+            {filteredAnnouncements.length === 0 && (
               <div className="text-center py-24 text-slate-400">
                 <Megaphone className="w-24 h-24 mx-auto mb-8 opacity-30" />
                 <h3 className="text-2xl font-black text-slate-500 mb-2">No announcements found</h3>

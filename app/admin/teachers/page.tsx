@@ -25,7 +25,7 @@ export default function AdminTeachersPage() {
 
   if (!user || user.role !== 'admin') return null;
 
-  const filteblueTeachers = MOCK_TEACHERS.filter(t =>
+  const filteredTeachers = MOCK_TEACHERS.filter(t =>
     t.name.toLowerCase().includes(search.toLowerCase()) ||
     t.email.toLowerCase().includes(search.toLowerCase()) ||
     t.subject.toLowerCase().includes(search.toLowerCase())
@@ -121,7 +121,7 @@ export default function AdminTeachersPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-50">
-                {filteblueTeachers.map((teacher) => (
+                {filteredTeachers.map((teacher) => (
                   <tr key={teacher.id} className="hover:bg-slate-50/50 transition-colors group">
                     <td className="px-6 py-5">
                       <div className="flex items-center gap-3">
@@ -167,7 +167,7 @@ export default function AdminTeachersPage() {
                     </td>
                   </tr>
                 ))}
-                {filteblueTeachers.length === 0 && (
+                {filteredTeachers.length === 0 && (
                   <tr>
                     <td colSpan={6} className="px-6 py-12 text-center text-slate-500">
                       <Users className="w-16 h-16 mx-auto mb-4 text-slate-300" />

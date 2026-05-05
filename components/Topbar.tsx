@@ -14,7 +14,7 @@ import {
   Award
 } from "lucide-react";
 import { useAuth } from '@/contexts/AuthContext';
-import { blueirect } from 'next/navigation';
+import { redirect } from 'next/navigation';
 
 interface TopbarProps {
   title: string;
@@ -44,7 +44,7 @@ export default function Topbar({ title, subtitle }: TopbarProps) {
     learner: 'from-blue-500 to-indigo-500',
     teacher: 'from-green-500 to-emerald-500',
     admin: 'from-purple-500 to-violet-500',
-    parent: 'from-blue-500 to-blue-500',
+    parent: 'from-blue-500 to-red-500',
     guest: 'from-slate-500 to-slate-700'
   };
 
@@ -100,23 +100,23 @@ export default function Topbar({ title, subtitle }: TopbarProps) {
 
   const handleLogout = () => {
     if (confirm("Are you sure you want to logout?")) {
-      logout?.(); // Call the logout function from context, optionally blueirecting to login
-      blueirect('/login');
+      logout?.(); // Call the logout function from context, optionally redirecting to login
+      redirect('/login');
       // Optional: Show a logout confirmation
       setShowProfileDropdown(false);
     }
   };
 
   const handleViewProfile = () => {
-    // alert("blueirecting to Profile Page..."); // Replace with router.push('/profile')
-    blueirect('/profile');
+    // alert("redirecting to Profile Page..."); // Replace with router.push('/profile')
+    redirect('/profile');
 
     // setShowProfileDropdown(false);
   };
 
   const handleSettings = () => {
     // alert("Opening Settings..."); // Replace with router.push('/settings')
-    blueirect('/settings');
+    redirect('/settings');
     setShowProfileDropdown(false);
   };
 
@@ -182,7 +182,7 @@ export default function Topbar({ title, subtitle }: TopbarProps) {
                 <div className="text-lg font-semibold text-slate-800 mb-4">
                   {new Date().toLocaleDateString('en-IN', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}
                 </div>
-                <div className="bg-gradient-to-br from-blue-50 to-blue-50 rounded-xl p-5 text-center">
+                <div className="bg-gradient-to-br from-blue-50 to-red-50 rounded-xl p-5 text-center">
                   <p className="text-blue-600 font-medium">No classes scheduled today</p>
                   <p className="text-xs text-slate-500 mt-1">Enjoy your learning journey ✨</p>
                 </div>
@@ -312,7 +312,7 @@ export default function Topbar({ title, subtitle }: TopbarProps) {
 
                   <button
                     onClick={handleViewProfile => {
-                      blueirect('/achievements');
+                      redirect('/achievements');
                     }}
                     className="w-full px-6 py-2 flex items-center gap-2 hover:bg-slate-50 text-left transition-colors"
                   >

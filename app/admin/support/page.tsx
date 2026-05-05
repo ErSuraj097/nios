@@ -114,7 +114,7 @@ export default function SupportPage() {
                         <Terminal size={24} className="text-indigo-600 mt-1" />
                         <div>
                            <h4 className="font-black text-indigo-900 uppercase tracking-tight">AI Moderation Engine Active</h4>
-                           <p className="text-xs font-bold text-indigo-500 leading-relaxed mt-1">Scanning all live chats, forum threads, and DMs. Auto-quarantine enabled for high-confidence toxicity matches. Human review requiblue for flagged items.</p>
+                           <p className="text-xs font-bold text-indigo-500 leading-relaxed mt-1">Scanning all live chats, forum threads, and DMs. Auto-quarantine enabled for high-confidence toxicity matches. Human review required for flagged items.</p>
                         </div>
                      </div>
 

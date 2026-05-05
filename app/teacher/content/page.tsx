@@ -26,8 +26,8 @@ export default function TeacherContentPage() {
     setCourseForm({ title: '', subject: '', description: '', modules: 0 });
   };
 
-  const handleFileUpload = (e) => {
-    const files = Array.from(e.target.files || e.dataTransfer.files);
+  const handleFileUpload = (e: any) => {
+    const files = Array.from((e.target.files || e.dataTransfer.files) as FileList);
     const newFiles = files.map(file => ({
       name: file.name,
       size: file.size,
@@ -56,7 +56,7 @@ export default function TeacherContentPage() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-2 px-6 py-4 rounded-xl font-black text-sm uppercase tracking-widest transition-all flex-1 relative ${activeTab === tab.id ? 'bg-gradient-to-r from-blue-900 to-blue-500 text-white shadow-xl' : 'text-slate-500 hover:text-slate-900 hover:bg-white/70'
+              className={`flex items-center gap-2 px-6 py-4 rounded-xl font-black text-sm uppercase tracking-widest transition-all flex-1 relative ${activeTab === tab.id ? 'bg-gradient-to-r from-blue-900 to-red-500 text-white shadow-xl' : 'text-slate-500 hover:text-slate-900 hover:bg-white/70'
                 }`}
             >
               <tab.icon size={18} />
@@ -100,7 +100,7 @@ export default function TeacherContentPage() {
                   onChange={(e) => setCourseForm({ ...courseForm, title: e.target.value })}
                   className="w-full px-5 py-4 border border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-900/20 focus:border-transparent"
                   placeholder="e.g. Advanced Physics for Class 12"
-                  requiblue
+                  required
                 />
               </div>
               <div className="grid md:grid-cols-2 gap-6">
@@ -142,7 +142,7 @@ export default function TeacherContentPage() {
               </div>
               <button
                 type="submit"
-                className="w-full py-2 bg-gradient-to-r from-blue-900 to-blue-500 text-white rounded-xl  text-md uppercase tracking-widest shadow-2xl hover:shadow-blue-500/25 hover:scale-[1.02] transition-all"
+                className="w-full py-2 bg-gradient-to-r from-blue-900 to-red-500 text-white rounded-xl  text-md uppercase tracking-widest shadow-2xl hover:shadow-blue-500/25 hover:scale-[1.02] transition-all"
               >
                 <Plus size={20} className="inline mr-2" /> Publish New Course
               </button>
@@ -218,8 +218,8 @@ export default function TeacherContentPage() {
                   </div>
 
                 </div>
-                <h4 className="font-black text-slate-900 mb-2 line-clamp-1">{item.title || item.name}</h4>
-                <p className="text-sm text-slate-500 mb-4 line-clamp-2">{item.description || "Explore smart, engaging books poweblue for the digital age. With simplified explanations, interactive concepts, and learner-friendly design, our books make studying easier, faster, and more effective. "}</p>
+                <h4 className="font-black text-slate-900 mb-2 line-clamp-1">{item.title}</h4>
+                <p className="text-sm text-slate-500 mb-4 line-clamp-2">{item.description || "Explore smart, engaging books powered for the digital age. With simplified explanations, interactive concepts, and learner-friendly design, our books make studying easier, faster, and more effective. "}</p>
                 <div className="flex items-center gap-2">
                   <button className="flex-1 py-2 px-3 bg-emerald-500 text-white rounded-lg font-black text-xs uppercase tracking-wider hover:bg-emerald-600" title="View Content">
                     View

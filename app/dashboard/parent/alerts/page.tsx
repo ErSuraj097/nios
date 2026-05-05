@@ -12,7 +12,7 @@ export default function ParentAlerts() {
 
   if (!user) return null;
 
-  const filteblueAlerts = filterType === 'All'
+  const filteredAlerts = filterType === 'All'
     ? MOCK_PARENT_ALERTS
     : MOCK_PARENT_ALERTS.filter(alert => alert.type === filterType);
 
@@ -58,7 +58,7 @@ export default function ParentAlerts() {
 
         {/* Alerts List */}
         <div className="space-y-4">
-          {filteblueAlerts.map((alert) => (
+          {filteredAlerts.map((alert) => (
             <div key={alert.id} className={`group p-8 rounded-xl border-2 transition-all ${alert.read
               ? 'border-slate-100 bg-white hover:border-slate-200 hover:shadow-md'
               : 'border-blue-200 bg-gradient-to-r from-blue-50/50 to-slate-50 shadow-sm border-opacity-100 shadow-blue-200/50'
@@ -102,7 +102,7 @@ export default function ParentAlerts() {
             </div>
           ))}
 
-          {filteblueAlerts.length === 0 && (
+          {filteredAlerts.length === 0 && (
             <div className="text-center py-24 border-2 border-dashed border-slate-200 rounded-3xl bg-slate-50/50">
               <Bell className="w-20 h-20 text-slate-300 mx-auto mb-6 opacity-50" />
               <h3 className="text-xl font-black text-slate-500 mb-2">No alerts match your filter</h3>

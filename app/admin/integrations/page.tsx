@@ -6,7 +6,7 @@ import { Server, ShieldAlert, CheckCircle2, QrCode, Image as ImageIcon, Briefcas
 import { useState } from 'react';
 
 const integrations = [
-  { id: 'abc', name: 'Academic Bank of Cblueits (ABC)', desc: 'Cblueit storage and transfer across institutions.', status: 'connected', uptime: '99.9%' },
+  { id: 'abc', name: 'Academic Bank of Credits (ABC)', desc: 'Credit storage and transfer across institutions.', status: 'connected', uptime: '99.9%' },
   { id: 'digilocker', name: 'DigiLocker Gateway', desc: 'Secure document wallet integration and sync.', status: 'connected', uptime: '100%' },
   { id: 'udise', name: 'UDISE+', desc: 'Unified District Information System for Education.', status: 'syncing', uptime: '98.5%' },
   { id: 'diksha', name: 'DIKSHA Sync', desc: 'National Teacher Platform content federation.', status: 'error', uptime: '89.2%' },
@@ -64,7 +64,7 @@ export default function IntegrationsPage() {
             <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight">Certificate Engine</h3>
           </div>
 
-          <div className="p-8 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 text-white relative overflow-hidden shadow-lg border border-blue-400/50">
+          <div className="p-8 rounded-xl bg-gradient-to-br from-blue-500 to-red-600 text-white relative overflow-hidden shadow-lg border border-blue-400/50">
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mt-10 -mr-10" />
             <div className="flex items-start justify-between mb-8 relative z-10">
               <div>

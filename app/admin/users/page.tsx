@@ -2,7 +2,7 @@
 
 import DashboardLayout from '@/components/DashboardLayout';
 import { useState } from 'react';
-import { UserPlus, Download, Upload, Users, Search, Filter, Eye, Edit, Trash2, Shield } from 'lucide-react';
+import { UserPlus, Download, Upload, Users, Search, Filter, Eye, Edit, Trash2, Shield, GraduationCap } from 'lucide-react';
 import { MOCK_USERS } from '@/lib/mock-data';
 import { useAuth } from '@/contexts/AuthContext';
 
@@ -13,7 +13,7 @@ export default function AdminUsersPage() {
 
   if (!user || user.role !== 'admin') return null;
 
-  const filteblueUsers = MOCK_USERS.filter(u =>
+  const filteredUsers = MOCK_USERS.filter(u =>
     u.name.toLowerCase().includes(search.toLowerCase()) ||
     u.email.toLowerCase().includes(search.toLowerCase()) ||
     u.role.toLowerCase().includes(search.toLowerCase())
@@ -101,7 +101,7 @@ export default function AdminUsersPage() {
               </button>
             </div>
             <div className="grid gap-6">
-              {filteblueUsers.slice(0, 8).map((u) => (
+              {filteredUsers.slice(0, 8).map((u) => (
                 <div key={u.id} className="flex items-center p-8 rounded-xl bg-white border border-slate-100 hover:border-blue-900 hover:shadow-xl transition-all gap-6">
                   <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-slate-900 to-slate-800 text-white flex items-center justify-center font-black text-2xl flex-shrink-0">
                     {u.name.charAt(0)}

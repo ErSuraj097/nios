@@ -1,11 +1,9 @@
-# Course Stages Implementation TODO
+# Task: Fix TypeScript error in app/assessments/page.tsx (useRef<NodeJS.Timeout> missing initial value)
 
-## Steps from Approved Plan
+## Plan Steps
+- [x] **Step 1**: Confirm understanding of file/error via read_file ✅
+- [x] **Step 2**: Search project for similar patterns via search_files ✅  
+- [x] **Step 3**: Create detailed edit plan and get user approval ✅
+- [x] **Step 4**: Apply precise edit_file replacement to fix useRef declaration ✅\n- [ ] **Step 5**: Verify fix (suggest npm run build)\n- [ ] **Step 6**: Complete task via attempt_completion
 
-- [x] **Step 1**: Enhance `lib/mock-data.ts` with detailed MOCK_COURSES modules, stages, reports
-- [x] **Step 2**: Create `app/courses/[id]/page.tsx` with stage stepper UI (errors fixed)
-- [x] **Step 3**: Update `app/courses/page.tsx` for consistent progress display using overallProgress, currentStage badge, modules.length
-- [x] **Step 4**: Test navigation and functionality
-- [ ] **Step 5**: Complete
-
-**Current Progress**: All core implementation complete. Task ready.
+**Next Action**: Apply edit to app/assessments/page.tsx

@@ -414,7 +414,7 @@ export default function CommitteesPage() {
         </section>
 
         {/* ── Governance Note ── */}
-        <section className="rounded-2xl bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-white p-10 lg:p-14 relative overflow-hidden">
+        <section className="rounded-2xl bg-gradient-to-br from-blue-900 via-blue-800 to-red-700 text-white p-10 lg:p-14 relative overflow-hidden">
           <div className="absolute -bottom-10 -right-10 w-60 h-60 rounded-full bg-white/5" />
           <div className="relative z-10 grid lg:grid-cols-2 gap-10 items-center">
             <div className="space-y-4">

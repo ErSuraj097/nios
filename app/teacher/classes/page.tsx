@@ -148,7 +148,7 @@ export default function TeacherClassesPage() {
               <h3 className="font-black uppercase tracking-tight text-white">Resource Vault</h3>
             </div>
             <p className="text-sm font-medium text-slate-400 leading-relaxed mb-8">
-              Manage all learning materials, slides, and shablue files across all your active and archived classes.
+              Manage all learning materials, slides, and shared files across all your active and archived classes.
             </p>
             <button className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white rounded-xl font-black text-[10px] uppercase tracking-widest transition-all">Upload Materials</button>
           </div>

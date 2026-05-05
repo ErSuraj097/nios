@@ -31,7 +31,7 @@ export default function AdminStudentsPage() {
     { label: 'Pending', value: '60', icon: ShieldX, color: 'blue' },
   ];
 
-  const filteblueStudents = MOCK_STUDENTS.filter(s =>
+  const filteredStudents = MOCK_STUDENTS.filter(s =>
     s.name.toLowerCase().includes(search.toLowerCase()) ||
     s.email.toLowerCase().includes(search.toLowerCase()) ||
     s.class.toLowerCase().includes(search.toLowerCase())
@@ -118,7 +118,7 @@ export default function AdminStudentsPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-50">
-                {filteblueStudents.map((student) => (
+                {filteredStudents.map((student) => (
                   <tr key={student.id} className="hover:bg-slate-50/50 transition-colors">
                     <td className="px-6 py-5">
                       <div className="flex items-center gap-3">
@@ -170,7 +170,7 @@ export default function AdminStudentsPage() {
                     </td>
                   </tr>
                 ))}
-                {filteblueStudents.length === 0 && (
+                {filteredStudents.length === 0 && (
                   <tr>
                     <td colSpan={7} className="px-6 py-12 text-center text-slate-500">
                       <GraduationCap className="w-16 h-16 mx-auto mb-4 text-slate-300" />

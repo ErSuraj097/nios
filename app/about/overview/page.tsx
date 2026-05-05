@@ -220,7 +220,7 @@ export default function AboutPage() {
                {/* Right: key facts panel */}
                <div className="space-y-5">
                   {/* Main info card */}
-                  <div className="p-8 rounded-2xl bg-gradient-to-br from-blue-950 to-blue-800 text-white shadow-xl relative overflow-hidden">
+                  <div className="p-8 rounded-2xl bg-gradient-to-br from-blue-950 to-red-800 text-white shadow-xl relative overflow-hidden">
                      <div className="absolute inset-0 opacity-10"
                         style={{ backgroundImage: 'radial-gradient(circle at 20% 80%, #3b82f6 0%, transparent 50%), radial-gradient(circle at 80% 20%, #1e3a5f 0%, transparent 50%)' }} />
                      <div className="relative z-10 space-y-6">
@@ -475,7 +475,7 @@ export default function AboutPage() {
 
                <div className="space-y-6">
                   {/* Innovation */}
-                  <div className="p-10 rounded-2xl bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-white shadow-xl relative overflow-hidden">
+                  <div className="p-10 rounded-2xl bg-gradient-to-br from-blue-900 via-blue-800 to-red-700 text-white shadow-xl relative overflow-hidden">
                      <div className="absolute -top-6 -right-6 w-32 h-32 bg-white/5 rounded-full" />
                      <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black/20 to-transparent" />
                      <div className="relative z-10 space-y-5">

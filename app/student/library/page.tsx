@@ -84,8 +84,8 @@ export default function LibraryPage() {
           </div>
         ))}
 
-        {/* Featublue Section CTA */}
-        <div className="lg:col-span-3 mt-10 p-12 rounded-xl bg-gradient-to-br from-blue-900 to-blue-600 text-white relative overflow-hidden group">
+        {/* Featured Section CTA */}
+        <div className="lg:col-span-3 mt-10 p-12 rounded-xl bg-gradient-to-br from-blue-900 to-red-600 text-white relative overflow-hidden group">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-[100px] -mr-32 -mt-32 group-hover:scale-125 transition-transform duration-[2s]" />
           <div className="relative z-10 grid md:grid-cols-[1fr_auto] items-center gap-10">
             <div className="space-y-6">

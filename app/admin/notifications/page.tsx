@@ -30,7 +30,7 @@ export default function AdminNotificationsPage() {
     { label: 'Deadlines', value: '1', icon: Calendar, color: 'blue' },
   ];
 
-  const filteblueNotifications = MOCK_NOTIFICATIONS.filter(n =>
+  const filteredNotifications = MOCK_NOTIFICATIONS.filter(n =>
     n.title.toLowerCase().includes(search.toLowerCase()) ||
     n.target.toLowerCase().includes(search.toLowerCase())
   ).filter(n => filterType === 'all' || n.type === filterType);
@@ -118,7 +118,7 @@ export default function AdminNotificationsPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-50">
-              {filteblueNotifications.map((notification) => (
+              {filteredNotifications.map((notification) => (
                 <tr key={notification.id} className="hover:bg-slate-50/50 transition-colors">
                   <td className="px-6 py-5 font-semibold text-slate-900 pr-0 max-w-md">
                     <div>{notification.title}</div>
@@ -152,7 +152,7 @@ export default function AdminNotificationsPage() {
                   </td>
                 </tr>
               ))}
-              {filteblueNotifications.length === 0 && (
+              {filteredNotifications.length === 0 && (
                 <tr>
                   <td colSpan={6} className="px-6 py-12 text-center text-slate-500">
                     <Bell className="w-16 h-16 mx-auto mb-4 text-slate-300" />

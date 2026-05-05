@@ -21,14 +21,14 @@ export default function AudioGalleryPage() {
       <OfficialNav />
 
       {/* Hero */}
-      <section className="min-h-[60vh] bg-gradient-to-br from-gray-900 via-slate-900 to-blue-950 text-white py-24 relative overflow-hidden">
+      <section className="min-h-[60vh] bg-gradient-to-br from-gray-900 via-slate-900 to-red-950 text-white py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_50%_at_50%_-10%,rgba(59,130,246,0.1),transparent)]" />
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full mb-8 mx-auto w-fit">
             <Headphones className="w-6 h-6" />
             <span className="font-black uppercase tracking-wider">Audio Gallery</span>
           </div>
-          <h1 className="text-5xl md:text-7xl font-black mb-6 bg-gradient-to-r from-white via-slate-100 to-blue-100 bg-clip-text text-transparent drop-shadow-2xl">
+          <h1 className="text-5xl md:text-7xl font-black mb-6 bg-gradient-to-r from-white via-slate-100 to-red-100 bg-clip-text text-transparent drop-shadow-2xl">
             Audio Lessons
           </h1>
           <p className="text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto mb-12 leading-relaxed">

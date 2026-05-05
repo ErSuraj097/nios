@@ -69,7 +69,7 @@ export default function StudentDashboardPage() {
               <h3 className="text-3xl font-black text-slate-900 mb-6">Ready to Start?</h3>
               <p className="text-lg text-slate-600 mb-8">Access your personalized dashboard with enrollment number</p>
             </div>
-            <div className="bg-gradient-to-r from-slate-900 to-blue-900 text-white p-12 rounded-3xl shadow-2xl max-w-2xl mx-auto">
+            <div className="bg-gradient-to-r from-slate-900 to-red-900 text-white p-12 rounded-3xl shadow-2xl max-w-2xl mx-auto">
               <div className="text-4xl font-black mb-4">ENR-2025-XXXXXX</div>
               <p className="text-lg mb-8 opacity-90">Your Enrollment Number</p>
               <button className="w-full bg-white text-slate-900 font-black py-5 px-10 rounded-2xl text-xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all uppercase tracking-wider">
