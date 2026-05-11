@@ -35,8 +35,13 @@ export default function TeacherReportsPage() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((stat, i) => (
             <div key={i} className="group p-8 rounded-xl bg-gradient-to-br from-white to-slate-50 border border-slate-100 shadow-lg hover:shadow-2xl hover:shadow-slate-200/50 transition-all overflow-hidden relative">
+<<<<<<< HEAD
               <div className="absolute inset-0 bg-gradient-to-br from-orange-500 to-amber-500 opacity-[0.03] group-hover:opacity-5 transition-opacity" />
               {/* <div className="w-16 h-16 bg-gradient-to-br from-orange-400 to-red-600 text-white rounded-xl flex items-center justify-center mb-6 shadow-xl group-hover:scale-110 transition-transform mx-auto">
+=======
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-red-500 opacity-[0.03] group-hover:opacity-5 transition-opacity" />
+              {/* <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-red-600 text-white rounded-xl flex items-center justify-center mb-6 shadow-xl group-hover:scale-110 transition-transform mx-auto">
+>>>>>>> main
                 <stat.icon size={24} />
               </div> */}
               <div className="text-3xl font-black text-slate-900 mb-2 text-center">{stat.value}</div>
@@ -61,7 +66,11 @@ export default function TeacherReportsPage() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search reports..."
+<<<<<<< HEAD
                 className="pl-12 pr-6 py-4 bg-white rounded-xl border border-slate-200 shadow-sm focus:ring-4 focus:ring-brand-orange/20 w-80"
+=======
+                className="pl-12 pr-6 py-4 bg-white rounded-xl border border-slate-200 shadow-sm focus:ring-4 focus:ring-blue-900/20 w-80"
+>>>>>>> main
               />
             </div>
             <div className="flex gap-2 bg-white/50 p-2 rounded-xl border border-slate-100/50">
@@ -69,24 +78,38 @@ export default function TeacherReportsPage() {
                 <button
                   key={type}
                   onClick={() => setFilter(type)}
+<<<<<<< HEAD
                   className={`px-6 py-3 rounded-xl text-sm font-black uppercase tracking-widest transition-all ${
                     filter === type
                       ? 'bg-brand-orange text-white shadow-lg shadow-orange-500/25'
                       : 'text-slate-500 hover:text-slate-900 hover:bg-white'
                   }`}
+=======
+                  className={`px-6 py-3 rounded-xl text-sm font-black uppercase tracking-widest transition-all ${filter === type
+                    ? 'bg-blue-900 text-white shadow-lg shadow-blue-500/25'
+                    : 'text-slate-500 hover:text-slate-900 hover:bg-white'
+                    }`}
+>>>>>>> main
                 >
                   {type}
                 </button>
               ))}
+<<<<<<< HEAD
               
             </div>
             
+=======
+
+            </div>
+
+>>>>>>> main
           </div>
         </div>
 
         {/* Reports Grid */}
         <div className="grid gap-8">
           {filteredReports.map((report) => (
+<<<<<<< HEAD
             <div key={report.id} className="group p-10 rounded-xl bg-white border-2 border-slate-100 hover:border-brand-orange hover:shadow-2xl hover:shadow-orange-500/10 transition-all overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-brand-orange/3 via-transparent to-emerald-500/3" />
               <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center gap-8">
@@ -96,6 +119,17 @@ export default function TeacherReportsPage() {
                   </div>
                   <div>
                     <span className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-100 to-red-100 text-orange-800 rounded-xl text-sm font-black uppercase tracking-wider shadow-md">
+=======
+            <div key={report.id} className="group p-10 rounded-xl bg-white border-2 border-slate-100 hover:border-blue-900 hover:shadow-2xl hover:shadow-blue-500/10 transition-all overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-900/3 via-transparent to-emerald-500/3" />
+              <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center gap-8">
+                <div className="flex items-center gap-4 flex-shrink-0">
+                  <div className="w-14 h-14 bg-gradient-to-br from-blue-400 to-red-400 text-white rounded-xl flex items-center justify-center shadow-2xl group-hover:scale-110 transition-all">
+                    <FileText size={28} />
+                  </div>
+                  <div>
+                    <span className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-100 to-red-100 text-blue-800 rounded-xl text-sm font-black uppercase tracking-wider shadow-md">
+>>>>>>> main
                       <ShieldCheck size={14} />
                       {report.type}
                     </span>
@@ -103,7 +137,11 @@ export default function TeacherReportsPage() {
                 </div>
 
                 <div className="flex-1 min-w-0">
+<<<<<<< HEAD
                   <h4 className="text-xl font-black text-slate-900 group-hover:text-brand-orange transition-all mb-4 leading-tight">{report.title}</h4>
+=======
+                  <h4 className="text-xl font-black text-slate-900 group-hover:text-blue-900 transition-all mb-4 leading-tight">{report.title}</h4>
+>>>>>>> main
                   <div className="flex flex-wrap items-center gap-6 text-sm text-slate-500">
                     <div className="flex items-center gap-2">
                       <Calendar size={16} />
@@ -121,14 +159,22 @@ export default function TeacherReportsPage() {
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4 pt-6 lg:pt-0 lg:pl-12 lg:border-l-4 lg:border-l-slate-100">
+<<<<<<< HEAD
                   <button className="flex items-center gap-3 px-8 py-5 bg-orange-400 text-white rounded-xl font-black uppercase tracking-widest text-sm hover:bg-brand-orange shadow-2xl hover:shadow-orange-500/25 transition-all whitespace-nowrap">
+=======
+                  <button className="flex items-center gap-3 px-8 py-5 bg-blue-400 text-white rounded-xl font-black uppercase tracking-widest text-sm hover:bg-blue-900 shadow-2xl hover:shadow-blue-500/25 transition-all whitespace-nowrap">
+>>>>>>> main
                     <Download size={18} />
                     Download PDF
                   </button>
                   <button className="p-4 text-slate-400 hover:text-slate-900 hover:bg-slate-50 rounded-xl shadow-lg transition-all hover:shadow-xl">
                     <BarChart3 size={20} />
                   </button>
+<<<<<<< HEAD
                   <button className="p-4 text-slate-400 hover:text-orange-500 hover:bg-orange-50 rounded-xl shadow-lg transition-all hover:shadow-xl">
+=======
+                  <button className="p-4 text-slate-400 hover:text-blue-500 hover:bg-blue-50 rounded-xl shadow-lg transition-all hover:shadow-xl">
+>>>>>>> main
                     <Users size={20} />
                   </button>
                 </div>
@@ -141,7 +187,11 @@ export default function TeacherReportsPage() {
               <FileText className="w-32 h-32 text-slate-300 mx-auto mb-8" />
               <h3 className="text-3xl font-black text-slate-500 mb-4">No reports match your criteria</h3>
               <p className="text-xl text-slate-400 mb-8 max-w-2xl mx-auto leading-relaxed">Try adjusting your search or filters, or generate a new custom report for your class.</p>
+<<<<<<< HEAD
               <button className="px-16 py-8 bg-gradient-to-r from-brand-orange to-orange-500 text-white rounded-xl font-black text-xl uppercase tracking-widest hover:shadow-2xl hover:shadow-orange-500/25 transition-all shadow-xl">
+=======
+              <button className="px-16 py-8 bg-gradient-to-r from-blue-900 to-red-500 text-white rounded-xl font-black text-xl uppercase tracking-widest hover:shadow-2xl hover:shadow-blue-500/25 transition-all shadow-xl">
+>>>>>>> main
                 Generate First Report
               </button>
             </div>

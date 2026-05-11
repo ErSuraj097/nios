@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import DashboardLayout from '@/components/DashboardLayout';
+<<<<<<< HEAD
 import { 
   BarChart3, 
   Download, 
@@ -13,6 +14,19 @@ import {
   TrendingUp, 
   Users, 
   BookOpen, 
+=======
+import {
+  BarChart3,
+  Download,
+  Search,
+  Filter,
+  Calendar,
+  FileText,
+  PieChart,
+  TrendingUp,
+  Users,
+  BookOpen,
+>>>>>>> main
   Activity,
   MoreVertical,
   ChevronRight,
@@ -31,6 +45,7 @@ const reportTabs = [
 ];
 
 const reports = [
+<<<<<<< HEAD
   { 
     id: 'R001', 
     title: 'Monthly Enrollment Report', 
@@ -62,6 +77,39 @@ const reports = [
     date: '2026-03-20', 
     size: '1.2 MB', 
     format: 'PDF' 
+=======
+  {
+    id: 'R001',
+    title: 'Monthly Enrollment Report',
+    category: 'Admissions',
+    date: '2026-03-31',
+    size: '2.4 MB',
+    format: 'PDF'
+  },
+  {
+    id: 'R002',
+    title: 'Course Completion Analytics',
+    category: 'Academic',
+    date: '2026-03-28',
+    size: '5.8 MB',
+    format: 'XLSX'
+  },
+  {
+    id: 'R003',
+    title: 'Platform Security Audit Log',
+    category: 'Security',
+    date: '2026-03-25',
+    size: '12.1 MB',
+    format: 'CSV'
+  },
+  {
+    id: 'R004',
+    title: 'Teacher Engagement Metrics',
+    category: 'Faculty',
+    date: '2026-03-20',
+    size: '1.2 MB',
+    format: 'PDF'
+>>>>>>> main
   },
 ];
 
@@ -72,6 +120,7 @@ export default function AdminReportsPage() {
   if (!user) return null;
 
   return (
+<<<<<<< HEAD
     <DashboardLayout 
       title="System Intelligence & Reports" 
       subtitle="Comprehensive platform analytics, audit exports, and regulatory compliance logs"
@@ -88,18 +137,44 @@ export default function AdminReportsPage() {
                 <TrendingUp size={32} />
               </div>
               
+=======
+    <DashboardLayout
+      title="System Intelligence & Reports"
+      subtitle="Comprehensive platform analytics, audit exports, and regulatory compliance logs"
+    >
+      <div className="space-y-10 animate-fade-in pb-20">
+
+        {/* Analytics Headline Cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-2 p-12 rounded-2xl bg-white border border-slate-100 shadow-sm relative overflow-hidden group">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-blue-50 rounded-full blur-3xl group-hover:scale-150 transition-all duration-1000" />
+
+            <div className="flex flex-col md:flex-row items-center gap-10">
+              <div className="w-20 h-20 rounded-2xl bg-blue-50 text-blue-500 flex items-center justify-center shrink-0 shadow-sm">
+                <TrendingUp size={32} />
+              </div>
+
+>>>>>>> main
               <div className="text-center md:text-left">
                 <h3 className="text-2xl font-black text-slate-900 mb-2 uppercase tracking-tight">
                   SDG 4 & NEP 2020 Alignment
                 </h3>
                 <p className="text-slate-500 font-medium leading-relaxed max-w-md">
+<<<<<<< HEAD
                   Platform analytics show <span className="text-orange-500 font-bold">18.5% YoY closer alignment</span> 
+=======
+                  Platform analytics show <span className="text-blue-500 font-bold">18.5% YoY closer alignment</span>
+>>>>>>> main
                   with NCF standards. Regional analytics indicate peak equity growth.
                 </p>
               </div>
 
               <div className="flex-1" />
+<<<<<<< HEAD
               
+=======
+
+>>>>>>> main
               <button className="px-8 py-5 bg-slate-900 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-black transition-all shadow-xl z-10">
                 View Policy Scorecard
               </button>
@@ -107,6 +182,7 @@ export default function AdminReportsPage() {
           </div>
 
           <div className="p-10 rounded-2xl bg-slate-900 text-white flex flex-col justify-between group relative overflow-hidden">
+<<<<<<< HEAD
             <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/10 rounded-full blur-3xl group-hover:scale-150 transition-all duration-1000" />
             
             <div className="flex items-center justify-between mb-8">
@@ -118,6 +194,19 @@ export default function AdminReportsPage() {
               </div>
             </div>
             
+=======
+            <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl group-hover:scale-150 transition-all duration-1000" />
+
+            <div className="flex items-center justify-between mb-8">
+              <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-blue-400 shadow-inner">
+                <ShieldCheck size={20} />
+              </div>
+              <div className="text-[10px] font-black text-blue-400 uppercase tracking-widest px-3 py-1 bg-blue-500/10 rounded-full">
+                Compliance Active
+              </div>
+            </div>
+
+>>>>>>> main
             <div className="space-y-4">
               <div className="text-sm font-black text-white uppercase tracking-widest">Regulatory Export</div>
               <p className="text-[10px] font-medium text-slate-400 uppercase tracking-widest leading-relaxed">
@@ -133,11 +222,18 @@ export default function AdminReportsPage() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
+<<<<<<< HEAD
               className={`flex-1 px-6 py-4 rounded-xl font-black uppercase tracking-widest text-xs transition-all ${
                 activeTab === tab.id 
                   ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-lg' 
                   : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
               }`}
+=======
+              className={`flex-1 px-6 py-4 rounded-xl font-black uppercase tracking-widest text-xs transition-all ${activeTab === tab.id
+                ? 'bg-gradient-to-r from-blue-500 to-red-500 text-white shadow-lg'
+                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                }`}
+>>>>>>> main
             >
               {tab.label}
               <span className="ml-2 text-[10px] opacity-75">({tab.count})</span>
@@ -152,7 +248,11 @@ export default function AdminReportsPage() {
               <h4 className="text-lg font-black text-slate-900 mb-4">Learner Analytics</h4>
               <div className="space-y-4 text-sm">
                 <div>Active Learners: <span className="font-bold">2,684</span> <span className="text-emerald-600 font-bold">+12%</span></div>
+<<<<<<< HEAD
                 <div>Completion Rate: <span className="font-bold">78%</span> <span className="text-amber-600 font-bold">▼2%</span></div>
+=======
+                <div>Completion Rate: <span className="font-bold">78%</span> <span className="text-blue-600 font-bold">▼2%</span></div>
+>>>>>>> main
                 <div>Engagement Score: <span className="font-bold">4.2/5</span></div>
               </div>
               <button className="mt-8 w-full py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-black uppercase text-xs tracking-wider transition-all">
@@ -184,7 +284,11 @@ export default function AdminReportsPage() {
           <div className="grid gap-6">
             <div className="p-8 rounded-2xl bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-100">
               <h4 className="text-lg font-black text-slate-900 mb-6">Revenue Dashboard</h4>
+<<<<<<< HEAD
               
+=======
+
+>>>>>>> main
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
                 {MOCK_REVENUE.slice(0, 2).map((r) => (
                   <div key={r.id} className="p-6 rounded-2xl bg-white border shadow-sm">
@@ -192,7 +296,11 @@ export default function AdminReportsPage() {
                       ₹{r.amount.toLocaleString('en-IN')}
                     </div>
                     <div className="text-sm text-slate-500 mt-1">{r.period}</div>
+<<<<<<< HEAD
                     <div className={`text-sm font-bold mt-2 ${r.growth > 0 ? 'text-emerald-600' : 'text-red-600'}`}>
+=======
+                    <div className={`text-sm font-bold mt-2 ${r.growth > 0 ? 'text-emerald-600' : 'text-blue-600'}`}>
+>>>>>>> main
                       {r.growth > 0 ? '↑' : ''}{r.growth}% from last month
                     </div>
                   </div>
@@ -208,14 +316,22 @@ export default function AdminReportsPage() {
 
         {activeTab === 'content' && (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+<<<<<<< HEAD
             <div className="p-8 rounded-2xl bg-gradient-to-br from-orange-50 to-red-50 border border-orange-100">
+=======
+            <div className="p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-red-50 border border-blue-100">
+>>>>>>> main
               <h4 className="text-lg font-black text-slate-900 mb-4">Content Performance</h4>
               <div className="space-y-4 text-sm">
                 <div>Published Modules: <span className="font-bold">642</span></div>
                 <div>Average Rating: <span className="font-bold">4.7/5</span></div>
                 <div>Completion Rate: <span className="font-bold">76%</span></div>
               </div>
+<<<<<<< HEAD
               <button className="mt-8 w-full py-3.5 bg-orange-600 hover:bg-orange-700 text-white rounded-2xl font-black uppercase text-xs tracking-wider transition-all">
+=======
+              <button className="mt-8 w-full py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-black uppercase text-xs tracking-wider transition-all">
+>>>>>>> main
                 View Content Analytics
               </button>
             </div>
@@ -227,6 +343,7 @@ export default function AdminReportsPage() {
         <div className="space-y-8">
           <div className="flex flex-col md:flex-row gap-6 items-center justify-between px-2">
             <h3 className="text-2xl font-black text-slate-900 tracking-tight">Exportable Datasets</h3>
+<<<<<<< HEAD
             
             <div className="flex gap-3">
               <div className="relative">
@@ -234,6 +351,15 @@ export default function AdminReportsPage() {
                 <input 
                   className="pl-11 pr-4 py-3 bg-white border border-slate-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-orange-200 w-72" 
                   placeholder="Search reports..." 
+=======
+
+            <div className="flex gap-3">
+              <div className="relative">
+                <Search className="w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+                <input
+                  className="pl-11 pr-4 py-3 bg-white border border-slate-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-200 w-72"
+                  placeholder="Search reports..."
+>>>>>>> main
                 />
               </div>
               <button className="p-3 bg-white border border-slate-200 rounded-2xl hover:bg-slate-50 transition-all">
@@ -244,9 +370,15 @@ export default function AdminReportsPage() {
 
           <div className="space-y-4">
             {reports.map((r) => (
+<<<<<<< HEAD
               <div 
                 key={r.id} 
                 className="group p-8 rounded-2xl bg-white border border-slate-100 hover:border-orange-200 hover:shadow-xl transition-all flex flex-col lg:flex-row items-center gap-8"
+=======
+              <div
+                key={r.id}
+                className="group p-8 rounded-2xl bg-white border border-slate-100 hover:border-blue-200 hover:shadow-xl transition-all flex flex-col lg:flex-row items-center gap-8"
+>>>>>>> main
               >
                 <div className="w-16 h-16 rounded-2xl bg-slate-100 text-slate-400 flex items-center justify-center group-hover:bg-slate-900 group-hover:text-white transition-all">
                   <FileText size={28} />
@@ -256,7 +388,11 @@ export default function AdminReportsPage() {
                   <div className="text-xs font-black text-slate-400 uppercase tracking-widest mb-1">
                     {r.category} • {r.format}
                   </div>
+<<<<<<< HEAD
                   <h4 className="text-lg font-black text-slate-900 group-hover:text-orange-600 transition-colors">
+=======
+                  <h4 className="text-lg font-black text-slate-900 group-hover:text-blue-600 transition-colors">
+>>>>>>> main
                     {r.title}
                   </h4>
                   <div className="flex items-center justify-center lg:justify-start gap-4 text-xs text-slate-500 mt-2">
@@ -266,7 +402,11 @@ export default function AdminReportsPage() {
                 </div>
 
                 <div className="flex items-center gap-3">
+<<<<<<< HEAD
                   <button className="px-8 py-4 bg-slate-900 hover:bg-orange-600 text-white rounded-2xl font-black text-xs uppercase tracking-widest transition-all flex items-center gap-2">
+=======
+                  <button className="px-8 py-4 bg-slate-900 hover:bg-blue-600 text-white rounded-2xl font-black text-xs uppercase tracking-widest transition-all flex items-center gap-2">
+>>>>>>> main
                     Download <Download size={16} />
                   </button>
                   <button className="p-4 bg-slate-100 hover:bg-slate-200 rounded-2xl transition-all">
@@ -280,22 +420,39 @@ export default function AdminReportsPage() {
 
         {/* Geographic Engagement */}
         <div className="p-12 rounded-2xl bg-white border border-slate-100 shadow-sm relative overflow-hidden group">
+<<<<<<< HEAD
           <div className="absolute top-0 right-0 w-96 h-96 bg-orange-50 rounded-full blur-3xl group-hover:scale-150 transition-all duration-1000" />
           
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="flex-1 space-y-6">
               <div className="flex items-center gap-3 text-orange-600">
+=======
+          <div className="absolute top-0 right-0 w-96 h-96 bg-blue-50 rounded-full blur-3xl group-hover:scale-150 transition-all duration-1000" />
+
+          <div className="flex flex-col lg:flex-row items-center gap-12">
+            <div className="flex-1 space-y-6">
+              <div className="flex items-center gap-3 text-blue-600">
+>>>>>>> main
                 <Globe size={28} />
                 <h3 className="text-2xl font-black uppercase tracking-tight">Geographic Engagement</h3>
               </div>
               <p className="text-slate-600 leading-relaxed max-w-2xl">
+<<<<<<< HEAD
                 Visualize the impact of NIOS nationwide. Real-time heatmaps show learner activity, 
+=======
+                Visualize the impact of NIOS nationwide. Real-time heatmaps show learner activity,
+>>>>>>> main
                 resource demand, and regional performance trends.
               </p>
               <div className="flex flex-wrap gap-3">
                 {['Delhi', 'Maharashtra', 'Uttar Pradesh', 'Kerala', 'Karnataka'].map((region) => (
+<<<<<<< HEAD
                   <span 
                     key={region} 
+=======
+                  <span
+                    key={region}
+>>>>>>> main
                     className="px-5 py-2 bg-slate-50 border border-slate-100 rounded-2xl text-xs font-black text-slate-500 uppercase tracking-widest"
                   >
                     {region}

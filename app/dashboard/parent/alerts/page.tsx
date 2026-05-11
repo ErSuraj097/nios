@@ -12,8 +12,13 @@ export default function ParentAlerts() {
 
   if (!user) return null;
 
+<<<<<<< HEAD
   const filteredAlerts = filterType === 'All' 
     ? MOCK_PARENT_ALERTS 
+=======
+  const filteredAlerts = filterType === 'All'
+    ? MOCK_PARENT_ALERTS
+>>>>>>> main
     : MOCK_PARENT_ALERTS.filter(alert => alert.type === filterType);
 
   const markAsRead = (id: string) => {
@@ -22,8 +27,13 @@ export default function ParentAlerts() {
   };
 
   return (
+<<<<<<< HEAD
     <DashboardLayout 
       title="Guardian Alerts" 
+=======
+    <DashboardLayout
+      title="Guardian Alerts"
+>>>>>>> main
       subtitle="Real-time notifications from faculty and administration"
     >
       <div className="space-y-12 pb-20">
@@ -31,7 +41,11 @@ export default function ParentAlerts() {
         <div className="flex flex-col lg:flex-row gap-6 items-start lg:items-center justify-between">
           <div>
             <h1 className="text-3xl font-black text-slate-900 tracking-tight mb-2 flex items-center gap-3">
+<<<<<<< HEAD
               <Bell className="text-orange-500" size={36} />
+=======
+              <Bell className="text-blue-500" size={36} />
+>>>>>>> main
               Alerts & Notifications
             </h1>
             <p className="text-slate-500 font-medium leading-relaxed max-w-2xl">
@@ -39,8 +53,13 @@ export default function ParentAlerts() {
             </p>
           </div>
           <div className="flex gap-3">
+<<<<<<< HEAD
             <select 
               className="px-6 py-4 bg-white border border-slate-100 rounded-xl shadow-sm font-black text-[10px] uppercase tracking-widest text-slate-700 focus:ring-brand-orange focus:border-transparent"
+=======
+            <select
+              className="px-6 py-4 bg-white border border-slate-100 rounded-xl shadow-sm font-black text-[10px] uppercase tracking-widest text-slate-700 focus:ring-blue-900 focus:border-transparent"
+>>>>>>> main
               value={filterType}
               onChange={(e) => setFilterType(e.target.value as any)}
               aria-label="Filter alerts by type"
@@ -59,6 +78,7 @@ export default function ParentAlerts() {
         {/* Alerts List */}
         <div className="space-y-4">
           {filteredAlerts.map((alert) => (
+<<<<<<< HEAD
             <div key={alert.id} className={`group p-8 rounded-xl border-2 transition-all ${
               alert.read 
                 ? 'border-slate-100 bg-white hover:border-slate-200 hover:shadow-md' 
@@ -76,12 +96,29 @@ export default function ParentAlerts() {
                       alert.type === 'Important' ? 'bg-orange-100 text-orange-700 border border-orange-200' :
                       'bg-blue-100 text-blue-700 border border-blue-200'
                     }`}>
+=======
+            <div key={alert.id} className={`group p-8 rounded-xl border-2 transition-all ${alert.read
+              ? 'border-slate-100 bg-white hover:border-slate-200 hover:shadow-md'
+              : 'border-blue-200 bg-gradient-to-r from-blue-50/50 to-slate-50 shadow-sm border-opacity-100 shadow-blue-200/50'
+              }`}>
+              <div className="flex items-start gap-6">
+                <div className={`w-3 h-3 rounded-full mt-2 flex-shrink-0 transition-all ${alert.read ? 'bg-slate-300' : 'bg-blue-500 animate-pulse'
+                  }`} />
+
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${alert.type === 'Urgent' ? 'bg-blue-100 text-blue-700 border border-blue-200' :
+                      alert.type === 'Important' ? 'bg-blue-100 text-blue-700 border border-blue-200' :
+                        'bg-blue-100 text-blue-700 border border-blue-200'
+                      }`}>
+>>>>>>> main
                       {alert.type}
                     </div>
                     <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-auto">
                       {alert.date}
                     </div>
                   </div>
+<<<<<<< HEAD
                   
                   <h3 className="text-lg font-black text-slate-900 mb-2 leading-tight group-hover:text-orange-700 transition-colors">{alert.title}</h3>
                   <p className="text-sm text-slate-600 leading-relaxed mb-6">{alert.message}</p>
@@ -90,6 +127,16 @@ export default function ParentAlerts() {
                     <button 
                       onClick={() => markAsRead(alert.id)}
                       className="text-xs font-black text-slate-500 uppercase tracking-widest hover:text-brand-orange transition-colors flex items-center gap-1"
+=======
+
+                  <h3 className="text-lg font-black text-slate-900 mb-2 leading-tight group-hover:text-blue-700 transition-colors">{alert.title}</h3>
+                  <p className="text-sm text-slate-600 leading-relaxed mb-6">{alert.message}</p>
+
+                  <div className="flex items-center gap-4 pt-4 border-t border-slate-100 opacity-0 group-hover:opacity-100 transition-all">
+                    <button
+                      onClick={() => markAsRead(alert.id)}
+                      className="text-xs font-black text-slate-500 uppercase tracking-widest hover:text-blue-900 transition-colors flex items-center gap-1"
+>>>>>>> main
                     >
                       <CheckCircle2 size={14} /> Mark Read
                     </button>
@@ -97,14 +144,22 @@ export default function ParentAlerts() {
                 </div>
 
                 {!alert.read && (
+<<<<<<< HEAD
                   <div className="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center text-orange-500 flex-shrink-0 ml-4">
+=======
+                  <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center text-blue-500 flex-shrink-0 ml-4">
+>>>>>>> main
                     <AlertCircle size={24} />
                   </div>
                 )}
               </div>
             </div>
           ))}
+<<<<<<< HEAD
           
+=======
+
+>>>>>>> main
           {filteredAlerts.length === 0 && (
             <div className="text-center py-24 border-2 border-dashed border-slate-200 rounded-3xl bg-slate-50/50">
               <Bell className="w-20 h-20 text-slate-300 mx-auto mb-6 opacity-50" />

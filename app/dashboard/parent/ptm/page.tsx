@@ -22,17 +22,30 @@ export default function ParentPTM() {
   };
 
   return (
+<<<<<<< HEAD
     <DashboardLayout 
       title="Parent-Teacher Meetings" 
+=======
+    <DashboardLayout
+      title="Parent-Teacher Meetings"
+>>>>>>> main
       subtitle="Schedule one-on-one discussions with subject teachers"
     >
       <div className="space-y-12 pb-20">
         {/* Hero Section */}
+<<<<<<< HEAD
         <div className="p-12 rounded-xl] bg-gradient-to-br from-orange-50 via-slate-50 to-emerald-50 border border-orange-100/50 shadow-2xl relative overflow-hidden">
           <div className="absolute top-0 right-0 w-80 h-80 bg-orange-500/5 rounded-full blur-3xl" />
           <div className="grid lg:grid-cols-2 gap-12 items-center relative z-10">
             <div>
               <h1 className="text-4xl lg:text-5xl font-black bg-gradient-to-r from-slate-900 via-orange-600 to-emerald-600 bg-clip-text text-transparent tracking-tight mb-6 leading-tight">
+=======
+        <div className="p-12 rounded-xl] bg-gradient-to-br from-blue-50 via-slate-50 to-emerald-50 border border-blue-100/50 shadow-2xl relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl" />
+          <div className="grid lg:grid-cols-2 gap-12 items-center relative z-10">
+            <div>
+              <h1 className="text-4xl lg:text-5xl font-black bg-gradient-to-r from-slate-900 via-blue-600 to-emerald-600 bg-clip-text text-transparent tracking-tight mb-6 leading-tight">
+>>>>>>> main
                 Connect with Teachers
               </h1>
               <p className="text-xl text-slate-600 font-medium leading-relaxed max-w-lg mb-8">
@@ -50,7 +63,11 @@ export default function ParentPTM() {
               </div>
             </div>
             <div className="text-center">
+<<<<<<< HEAD
               <div className="w-32 h-32 bg-gradient-to-br from-orange-400 to-emerald-400 rounded-full flex items-center justify-center text-3xl font-black text-white shadow-2xl mx-auto mb-6">
+=======
+              <div className="w-32 h-32 bg-gradient-to-br from-blue-400 to-emerald-400 rounded-full flex items-center justify-center text-3xl font-black text-white shadow-2xl mx-auto mb-6">
+>>>>>>> main
                 {MOCK_PTM_SCHEDULE.filter(s => s.status === 'Available').length}
               </div>
               <div className="text-2xl font-black text-slate-900 mb-2">Open Slots</div>
@@ -62,6 +79,7 @@ export default function ParentPTM() {
         {/* Available Slots */}
         <div>
           <h2 className="text-2xl font-black text-slate-900 mb-8 flex items-center gap-4">
+<<<<<<< HEAD
             <Calendar className="text-orange-500" size={32} />
             Available Sessions ({MOCK_PTM_SCHEDULE.filter(s => s.status === 'Available').length})
           </h2>
@@ -80,6 +98,24 @@ export default function ParentPTM() {
                   <div className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${
                     slot.status === 'Available' ? 'bg-emerald-100 text-emerald-700 border border-emerald-200' : 'bg-slate-100 text-slate-500'
                   }`}>
+=======
+            <Calendar className="text-blue-500" size={32} />
+            Available Sessions ({MOCK_PTM_SCHEDULE.filter(s => s.status === 'Available').length})
+          </h2>
+
+          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+            {MOCK_PTM_SCHEDULE.map((slot) => (
+              <div key={slot.id} className={`group p-8 rounded-2xl border-2 transition-all overflow-hidden h-full ${slot.status === 'Available'
+                ? 'border-emerald-200 bg-emerald-50/50 hover:border-emerald-400 hover:shadow-2xl hover:shadow-emerald-500/20 cursor-pointer'
+                : 'border-slate-200 bg-slate-50/50 opacity-60'
+                }`}>
+                <div className="flex items-start justify-between mb-6">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-400 to-emerald-400 flex items-center justify-center text-white shadow-lg flex-shrink-0">
+                    <User size={20} />
+                  </div>
+                  <div className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${slot.status === 'Available' ? 'bg-emerald-100 text-emerald-700 border border-emerald-200' : 'bg-slate-100 text-slate-500'
+                    }`}>
+>>>>>>> main
                     {slot.status}
                   </div>
                 </div>
@@ -101,10 +137,17 @@ export default function ParentPTM() {
                 </div>
 
                 {slot.status === 'Available' ? (
+<<<<<<< HEAD
                   <button 
                     onClick={() => applyForMeeting(slot.id)}
                     disabled={selectedSlot === slot.id}
                     className="w-full py-5 px-8 bg-gradient-to-r from-emerald-500 to-blue-500 text-white rounded-2xl font-black text-[12px] uppercase tracking-widest shadow-xl hover:shadow-2xl active:scale-[0.98] transition-all flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed hover:from-emerald-600 hover:to-blue-600"
+=======
+                  <button
+                    onClick={() => applyForMeeting(slot.id)}
+                    disabled={selectedSlot === slot.id}
+                    className="w-full py-5 px-8 bg-gradient-to-r from-emerald-500 to-red-500 text-white rounded-2xl font-black text-[12px] uppercase tracking-widest shadow-xl hover:shadow-2xl active:scale-[0.98] transition-all flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed hover:from-emerald-600 hover:to-red-600"
+>>>>>>> main
                   >
                     {selectedSlot === slot.id ? (
                       <>
@@ -128,9 +171,15 @@ export default function ParentPTM() {
 
         {/* Next Steps */}
         <div className="p-10 rounded-3xl bg-gradient-to-r from-slate-900 to-slate-800 text-white text-center relative overflow-hidden">
+<<<<<<< HEAD
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-orange-500/20 to-transparent" />
           <div className="relative z-10 max-w-2xl mx-auto">
             <MessageCircle className="w-20 h-20 mx-auto mb-8 text-orange-300 opacity-75" />
+=======
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-500/20 to-transparent" />
+          <div className="relative z-10 max-w-2xl mx-auto">
+            <MessageCircle className="w-20 h-20 mx-auto mb-8 text-blue-300 opacity-75" />
+>>>>>>> main
             <h3 className="text-2xl font-black mb-6">What Happens Next?</h3>
             <div className="space-y-4 text-lg font-medium leading-relaxed">
               <p>✅ <strong>Confirmation Email:</strong> Within 24 hours with Zoom/Google Meet link</p>

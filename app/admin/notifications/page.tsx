@@ -2,6 +2,7 @@
 
 import DashboardLayout from '@/components/DashboardLayout';
 import { useState } from 'react';
+<<<<<<< HEAD
 import { 
   Bell, 
   Search, 
@@ -11,6 +12,17 @@ import {
   Trash2, 
   Filter, 
   Download 
+=======
+import {
+  Bell,
+  Search,
+  Calendar,
+  Send,
+  Edit,
+  Trash2,
+  Filter,
+  Download
+>>>>>>> main
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { MOCK_NOTIFICATIONS } from '@/lib/mock-data';
@@ -26,11 +38,19 @@ export default function AdminNotificationsPage() {
   const stats = [
     { label: 'Scheduled', value: '12', icon: Calendar, color: 'blue' },
     { label: 'Reminders', value: '8', icon: Bell, color: 'indigo' },
+<<<<<<< HEAD
     { label: 'Pending Approvals', value: '3', icon: Edit, color: 'amber' },
     { label: 'Deadlines', value: '1', icon: Calendar, color: 'red' },
   ];
 
   const filteredNotifications = MOCK_NOTIFICATIONS.filter(n => 
+=======
+    { label: 'Pending Approvals', value: '3', icon: Edit, color: 'blue' },
+    { label: 'Deadlines', value: '1', icon: Calendar, color: 'blue' },
+  ];
+
+  const filteredNotifications = MOCK_NOTIFICATIONS.filter(n =>
+>>>>>>> main
     n.title.toLowerCase().includes(search.toLowerCase()) ||
     n.target.toLowerCase().includes(search.toLowerCase())
   ).filter(n => filterType === 'all' || n.type === filterType);
@@ -38,8 +58,13 @@ export default function AdminNotificationsPage() {
   const getTypeColor = (type: string) => {
     switch (type) {
       case 'reminder': return 'bg-blue-100 text-blue-700';
+<<<<<<< HEAD
       case 'approval': return 'bg-amber-100 text-amber-700';
       case 'deadline': return 'bg-red-100 text-red-700';
+=======
+      case 'approval': return 'bg-blue-100 text-blue-700';
+      case 'deadline': return 'bg-blue-100 text-blue-700';
+>>>>>>> main
       default: return 'bg-slate-100 text-slate-500';
     }
   };
@@ -62,6 +87,7 @@ export default function AdminNotificationsPage() {
 
         {/* Tabs */}
         <div className="bg-slate-50 p-1 rounded-xl border flex">
+<<<<<<< HEAD
           <button onClick={() => setTab('scheduled')} className={`px-8 py-3 rounded-lg font-black uppercase tracking-widest flex-1 text-xs transition-all ${
             tab === 'scheduled' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-900'
           }`}>
@@ -75,6 +101,18 @@ export default function AdminNotificationsPage() {
           <button onClick={() => setTab('templates')} className={`px-8 py-3 rounded-lg font-black uppercase tracking-widest flex-1 text-xs transition-all ${
             tab === 'templates' ? 'bg-purple-500 text-white shadow-sm' : 'text-slate-500 hover:text-slate-900'
           }`}>
+=======
+          <button onClick={() => setTab('scheduled')} className={`px-8 py-3 rounded-lg font-black uppercase tracking-widest flex-1 text-xs transition-all ${tab === 'scheduled' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-900'
+            }`}>
+            Scheduled (12)
+          </button>
+          <button onClick={() => setTab('history')} className={`px-8 py-3 rounded-lg font-black uppercase tracking-widest flex-1 text-xs transition-all ${tab === 'history' ? 'bg-emerald-500 text-white shadow-sm' : 'text-slate-500 hover:text-slate-900'
+            }`}>
+            Sent History
+          </button>
+          <button onClick={() => setTab('templates')} className={`px-8 py-3 rounded-lg font-black uppercase tracking-widest flex-1 text-xs transition-all ${tab === 'templates' ? 'bg-purple-500 text-white shadow-sm' : 'text-slate-500 hover:text-slate-900'
+            }`}>
+>>>>>>> main
             Templates
           </button>
         </div>
@@ -91,7 +129,11 @@ export default function AdminNotificationsPage() {
               aria-label="Search notifications"
             />
           </div>
+<<<<<<< HEAD
           <select 
+=======
+          <select
+>>>>>>> main
             value={filterType}
             onChange={(e) => setFilterType(e.target.value as any)}
             className="px-4 py-3 bg-white border border-slate-200 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500/20"
@@ -135,9 +177,14 @@ export default function AdminNotificationsPage() {
                   <td className="px-6 py-5 text-sm font-medium text-slate-900">{notification.target}</td>
                   <td className="px-6 py-5 text-sm font-mono text-slate-600">{notification.scheduled}</td>
                   <td className="px-6 py-5 text-right">
+<<<<<<< HEAD
                     <span className={`px-2 py-1 rounded-md text-xs font-bold ${
                       notification.sent ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'
                     }`}>
+=======
+                    <span className={`px-2 py-1 rounded-md text-xs font-bold ${notification.sent ? 'bg-emerald-100 text-emerald-700' : 'bg-blue-100 text-blue-700'
+                      }`}>
+>>>>>>> main
                       {notification.sent ? 'Sent' : 'Pending'}
                     </span>
                   </td>
@@ -150,7 +197,11 @@ export default function AdminNotificationsPage() {
                         <Send size={12} className="inline mr-1" /> Send Now
                       </button>
                     )}
+<<<<<<< HEAD
                     <button className="p-2 hover:bg-red-50 rounded-lg text-red-500 hover:text-red-600 transition-all" title="Delete">
+=======
+                    <button className="p-2 hover:bg-blue-50 rounded-lg text-blue-500 hover:text-blue-600 transition-all" title="Delete">
+>>>>>>> main
                       <Trash2 size={14} />
                     </button>
                   </td>

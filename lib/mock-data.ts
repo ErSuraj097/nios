@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { 
   Users, 
   BookOpen, 
@@ -8,6 +9,18 @@ import {
   Calculator, 
   Globe, 
   Monitor, 
+=======
+import {
+  Users,
+  BookOpen,
+  GraduationCap,
+  Shield,
+  User,
+  Beaker,
+  Calculator,
+  Globe,
+  Monitor,
+>>>>>>> main
   Leaf,
   Clock,
   CheckCircle,
@@ -33,6 +46,11 @@ export interface MockUser {
   role: UserRole;
   avatar?: string;
   email: string;
+<<<<<<< HEAD
+=======
+  motherLang?: string | null;
+  targetLang?: string | null;
+>>>>>>> main
   details: {
     class?: string;
     enrollmentNo?: string;
@@ -179,6 +197,18 @@ export const MOCK_SYSTEM_ANNOUNCEMENTS: MockAnnouncement[] = [
   { id: 'ANN-003', title: 'Global Reminder', message: 'PTM slots opening soon - book now', target: 'students', created: '2026-04-01', views: 2034 },
 ];
 // Existing mock data (unchanged)...
+<<<<<<< HEAD
+=======
+export interface ModuleType {
+  id: string;
+  type: 'reading' | 'listening' | 'writing';
+  title: string;
+  completed: boolean;
+  progress: number;
+  contentPreview: string;
+}
+
+>>>>>>> main
 export interface MockCourse {
   id: string;
   title: string;
@@ -188,16 +218,31 @@ export interface MockCourse {
   icon?: any;
   description?: string;
   objectives?: string[];
+<<<<<<< HEAD
   modules?: number;
+=======
+  modules: ModuleType[];
+  currentStage: 'content' | 'assessment' | 'report' | 'certificate';
+  overallProgress: number;
+>>>>>>> main
   rating?: number;
   videoUrl?: string;
   transcript?: string;
   summary?: string;
+<<<<<<< HEAD
+=======
+  level?: string;
+  teacher?: string;
+  status?: 'published' | 'pending_review' | 'archived';
+  lessons?: number;
+  duration?: string;
+>>>>>>> main
 }
 
 export const MOCK_COURSES: MockCourse[] = [
   {
     id: '1',
+<<<<<<< HEAD
     title: 'Physics Fundamentals',
     subject: 'Physics',
     enrolled: true,
@@ -224,14 +269,272 @@ export const MOCK_COURSES: MockCourse[] = [
     rating: 4.7
   }
 ];
+=======
+    title: 'Hindi Language Learning',
+    subject: 'Hindi',
+    enrolled: true,
+    tags: ['Reading', 'Writing', 'Speaking'],
+    icon: BookOpen,
+    description: 'Learn Hindi grammar, vocabulary, pronunciation, and daily conversation skills.',
+    objectives: [
+      'Learn Hindi grammar basics',
+      'Improve daily vocabulary',
+      'Practice spoken Hindi'
+    ],
+    modules: [
+      {
+        id: 'h1',
+        type: 'reading',
+        title: 'Hindi Alphabet & Grammar Basics',
+        completed: true,
+        progress: 100,
+        contentPreview: 'Learn स्वर, व्यंजन, sentence structure, and grammar rules.'
+      }
+    ],
+    currentStage: 'content',
+    overallProgress: 80,
+    rating: 4.8,
+    level: 'Secondary',
+    teacher: 'Dr. Anjali Patel',
+    status: 'published',
+    lessons: 12,
+    duration: '6 hours'
+  },
+
+  {
+    id: '2',
+    title: 'English Language Learning',
+    subject: 'English',
+    enrolled: true,
+    tags: ['Reading', 'Writing', 'Listening'],
+    icon: BookOpen,
+    description: 'Improve English speaking, grammar, comprehension, and writing.',
+    objectives: [
+      'Understand grammar rules',
+      'Build vocabulary',
+      'Improve communication skills'
+    ],
+    modules: [
+      {
+        id: 'e1',
+        type: 'reading',
+        title: 'Basic Grammar & Vocabulary',
+        completed: true,
+        progress: 100,
+        contentPreview: 'Learn tenses, sentence formation, and daily vocabulary.'
+      }
+    ],
+    currentStage: 'content',
+    overallProgress: 70,
+    rating: 4.7,
+    level: 'Senior Secondary',
+    teacher: 'Anita Desai',
+    status: 'pending_review',
+    lessons: 8,
+    duration: '4 hours'
+  },
+
+  {
+    id: '3',
+    title: 'Bengali Language Learning',
+    subject: 'Bengali',
+    enrolled: false,
+    tags: ['Reading', 'Writing'],
+    icon: BookOpen,
+    description: 'Learn Bengali script, grammar, and conversation skills.',
+    objectives: [
+      'Learn Bengali letters',
+      'Understand grammar',
+      'Practice simple conversations'
+    ],
+    modules: [
+      {
+        id: 'b1',
+        type: 'reading',
+        title: 'Bengali Script Basics',
+        completed: false,
+        progress: 0,
+        contentPreview: 'Introduction to Bengali letters and pronunciation.'
+      }
+    ],
+    currentStage: 'content',
+    overallProgress: 0,
+    rating: 4.6,
+    level: 'Vocational',
+    teacher: 'Kavita Iyer',
+    status: 'published',
+    lessons: 15,
+    duration: '7.5 hours'
+  },
+  {
+    id: 'mlp-001',
+    title: 'English to Hindi: Conversational Mastery',
+    subject: 'English-Hindi',
+    enrolled: true,
+    tags: ['Conversational', 'Multilingual', 'AI-Powered'],
+    icon: Globe,
+    description: 'Master English to Hindi translation and daily conversational skills using AI-automated content.',
+    objectives: [
+      'Bridge the language gap between English and Hindi',
+      'Learn context-aware translations',
+      'Practice with real-world scenarios'
+    ],
+    modules: [
+      { id: 'ml1', type: 'listening', title: 'Basic Greetings & Introductions', completed: false, progress: 0, contentPreview: 'Learn how to introduce yourself in Hindi using English prompts.' }
+    ],
+    currentStage: 'content',
+    overallProgress: 15,
+    rating: 4.9,
+    level: 'Beginner',
+    teacher: 'AI Multilingual Engine',
+    status: 'published',
+    lessons: 20,
+    duration: '10 hours'
+  },
+  {
+    id: 'mlp-002',
+    title: 'Hindi to Tamil: Essential Communication',
+    subject: 'Hindi-Tamil',
+    enrolled: true,
+    tags: ['Regional', 'Communication', 'AI-Powered'],
+    icon: Globe,
+    description: 'Specialized course for Hindi speakers to master essential Tamil communication.',
+    objectives: [
+      'Understand Tamil phonetic structures',
+      'Learn basic Tamil grammar through Hindi',
+      'Navigate daily interactions in Tamil Nadu'
+    ],
+    modules: [
+      { id: 'ht1', type: 'reading', title: 'Introduction to Tamil Script', completed: true, progress: 100, contentPreview: 'Learn to recognize and read basic Tamil characters.' }
+    ],
+    currentStage: 'content',
+    overallProgress: 45,
+    rating: 4.8,
+    level: 'Beginner',
+    teacher: 'AI Multilingual Engine',
+    status: 'published',
+    lessons: 18,
+    duration: '9 hours'
+  },
+  {
+    id: 'mlp-003',
+    title: 'Bengali to Marathi: Professional Exchange',
+    subject: 'Bengali-Marathi',
+    enrolled: false,
+    tags: ['Professional', 'Exchange', 'AI-Powered'],
+    icon: Globe,
+    description: 'A comprehensive guide for Bengali speakers to excel in Marathi-speaking professional environments.',
+    objectives: [
+      'Business terminology in Marathi',
+      'Comparative grammar: Bengali vs Marathi',
+      'Cultural nuances in professional communication'
+    ],
+    modules: [
+      { id: 'bm1', type: 'reading', title: 'Marathi Business Etiquette', completed: false, progress: 0, contentPreview: 'Mastering formal address and professional greetings.' }
+    ],
+    currentStage: 'content',
+    overallProgress: 0,
+    rating: 4.7,
+    level: 'Intermediate',
+    teacher: 'AI Multilingual Engine',
+    status: 'published',
+    lessons: 24,
+    duration: '12 hours'
+  },
+  {
+    id: 'mlp-004',
+    title: 'Telugu to Kannada: Neighboring Tongues',
+    subject: 'Telugu-Kannada',
+    enrolled: true,
+    tags: ['Regional', 'Dialect', 'AI-Powered'],
+    icon: Globe,
+    description: 'Leveraging the similarities between Telugu and Kannada to accelerate learning.',
+    objectives: [
+      'Identifying common Sanskrit roots',
+      'Grammar shortcuts for Telugu speakers',
+      'Regional dialect variations'
+    ],
+    modules: [
+      { id: 'tk1', type: 'speaking', title: 'Daily Market Conversations', completed: false, progress: 20, contentPreview: 'Practical phrases for everyday shopping and navigation.' }
+    ],
+    currentStage: 'content',
+    overallProgress: 10,
+    rating: 4.9,
+    level: 'Beginner',
+    teacher: 'AI Multilingual Engine',
+    status: 'published',
+    lessons: 15,
+    duration: '8 hours'
+  },
+  {
+    id: 'mlp-005',
+    title: 'English to Odia: Heritage & Foundation',
+    subject: 'English-Odia',
+    enrolled: false,
+    tags: ['Heritage', 'Foundation', 'AI-Powered'],
+    icon: Globe,
+    description: 'Connect with your roots through this comprehensive English to Odia foundational course.',
+    objectives: [
+      'Mastering Odia script through English',
+      'Basic sentence construction',
+      'Classical Odia literature overview'
+    ],
+    modules: [
+      { id: 'eo1', type: 'reading', title: 'Odia Alphabet Mastery', completed: false, progress: 0, contentPreview: 'Visual guides to writing and reading Odia characters.' }
+    ],
+    currentStage: 'content',
+    overallProgress: 0,
+    rating: 4.6,
+    level: 'Beginner',
+    teacher: 'AI Multilingual Engine',
+    status: 'published',
+    lessons: 30,
+    duration: '15 hours'
+  },
+  {
+    id: 'mlp-006',
+    title: 'Punjabi to Hindi: Harmonic Bridge',
+    subject: 'Punjabi-Hindi',
+    enrolled: true,
+    tags: ['Linguistic', 'Bridge', 'AI-Powered'],
+    icon: Globe,
+    description: 'A transition course for Punjabi speakers to master standard Hindi for academic and official use.',
+    objectives: [
+      'Standardizing vocabulary differences',
+      'Advanced Devanagari script for Punjabi speakers',
+      'Official letter writing in Hindi'
+    ],
+    modules: [
+      { id: 'ph1', type: 'writing', title: 'Formal Hindi Correspondence', completed: false, progress: 60, contentPreview: 'Drafting applications and official letters in Hindi.' }
+    ],
+    currentStage: 'content',
+    overallProgress: 55,
+    rating: 4.8,
+    level: 'Advanced',
+    teacher: 'AI Multilingual Engine',
+    status: 'published',
+    lessons: 12,
+    duration: '6 hours'
+  }
+];
+
+>>>>>>> main
 export interface MockAssessment {
   id: string;
   title: string;
   subject: string;
   type: 'Quiz' | 'Mock Exam' | 'Assignment';
   dueDate: string;
+<<<<<<< HEAD
   status: 'Pending' | 'Completed' | 'Missed';
   score?: number;
+=======
+  status: 'Pending' | 'Completed' | 'Missed' | 'Grading Active';
+  score?: number;
+  submissions?: number;
+  totalStudents?: number;
+  avgScore?: number | string;
+>>>>>>> main
   questions?: {
     id: string;
     text: string;
@@ -242,12 +545,21 @@ export interface MockAssessment {
 }
 
 export const MOCK_ASSESSMENTS: MockAssessment[] = [
+<<<<<<< HEAD
   { 
     id: 'Q1', 
     title: 'Unit 1: Quantum Basics', 
     subject: 'Science', 
     type: 'Quiz', 
     dueDate: '2026-04-10', 
+=======
+  {
+    id: 'Q1',
+    title: 'Unit 1: Quantum Basics',
+    subject: 'Science',
+    type: 'Quiz',
+    dueDate: '2026-04-10',
+>>>>>>> main
     status: 'Pending',
     questions: [
       {
@@ -265,12 +577,21 @@ export const MOCK_ASSESSMENTS: MockAssessment[] = [
       }
     ]
   },
+<<<<<<< HEAD
 { 
     id: 'E1', 
     title: 'Pre-Board Mock Exam', 
     subject: 'Mathematics', 
     type: 'Mock Exam', 
     dueDate: '2026-04-15', 
+=======
+  {
+    id: 'E1',
+    title: 'Pre-Board Mock Exam',
+    subject: 'Mathematics',
+    type: 'Mock Exam',
+    dueDate: '2026-04-15',
+>>>>>>> main
     status: 'Pending',
     questions: [
       {
@@ -288,6 +609,7 @@ export const MOCK_ASSESSMENTS: MockAssessment[] = [
       }
     ]
   },
+<<<<<<< HEAD
   { 
     id: 'A1', 
     title: 'Essay: The Indian Renaissance', 
@@ -295,6 +617,15 @@ export const MOCK_ASSESSMENTS: MockAssessment[] = [
     type: 'Assignment', 
     dueDate: '2026-04-05', 
     status: 'Completed', 
+=======
+  {
+    id: 'A1',
+    title: 'Essay: The Indian Renaissance',
+    subject: 'Social Science',
+    type: 'Assignment',
+    dueDate: '2026-04-05',
+    status: 'Completed',
+>>>>>>> main
     score: 88,
     questions: [
       {
@@ -350,6 +681,10 @@ export interface MockBook {
   cover: string;
   pages: string[];
   category: 'Textbook' | 'Schedule' | 'Guide';
+<<<<<<< HEAD
+=======
+  description?: string;
+>>>>>>> main
 }
 export interface MockExam {
   id: string;
@@ -456,7 +791,11 @@ export interface MockClassAnnouncement {
   id: string;
   title: string;
   message: string;
+<<<<<<< HEAD
   target: 'All Students' | 'Class 12' | 'Science Stream';
+=======
+  target: 'All Students' | 'Class 12' | 'Class 10' | 'Science Stream' | 'Humanities Stream' | 'Vocational';
+>>>>>>> main
   createdAt: string;
   readCount: number;
 }
@@ -821,12 +1160,52 @@ export const MOCK_MISSIONS: MockMission[] = [
     completed: false
   }
 ];
+<<<<<<< HEAD
+=======
+export interface MockCourseReport {
+  courseId: string;
+  grade: string;
+  score: number;
+  feedback: string[];
+  completionDate: string;
+  nextRecommendation: string;
+}
+
+export const MOCK_COURSE_REPORTS: MockCourseReport[] = [
+  {
+    courseId: '1',
+    grade: 'A',
+    score: 88,
+    feedback: [
+      "Excellent grasp of Newton's laws (95%)",
+      'Good application in problems (85%)',
+      'Improve TMA formatting for full marks'
+    ],
+    completionDate: '2026-04-10',
+    nextRecommendation: 'Proceed to Physics Unit 2: Work & Energy'
+  },
+  {
+    courseId: '2',
+    grade: 'B+',
+    score: 76,
+    feedback: [
+      'Strong algebra basics',
+      'Practice more quadratic problems',
+      'Great progress on word problems'
+    ],
+    completionDate: '2026-04-05',
+    nextRecommendation: 'Review quadratic formula derivations'
+  }
+];
+
+>>>>>>> main
 export const MOCK_BOOKS: MockBook[] = [
   {
     id: 'B1',
     title: 'Secondary Physics: Unit 1',
     author: 'NIOS Faculty',
     cover: '/book.jpg',
+<<<<<<< HEAD
     category: 'Schedule',
     pages: [
       '/sb_logo.png',
@@ -846,6 +1225,14 @@ export const MOCK_BOOKS: MockBook[] = [
       '/book.jpg',
       '/sb_logo.png',
       '/sb_logo.png',
+=======
+    category: 'Textbook',
+    pages: [
+      '/NIOS.png',
+      '/book.jpg',
+      '/NIOS.png',
+      '/NIOS.png',
+>>>>>>> main
     ]
   },
   {
@@ -855,9 +1242,19 @@ export const MOCK_BOOKS: MockBook[] = [
     cover: '/book.jpg',
     category: 'Schedule',
     pages: [
+<<<<<<< HEAD
       '/sb_logo.png',
       '/sb_logo.png',
       '/sb_logo.png',
     ]
   }
 ];
+=======
+      '/NIOS.png',
+      '/NIOS.png',
+      '/NIOS.png',
+    ]
+  }
+];
+
+>>>>>>> main

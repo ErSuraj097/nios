@@ -2,6 +2,7 @@
 
 import DashboardLayout from '@/components/DashboardLayout';
 import { useState } from 'react';
+<<<<<<< HEAD
 import { 
   Users, 
   Search, 
@@ -12,6 +13,18 @@ import {
   Filter, 
   Download, 
   ShieldX 
+=======
+import {
+  Users,
+  Search,
+  Eye,
+  CheckCircle2,
+  XCircle,
+  GraduationCap,
+  Filter,
+  Download,
+  ShieldX
+>>>>>>> main
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { MOCK_STUDENTS, MOCK_USERS } from '@/lib/mock-data';
@@ -27,24 +40,41 @@ export default function AdminStudentsPage() {
   const stats = [
     { label: 'Total Learners', value: '2,684', icon: Users, color: 'blue' },
     { label: 'Active', value: '2,612', icon: CheckCircle2, color: 'emerald' },
+<<<<<<< HEAD
     { label: 'Suspended', value: '12', icon: XCircle, color: 'red' },
     { label: 'Pending', value: '60', icon: ShieldX, color: 'amber' },
   ];
 
   const filteredStudents = MOCK_STUDENTS.filter(s => 
+=======
+    { label: 'Suspended', value: '12', icon: XCircle, color: 'blue' },
+    { label: 'Pending', value: '60', icon: ShieldX, color: 'blue' },
+  ];
+
+  const filteredStudents = MOCK_STUDENTS.filter(s =>
+>>>>>>> main
     s.name.toLowerCase().includes(search.toLowerCase()) ||
     s.email.toLowerCase().includes(search.toLowerCase()) ||
     s.class.toLowerCase().includes(search.toLowerCase())
   ).filter(s => filterStatus === 'all' || s.status === filterStatus)
+<<<<<<< HEAD
    .filter(s => filterClass === 'all' || s.class.includes(filterClass));
+=======
+    .filter(s => filterClass === 'all' || s.class.includes(filterClass));
+>>>>>>> main
 
   const classes = ['Class 10', 'Class 12', 'Vocational'];
 
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'active': return 'bg-emerald-100 text-emerald-700';
+<<<<<<< HEAD
       case 'suspended': return 'bg-red-100 text-red-700';
       case 'pending': return 'bg-amber-100 text-amber-700';
+=======
+      case 'suspended': return 'bg-blue-100 text-blue-700';
+      case 'pending': return 'bg-blue-100 text-blue-700';
+>>>>>>> main
       default: return 'bg-slate-100 text-slate-500';
     }
   };
@@ -77,7 +107,11 @@ export default function AdminStudentsPage() {
               aria-label="Search students"
             />
           </div>
+<<<<<<< HEAD
           <select 
+=======
+          <select
+>>>>>>> main
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value as any)}
             className="px-4 py-3 bg-white border border-slate-200 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500/20 text-sm font-medium"
@@ -88,7 +122,11 @@ export default function AdminStudentsPage() {
             <option value="suspended">Suspended</option>
             <option value="pending">Pending</option>
           </select>
+<<<<<<< HEAD
           <select 
+=======
+          <select
+>>>>>>> main
             value={filterClass}
             onChange={(e) => setFilterClass(e.target.value)}
             className="px-4 py-3 bg-white border border-slate-200 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500/20 text-sm font-medium"
@@ -163,7 +201,11 @@ export default function AdminStudentsPage() {
                         </button>
                       )}
                       {student.status === 'active' && (
+<<<<<<< HEAD
                         <button className="px-4 py-2 bg-red-500 text-white hover:bg-red-600 rounded-lg font-bold text-xs uppercase tracking-wider shadow-md transition-all">
+=======
+                        <button className="px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 rounded-lg font-bold text-xs uppercase tracking-wider shadow-md transition-all">
+>>>>>>> main
                           Suspend
                         </button>
                       )}

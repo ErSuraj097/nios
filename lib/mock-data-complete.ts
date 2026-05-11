@@ -234,6 +234,15 @@ export const MOCK_TEACHERS: MockTeacher[] = [
   { id: 'T1', name: 'Dr. Mehta', status: 'active' }
 ];
 
+<<<<<<< HEAD
+=======
+export interface MockStudent {
+  id: string;
+  name: string;
+  status: string;
+}
+
+>>>>>>> main
 export const MOCK_STUDENTS: MockStudent[] = [
   { id: 'S1', name: 'Arjun', status: 'active' }
 ];

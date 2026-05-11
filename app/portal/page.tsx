@@ -54,14 +54,21 @@ export default function LoginPage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.08 }}
           transition={{ duration: 2 }}
+<<<<<<< HEAD
           className="absolute -top-1/4 -right-1/4 w-[80%] h-[80%] bg-orange-600/20 rounded-full blur-[120px]"
         />
         <div className="absolute bottom-0 left-0 w-full h-full bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-orange-900/10 via-transparent to-transparent opacity-50" />
+=======
+          className="absolute -top-1/4 -right-1/4 w-[80%] h-[80%] bg-blue-600/20 rounded-full blur-[120px]"
+        />
+        <div className="absolute bottom-0 left-0 w-full h-full bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-blue-900/10 via-transparent to-transparent opacity-50" />
+>>>>>>> main
       </div>
 
       <div className="relative z-10 flex flex-col lg:flex-row min-h-screen">
         <div className="flex-1 flex flex-col justify-between p-8 lg:p-20 lg:border-r border-neutral-300/80">
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} className=" flex items-center gap-4">
+<<<<<<< HEAD
             <div className="relative">
               <div className="absolute inset-0 bg-orange-500/20 rounded-xl blur-lg animate-pulse" />
               <Image
@@ -71,10 +78,28 @@ export default function LoginPage() {
                 height={80}
                 className="relative z-10 brightness-110 drop-shadow-2xl"
               />
+=======
+            <div className="flex flex-col items-center gap-6 mb-12">
+              <div className="flex items-center gap-6 justify-center">
+                <Image
+                  src="/NIOS.png"
+                  alt="NIOS Logo"
+                  width={70}
+                  height={70}
+                  className="drop-shadow-2xl brightness-110"
+                />
+                <div className="flex flex-col text-left">
+                  <div className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">Government of India</div>
+                  <div className="text-xl font-black text-slate-900 leading-tight">National Institute of Open Schooling</div>
+                  <div className="text-sm font-bold text-blue-600 uppercase tracking-widest">Digital Learning Ecosystem</div>
+                </div>
+              </div>
+>>>>>>> main
             </div>
           </motion.div>
 
           <div className="max-w-xl">
+<<<<<<< HEAD
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="inline-flex items-center gap-2 px-3 py-1 bg-orange-600/10 border border-orange-600/20 rounded-full mb-6">
               <Zap className="w-3 h-3 text-orange-500" />
               <span className="text-[10px] font-black uppercase tracking-widest text-orange-400">Aligned with NEP 2020</span>
@@ -94,6 +119,27 @@ export default function LoginPage() {
             hover:translate-x-1 transition-transform">
               <ArrowLeft className="w-4 h-4" /> BACK TO HOME
             </Link>
+=======
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="inline-flex items-center gap-2 px-3 py-1 bg-blue-600/10 border border-blue-600/20 rounded-full mb-6">
+              <Zap className="w-3 h-3 text-blue-500" />
+              <span className="text-[10px] font-black uppercase tracking-widest text-blue-400">Aligned with NEP 2020</span>
+            </motion.div>
+
+            <div className="max-w-lg">
+              <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="text-4xl lg:text-5xl font-bold tracking-tight mb-6">
+                Welcome to the Future of Learning.
+              </motion.h1>
+              <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }} className="text-lg lg:text-xl text-neutral-600 font-medium leading-relaxed mb-10">
+                Experience personalized education powered by AI. Join millions of learners and educators in a transformative journey.
+              </motion.p>
+            </div>
+            <div className="max-w-xl">
+              <Link href="/" className="inline-flex items-center gap-2 text-[10px] 
+            font-black uppercase mt-5  tracking-[0.2em] text-blue-500 mb-6 
+            hover:translate-x-1 transition-transform">
+                <ArrowLeft className="w-4 h-4" /> BACK TO HOME
+              </Link>
+>>>>>>> main
             </div>
           </div>
 
@@ -112,6 +158,7 @@ export default function LoginPage() {
                   <div className="relative mb-8">
                     {showBiometric ? (
                       <div className="relative">
+<<<<<<< HEAD
                         <Fingerprint className="w-20 h-20 text-orange-500 animate-pulse" />
                         <motion.div initial={{ height: 0 }} animate={{ height: '100%' }} transition={{ duration: 1.5, repeat: Infinity }} className="absolute inset-0 border-b-2 border-orange-400 opacity-50 pointer-events-none" />
                       </div>
@@ -119,6 +166,15 @@ export default function LoginPage() {
                       <>
                         <div className="w-20 h-20 border-4 border-orange-500/20 border-t-orange-500 rounded-xl animate-spin" />
                         <ShieldCheck className="w-8 h-8 text-orange-500 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+=======
+                        <Fingerprint className="w-20 h-20 text-blue-500 animate-pulse" />
+                        <motion.div initial={{ height: 0 }} animate={{ height: '100%' }} transition={{ duration: 1.5, repeat: Infinity }} className="absolute inset-0 border-b-2 border-blue-400 opacity-50 pointer-events-none" />
+                      </div>
+                    ) : (
+                      <>
+                        <div className="w-20 h-20 border-4 border-blue-500/20 border-t-blue-500 rounded-xl animate-spin" />
+                        <ShieldCheck className="w-8 h-8 text-blue-500 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+>>>>>>> main
                       </>
                     )}
                   </div>
@@ -129,7 +185,11 @@ export default function LoginPage() {
             </AnimatePresence>
 
             <header className="mb-10">
+<<<<<<< HEAD
               <Link href="/" className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-orange-500 mb-6 hover:translate-x-1 transition-transform">
+=======
+              <Link href="/" className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-blue-500 mb-6 hover:translate-x-1 transition-transform">
+>>>>>>> main
                 <ChevronLeft className="w-4 h-4" /> BACK TO WEBSITE
               </Link>
               <h1 className="text-4xl lg:text-5xl font-black tracking-tight mb-3">Welcome Back</h1>
@@ -138,19 +198,31 @@ export default function LoginPage() {
 
             <div className="mb-10 p-1.5 rounded-xl bg-slate-100 border-slate-200 border relative">
               <div className="absolute top-0 left-8 -translate-y-1/2 px-4 py-1.5 bg-white border border-slate-200 rounded-full flex items-center gap-2 shadow-xl">
+<<<<<<< HEAD
                 <Zap className="w-3 h-3 text-orange-500" />
                 <span className="text-[10px] font-black uppercase tracking-widest text-orange-500">SECURE QUICK-AUTH</span>
+=======
+                <Zap className="w-3 h-3 text-blue-500" />
+                <span className="text-[10px] font-black uppercase tracking-widest text-blue-500">SECURE QUICK-AUTH</span>
+>>>>>>> main
               </div>
               <div className="flex flex-wrap gap-2 p-4 pt-6">
                 {(Object.keys(roleConfig) as Role[]).map((role) => (
                   <button
                     key={role}
                     onClick={() => handleRoleSelect(role)}
+<<<<<<< HEAD
                     className={`px-3 py-2.5 rounded-xl text-[10px] font-black tracking-widest uppercase transition-all flex-grow lg:flex-grow-0 ${
                       activeRole === role
                         ? 'bg-orange-600 text-white shadow-lg shadow-orange-600/30 active:scale-95'
                         : 'bg-white text-slate-500 hover:bg-slate-200 border border-transparent'
                     }`}
+=======
+                    className={`px-3 py-2.5 rounded-xl text-[10px] font-black tracking-widest uppercase transition-all flex-grow lg:flex-grow-0 ${activeRole === role
+                      ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30 active:scale-95'
+                      : 'bg-white text-slate-500 hover:bg-slate-200 border border-transparent'
+                      }`}
+>>>>>>> main
                   >
                     {roleConfig[role].label}
                   </button>
@@ -162,14 +234,22 @@ export default function LoginPage() {
               <div className="space-y-3">
                 <label className="text-[11px] font-black uppercase tracking-[0.2em] text-neutral-500 ml-1">ENROLLMENT ID / EMAIL</label>
                 <div className="relative group">
+<<<<<<< HEAD
                   <div className="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none text-neutral-500 group-focus-within:text-orange-500 transition-colors">
+=======
+                  <div className="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none text-neutral-500 group-focus-within:text-blue-500 transition-colors">
+>>>>>>> main
                     <Mail className="w-5 h-5" />
                   </div>
                   <input
                     type="text"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+<<<<<<< HEAD
                     className="w-full bg-white border-2 border-slate-200 focus:border-orange-500 text-slate-900 rounded-xl py-5 pl-16 pr-6 outline-none transition-all font-medium placeholder:text-neutral-400"
+=======
+                    className="w-full bg-white border-2 border-slate-200 focus:border-blue-500 text-slate-900 rounded-xl py-5 pl-16 pr-6 outline-none transition-all font-medium placeholder:text-neutral-400"
+>>>>>>> main
                     placeholder="Enter Enrollment ID"
                     required
                   />
@@ -179,17 +259,28 @@ export default function LoginPage() {
               <div className="space-y-3">
                 <div className="flex justify-between items-center px-1">
                   <label className="text-[11px] font-black uppercase tracking-[0.2em] text-neutral-500">PASSWORD</label>
+<<<<<<< HEAD
                   <button type="button" className="text-[10px] font-black uppercase tracking-widest text-orange-500 hover:text-orange-400 transition-colors">FORGOT?</button>
                 </div>
                 <div className="relative group">
                   <div className="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none text-neutral-500 group-focus-within:text-orange-500 transition-colors">
+=======
+                  <button type="button" className="text-[10px] font-black uppercase tracking-widest text-blue-500 hover:text-blue-400 transition-colors">FORGOT?</button>
+                </div>
+                <div className="relative group">
+                  <div className="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none text-neutral-500 group-focus-within:text-blue-500 transition-colors">
+>>>>>>> main
                     <Lock className="w-5 h-5" />
                   </div>
                   <input
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+<<<<<<< HEAD
                     className="w-full bg-white border-2 border-slate-200 focus:border-orange-500 text-slate-900 rounded-xl py-5 pl-16 pr-6 outline-none transition-all font-medium placeholder:text-neutral-400"
+=======
+                    className="w-full bg-white border-2 border-slate-200 focus:border-blue-500 text-slate-900 rounded-xl py-5 pl-16 pr-6 outline-none transition-all font-medium placeholder:text-neutral-400"
+>>>>>>> main
                     placeholder="••••••••••••"
                     required
                   />
@@ -201,7 +292,11 @@ export default function LoginPage() {
                   whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.99 }}
                   type="submit"
+<<<<<<< HEAD
                   className="flex-[2] py-5.5 bg-orange-600 hover:bg-orange-500 text-white rounded-xl font-black text-xs uppercase tracking-[0.3em] flex items-center justify-center gap-3 shadow-2xl shadow-orange-600/30 transition-all"
+=======
+                  className="flex-[2] py-5.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-black text-xs uppercase tracking-[0.3em] flex items-center justify-center gap-3 shadow-2xl shadow-blue-600/30 transition-all"
+>>>>>>> main
                 >
                   SIGN IN <ArrowRight className="w-5 h-5" />
                 </motion.button>
@@ -218,7 +313,11 @@ export default function LoginPage() {
 
               <div className="text-center">
                 <p className="text-neutral-500 text-xs font-bold uppercase tracking-widest">
+<<<<<<< HEAD
                   New Learner? <a href="#" className="text-orange-500 hover:text-orange-400 ml-1">Register Now →</a>
+=======
+                  New Learner? <a href="#" className="text-blue-500 hover:text-blue-400 ml-1">Register Now →</a>
+>>>>>>> main
                 </p>
               </div>
             </form>

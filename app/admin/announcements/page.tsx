@@ -2,6 +2,7 @@
 
 import DashboardLayout from '@/components/DashboardLayout';
 import { useState } from 'react';
+<<<<<<< HEAD
 import { 
   Megaphone, 
   Search, 
@@ -14,6 +15,20 @@ import {
   Eye,
   GraduationCap,
   Shield 
+=======
+import {
+  Megaphone,
+  Search,
+  Edit,
+  Send,
+  Calendar,
+  Users,
+  Download,
+  Filter,
+  Eye,
+  GraduationCap,
+  Shield
+>>>>>>> main
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { MOCK_SYSTEM_ANNOUNCEMENTS } from '@/lib/mock-data';
@@ -26,13 +41,21 @@ export default function AdminAnnouncementsPage() {
   if (!user || user.role !== 'admin') return null;
 
   const stats = [
+<<<<<<< HEAD
     { label: 'Active', value: '5', icon: Megaphone, color: 'orange' },
+=======
+    { label: 'Active', value: '5', icon: Megaphone, color: 'blue' },
+>>>>>>> main
     { label: 'Teachers', value: '2', icon: Users, color: 'indigo' },
     { label: 'Students', value: '3', icon: Users, color: 'blue' },
     { label: 'Total Views', value: '3.2K', icon: Eye, color: 'emerald' },
   ];
 
+<<<<<<< HEAD
   const filteredAnnouncements = MOCK_SYSTEM_ANNOUNCEMENTS.filter(a => 
+=======
+  const filteredAnnouncements = MOCK_SYSTEM_ANNOUNCEMENTS.filter(a =>
+>>>>>>> main
     a.title.toLowerCase().includes(search.toLowerCase()) ||
     a.target.toLowerCase().includes(search.toLowerCase())
   ).filter(a => filterTarget === 'all' || a.target === filterTarget);
@@ -71,6 +94,7 @@ export default function AdminAnnouncementsPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search announcements..."
+<<<<<<< HEAD
               className="pl-12 pr-6 py-4 w-full bg-white rounded-xl border border-slate-200 shadow-sm focus:ring-2 focus:ring-orange-500/20"
               aria-label="Search announcements"
             />
@@ -79,6 +103,16 @@ export default function AdminAnnouncementsPage() {
             value={filterTarget}
             onChange={(e) => setFilterTarget(e.target.value as any)}
             className="px-4 py-3 bg-white border border-slate-200 rounded-xl shadow-sm focus:ring-2 focus:ring-orange-500/20"
+=======
+              className="pl-12 pr-6 py-4 w-full bg-white rounded-xl border border-slate-200 shadow-sm focus:ring-2 focus:ring-blue-500/20"
+              aria-label="Search announcements"
+            />
+          </div>
+          <select
+            value={filterTarget}
+            onChange={(e) => setFilterTarget(e.target.value as any)}
+            className="px-4 py-3 bg-white border border-slate-200 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500/20"
+>>>>>>> main
             aria-label="Filter by target audience"
           >
             <option value="all">All Targets</option>
@@ -113,10 +147,17 @@ export default function AdminAnnouncementsPage() {
                   </td>
                   <td className="px-6 py-5">
                     <div className="flex items-center gap-2">
+<<<<<<< HEAD
                       <div className="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center">
                         {(() => {
                           const Icon = getTargetIcon(announcement.target);
                           return <Icon size={16} className="text-orange-600" />;
+=======
+                      <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
+                        {(() => {
+                          const Icon = getTargetIcon(announcement.target);
+                          return <Icon size={16} className="text-blue-600" />;
+>>>>>>> main
                         })()}
                       </div>
                       <span className="font-medium capitalize">{announcement.target}</span>
@@ -130,7 +171,11 @@ export default function AdminAnnouncementsPage() {
                     <button className="p-2 hover:bg-slate-100 rounded-lg text-slate-400 hover:text-slate-600 transition-all" title="Analytics">
                       <Eye size={14} />
                     </button>
+<<<<<<< HEAD
                     <button className="p-2 hover:bg-orange-100 rounded-lg text-orange-600 hover:text-orange-700 transition-all" title="Edit">
+=======
+                    <button className="p-2 hover:bg-blue-100 rounded-lg text-blue-600 hover:text-blue-700 transition-all" title="Edit">
+>>>>>>> main
                       <Edit size={14} />
                     </button>
                     <button className="p-2 hover:bg-emerald-100 rounded-lg text-emerald-600 hover:text-emerald-700 transition-all" title="Resend">

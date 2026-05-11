@@ -1,6 +1,7 @@
 'use client';
 
 import DashboardLayout from '@/components/DashboardLayout';
+<<<<<<< HEAD
 import { 
   Users, 
   UserPlus, 
@@ -9,6 +10,16 @@ import {
   Activity, 
   Server, 
   Settings, 
+=======
+import {
+  Users,
+  UserPlus,
+  BookOpen,
+  ShieldCheck,
+  Activity,
+  Server,
+  Settings,
+>>>>>>> main
   FileText,
   BadgeAlert,
   ArrowUpRight,
@@ -22,8 +33,13 @@ import Link from 'next/link';
 
 const platformStats = [
   { icon: Users, label: 'Total Learners', value: '1.24M', change: '+8,421', up: true, color: 'from-blue-500 to-indigo-600' },
+<<<<<<< HEAD
   { icon: Users, label: 'Active Teachers', value: '3,208', change: '+112', up: true, color: 'from-emerald-500 to-teal-600' },
   { icon: BookOpen, label: 'Published Courses', value: '642', change: '24 pending', up: true, color: 'from-orange-500 to-red-600' },
+=======
+  { icon: Globe, label: 'Active Language Pairs', value: '484', change: 'Max Capacity', up: true, color: 'from-emerald-500 to-teal-600' },
+  { icon: BookOpen, label: 'MLP Active Courses', value: '1,240', change: '+45 pending', up: true, color: 'from-blue-500 to-red-600' },
+>>>>>>> main
   { icon: CreditCard, label: 'Revenue (MTD)', value: '₹48.6L', change: '+12%', up: true, color: 'from-purple-500 to-pink-600' },
 ];
 
@@ -31,7 +47,11 @@ const systemHealth = [
   { label: 'Core API', status: 'Healthy', uptime: '99.99%', color: 'text-emerald-500' },
   { icon: Server, label: 'Database Cluster', status: 'Optimal', uptime: '99.96%', color: 'text-emerald-500' },
   { icon: ShieldCheck, label: 'Auth Service', status: 'Healthy', uptime: '100%', color: 'text-emerald-500' },
+<<<<<<< HEAD
   { icon: Globe, label: 'CDN Nodes', status: 'Degraded', uptime: '97.4%', color: 'text-amber-500' },
+=======
+  { icon: Globe, label: 'CDN Nodes', status: 'Degraded', uptime: '97.4%', color: 'text-blue-500' },
+>>>>>>> main
 ];
 
 export default function AdminDashboard() {
@@ -40,8 +60,13 @@ export default function AdminDashboard() {
   if (!user) return null;
 
   return (
+<<<<<<< HEAD
     <DashboardLayout 
       title="System Administration" 
+=======
+    <DashboardLayout
+      title="System Administration"
+>>>>>>> main
       subtitle={`NIOS Central Ops · Node: ${user.details.designation || 'Master Admin'}`}
     >
       {/* System Status Banner */}
@@ -105,9 +130,14 @@ export default function AdminDashboard() {
                       </div>
                     </td>
                     <td className="px-6 py-5">
+<<<<<<< HEAD
                       <span className={`px-2 py-0.5 rounded-md text-[10px] font-black uppercase tracking-widest ${
                         u.role === 'admin' ? 'bg-red-50 text-red-600' : u.role === 'teacher' ? 'bg-blue-50 text-blue-600' : 'bg-orange-50 text-orange-600'
                       }`}>
+=======
+                      <span className={`px-2 py-0.5 rounded-md text-[10px] font-black uppercase tracking-widest ${u.role === 'admin' ? 'bg-blue-50 text-blue-600' : u.role === 'teacher' ? 'bg-blue-50 text-blue-600' : 'bg-blue-50 text-blue-600'
+                        }`}>
+>>>>>>> main
                         {u.role}
                       </span>
                     </td>
@@ -129,7 +159,11 @@ export default function AdminDashboard() {
           <div className="p-8 rounded-xl bg-white border border-slate-100 shadow-sm">
             <div className="flex items-center justify-between mb-8">
               <h3 className="font-black text-slate-900 uppercase tracking-tight">System Infrastructure</h3>
+<<<<<<< HEAD
               <Activity className="text-brand-orange animate-pulse" size={20} />
+=======
+              <Activity className="text-blue-900 animate-pulse" size={20} />
+>>>>>>> main
             </div>
             <div className="space-y-6">
               {systemHealth.map((item, i) => (
@@ -150,7 +184,11 @@ export default function AdminDashboard() {
           </div>
 
           <div className="p-8 rounded-xl bg-slate-900 text-white relative overflow-hidden group">
+<<<<<<< HEAD
             <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/10 rounded-full blur-3xl" />
+=======
+            <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl" />
+>>>>>>> main
             <h3 className="font-black uppercase tracking-tight mb-6">Quick Admin Actions</h3>
             <div className="grid grid-cols-1 gap-2">
               {[
@@ -161,7 +199,11 @@ export default function AdminDashboard() {
               ].map((a, i) => (
                 <Link key={i} href={a.href} className="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-xs font-bold w-full text-left">
                   <div className="flex items-center gap-3 font-black uppercase tracking-widest">
+<<<<<<< HEAD
                     <a.icon size={16} className="text-brand-orange" /> {a.label}
+=======
+                    <a.icon size={16} className="text-blue-900" /> {a.label}
+>>>>>>> main
                   </div>
                   <ArrowUpRight size={14} className="text-slate-500" />
                 </Link>

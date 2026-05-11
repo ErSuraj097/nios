@@ -1,12 +1,21 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+<<<<<<< HEAD
 import { 
   Bell, 
   Calendar, 
   Search, 
   X, 
   Flame, 
+=======
+import {
+  Bell,
+  Calendar,
+  Search,
+  X,
+  Flame,
+>>>>>>> main
   ChevronDown,
   User,
   Settings,
@@ -44,13 +53,21 @@ export default function Topbar({ title, subtitle }: TopbarProps) {
     learner: 'from-blue-500 to-indigo-500',
     teacher: 'from-green-500 to-emerald-500',
     admin: 'from-purple-500 to-violet-500',
+<<<<<<< HEAD
     parent: 'from-orange-500 to-red-500',
+=======
+    parent: 'from-blue-500 to-red-500',
+>>>>>>> main
     guest: 'from-slate-500 to-slate-700'
   };
 
   const displayName = user?.name || 'Guest User';
   const displayRole = user ? (roleTitles[user.role] || 'User') : 'Guest';
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> main
   let userSubtitle = '';
   if (user?.details) {
     switch (user.role) {
@@ -72,8 +89,13 @@ export default function Topbar({ title, subtitle }: TopbarProps) {
   }
 
   const avatarInitial = displayName[0]?.toUpperCase() || 'G';
+<<<<<<< HEAD
   const gradientClass = user 
     ? (roleGradients[user.role] || 'from-slate-500 to-slate-700') 
+=======
+  const gradientClass = user
+    ? (roleGradients[user.role] || 'from-slate-500 to-slate-700')
+>>>>>>> main
     : 'from-slate-500 to-slate-700';
 
   const notifications = [
@@ -102,13 +124,21 @@ export default function Topbar({ title, subtitle }: TopbarProps) {
     if (confirm("Are you sure you want to logout?")) {
       logout?.(); // Call the logout function from context, optionally redirecting to login
       redirect('/login');
+<<<<<<< HEAD
         // Optional: Show a logout confirmation
+=======
+      // Optional: Show a logout confirmation
+>>>>>>> main
       setShowProfileDropdown(false);
     }
   };
 
   const handleViewProfile = () => {
+<<<<<<< HEAD
     // alert("Redirecting to Profile Page..."); // Replace with router.push('/profile')
+=======
+    // alert("redirecting to Profile Page..."); // Replace with router.push('/profile')
+>>>>>>> main
     redirect('/profile');
 
     // setShowProfileDropdown(false);
@@ -122,8 +152,13 @@ export default function Topbar({ title, subtitle }: TopbarProps) {
 
   return (
     <div className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-slate-200 shadow-sm">
+<<<<<<< HEAD
       <div className="px-8 py-6 flex items-center justify-between">
         
+=======
+      <div className="px-8 py-10 flex items-center justify-between">
+
+>>>>>>> main
         {/* Left: Title */}
         <div>
           <h1 className="text-2xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent tracking-tighter">
@@ -147,7 +182,11 @@ export default function Topbar({ title, subtitle }: TopbarProps) {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search courses, shlokas, materials..."
+<<<<<<< HEAD
               className="w-full bg-white border border-slate-200 focus:border-orange-500 focus:ring-4 focus:ring-orange-100 rounded-2xl pl-12 pr-12 py-3.5 text-base transition-all duration-200 shadow-sm placeholder:text-slate-400"
+=======
+              className="w-full bg-white border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 rounded-2xl pl-12 pr-12 py-3.5 text-base transition-all duration-200 shadow-sm placeholder:text-slate-400"
+>>>>>>> main
             />
             {searchTerm && (
               <button
@@ -182,8 +221,13 @@ export default function Topbar({ title, subtitle }: TopbarProps) {
                 <div className="text-lg font-semibold text-slate-800 mb-4">
                   {new Date().toLocaleDateString('en-IN', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}
                 </div>
+<<<<<<< HEAD
                 <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl p-5 text-center">
                   <p className="text-orange-600 font-medium">No classes scheduled today</p>
+=======
+                <div className="bg-gradient-to-br from-blue-50 to-red-50 rounded-xl p-5 text-center">
+                  <p className="text-blue-600 font-medium">No classes scheduled today</p>
+>>>>>>> main
                   <p className="text-xs text-slate-500 mt-1">Enjoy your learning journey ✨</p>
                 </div>
               </div>
@@ -201,7 +245,11 @@ export default function Topbar({ title, subtitle }: TopbarProps) {
               className="relative flex items-center justify-center w-12 h-12 rounded-2xl hover:bg-slate-100 transition-all"
             >
               <Bell size={22} className="text-slate-700" />
+<<<<<<< HEAD
               <div className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center ring-2 ring-white">
+=======
+              <div className="absolute -top-1 -right-1 w-5 h-5 bg-blue-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center ring-2 ring-white">
+>>>>>>> main
                 3
               </div>
             </button>
@@ -210,14 +258,24 @@ export default function Topbar({ title, subtitle }: TopbarProps) {
               <div className="absolute -right-0 mt-3 w-80 bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden z-50">
                 <div className="px-6 py-5 border-b flex items-center justify-between bg-gradient-to-r from-slate-50 to-white">
                   <div className="font-medium text-lg ">Notifications</div>
+<<<<<<< HEAD
                   <button className="text-orange-600 text-sm font-medium hover:underline">Mark all read</button>
+=======
+                  <button className="text-blue-600 text-sm font-medium hover:underline">Mark all read</button>
+>>>>>>> main
                 </div>
 
                 <div className="max-h-[420px] overflow-auto">
                   {notifications.map((notif) => (
+<<<<<<< HEAD
                     <div 
                       key={notif.id}
                       className={`px-6 py-4 hover:bg-slate-50 border-b border-slate-200 last:border-none ${notif.unread ? 'bg-orange-50/70' : ''}`}
+=======
+                    <div
+                      key={notif.id}
+                      className={`px-6 py-4 hover:bg-slate-50 border-b border-slate-200 last:border-none ${notif.unread ? 'bg-blue-50/70' : ''}`}
+>>>>>>> main
                     >
                       <div className="text-slate-700 text-sm">{notif.message}</div>
                       <div className="text-[10px] text-slate-500 mt-1">{notif.time}</div>
@@ -225,12 +283,17 @@ export default function Topbar({ title, subtitle }: TopbarProps) {
                   ))}
                 </div>
 
+<<<<<<< HEAD
                 <div className="p-4 text-center text-orange-600 text-sm font-medium border-t hover:bg-slate-50 cursor-pointer">
+=======
+                <div className="p-4 text-center text-blue-600 text-sm font-medium border-t hover:bg-slate-50 cursor-pointer">
+>>>>>>> main
                   View all activity
                 </div>
               </div>
             )}
           </div>
+<<<<<<< HEAD
 <div className={`w-[20vh] h-8 rounded-xl border border-slate-500  flex items-center justify-center text-left   text-sm`}
           >
            <select name="Language" id="1" className='text-left text-slate-800'>
@@ -255,6 +318,32 @@ export default function Topbar({ title, subtitle }: TopbarProps) {
           {/* Streak */}
           <div className="flex items-center gap-1.5 border    border-slate-200 rounded-2xl px-4 py-2 text-sm font-semibold text-orange-700">
             <Flame className="text-orange-500" size={18} />
+=======
+          <div className={`w-[20vh] h-8 rounded-xl border border-slate-500  flex items-center justify-center text-left   text-sm`}
+          >
+            <select name="Language" id="1" className='text-left text-slate-800'>
+
+              <option value="en">English</option>
+              <option value="hi">Hindi</option>
+              <option value="sa">Sanskrit</option>
+              <option value="bn">Bengali</option>
+              <option value="ta">Tamil</option>
+              <option value="te">Telugu</option>
+              <option value="kn">Kannada</option>
+              <option value="ml">Malayalam</option>
+              <option value="mr">Marathi</option>
+              <option value="gu">Gujarati</option>
+              <option value="pa">Punjabi</option>
+
+
+
+            </select>
+          </div>
+          {/* </div> */}
+          {/* Streak */}
+          <div className="flex items-center gap-1.5 border    border-slate-200 rounded-2xl px-4 py-2 text-sm font-semibold text-blue-700">
+            <Flame className="text-blue-500" size={18} />
+>>>>>>> main
             <span>12 Day Streak</span>
           </div>
 
@@ -268,7 +357,11 @@ export default function Topbar({ title, subtitle }: TopbarProps) {
               }}
               className="flex items-center gap-3 pl-4   rounded-full py-1 pr-2 transition-all"
             >
+<<<<<<< HEAD
               <div 
+=======
+              <div
+>>>>>>> main
                 className={`w-11 h-11 rounded-full border-2 border-slate-500 animate-pulse bg-gradient-to-br ${gradientClass} flex items-center justify-center text-white font-bold text-xl shadow-md ring-2 ring-white hover:scale-105 transition-transform`}
               >
                 {avatarInitial}
@@ -294,7 +387,11 @@ export default function Topbar({ title, subtitle }: TopbarProps) {
 
                 {/* Menu Items */}
                 <div className="py-2">
+<<<<<<< HEAD
                   <button 
+=======
+                  <button
+>>>>>>> main
                     onClick={handleViewProfile}
                     className="w-full px-6 py-2 flex items-center gap-2 hover:bg-slate-50 text-left transition-colors"
                   >
@@ -302,7 +399,11 @@ export default function Topbar({ title, subtitle }: TopbarProps) {
                     <span className="font-medium text-slate-700 text-sm">View Profile</span>
                   </button>
 
+<<<<<<< HEAD
                   <button 
+=======
+                  <button
+>>>>>>> main
                     onClick={handleSettings}
                     className="w-full px-6 py-2 flex items-center gap-2 hover:bg-slate-50 text-left transition-colors"
                   >
@@ -310,8 +411,13 @@ export default function Topbar({ title, subtitle }: TopbarProps) {
                     <span className="font-medium text-slate-700 text-sm">Settings</span>
                   </button>
 
+<<<<<<< HEAD
                   <button 
                     onClick={handleViewProfile=>{
+=======
+                  <button
+                    onClick={handleViewProfile => {
+>>>>>>> main
                       redirect('/achievements');
                     }}
                     className="w-full px-6 py-2 flex items-center gap-2 hover:bg-slate-50 text-left transition-colors"
@@ -324,11 +430,19 @@ export default function Topbar({ title, subtitle }: TopbarProps) {
                 <div className="border-t border-slate-100 my-1"></div>
 
                 {/* Logout */}
+<<<<<<< HEAD
                 <button 
                   onClick={handleLogout}
                   className="w-full px-6 py-2 flex items-center gap-2 hover:bg-red-50 text-left transition-colors text-red-600"
                 >
                   <LogOut size={20} />  
+=======
+                <button
+                  onClick={handleLogout}
+                  className="w-full px-6 py-2 flex items-center gap-2 hover:bg-blue-50 text-left transition-colors text-blue-600"
+                >
+                  <LogOut size={20} />
+>>>>>>> main
                   <span className="font-medium">Logout</span>
                 </button>
               </div>
@@ -340,8 +454,13 @@ export default function Topbar({ title, subtitle }: TopbarProps) {
 
       {/* Overlay */}
       {(showNotifications || showCalendar || showProfileDropdown) && (
+<<<<<<< HEAD
         <div 
           className="fixed inset-0 z-40 bg-transparent" 
+=======
+        <div
+          className="fixed inset-0 z-40 bg-transparent"
+>>>>>>> main
           onClick={() => {
             setShowNotifications(false);
             setShowCalendar(false);

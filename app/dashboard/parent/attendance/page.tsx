@@ -12,8 +12,13 @@ export default function ParentAttendance() {
 
   if (!user) return null;
 
+<<<<<<< HEAD
   const filteredAttendance = filterStatus === 'All' 
     ? MOCK_ATTENDANCE 
+=======
+  const filteredAttendance = filterStatus === 'All'
+    ? MOCK_ATTENDANCE
+>>>>>>> main
     : MOCK_ATTENDANCE.filter(record => record.status === filterStatus);
 
   const attendanceStats = {
@@ -25,8 +30,13 @@ export default function ParentAttendance() {
   };
 
   return (
+<<<<<<< HEAD
     <DashboardLayout 
       title="Attendance Tracker" 
+=======
+    <DashboardLayout
+      title="Attendance Tracker"
+>>>>>>> main
       subtitle="Real-time class attendance and participation records"
     >
       <div className="space-y-12 pb-20">
@@ -37,11 +47,19 @@ export default function ParentAttendance() {
             <div className="text-[11px] font-black text-slate-600 uppercase tracking-widest">Present</div>
           </div>
           <div className="text-center">
+<<<<<<< HEAD
             <div className="text-4xl font-black text-orange-500 mb-3">{attendanceStats.late}</div>
             <div className="text-[11px] font-black text-slate-600 uppercase tracking-widest">Late</div>
           </div>
           <div className="text-center">
             <div className="text-4xl font-black text-red-500 mb-3">{attendanceStats.absent}</div>
+=======
+            <div className="text-4xl font-black text-blue-500 mb-3">{attendanceStats.late}</div>
+            <div className="text-[11px] font-black text-slate-600 uppercase tracking-widest">Late</div>
+          </div>
+          <div className="text-center">
+            <div className="text-4xl font-black text-blue-500 mb-3">{attendanceStats.absent}</div>
+>>>>>>> main
             <div className="text-[11px] font-black text-slate-600 uppercase tracking-widest">Absent</div>
           </div>
           <div className="text-center">
@@ -60,8 +78,13 @@ export default function ParentAttendance() {
             <Calendar className="text-blue-500" size={40} />
             Detailed Records
           </h1>
+<<<<<<< HEAD
           <select 
             className="px-8 py-5 bg-white border border-slate-100 rounded-xl shadow-sm font-black text-[11px] uppercase tracking-widest text-slate-700 focus:ring-brand-orange focus:border-transparent min-w-[180px]"
+=======
+          <select
+            className="px-8 py-5 bg-white border border-slate-100 rounded-xl shadow-sm font-black text-[11px] uppercase tracking-widest text-slate-700 focus:ring-blue-900 focus:border-transparent min-w-[180px]"
+>>>>>>> main
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value as any)}
             aria-label="Filter attendance by status"
@@ -76,6 +99,7 @@ export default function ParentAttendance() {
         {/* Attendance Records */}
         <div className="grid gap-4">
           {filteredAttendance.map((record) => (
+<<<<<<< HEAD
             <div key={record.id} className={`p-8 rounded-xl border-2 transition-all flex items-center gap-6 ${
               record.status === 'Present' ? 'border-emerald-200 bg-emerald-50/50 hover:border-emerald-300' :
               record.status === 'Late' ? 'border-orange-200 bg-orange-50/50 hover:border-orange-300' :
@@ -86,6 +110,16 @@ export default function ParentAttendance() {
                 record.status === 'Late' ? 'bg-orange-500' :
                 'bg-red-500'
               }`}>
+=======
+            <div key={record.id} className={`p-8 rounded-xl border-2 transition-all flex items-center gap-6 ${record.status === 'Present' ? 'border-emerald-200 bg-emerald-50/50 hover:border-emerald-300' :
+              record.status === 'Late' ? 'border-blue-200 bg-blue-50/50 hover:border-blue-300' :
+                'border-blue-200 bg-blue-50/50 hover:border-blue-300'
+              }`}>
+              <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-white shadow-lg flex-shrink-0 ${record.status === 'Present' ? 'bg-emerald-500' :
+                record.status === 'Late' ? 'bg-blue-500' :
+                  'bg-blue-500'
+                }`}>
+>>>>>>> main
                 {record.status === 'Present' && <CheckCircle2 size={24} />}
                 {record.status === 'Late' && <Clock size={24} />}
                 {record.status === 'Absent' && <XCircle size={24} />}
@@ -102,11 +136,18 @@ export default function ParentAttendance() {
                 </div>
                 <div className="md:text-right">
                   <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Status</div>
+<<<<<<< HEAD
                   <div className={`text-lg font-black uppercase tracking-widest px-3 py-1 rounded-full ${
                     record.status === 'Present' ? 'text-emerald-600 bg-emerald-100' :
                     record.status === 'Late' ? 'text-orange-600 bg-orange-100' :
                     'text-red-600 bg-red-100'
                   }`}>
+=======
+                  <div className={`text-lg font-black uppercase tracking-widest px-3 py-1 rounded-full ${record.status === 'Present' ? 'text-emerald-600 bg-emerald-100' :
+                    record.status === 'Late' ? 'text-blue-600 bg-blue-100' :
+                      'text-blue-600 bg-blue-100'
+                    }`}>
+>>>>>>> main
                     {record.status}
                   </div>
                 </div>

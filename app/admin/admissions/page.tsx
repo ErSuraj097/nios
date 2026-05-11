@@ -19,8 +19,13 @@ export default function AdmissionsPage() {
   if (!user || user.role !== 'admin') return null;
 
   return (
+<<<<<<< HEAD
     <DashboardLayout 
       title="Admissions & Enrolment" 
+=======
+    <DashboardLayout
+      title="Admissions & Enrolment"
+>>>>>>> main
       subtitle="Automated KYC, Aadhaar Verification & Digital Workflows"
     >
       <div className="grid lg:grid-cols-3 gap-8 mb-8">
@@ -30,15 +35,26 @@ export default function AdmissionsPage() {
             <div className="flex gap-2">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
+<<<<<<< HEAD
                 <input 
                   type="text" 
                   placeholder="Search Application ID..." 
                   className="pl-10 pr-4 py-2 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange"
+=======
+                <input
+                  type="text"
+                  placeholder="Search Application ID..."
+                  className="pl-10 pr-4 py-2 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-blue-900 focus:ring-1 focus:ring-blue-900"
+>>>>>>> main
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
               </div>
+<<<<<<< HEAD
               <button className="px-4 py-2 bg-brand-orange text-white text-xs font-black uppercase rounded-xl hover:bg-orange-600 transition-all">Bulk Process</button>
+=======
+              <button className="px-4 py-2 bg-blue-900 text-white text-xs font-black uppercase rounded-xl hover:bg-blue-600 transition-all">Bulk Process</button>
+>>>>>>> main
             </div>
           </div>
 
@@ -60,25 +76,42 @@ export default function AdmissionsPage() {
                       <div className="text-[10px] text-slate-500 uppercase tracking-wider">{app.id} · {app.type}</div>
                     </td>
                     <td className="px-6 py-5">
+<<<<<<< HEAD
                       <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-black uppercase tracking-widest ${
                         app.aadhaar === 'Verified' ? 'bg-emerald-50 text-emerald-600' :
                         app.aadhaar === 'Mismatch' ? 'bg-red-50 text-red-600' : 'bg-amber-50 text-amber-600'
                       }`}>
+=======
+                      <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-black uppercase tracking-widest ${app.aadhaar === 'Verified' ? 'bg-emerald-50 text-emerald-600' :
+                        app.aadhaar === 'Mismatch' ? 'bg-blue-50 text-blue-600' : 'bg-blue-50 text-blue-600'
+                        }`}>
+>>>>>>> main
                         <Fingerprint size={12} /> {app.aadhaar}
                       </span>
                     </td>
                     <td className="px-6 py-5">
+<<<<<<< HEAD
                       <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-black uppercase tracking-widest ${
                         app.docs === 'Verified' ? 'bg-indigo-50 text-indigo-600' : 'bg-slate-100 text-slate-600'
                       }`}>
+=======
+                      <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-black uppercase tracking-widest ${app.docs === 'Verified' ? 'bg-indigo-50 text-indigo-600' : 'bg-slate-100 text-slate-600'
+                        }`}>
+>>>>>>> main
                         <FileText size={12} /> {app.docs}
                       </span>
                     </td>
                     <td className="px-6 py-5 text-right">
                       <div className="flex items-center justify-end gap-3">
+<<<<<<< HEAD
                          {app.status === 'pending' && <button className="text-brand-orange hover:text-orange-600 font-bold text-xs">Review</button>}
                          {app.status === 'approved' && <CheckCircle2 className="text-emerald-500" size={18} />}
                          {app.status === 'rejected' && <XCircle className="text-red-500" size={18} />}
+=======
+                        {app.status === 'pending' && <button className="text-blue-900 hover:text-blue-600 font-bold text-xs">Review</button>}
+                        {app.status === 'approved' && <CheckCircle2 className="text-emerald-500" size={18} />}
+                        {app.status === 'rejected' && <XCircle className="text-blue-500" size={18} />}
+>>>>>>> main
                       </div>
                     </td>
                   </tr>
@@ -93,7 +126,11 @@ export default function AdmissionsPage() {
             <div className="absolute -top-12 -right-12 w-32 h-32 bg-indigo-500/20 rounded-full blur-2xl"></div>
             <h3 className="font-black uppercase tracking-tight mb-2">Aadhaar E-KYC Live</h3>
             <p className="text-xs text-indigo-200 mb-6 font-medium">UIDAI Gateway cluster is fully operational and processing 42 verifications/min.</p>
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> main
             <div className="space-y-3">
               <div className="bg-white/10 border border-white/10 rounded-xl p-4 flex items-center justify-between">
                 <div className="flex items-center gap-3">
@@ -109,7 +146,11 @@ export default function AdmissionsPage() {
               </div>
               <div className="bg-white/10 border border-white/10 rounded-xl p-4 flex items-center justify-between">
                 <div className="flex items-center gap-3">
+<<<<<<< HEAD
                   <div className="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400">
+=======
+                  <div className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400">
+>>>>>>> main
                     <Clock size={16} />
                   </div>
                   <div>
@@ -125,6 +166,7 @@ export default function AdmissionsPage() {
           <div className="p-8 rounded-xl bg-white border border-slate-100 shadow-sm">
             <h3 className="font-black text-slate-900 uppercase tracking-tight mb-6">Document Intelligence</h3>
             <div className="grid grid-cols-2 gap-4">
+<<<<<<< HEAD
                <div className="p-4 rounded-xl border-2 border-dashed border-slate-200 hover:border-brand-orange hover:bg-orange-50 transition-colors text-center cursor-pointer group">
                   <UploadCloud className="mx-auto text-slate-400 group-hover:text-brand-orange mb-2" size={24} />
                   <div className="text-xs font-bold text-slate-900">Upload Scans</div>
@@ -135,6 +177,18 @@ export default function AdmissionsPage() {
                   <div className="text-xs font-bold text-slate-900">DigiLocker Sync</div>
                   <div className="text-[9px] text-slate-400 uppercase mt-1">Fetch Records</div>
                </div>
+=======
+              <div className="p-4 rounded-xl border-2 border-dashed border-slate-200 hover:border-blue-900 hover:bg-blue-50 transition-colors text-center cursor-pointer group">
+                <UploadCloud className="mx-auto text-slate-400 group-hover:text-blue-900 mb-2" size={24} />
+                <div className="text-xs font-bold text-slate-900">Upload Scans</div>
+                <div className="text-[9px] text-slate-400 uppercase mt-1">Batch OCR</div>
+              </div>
+              <div className="p-4 rounded-xl border-2 border-dashed border-slate-200 hover:border-blue-500 hover:bg-blue-50 transition-colors text-center cursor-pointer group">
+                <FolderOpen className="mx-auto text-slate-400 group-hover:text-blue-500 mb-2" size={24} />
+                <div className="text-xs font-bold text-slate-900">DigiLocker Sync</div>
+                <div className="text-[9px] text-slate-400 uppercase mt-1">Fetch Records</div>
+              </div>
+>>>>>>> main
             </div>
           </div>
         </div>

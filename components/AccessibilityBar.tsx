@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+<<<<<<< HEAD
 import { 
   Minimize2, 
   Maximize2, 
@@ -12,6 +13,19 @@ import {
   Volume2, 
   ExternalLink,
   X, 
+=======
+import {
+  Minimize2,
+  Maximize2,
+  Type,
+  Palette,
+  Globe,
+  FileText,
+  Users,
+  Volume2,
+  ExternalLink,
+  X,
+>>>>>>> main
   SkipForward
 } from 'lucide-react';
 
@@ -76,6 +90,7 @@ export default function AccessibilityBar() {
 
   return (
     <>
+<<<<<<< HEAD
      
 
       {/* Accessibility Bar */}
@@ -96,14 +111,42 @@ export default function AccessibilityBar() {
             <button 
               onClick={() => setShowRTI(true)}
               className="hover:underline flex items-center gap-1.5 text-slate-500  transition-all"
+=======
+
+
+      {/* Accessibility Bar */}
+      <div className="bg-white/80 backdrop-blur-xl border-b border-slate-200 shadow-sm sticky top-0 z-40">
+        <div className="max-w-7xl mx-auto  flex items-center justify-between">
+
+          {/* Left: Links */}
+          <div className="flex items-center gap-4 text-sm  text-slate-700">
+            {/* Skip to Main Content - Hidden until focused */}
+            <a
+              href="#main"
+              className=" text-[12px]  text-slate-500 flex gap-1.5 z-50 transition-all"
+              onClick={skipToMain}
+            >
+              <SkipForward size={16} /> Skip to Main Content
+            </a>
+
+            <button
+              onClick={() => setShowRTI(true)}
+              className="hover:underline text-[12px]  flex items-center gap-1.5 text-slate-500  transition-all"
+>>>>>>> main
               aria-label="RTI Disclosure"
             >
               <FileText size={16} />
               RTI Disclosure
             </button>
+<<<<<<< HEAD
             <button 
               onClick={() => setShowStaff(true)}
               className="hover:underline flex items-center gap-1.5  text-slate-500 transition-all"
+=======
+            <button
+              onClick={() => setShowStaff(true)}
+              className="hover:underline flex items-center gap-1.5 text-[12px]   text-slate-500 transition-all"
+>>>>>>> main
               aria-label="Staff Corner"
             >
               <Users size={16} />
@@ -125,7 +168,11 @@ export default function AccessibilityBar() {
               </button>
               <button
                 onClick={() => updateFontSize('base')}
+<<<<<<< HEAD
                 className={`px-2 font-semibold transition-all ${fontSize === 'base' ? 'bg-white shadow-sm text-slate-900 border border-orange-200' : 'text-slate-600 hover:bg-white'}`}
+=======
+                className={`px-2 font-semibold transition-all ${fontSize === 'base' ? 'bg-white shadow-sm text-slate-900 border border-blue-200' : 'text-slate-600 hover:bg-white'}`}
+>>>>>>> main
                 aria-label="Normal text size"
                 aria-pressed={fontSize === 'base' ? 'true' : 'false'}
               >
@@ -166,7 +213,11 @@ export default function AccessibilityBar() {
             </button>
 
             {/* Screen Reader */}
+<<<<<<< HEAD
             <button 
+=======
+            <button
+>>>>>>> main
               className="p-2 rounded-lg bg-emerald-100/60 hover:bg-emerald-200 text-emerald-700 hover:shadow-sm transition-all ml-1"
               aria-label="Screen Reader Access Guide"
               title="Screen Reader Access Guide"
@@ -179,7 +230,11 @@ export default function AccessibilityBar() {
           {/* Right: This page in... */}
           <div className="flex items-center gap-2 text-xs font-medium text-slate-600">
             <span>This page in:</span>
+<<<<<<< HEAD
             <button className="px-3 py-1.5 bg-orange-100 text-orange-700 rounded-full hover:bg-orange-200 transition-all">
+=======
+            <button className="px-3 py-1.5 bg-blue-100 text-blue-700 rounded-full hover:bg-blue-200 transition-all">
+>>>>>>> main
               English
             </button>
             <button className="px-3 py-1.5 bg-slate-100 text-slate-700 rounded-full hover:bg-slate-200 transition-all">
@@ -205,11 +260,19 @@ export default function AccessibilityBar() {
             <div className="p-8 prose prose-slate max-w-none">
               <p><strong>RTI Disclosures under Section 4(1)(b) of RTI Act 2005:</strong></p>
               <ul>
+<<<<<<< HEAD
                 <li><strong>Organization:</strong> Samskrit Bharti National Institute of Open Schooling (NIOS)</li>
                 <li><strong>Functions:</strong> Open schooling, AI-driven adaptive learning, certification</li>
                 <li><strong>Powers:</strong> Academic oversight, digital credential issuance, compliance monitoring</li>
                 <li><strong>PIO Contact:</strong> pio@samskritbharati.org | +91-XXXXXXXXXX</li>
                 <li><a href="/rti-full" className="font-semibold hover:text-brand-orange flex items-center gap-1">
+=======
+                <li><strong>Organization:</strong> National Institute of Open Schooling (NIOS)</li>
+                <li><strong>Functions:</strong> Open schooling, AI-driven adaptive learning, certification</li>
+                <li><strong>Powers:</strong> Academic oversight, digital credential issuance, compliance monitoring</li>
+                <li><strong>PIO Contact:</strong> pio@nios.ac.in | +91-XXXXXXXXXX</li>
+                <li><a href="/rti-full" className="font-semibold hover:text-blue-900 flex items-center gap-1">
+>>>>>>> main
                   Full RTI Manual <ExternalLink size={14} />
                 </a></li>
               </ul>
@@ -234,10 +297,17 @@ export default function AccessibilityBar() {
             <div className="p-8 prose prose-slate max-w-none">
               <p><strong>Faculty Portal & Resources:</strong></p>
               <ul>
+<<<<<<< HEAD
                 <li><a href="/teacher" className="font-semibold hover:text-brand-orange">Dashboard Login</a></li>
                 <li><strong>Guidelines:</strong> Content creation, exam proctoring, student support</li>
                 <li><strong>Training:</strong> AI tools, accessibility standards, LMS features</li>
                 <li><strong>Support:</strong> helpdesk@samskritbharati.org | Internal Slack #staff-support</li>
+=======
+                <li><a href="/teacher" className="font-semibold hover:text-blue-900">Dashboard Login</a></li>
+                <li><strong>Guidelines:</strong> Content creation, exam proctoring, student support</li>
+                <li><strong>Training:</strong> AI tools, accessibility standards, LMS features</li>
+                <li><strong>Support:</strong> helpdesk@nios.ac.in | Internal Slack #staff-support</li>
+>>>>>>> main
               </ul>
             </div>
           </div>

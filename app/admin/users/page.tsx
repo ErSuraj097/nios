@@ -2,7 +2,11 @@
 
 import DashboardLayout from '@/components/DashboardLayout';
 import { useState } from 'react';
+<<<<<<< HEAD
 import { UserPlus, Download, Upload, Users, Search, Filter, Eye, Edit, Trash2, Shield } from 'lucide-react';
+=======
+import { UserPlus, Download, Upload, Users, Search, Filter, Eye, Edit, Trash2, Shield, GraduationCap } from 'lucide-react';
+>>>>>>> main
 import { MOCK_USERS } from '@/lib/mock-data';
 import { useAuth } from '@/contexts/AuthContext';
 
@@ -22,8 +26,13 @@ export default function AdminUsersPage() {
   const stats = [
     { label: 'Total Users', value: '2,847', icon: Users, color: 'blue' },
     { label: 'Teachers', value: '156', icon: UserPlus, color: 'emerald' },
+<<<<<<< HEAD
     { label: 'Learners', value: '2,684', icon: GraduationCap, color: 'orange' },
     { label: 'Pending Verification', value: '23', icon: Shield, color: 'amber' },
+=======
+    { label: 'Learners', value: '2,684', icon: GraduationCap, color: 'blue' },
+    { label: 'Pending Verification', value: '23', icon: Shield, color: 'blue' },
+>>>>>>> main
   ];
 
   return (
@@ -44,6 +53,7 @@ export default function AdminUsersPage() {
 
         {/* Tabs */}
         <div className="bg-white/50 backdrop-blur p-2 rounded-xl border border-slate-100/50 flex">
+<<<<<<< HEAD
           <button onClick={() => setActiveTab('list')} className={`px-8 py-4 rounded-xl font-black uppercase tracking-widest flex-1 ${activeTab === 'list' ? 'bg-brand-orange text-white shadow-lg' : 'text-slate-600 hover:text-slate-900'}`}>
             User List
           </button>
@@ -51,12 +61,25 @@ export default function AdminUsersPage() {
             Bulk Onboard
           </button>
           <button onClick={() => setActiveTab('roles')} className={`px-8 py-4 rounded-xl font-black uppercase tracking-widest flex-1 ${activeTab === 'roles' ? 'bg-brand-orange text-white shadow-lg' : 'text-slate-600 hover:text-slate-900'}`}>
+=======
+          <button onClick={() => setActiveTab('list')} className={`px-8 py-4 rounded-xl font-black uppercase tracking-widest flex-1 ${activeTab === 'list' ? 'bg-blue-900 text-white shadow-lg' : 'text-slate-600 hover:text-slate-900'}`}>
+            User List
+          </button>
+          <button onClick={() => setActiveTab('bulk')} className={`px-8 py-4 rounded-xl font-black uppercase tracking-widest flex-1 ${activeTab === 'bulk' ? 'bg-blue-900 text-white shadow-lg' : 'text-slate-600 hover:text-slate-900'}`}>
+            Bulk Onboard
+          </button>
+          <button onClick={() => setActiveTab('roles')} className={`px-8 py-4 rounded-xl font-black uppercase tracking-widest flex-1 ${activeTab === 'roles' ? 'bg-blue-900 text-white shadow-lg' : 'text-slate-600 hover:text-slate-900'}`}>
+>>>>>>> main
             Role Management
           </button>
         </div>
 
         {activeTab === 'bulk' && (
+<<<<<<< HEAD
           <div className="p-12 border-4 border-dashed border-slate-200 rounded-xl bg-slate-50/50 text-center group hover:border-brand-orange transition-all">
+=======
+          <div className="p-12 border-4 border-dashed border-slate-200 rounded-xl bg-slate-50/50 text-center group hover:border-blue-900 transition-all">
+>>>>>>> main
             <div className="w-32 h-32 mx-auto mb-12 rounded-xl bg-gradient-to-br from-emerald-400 to-emerald-500 flex items-center justify-center text-white shadow-2xl group-hover:scale-110 transition-all">
               <Upload size={48} />
             </div>
@@ -93,16 +116,27 @@ export default function AdminUsersPage() {
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   placeholder="Search users by name, email or ID..."
+<<<<<<< HEAD
                   className="pl-14 pr-6 py-5 w-full bg-white rounded-xl border border-slate-200 shadow-sm focus:ring-4 focus:ring-brand-orange/20"
                 />
               </div>
               <button className="px-10 py-5 bg-slate-900 text-white rounded-xl font-black uppercase tracking-widest hover:bg-brand-orange shadow-xl whitespace-nowrap">
+=======
+                  className="pl-14 pr-6 py-5 w-full bg-white rounded-xl border border-slate-200 shadow-sm focus:ring-4 focus:ring-blue-900/20"
+                />
+              </div>
+              <button className="px-10 py-5 bg-slate-900 text-white rounded-xl font-black uppercase tracking-widest hover:bg-blue-900 shadow-xl whitespace-nowrap">
+>>>>>>> main
                 Export CSV
               </button>
             </div>
             <div className="grid gap-6">
               {filteredUsers.slice(0, 8).map((u) => (
+<<<<<<< HEAD
                 <div key={u.id} className="flex items-center p-8 rounded-xl bg-white border border-slate-100 hover:border-brand-orange hover:shadow-xl transition-all gap-6">
+=======
+                <div key={u.id} className="flex items-center p-8 rounded-xl bg-white border border-slate-100 hover:border-blue-900 hover:shadow-xl transition-all gap-6">
+>>>>>>> main
                   <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-slate-900 to-slate-800 text-white flex items-center justify-center font-black text-2xl flex-shrink-0">
                     {u.name.charAt(0)}
                   </div>
@@ -110,11 +144,18 @@ export default function AdminUsersPage() {
                     <h4 className="text-xl font-black text-slate-900">{u.name}</h4>
                     <div className="flex items-center gap-4 text-sm text-slate-500 mt-1">
                       <span>{u.email}</span>
+<<<<<<< HEAD
                       <span className={`px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider ${
                         u.role === 'teacher' ? 'bg-emerald-100 text-emerald-700' : 
                         u.role === 'admin' ? 'bg-purple-100 text-purple-700' : 
                         'bg-orange-100 text-orange-700'
                       }`}>
+=======
+                      <span className={`px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider ${u.role === 'teacher' ? 'bg-emerald-100 text-emerald-700' :
+                        u.role === 'admin' ? 'bg-purple-100 text-purple-700' :
+                          'bg-blue-100 text-blue-700'
+                        }`}>
+>>>>>>> main
                         {u.role}
                       </span>
                     </div>
@@ -129,7 +170,11 @@ export default function AdminUsersPage() {
                     <button className="p-4 hover:bg-emerald-50 text-emerald-500 rounded-xl transition-all" title="Edit Role">
                       <Edit size={18} />
                     </button>
+<<<<<<< HEAD
                     <button className="p-4 hover:bg-red-50 text-red-500 rounded-xl transition-all" title="Deactivate">
+=======
+                    <button className="p-4 hover:bg-blue-50 text-blue-500 rounded-xl transition-all" title="Deactivate">
+>>>>>>> main
                       <Trash2 size={18} />
                     </button>
                   </div>
@@ -151,13 +196,22 @@ export default function AdminUsersPage() {
                 Bulk Assign Teachers
               </button>
             </div>
+<<<<<<< HEAD
             <div className="p-12 rounded-xl border-4 border-dashed border-orange-200 bg-orange-50/50">
               <GraduationCap className="w-24 h-24 text-orange-500 mx-auto mb-8" />
+=======
+            <div className="p-12 rounded-xl border-4 border-dashed border-blue-200 bg-blue-50/50">
+              <GraduationCap className="w-24 h-24 text-blue-500 mx-auto mb-8" />
+>>>>>>> main
               <h3 className="text-2xl font-black text-slate-900 mb-6 uppercase tracking-tight">Learner</h3>
               <p className="text-lg text-slate-600 mb-12 leading-relaxed max-w-sm mx-auto">
                 Course access, assessments, progress tracking, certificates. Parent linkage available.
               </p>
+<<<<<<< HEAD
               <button className="px-12 py-6 bg-orange-500 text-white rounded-xl font-black uppercase tracking-widest shadow-xl hover:shadow-orange-500/25 transition-all text-sm">
+=======
+              <button className="px-12 py-6 bg-blue-500 text-white rounded-xl font-black uppercase tracking-widest shadow-xl hover:shadow-blue-500/25 transition-all text-sm">
+>>>>>>> main
                 Enroll Students
               </button>
             </div>

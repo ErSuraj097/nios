@@ -12,6 +12,7 @@ export default function ParentActivities() {
 
   if (!user) return null;
 
+<<<<<<< HEAD
   const filteredActivities = filterStatus === 'All' 
     ? MOCK_CLASS_ACTIVITIES 
     : MOCK_CLASS_ACTIVITIES.filter(activity => activity.status === filterStatus);
@@ -19,6 +20,15 @@ export default function ParentActivities() {
   return (
     <DashboardLayout 
       title="Class Activities" 
+=======
+  const filteredActivities = filterStatus === 'All'
+    ? MOCK_CLASS_ACTIVITIES
+    : MOCK_CLASS_ACTIVITIES.filter(activity => activity.status === filterStatus);
+
+  return (
+    <DashboardLayout
+      title="Class Activities"
+>>>>>>> main
       subtitle="Homework, projects and assignments overview"
     >
       <div className="space-y-12 pb-20">
@@ -33,8 +43,13 @@ export default function ParentActivities() {
               Track homework, projects and quizzes assigned by faculty. {MOCK_CLASS_ACTIVITIES.filter(a => a.status === 'Pending').length} pending.
             </p>
           </div>
+<<<<<<< HEAD
           <select 
             className="px-6 py-4 bg-white border border-slate-100 rounded-xl shadow-sm font-black text-[10px] uppercase tracking-widest text-slate-700 focus:ring-brand-orange focus:border-transparent"
+=======
+          <select
+            className="px-6 py-4 bg-white border border-slate-100 rounded-xl shadow-sm font-black text-[10px] uppercase tracking-widest text-slate-700 focus:ring-blue-900 focus:border-transparent"
+>>>>>>> main
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value as any)}
             aria-label="Filter activities by status"
@@ -51,11 +66,18 @@ export default function ParentActivities() {
           {filteredActivities.map((activity) => (
             <div key={activity.id} className="group p-8 rounded-xl bg-white border-2 border-slate-100 hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-500/10 transition-all overflow-hidden">
               <div className="flex items-start justify-between mb-6">
+<<<<<<< HEAD
                 <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-white shadow-lg mb-4 shrink-0 ${
                   activity.status === 'Pending' ? 'bg-orange-500' :
                   activity.status === 'Submitted' ? 'bg-blue-500' :
                   'bg-emerald-500'
                 }`}>
+=======
+                <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-white shadow-lg mb-4 shrink-0 ${activity.status === 'Pending' ? 'bg-blue-500' :
+                  activity.status === 'Submitted' ? 'bg-blue-500' :
+                    'bg-emerald-500'
+                  }`}>
+>>>>>>> main
                   <ClipboardList size={20} />
                 </div>
                 <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all">
@@ -64,7 +86,11 @@ export default function ParentActivities() {
               </div>
 
               <h3 className="text-xl font-black text-slate-900 mb-3 leading-tight line-clamp-2 group-hover:text-emerald-700 transition-colors">{activity.title}</h3>
+<<<<<<< HEAD
               
+=======
+
+>>>>>>> main
               <div className="space-y-2 text-sm mb-6">
                 <div className="flex items-center gap-2 text-slate-500">
                   <BookOpen size={14} /> {activity.subject}
@@ -78,11 +104,18 @@ export default function ParentActivities() {
                 <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
                   <Calendar size={12} /> Due {activity.dueDate}
                 </div>
+<<<<<<< HEAD
                 <div className={`px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest ${
                   activity.status === 'Pending' ? 'bg-orange-100 text-orange-700' :
                   activity.status === 'Submitted' ? 'bg-blue-100 text-blue-700' :
                   'bg-emerald-100 text-emerald-700'
                 }`}>
+=======
+                <div className={`px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest ${activity.status === 'Pending' ? 'bg-blue-100 text-blue-700' :
+                  activity.status === 'Submitted' ? 'bg-blue-100 text-blue-700' :
+                    'bg-emerald-100 text-emerald-700'
+                  }`}>
+>>>>>>> main
                   {activity.status}
                 </div>
               </div>
@@ -101,7 +134,11 @@ export default function ParentActivities() {
         )}
 
         {/* Quick Stats */}
+<<<<<<< HEAD
         <div className="grid lg:grid-cols-4 gap-6 p-8 rounded-xl] bg-gradient-to-r from-emerald-50 to-blue-50 border border-emerald-100/50">
+=======
+        <div className="grid lg:grid-cols-4 gap-6 p-8 rounded-xl] bg-gradient-to-r from-emerald-50 to-red-50 border border-emerald-100/50">
+>>>>>>> main
           <div className="text-center">
             <div className="text-3xl font-black text-emerald-600 mb-2">2</div>
             <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Pending</div>
@@ -115,7 +152,11 @@ export default function ParentActivities() {
             <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Graded</div>
           </div>
           <div className="text-center">
+<<<<<<< HEAD
             <div className="text-3xl font-black bg-gradient-to-r from-emerald-500 to-blue-500 bg-clip-text text-transparent mb-2">92%</div>
+=======
+            <div className="text-3xl font-black bg-gradient-to-r from-emerald-500 to-red-500 bg-clip-text text-transparent mb-2">92%</div>
+>>>>>>> main
             <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest">On-time Rate</div>
           </div>
         </div>

@@ -14,7 +14,11 @@ export default function ChatbotToggle() {
       <button
         onClick={() => setIsOpen(true)}
         aria-label="Open AI Course Recommendation Chatbot"
+<<<<<<< HEAD
         className="fixed bottom-8 right-8 z-[100] w-16 h-16 bg-gradient-to-br from-brand-orange to-orange-600 rounded-2xl shadow-2xl border-4 border-white/20 ring-4 ring-orange-500/30 hover:ring-orange-400/50 active:scale-95 transition-all duration-300 hover:-translate-y-1 group sm:bottom-6 sm:right-6"
+=======
+        className="fixed bottom-8 right-8 z-[100] w-16 h-16 bg-gradient-to-br from-blue-900 to-red-600 rounded-2xl shadow-2xl border-4 border-white/20 ring-4 ring-blue-500/30 hover:ring-blue-400/50 active:scale-95 transition-all duration-300 hover:-translate-y-1 group sm:bottom-6 sm:right-6"
+>>>>>>> main
       >
         <Image
           src="/course_recommendation_AI.png"
@@ -30,7 +34,11 @@ export default function ChatbotToggle() {
       </button>
 
       {/* New Message Badge Animation */}
+<<<<<<< HEAD
       <div className="fixed bottom-20 right-20 w-3 h-3 bg-red-500 rounded-full animate-bounce opacity-0 group-hover:opacity-100 z-[101] sm:hidden lg:block" />
+=======
+      <div className="fixed bottom-20 right-20 w-3 h-3 bg-blue-500 rounded-full animate-bounce opacity-0 group-hover:opacity-100 z-[101] sm:hidden lg:block" />
+>>>>>>> main
 
       {isOpen && (
         <ChatbotModal onClose={() => setIsOpen(false)} />

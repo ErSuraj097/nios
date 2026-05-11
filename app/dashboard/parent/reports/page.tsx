@@ -19,8 +19,13 @@ export default function ParentReports() {
   };
 
   return (
+<<<<<<< HEAD
     <DashboardLayout 
       title="Academic Reports" 
+=======
+    <DashboardLayout
+      title="Academic Reports"
+>>>>>>> main
       subtitle="Downloadable performance analytics and progress evaluations"
     >
       <div className="space-y-12 pb-20">
@@ -45,15 +50,25 @@ export default function ParentReports() {
         {/* Reports Grid */}
         <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
           {MOCK_STUDENT_REPORTS.map((report) => (
+<<<<<<< HEAD
             <div key={report.id} className="group p-8 rounded-xl bg-white border-2 border-slate-100 hover:border-brand-orange hover:shadow-2xl hover:shadow-orange-500/10 transition-all overflow-hidden h-full">
               <div className="absolute inset-0 bg-gradient-to-br from-brand-orange/0 via-brand-orange/3 to-transparent pointer-events-none" />
               
+=======
+            <div key={report.id} className="group p-8 rounded-xl bg-white border-2 border-slate-100 hover:border-blue-900 hover:shadow-2xl hover:shadow-blue-500/10 transition-all overflow-hidden h-full">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-900/0 via-blue-900/3 to-transparent pointer-events-none" />
+
+>>>>>>> main
               <div className="relative z-10 flex items-start justify-between mb-6">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-white shadow-lg mb-4 shrink-0">
                   <FileText size={20} />
                 </div>
                 <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all ml-4">
+<<<<<<< HEAD
                   <button 
+=======
+                  <button
+>>>>>>> main
                     onClick={() => handleDownload(report.id)}
                     className="p-2 bg-white/20 hover:bg-white/30 rounded-lg backdrop-blur-sm text-white transition-all flex items-center justify-center shadow-md"
                     title="Download PDF"
@@ -64,8 +79,13 @@ export default function ParentReports() {
               </div>
 
               <div className="space-y-3">
+<<<<<<< HEAD
                 <h3 className="text-xl font-black text-slate-900 tracking-tight leading-tight group-hover:text-brand-orange transition-colors line-clamp-2">{report.title}</h3>
                 
+=======
+                <h3 className="text-xl font-black text-slate-900 tracking-tight leading-tight group-hover:text-blue-900 transition-colors line-clamp-2">{report.title}</h3>
+
+>>>>>>> main
                 <div className="flex items-center gap-6 text-[10px] font-black text-slate-400 uppercase tracking-widest">
                   <div className="flex items-center gap-1">
                     <Calendar size={12} /> {report.period}
@@ -77,10 +97,16 @@ export default function ParentReports() {
                 </div>
 
                 <div className="flex items-center gap-2 mt-4 pt-4 border-t border-slate-100">
+<<<<<<< HEAD
                   <div className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${
                     report.overallGrade === 'A+' ? 'bg-emerald-100 text-emerald-700 border border-emerald-200' :
                     'bg-slate-100 text-slate-700 border border-slate-200'
                   }`}>
+=======
+                  <div className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${report.overallGrade === 'A+' ? 'bg-emerald-100 text-emerald-700 border border-emerald-200' :
+                    'bg-slate-100 text-slate-700 border border-slate-200'
+                    }`}>
+>>>>>>> main
                     {report.overallGrade}
                   </div>
                   <div className="text-xs text-slate-500 font-medium ml-auto">
@@ -94,7 +120,11 @@ export default function ParentReports() {
 
         {/* Stats Preview */}
         <div className="p-12 rounded-xl] bg-gradient-to-br from-slate-50 to-slate-100 border border-slate-200 relative overflow-hidden">
+<<<<<<< HEAD
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-orange-400/5 to-transparent" />
+=======
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-blue-400/5 to-transparent" />
+>>>>>>> main
           <div className="relative z-10 grid lg:grid-cols-4 gap-8 text-center">
             <div>
               <div className="text-4xl font-black text-slate-900 mb-2">12</div>
@@ -105,7 +135,11 @@ export default function ParentReports() {
               <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Avg Performance</div>
             </div>
             <div>
+<<<<<<< HEAD
               <div className="text-4xl font-black bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent mb-2">A</div>
+=======
+              <div className="text-4xl font-black bg-gradient-to-r from-blue-500 to-red-500 bg-clip-text text-transparent mb-2">A</div>
+>>>>>>> main
               <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Overall Grade</div>
             </div>
             <div>

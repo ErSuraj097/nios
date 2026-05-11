@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 
 @import "tailwindcss";
 
 @theme {
   --color-brand-orange: rgb(249 115 22);
   --color-brand-red: rgb(239 68 68);
+=======
+@import "tailwindcss";
+
+@theme {
+  --color-blue-900: rgb(30 58 138 / var(--tw-bg-opacity, 1));
+>>>>>>> main
   --font-sans: var(--font-inter), ui-sans-serif, system-ui;
   --font-display: var(--font-plus-jakarta), ui-sans-serif, system-ui;
 }
@@ -19,9 +26,26 @@ html {
   font-size: var(--font-size, 1rem);
 }
 
+<<<<<<< HEAD
 .font-sm { font-size: 0.875rem; line-height: 1.4; }
 .font-base { font-size: 1rem; line-height: 1.5; }
 .font-lg { font-size: 1.125rem; line-height: 1.6; }
+=======
+.font-sm {
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.font-base {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.font-lg {
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+>>>>>>> main
 
 body.high-contrast {
   background-color: #000;
@@ -35,7 +59,12 @@ body.high-contrast * {
 }
 
 body.high-contrast a {
+<<<<<<< HEAD
   color: #ffdd57 !important; /* yellow */
+=======
+  color: #ffdd57 !important;
+  /* yellow */
+>>>>>>> main
 }
 
 body.high-contrast a:hover {
@@ -48,8 +77,20 @@ body.high-contrast a:hover {
 }
 
 @keyframes fade-in {
+<<<<<<< HEAD
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
+=======
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+>>>>>>> main
 }
 
 .animate-fade-in {
@@ -57,8 +98,20 @@ body.high-contrast a:hover {
 }
 
 @keyframes slide-up {
+<<<<<<< HEAD
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
+=======
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+>>>>>>> main
 }
 
 .animate-slide-up {
@@ -66,8 +119,20 @@ body.high-contrast a:hover {
 }
 
 @keyframes float {
+<<<<<<< HEAD
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
+=======
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+>>>>>>> main
 }
 
 .animate-float {
@@ -92,7 +157,15 @@ body.high-contrast a:hover {
 }
 
 /* Typography Overrides */
+<<<<<<< HEAD
 h1, h2, h3, h4, .font-black {
+=======
+h1,
+h2,
+h3,
+h4,
+.font-black {
+>>>>>>> main
   font-family: var(--font-plus-jakarta), ui-sans-serif, system-ui;
 }
 
@@ -105,4 +178,8 @@ html {
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> main

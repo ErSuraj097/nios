@@ -2,6 +2,7 @@
 
 import DashboardLayout from '@/components/DashboardLayout';
 import { useState } from 'react';
+<<<<<<< HEAD
 import { 
   BookOpen, 
   Video, 
@@ -12,6 +13,18 @@ import {
   Search, 
   Filter, 
   Download 
+=======
+import {
+  BookOpen,
+  Video,
+  CheckCircle2,
+  XCircle,
+  Archive,
+  Eye,
+  Search,
+  Filter,
+  Download
+>>>>>>> main
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { MOCK_COURSES, MOCK_TEACHERS } from '@/lib/mock-data';
@@ -27,6 +40,7 @@ export default function AdminContentPage() {
   const stats = [
     { label: 'Total Courses', value: '642', icon: BookOpen, color: 'purple' },
     { label: 'Published', value: '589', icon: CheckCircle2, color: 'emerald' },
+<<<<<<< HEAD
     { label: 'Pending Review', value: '24', icon: Video, color: 'amber' },
     { label: 'Archived', value: '29', icon: Archive, color: 'slate' },
   ];
@@ -36,11 +50,26 @@ export default function AdminContentPage() {
     c.teacher.toLowerCase().includes(search.toLowerCase()) ||
     c.subject.toLowerCase().includes(search.toLowerCase())
   ).filter(c => filterStatus === 'all' || (c as any).status === filterStatus);
+=======
+    { label: 'Pending Review', value: '24', icon: Video, color: 'blue' },
+    { label: 'Archived', value: '29', icon: Archive, color: 'slate' },
+  ];
+
+  const filteredCourses = MOCK_COURSES.filter(c =>
+    c.title.toLowerCase().includes(search.toLowerCase()) ||
+    c.teacher.toLowerCase().includes(search.toLowerCase()) ||
+    c.subject.toLowerCase().includes(search.toLowerCase())
+  ).filter(c => filterStatus === 'all' || c.status === filterStatus);
+>>>>>>> main
 
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'published': return 'bg-emerald-100 text-emerald-700';
+<<<<<<< HEAD
       case 'pending_review': return 'bg-amber-100 text-amber-700 animate-pulse';
+=======
+      case 'pending_review': return 'bg-blue-100 text-blue-700 animate-pulse';
+>>>>>>> main
       case 'archived': return 'bg-slate-100 text-slate-500';
       default: return 'bg-slate-100 text-slate-500';
     }
@@ -64,6 +93,7 @@ export default function AdminContentPage() {
 
         {/* Tabs */}
         <div className="bg-slate-50 p-1 rounded-xl border">
+<<<<<<< HEAD
           <button onClick={() => setActiveTab('all')} className={`px-6 py-3 rounded-lg font-black uppercase tracking-widest flex-1 text-xs transition-all ${
             activeTab === 'all' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-900'
           }`}>
@@ -72,6 +102,14 @@ export default function AdminContentPage() {
           <button onClick={() => setActiveTab('pending')} className={`px-6 py-3 rounded-lg font-black uppercase tracking-widest flex-1 text-xs transition-all ${
             activeTab === 'pending' ? 'bg-amber-500 text-white shadow-sm' : 'text-slate-500 hover:text-slate-900'
           }`}>
+=======
+          <button onClick={() => setActiveTab('all')} className={`px-6 py-3 rounded-lg font-black uppercase tracking-widest flex-1 text-xs transition-all ${activeTab === 'all' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-900'
+            }`}>
+            All Content
+          </button>
+          <button onClick={() => setActiveTab('pending')} className={`px-6 py-3 rounded-lg font-black uppercase tracking-widest flex-1 text-xs transition-all ${activeTab === 'pending' ? 'bg-blue-500 text-white shadow-sm' : 'text-slate-500 hover:text-slate-900'
+            }`}>
+>>>>>>> main
             Needs Review
           </button>
         </div>
@@ -88,7 +126,11 @@ export default function AdminContentPage() {
               aria-label="Search courses"
             />
           </div>
+<<<<<<< HEAD
           <select 
+=======
+          <select
+>>>>>>> main
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value as any)}
             className="px-4 py-3 bg-white border border-slate-200 rounded-xl shadow-sm focus:ring-2 focus:ring-purple-500/20 text-sm font-medium"
@@ -119,7 +161,11 @@ export default function AdminContentPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-50">
+<<<<<<< HEAD
                 {filteredCourses.map((course, index) => {
+=======
+{filteredCourses.map((course, index) => {
+>>>>>>> main
                   const mockStatus = ['published', 'pending_review', 'archived'][index % 3];
                   return (
                     <tr key={course.id} className="hover:bg-slate-50/50 transition-colors">
@@ -141,7 +187,11 @@ export default function AdminContentPage() {
                       <td className="px-6 py-5">
                         <div className="text-sm font-medium text-slate-900">{course.teacher}</div>
                       </td>
+<<<<<<< HEAD
                       <td className="px-6 py-5 font-mono text-sm font-bold text-slate-900">{course.lessons} · {course.duration}</td>
+=======
+                      <td className="px-6 py-5 font-mono text-sm font-bold text-slate-900">{course.lessons || 0} · {course.duration || 'N/A'}</td>
+>>>>>>> main
                       <td className="px-6 py-5">
                         <span className={`px-3 py-1.5 rounded-full text-xs font-black uppercase tracking-wider ${getStatusColor(mockStatus)}`}>
                           {mockStatus.replace('_', ' ')}
@@ -156,7 +206,11 @@ export default function AdminContentPage() {
                             <button className="px-4 py-2 bg-emerald-500 text-white hover:bg-emerald-600 rounded-lg font-bold text-xs uppercase tracking-wider shadow-md transition-all">
                               <CheckCircle2 size={12} className="inline mr-1" /> Approve
                             </button>
+<<<<<<< HEAD
                             <button className="px-4 py-2 bg-red-500 text-white hover:bg-red-600 rounded-lg font-bold text-xs uppercase tracking-wider shadow-md transition-all">
+=======
+                            <button className="px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 rounded-lg font-bold text-xs uppercase tracking-wider shadow-md transition-all">
+>>>>>>> main
                               <XCircle size={12} className="inline mr-1" /> Reject
                             </button>
                           </>

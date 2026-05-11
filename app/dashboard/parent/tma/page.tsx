@@ -12,8 +12,13 @@ export default function ParentTMA() {
 
   if (!user) return null;
 
+<<<<<<< HEAD
   const filteredTMAs = filterStatus === 'All' 
     ? MOCK_ASSESSMENTS 
+=======
+  const filteredTMAs = filterStatus === 'All'
+    ? MOCK_ASSESSMENTS
+>>>>>>> main
     : MOCK_ASSESSMENTS.filter(tma => tma.status === filterStatus);
 
   const tmaStats = {
@@ -29,8 +34,13 @@ export default function ParentTMA() {
   };
 
   return (
+<<<<<<< HEAD
     <DashboardLayout 
       title="TMA Feedback" 
+=======
+    <DashboardLayout
+      title="TMA Feedback"
+>>>>>>> main
       subtitle="Tutor Marked Assignments - Progress & Faculty Comments"
     >
       <div className="space-y-12 pb-20">
@@ -41,7 +51,11 @@ export default function ParentTMA() {
             <div className="text-[11px] font-black text-slate-600 uppercase tracking-widest">Total TMAs</div>
           </div>
           <div className="text-center">
+<<<<<<< HEAD
             <div className="text-4xl font-black text-orange-500 mb-3">{tmaStats.pending}</div>
+=======
+            <div className="text-4xl font-black text-blue-500 mb-3">{tmaStats.pending}</div>
+>>>>>>> main
             <div className="text-[11px] font-black text-slate-600 uppercase tracking-widest">Pending Review</div>
           </div>
           <div className="text-center">
@@ -60,8 +74,13 @@ export default function ParentTMA() {
             <FileText className="text-purple-500" size={40} />
             TMA Evaluations
           </h1>
+<<<<<<< HEAD
           <select 
             className="px-8 py-5 bg-white border border-slate-100 rounded-xl shadow-sm font-black text-[11px] uppercase tracking-widest text-slate-700 focus:ring-brand-orange focus:border-transparent min-w-[200px]"
+=======
+          <select
+            className="px-8 py-5 bg-white border border-slate-100 rounded-xl shadow-sm font-black text-[11px] uppercase tracking-widest text-slate-700 focus:ring-blue-900 focus:border-transparent min-w-[200px]"
+>>>>>>> main
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value as any)}
             aria-label="Filter TMAs by status"
@@ -76,6 +95,7 @@ export default function ParentTMA() {
         {/* TMA List */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredTMAs.map((tma) => (
+<<<<<<< HEAD
             <div key={tma.id} className={`group p-8 rounded-2xl border-2 transition-all h-full ${
               tma.status === 'Pending' ? 'border-orange-200 bg-orange-50/30 hover:border-orange-300' :
               tma.status === 'Completed' ? 'border-blue-200 bg-blue-50/30 hover:border-blue-300' :
@@ -94,6 +114,23 @@ export default function ParentTMA() {
                   tma.status === 'Completed' ? 'bg-blue-100 text-blue-700' :
                   'bg-emerald-100 text-emerald-700'
                 }`}>
+=======
+            <div key={tma.id} className={`group p-8 rounded-2xl border-2 transition-all h-full ${tma.status === 'Pending' ? 'border-blue-200 bg-blue-50/30 hover:border-blue-300' :
+              tma.status === 'Completed' ? 'border-blue-200 bg-blue-50/30 hover:border-blue-300' :
+                'border-emerald-200 bg-emerald-50/30 hover:border-emerald-300'
+              }`}>
+              <div className="flex items-start justify-between mb-6">
+                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-white shadow-lg flex-shrink-0 ${tma.status === 'Pending' ? 'bg-blue-500' :
+                  tma.status === 'Completed' ? 'bg-blue-500' :
+                    'bg-emerald-500'
+                  }`}>
+                  <FileText size={22} />
+                </div>
+                <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${tma.status === 'Pending' ? 'bg-blue-100 text-blue-700' :
+                  tma.status === 'Completed' ? 'bg-blue-100 text-blue-700' :
+                    'bg-emerald-100 text-emerald-700'
+                  }`}>
+>>>>>>> main
                   {tma.status}
                 </span>
               </div>
@@ -119,14 +156,22 @@ export default function ParentTMA() {
 
               <div className="space-y-3">
                 {tma.status === 'Completed' ? (
+<<<<<<< HEAD
                   <button 
+=======
+                  <button
+>>>>>>> main
                     onClick={() => viewFeedback(tma.id)}
                     className="w-full py-5 px-6 bg-gradient-to-r from-purple-500 to-emerald-500 text-white rounded-2xl font-black text-[12px] uppercase tracking-widest shadow-xl hover:shadow-2xl active:scale-[0.98] transition-all flex items-center gap-3 justify-center"
                   >
                     <Edit3 size={18} /> View Faculty Feedback
                   </button>
                 ) : tma.status === 'Pending' ? (
+<<<<<<< HEAD
                   <div className="w-full py-5 px-6 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-2xl font-black text-[12px] uppercase tracking-widest text-center shadow-xl">
+=======
+                  <div className="w-full py-5 px-6 bg-gradient-to-r from-blue-500 to-red-500 text-white rounded-2xl font-black text-[12px] uppercase tracking-widest text-center shadow-xl">
+>>>>>>> main
                     ⏳ Under Faculty Review
                   </div>
                 ) : (

@@ -7,7 +7,11 @@ import Link from 'next/link';
 import { useAuth } from '@/contexts/AuthContext';
 
 const rarityColors = {
+<<<<<<< HEAD
   Bronze: 'from-orange-500 to-orange-600',
+=======
+  Bronze: 'from-blue-500 to-red-600',
+>>>>>>> main
   Silver: 'from-slate-400 to-slate-500',
   Gold: 'from-yellow-500 to-yellow-600',
   Platinum: 'from-purple-500 to-purple-600',
@@ -33,7 +37,11 @@ export default function AchievementsPage() {
             <div className="text-[11px] font-black text-slate-600 uppercase tracking-widest">Total Points</div>
           </div>
           <div className="text-center">
+<<<<<<< HEAD
             <div className="text-4xl font-black text-orange-500 mb-3">18</div>
+=======
+            <div className="text-4xl font-black text-blue-500 mb-3">18</div>
+>>>>>>> main
             <div className="text-[11px] font-black text-slate-600 uppercase tracking-widest">Badges Earned</div>
           </div>
           <div className="text-center">
@@ -61,11 +69,18 @@ export default function AchievementsPage() {
                     <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3">
                       Earned: {badge.earnedAt}
                     </div>
+<<<<<<< HEAD
                     <div className={`inline-block px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${
                       badge.rarity === 'Diamond' ? 'bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-700' :
                       badge.rarity === 'Platinum' ? 'bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700' :
                       'bg-slate-100 text-slate-700'
                     }`}>
+=======
+                    <div className={`inline-block px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${badge.rarity === 'Diamond' ? 'bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-700' :
+                        badge.rarity === 'Platinum' ? 'bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700' :
+                          'bg-slate-100 text-slate-700'
+                      }`}>
+>>>>>>> main
                       {badge.rarity}
                     </div>
                   </div>
@@ -81,7 +96,11 @@ export default function AchievementsPage() {
               </h2>
               <div className="space-y-4">
                 {MOCK_ACHIEVEMENTS.map((ach) => (
+<<<<<<< HEAD
                   <div key={ach.id} className="flex items-center gap-4 p-6 bg-gradient-to-r from-emerald-50 to-blue-50 rounded-2xl border border-emerald-100 hover:shadow-md transition-all">
+=======
+                  <div key={ach.id} className="flex items-center gap-4 p-6 bg-gradient-to-r from-emerald-50 to-red-50 rounded-2xl border border-emerald-100 hover:shadow-md transition-all">
+>>>>>>> main
                     <div className="w-14 h-14 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-2xl flex items-center justify-center text-white shadow-lg flex-shrink-0">
                       <ach.icon size={22} />
                     </div>
@@ -102,12 +121,20 @@ export default function AchievementsPage() {
           <div className="space-y-8">
             <div>
               <h2 className="text-xl font-black text-slate-900 mb-6 flex items-center gap-3">
+<<<<<<< HEAD
                 <TrendingUp className="text-orange-500" size={28} />
+=======
+                <TrendingUp className="text-blue-500" size={28} />
+>>>>>>> main
                 Current Streaks
               </h2>
               <div className="space-y-4">
                 {MOCK_STREAKS.map((streak, i) => (
+<<<<<<< HEAD
                   <div key={i} className="group p-6 rounded-2xl bg-gradient-to-r from-orange-50 to-yellow-50 border border-orange-100 hover:shadow-lg transition-all">
+=======
+                  <div key={i} className="group p-6 rounded-2xl bg-gradient-to-r from-blue-50 to-yellow-50 border border-blue-100 hover:shadow-lg transition-all">
+>>>>>>> main
                     <div className="flex items-center justify-between mb-3">
                       <span className="text-sm font-black text-slate-900">{streak.subject}</span>
                       <span className="text-[10px] font-black text-emerald-600 uppercase tracking-widest">
@@ -115,8 +142,13 @@ export default function AchievementsPage() {
                       </span>
                     </div>
                     <div className="w-full bg-slate-200 rounded-full h-3">
+<<<<<<< HEAD
                       <div 
                         className="bg-gradient-to-r from-orange-500 to-emerald-500 h-3 rounded-full shadow-inner transition-all"
+=======
+                      <div
+                        className="bg-gradient-to-r from-blue-500 to-emerald-500 h-3 rounded-full shadow-inner transition-all"
+>>>>>>> main
                         style={{ width: `${Math.min(streak.days * 5, 100)}%` }}
                       />
                     </div>

@@ -2,6 +2,7 @@
 
 import DashboardLayout from '@/components/DashboardLayout';
 import { useState } from 'react';
+<<<<<<< HEAD
 import { 
   UserPlus, 
   Search, 
@@ -13,6 +14,19 @@ import {
   Download, 
   Filter, 
   Users 
+=======
+import {
+  UserPlus,
+  Search,
+  Eye,
+  CheckCircle2,
+  XCircle,
+  ShieldX,
+  Trash2,
+  Download,
+  Filter,
+  Users
+>>>>>>> main
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { MOCK_TEACHERS } from '@/lib/mock-data';
@@ -25,7 +39,11 @@ export default function AdminTeachersPage() {
 
   if (!user || user.role !== 'admin') return null;
 
+<<<<<<< HEAD
   const filteredTeachers = MOCK_TEACHERS.filter(t => 
+=======
+  const filteredTeachers = MOCK_TEACHERS.filter(t =>
+>>>>>>> main
     t.name.toLowerCase().includes(search.toLowerCase()) ||
     t.email.toLowerCase().includes(search.toLowerCase()) ||
     t.subject.toLowerCase().includes(search.toLowerCase())
@@ -34,15 +52,25 @@ export default function AdminTeachersPage() {
   const stats = [
     { label: 'Total Teachers', value: '156', icon: Users, color: 'indigo' },
     { label: 'Active', value: '142', icon: CheckCircle2, color: 'emerald' },
+<<<<<<< HEAD
     { label: 'Pending Approval', value: '8', icon: ShieldX, color: 'amber' },
     { label: 'Suspended', value: '6', icon: XCircle, color: 'red' },
+=======
+    { label: 'Pending Approval', value: '8', icon: ShieldX, color: 'blue' },
+    { label: 'Suspended', value: '6', icon: XCircle, color: 'blue' },
+>>>>>>> main
   ];
 
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'active': return 'bg-emerald-100 text-emerald-700';
+<<<<<<< HEAD
       case 'pending_approval': return 'bg-amber-100 text-amber-700';
       case 'suspended': return 'bg-red-100 text-red-700';
+=======
+      case 'pending_approval': return 'bg-blue-100 text-blue-700';
+      case 'suspended': return 'bg-blue-100 text-blue-700';
+>>>>>>> main
       case 'removed': return 'bg-slate-100 text-slate-500';
       default: return 'bg-slate-100 text-slate-500';
     }
@@ -66,6 +94,7 @@ export default function AdminTeachersPage() {
 
         {/* Tabs */}
         <div className="bg-slate-50 p-1 rounded-xl border border-slate-200 flex">
+<<<<<<< HEAD
           <button onClick={() => setActiveTab('list')} className={`px-6 py-3 rounded-lg font-black uppercase tracking-widest flex-1 text-xs transition-all ${
             activeTab === 'list' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-900'
           }`}>
@@ -79,6 +108,18 @@ export default function AdminTeachersPage() {
           <button onClick={() => setActiveTab('suspended')} className={`px-6 py-3 rounded-lg font-black uppercase tracking-widest flex-1 text-xs transition-all ${
             activeTab === 'suspended' ? 'bg-red-500 text-white shadow-sm' : 'text-slate-500 hover:text-slate-900'
           }`}>
+=======
+          <button onClick={() => setActiveTab('list')} className={`px-6 py-3 rounded-lg font-black uppercase tracking-widest flex-1 text-xs transition-all ${activeTab === 'list' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-900'
+            }`}>
+            All Faculty (156)
+          </button>
+          <button onClick={() => setActiveTab('pending')} className={`px-6 py-3 rounded-lg font-black uppercase tracking-widest flex-1 text-xs transition-all ${activeTab === 'pending' ? 'bg-blue-500 text-white shadow-sm' : 'text-slate-500 hover:text-slate-900'
+            }`}>
+            Pending (8)
+          </button>
+          <button onClick={() => setActiveTab('suspended')} className={`px-6 py-3 rounded-lg font-black uppercase tracking-widest flex-1 text-xs transition-all ${activeTab === 'suspended' ? 'bg-blue-500 text-white shadow-sm' : 'text-slate-500 hover:text-slate-900'
+            }`}>
+>>>>>>> main
             Suspended (6)
           </button>
         </div>
@@ -94,7 +135,11 @@ export default function AdminTeachersPage() {
               className="pl-12 pr-6 py-4 w-full bg-white rounded-xl border border-slate-200 shadow-sm focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
             />
           </div>
+<<<<<<< HEAD
           <select 
+=======
+          <select
+>>>>>>> main
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value as any)}
             className="px-4 py-3 bg-white border border-slate-200 rounded-xl shadow-sm focus:ring-2 focus:ring-indigo-500/20 text-sm font-medium"
@@ -160,11 +205,19 @@ export default function AdminTeachersPage() {
                         </button>
                       )}
                       {teacher.status === 'active' && (
+<<<<<<< HEAD
                         <button className="px-4 py-2 bg-amber-500 text-white hover:bg-amber-600 rounded-lg font-bold text-xs uppercase tracking-wider shadow-md transition-all">
                           Suspend
                         </button>
                       )}
                       <button className="p-2 text-red-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all" title="Remove">
+=======
+                        <button className="px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 rounded-lg font-bold text-xs uppercase tracking-wider shadow-md transition-all">
+                          Suspend
+                        </button>
+                      )}
+                      <button className="p-2 text-blue-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all" title="Remove">
+>>>>>>> main
                         <Trash2 size={14} />
                       </button>
                     </td>

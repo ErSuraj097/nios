@@ -1,11 +1,19 @@
 'use client';
 
 import DashboardLayout from '@/components/DashboardLayout';
+<<<<<<< HEAD
 import { 
   PenTool, Sparkles, CheckCircle, 
   BookOpen, Upload, Plus, UploadCloud, 
   FileText, Image as ImageIcon, 
   Save, Eye, Trash2, Edit 
+=======
+import {
+  PenTool, Sparkles, CheckCircle,
+  BookOpen, Upload, Plus, UploadCloud,
+  FileText, Image as ImageIcon,
+  Save, Eye, Trash2, Edit
+>>>>>>> main
 } from 'lucide-react';
 import { useState } from 'react';
 import { MOCK_COURSES, MOCK_BOOKS } from '@/lib/mock-data';
@@ -26,8 +34,13 @@ export default function TeacherContentPage() {
     setCourseForm({ title: '', subject: '', description: '', modules: 0 });
   };
 
+<<<<<<< HEAD
   const handleFileUpload = (e) => {
     const files = Array.from(e.target.files || e.dataTransfer.files);
+=======
+  const handleFileUpload = (e: any) => {
+    const files = Array.from((e.target.files || e.dataTransfer.files) as FileList);
+>>>>>>> main
     const newFiles = files.map(file => ({
       name: file.name,
       size: file.size,
@@ -45,8 +58,13 @@ export default function TeacherContentPage() {
   ];
 
   return (
+<<<<<<< HEAD
     <DashboardLayout 
       title="Content Creation Studio" 
+=======
+    <DashboardLayout
+      title="Content Creation Studio"
+>>>>>>> main
       subtitle="Build courses, upload textbooks & PDFs for your students"
     >
       <div className="p-8 bg-gradient-to-br from-slate-50 to-white rounded-xl border border-slate-100 shadow-sm">
@@ -56,9 +74,14 @@ export default function TeacherContentPage() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
+<<<<<<< HEAD
               className={`flex items-center gap-2 px-6 py-4 rounded-xl font-black text-sm uppercase tracking-widest transition-all flex-1 relative ${
                 activeTab === tab.id ? 'bg-gradient-to-r from-brand-orange to-orange-500 text-white shadow-xl' : 'text-slate-500 hover:text-slate-900 hover:bg-white/70'
               }`}
+=======
+              className={`flex items-center gap-2 px-6 py-4 rounded-xl font-black text-sm uppercase tracking-widest transition-all flex-1 relative ${activeTab === tab.id ? 'bg-gradient-to-r from-blue-900 to-red-500 text-white shadow-xl' : 'text-slate-500 hover:text-slate-900 hover:bg-white/70'
+                }`}
+>>>>>>> main
             >
               <tab.icon size={18} />
               {tab.label}
@@ -69,11 +92,19 @@ export default function TeacherContentPage() {
 
         {activeTab === 'ai-tools' && (
           <div className="grid md:grid-cols-3 gap-6">
+<<<<<<< HEAD
             <div className="group p-8 rounded-xl border border-slate-200 hover:border-orange-500 hover:shadow-xl transition-all cursor-pointer" onClick={() => alert('Quiz Generator')}>
               <Sparkles className="w-12 h-12 text-blue-500 group-hover:rotate-12 transition-transform mb-4 mx-auto" />
               <h3 className="font-black text-lg text-slate-900 mb-2 text-center">Quiz Generator</h3>
               <p className="text-sm text-slate-500 text-center mb-6">Upload notes/SLM → Instant 20-question quiz with answers</p>
               <button className="w-full py-3 bg-slate-900 text-white rounded-xl font-black text-sm uppercase tracking-widest hover:bg-orange-500 transition-all">Create Quiz</button>
+=======
+            <div className="group p-8 rounded-xl border border-slate-200 hover:border-blue-500 hover:shadow-xl transition-all cursor-pointer" onClick={() => alert('Quiz Generator')}>
+              <Sparkles className="w-12 h-12 text-blue-500 group-hover:rotate-12 transition-transform mb-4 mx-auto" />
+              <h3 className="font-black text-lg text-slate-900 mb-2 text-center">Quiz Generator</h3>
+              <p className="text-sm text-slate-500 text-center mb-6">Upload notes/SLM → Instant 20-question quiz with answers</p>
+              <button className="w-full py-3 bg-slate-900 text-white rounded-xl font-black text-sm uppercase tracking-widest hover:bg-blue-500 transition-all">Create Quiz</button>
+>>>>>>> main
             </div>
             <div className="group p-8 rounded-xl border border-slate-200 hover:border-emerald-500 hover:shadow-xl transition-all cursor-pointer" onClick={() => alert('Proofreading AI')}>
               <CheckCircle className="w-12 h-12 text-emerald-500 group-hover:scale-110 transition-transform mb-4 mx-auto" />
@@ -98,8 +129,13 @@ export default function TeacherContentPage() {
                 <input
                   type="text"
                   value={courseForm.title}
+<<<<<<< HEAD
                   onChange={(e) => setCourseForm({...courseForm, title: e.target.value})}
                   className="w-full px-5 py-4 border border-slate-200 rounded-xl focus:ring-4 focus:ring-brand-orange/20 focus:border-transparent"
+=======
+                  onChange={(e) => setCourseForm({ ...courseForm, title: e.target.value })}
+                  className="w-full px-5 py-4 border border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-900/20 focus:border-transparent"
+>>>>>>> main
                   placeholder="e.g. Advanced Physics for Class 12"
                   required
                 />
@@ -109,8 +145,13 @@ export default function TeacherContentPage() {
                   <label className="block text-sm font-black uppercase tracking-wider text-slate-500 mb-2">Subject</label>
                   <select
                     value={courseForm.subject}
+<<<<<<< HEAD
                     onChange={(e) => setCourseForm({...courseForm, subject: e.target.value})}
                     className="w-full px-5 py-4 border border-slate-200 rounded-xl focus:ring-4 focus:ring-brand-orange/20"
+=======
+                    onChange={(e) => setCourseForm({ ...courseForm, subject: e.target.value })}
+                    className="w-full px-5 py-4 border border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-900/20"
+>>>>>>> main
                   >
                     <option value="">Select Subject</option>
                     <option>Physics</option>
@@ -126,8 +167,13 @@ export default function TeacherContentPage() {
                     min="1"
                     max="20"
                     value={courseForm.modules}
+<<<<<<< HEAD
                     onChange={(e) => setCourseForm({...courseForm, modules: Number(e.target.value)})}
                     className="w-full px-5 py-4 border border-slate-200 rounded-xl focus:ring-4 focus:ring-brand-orange/20"
+=======
+                    onChange={(e) => setCourseForm({ ...courseForm, modules: Number(e.target.value) })}
+                    className="w-full px-5 py-4 border border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-900/20"
+>>>>>>> main
                   />
                 </div>
               </div>
@@ -136,6 +182,7 @@ export default function TeacherContentPage() {
                 <textarea
                   rows={4}
                   value={courseForm.description}
+<<<<<<< HEAD
                   onChange={(e) => setCourseForm({...courseForm, description: e.target.value})}
                   className="w-full px-5 py-4 border border-slate-200 rounded-xl focus:ring-4 focus:ring-brand-orange/20 resize-vertical"
                   placeholder="Brief course overview..."
@@ -144,6 +191,16 @@ export default function TeacherContentPage() {
               <button 
                 type="submit"
                 className="w-full py-2 bg-gradient-to-r from-brand-orange to-orange-500 text-white rounded-xl  text-md uppercase tracking-widest shadow-2xl hover:shadow-orange-500/25 hover:scale-[1.02] transition-all"
+=======
+                  onChange={(e) => setCourseForm({ ...courseForm, description: e.target.value })}
+                  className="w-full px-5 py-4 border border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-900/20 resize-vertical"
+                  placeholder="Brief course overview..."
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full py-2 bg-gradient-to-r from-blue-900 to-red-500 text-white rounded-xl  text-md uppercase tracking-widest shadow-2xl hover:shadow-blue-500/25 hover:scale-[1.02] transition-all"
+>>>>>>> main
               >
                 <Plus size={20} className="inline mr-2" /> Publish New Course
               </button>
@@ -153,12 +210,21 @@ export default function TeacherContentPage() {
 
         {activeTab === 'upload' && (
           <div className="space-y-8">
+<<<<<<< HEAD
             <div 
               className="relative border-4 border-dashed border-slate-200 rounded-3xl p-20 text-center hover:border-brand-orange hover:bg-orange-50/50 transition-all cursor-pointer group"
               onDrop={handleFileUpload}
               onDragOver={(e) => e.preventDefault()}
             >
               <UploadCloud size={64} className="mx-auto mb-6 text-slate-400 group-hover:text-brand-orange transition-colors" />
+=======
+            <div
+              className="relative border-4 border-dashed border-slate-200 rounded-3xl p-20 text-center hover:border-blue-900 hover:bg-blue-50/50 transition-all cursor-pointer group"
+              onDrop={handleFileUpload}
+              onDragOver={(e) => e.preventDefault()}
+            >
+              <UploadCloud size={64} className="mx-auto mb-6 text-slate-400 group-hover:text-blue-900 transition-colors" />
+>>>>>>> main
               <h3 className="text-2xl font-black text-slate-900 mb-2">Drop PDF or Book Files Here</h3>
               <p className="text-slate-500 mb-8 max-w-md mx-auto">Drag & drop PDFs, EPUBs, or textbooks. Up to 50MB per file.</p>
               <input
@@ -196,7 +262,11 @@ export default function TeacherContentPage() {
                         <button className="p-2 hover:bg-slate-200 rounded-lg transition-colors">
                           <Edit size={16} className="text-slate-600" />
                         </button>
+<<<<<<< HEAD
                         <button className="p-2 hover:bg-red-100 text-red-500 rounded-lg transition-colors">
+=======
+                        <button className="p-2 hover:bg-blue-100 text-blue-500 rounded-lg transition-colors">
+>>>>>>> main
                           <Trash2 size={16} />
                         </button>
                       </div>
@@ -211,6 +281,7 @@ export default function TeacherContentPage() {
         {activeTab === 'my-content' && (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[...MOCK_COURSES, ...MOCK_BOOKS].map((item, i) => (
+<<<<<<< HEAD
               <div key={i} className="group p-6 rounded-xl bg-white border border-slate-100 hover:shadow-xl hover:border-brand-orange transition-all overflow-hidden">
                 <div className="w-full h-32 bg-gradient-to-br from-slate-900 to-slate-700 rounded-lg mb-4 flex items-center justify-center text-white font-black text-lg">
                   {/* <BookOpen size={32} /> */}
@@ -220,6 +291,17 @@ export default function TeacherContentPage() {
                 
                 </div>
                 <h4 className="font-black text-slate-900 mb-2 line-clamp-1">{item.title || item.name}</h4>
+=======
+              <div key={i} className="group p-6 rounded-xl bg-white border border-slate-100 hover:shadow-xl hover:border-blue-900 transition-all overflow-hidden">
+                <div className="w-full h-32 bg-gradient-to-br from-slate-900 to-slate-700 rounded-lg mb-4 flex items-center justify-center text-white font-black text-lg">
+                  {/* <BookOpen size={32} /> */}
+                  <div className=' w-full bg-gradient-to-br from-slate-900 to-slate-700 rounded-lg mb-4 flex items-center justify-center'>
+                    <img src="/book.jpg" alt="" className='w-40' />
+                  </div>
+
+                </div>
+                <h4 className="font-black text-slate-900 mb-2 line-clamp-1">{item.title}</h4>
+>>>>>>> main
                 <p className="text-sm text-slate-500 mb-4 line-clamp-2">{item.description || "Explore smart, engaging books powered for the digital age. With simplified explanations, interactive concepts, and learner-friendly design, our books make studying easier, faster, and more effective. "}</p>
                 <div className="flex items-center gap-2">
                   <button className="flex-1 py-2 px-3 bg-emerald-500 text-white rounded-lg font-black text-xs uppercase tracking-wider hover:bg-emerald-600" title="View Content">
@@ -228,7 +310,11 @@ export default function TeacherContentPage() {
                   <button className="p-2 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors" title="Edit">
                     <Edit size={14} />
                   </button>
+<<<<<<< HEAD
                   <button className="p-2 bg-slate-100 hover:bg-red-100 text-red-500 rounded-lg transition-colors" title="Delete">
+=======
+                  <button className="p-2 bg-slate-100 hover:bg-blue-100 text-blue-500 rounded-lg transition-colors" title="Delete">
+>>>>>>> main
                     <Trash2 size={14} />
                   </button>
                 </div>

@@ -6,6 +6,10 @@ interface AuthContextType {
   user: MockUser | null;
   login: (id: string | MockUser) => boolean;
   logout: () => void;
+<<<<<<< HEAD
+=======
+  updateLinguisticProfile: (motherLang: string | null, targetLang?: string | null) => void;
+>>>>>>> main
   isAuthenticated: boolean;
 }
 
@@ -16,10 +20,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     // Check localStorage for user on mount
+<<<<<<< HEAD
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       try {
         setUser(JSON.parse(storedUser));
+=======
+    const stoblueUser = localStorage.getItem('user');
+    if (stoblueUser) {
+      try {
+        setUser(JSON.parse(stoblueUser));
+>>>>>>> main
       } catch (e) {
         localStorage.removeItem('user');
       }
@@ -47,8 +58,25 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem('user');
   };
 
+<<<<<<< HEAD
   return (
     <AuthContext.Provider value={{ user, login, logout, isAuthenticated: !!user }}>
+=======
+  const updateLinguisticProfile = (motherLang: string | null, targetLang?: string | null) => {
+    if (user) {
+      const updatedUser = { 
+        ...user, 
+        motherLang: motherLang || user.motherLang,
+        targetLang: targetLang !== undefined ? targetLang : user.targetLang 
+      };
+      setUser(updatedUser);
+      localStorage.setItem('user', JSON.stringify(updatedUser));
+    }
+  };
+
+  return (
+    <AuthContext.Provider value={{ user, login, logout, updateLinguisticProfile, isAuthenticated: !!user }}>
+>>>>>>> main
       {children}
     </AuthContext.Provider>
   );

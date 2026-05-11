@@ -1,6 +1,7 @@
 'use client';
 
 import DashboardLayout from '@/components/DashboardLayout';
+<<<<<<< HEAD
 import { 
   ClipboardList, 
   Search, 
@@ -9,6 +10,16 @@ import {
   CheckCircle2, 
   TrendingUp, 
   FileText, 
+=======
+import {
+  ClipboardList,
+  Search,
+  Filter,
+  ArrowUpRight,
+  CheckCircle2,
+  TrendingUp,
+  FileText,
+>>>>>>> main
   Download,
   MoreVertical,
   ChevronRight,
@@ -30,15 +41,24 @@ export default function TeacherGradesPage() {
 
   if (!user || user.role !== 'teacher') return null;
 
+<<<<<<< HEAD
   const filteredAssessments = MOCK_ASSESSMENTS.filter(a => 
     a.title.toLowerCase().includes(search.toLowerCase()) || 
+=======
+  const filteredAssessments = MOCK_ASSESSMENTS.filter(a =>
+    a.title.toLowerCase().includes(search.toLowerCase()) ||
+>>>>>>> main
     a.subject.toLowerCase().includes(search.toLowerCase())
   );
 
   const stats = [
     { label: 'Total Students', value: '128', change: '+5', icon: Users, color: 'text-blue-500 bg-blue-400' },
     { label: 'Avg Grade', value: '82%', change: '+3%', icon: TrendingUp, color: 'text-emerald-500 bg-green-400  ' },
+<<<<<<< HEAD
     { label: 'Pending Grading', value: '14', change: '-2', icon: Clock, color: 'text-amber-500 bg-red-400' },
+=======
+    { label: 'Pending Grading', value: '14', change: '-2', icon: Clock, color: 'text-blue-500 bg-blue-400' },
+>>>>>>> main
     { label: 'Reports Generated', value: '8', change: '+4', icon: FileText, color: 'text-purple-500 bg-purple-100' },
   ];
 
@@ -55,7 +75,11 @@ export default function TeacherGradesPage() {
               </div> */}
               <div className="text-2xl font-black text-slate-900 mb-2 relative z-10">{stat.value}</div>
               <div className="flex items-center gap-1 text-xs font-bold text-slate-500 uppercase tracking-widest relative z-10">
+<<<<<<< HEAD
                 {stat.change.startsWith('+') ? <TrendingUp size={12} className="text-emerald-500" /> : <TrendingDown size={12} className="text-red-500" />}
+=======
+                {stat.change.startsWith('+') ? <TrendingUp size={12} className="text-emerald-500" /> : <TrendingDown size={12} className="text-blue-500" />}
+>>>>>>> main
                 {stat.label}
               </div>
             </div>
@@ -72,11 +96,18 @@ export default function TeacherGradesPage() {
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
+<<<<<<< HEAD
               className={`flex-1 px-4 py-3 rounded-xl font-black text-sm uppercase tracking-widest transition-all relative ${
                 activeTab === tab
                   ? 'bg-gradient-to-r from-brand-orange to-orange-500 text-white shadow-2xl shadow-orange-500/25'
                   : 'text-slate-500 hover:text-slate-900 hover:bg-white/70'
               }`}
+=======
+              className={`flex-1 px-4 py-3 rounded-xl font-black text-sm uppercase tracking-widest transition-all relative ${activeTab === tab
+                ? 'bg-gradient-to-r from-blue-900 to-red-500 text-white shadow-2xl shadow-blue-500/25'
+                : 'text-slate-500 hover:text-slate-900 hover:bg-white/70'
+                }`}
+>>>>>>> main
             >
               {label}
               {badge && <span className="ml-2 px-2 py-0.5 bg-white/20 text-xs rounded-full">{badge}</span>}
@@ -94,10 +125,17 @@ export default function TeacherGradesPage() {
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   placeholder="Search by student or assessment..."
+<<<<<<< HEAD
                   className="w-full pl-14 pr-6 py-4 bg-white/50 backdrop-blur-sm rounded-xl border border-slate-200 shadow-sm focus:ring-4 focus:ring-brand-orange/20 focus:outline-none transition-all"
                 />
               </div>
               <button className="px-4 py-4 bg-red-900 text-white rounded-xl font-black text-sm uppercase tracking-widest hover:bg-brand-orange shadow-xl transition-all whitespace-nowrap">
+=======
+                  className="w-full pl-14 pr-6 py-4 bg-white/50 backdrop-blur-sm rounded-xl border border-slate-200 shadow-sm focus:ring-4 focus:ring-blue-900/20 focus:outline-none transition-all"
+                />
+              </div>
+              <button className="px-4 py-4 bg-blue-900 text-white rounded-xl font-black text-sm uppercase tracking-widest hover:bg-blue-900 shadow-xl transition-all whitespace-nowrap">
+>>>>>>> main
                 Bulk Grade Import
               </button>
             </div>
@@ -117,10 +155,17 @@ export default function TeacherGradesPage() {
                   </thead>
                   <tbody>
                     {filteredAssessments.slice(0, 6).map((assessment, i) => (
+<<<<<<< HEAD
                       <tr key={assessment.id} className="border-b border-slate-100 hover:bg-orange-50 transition-colors">
                         <td className="p-6 font-semibold text-slate-900 max-w-md">
                           <div className="flex items-center gap-3">
                             <div className="w-10 h-10 bg-gradient-to-br from-brand-orange to-orange-400 text-white rounded-xl flex items-center justify-center text-sm font-bold flex-shrink-0">
+=======
+                      <tr key={assessment.id} className="border-b border-slate-100 hover:bg-blue-50 transition-colors">
+                        <td className="p-6 font-semibold text-slate-900 max-w-md">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 bg-gradient-to-br from-blue-900 to-red-400 text-white rounded-xl flex items-center justify-center text-sm font-bold flex-shrink-0">
+>>>>>>> main
                               {assessment.subject.charAt(0)}
                             </div>
                             <div>
@@ -136,17 +181,28 @@ export default function TeacherGradesPage() {
                           </div>
                         </td>
                         <td className="p-6 text-right">
+<<<<<<< HEAD
                           <span className={`px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest ${
                             assessment.status === 'Grading Active' ? 'bg-orange-100 text-orange-700' :
                             assessment.status === 'Completed' ? 'bg-emerald-100 text-emerald-700' :
                             'bg-amber-100 text-amber-700'
                           }`}>
+=======
+                          <span className={`px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest ${assessment.status === 'Grading Active' ? 'bg-blue-100 text-blue-700' :
+                            assessment.status === 'Completed' ? 'bg-emerald-100 text-emerald-700' :
+                              'bg-blue-100 text-blue-700'
+                            }`}>
+>>>>>>> main
                             {assessment.status}
                           </span>
                         </td>
                         <td className="p-6">
                           <div className="flex items-center gap-2">
+<<<<<<< HEAD
                             <button className="p-3 text-slate-400 hover:text-brand-orange hover:bg-orange-50 rounded-xl transition-all">
+=======
+                            <button className="p-3 text-slate-400 hover:text-blue-900 hover:bg-blue-50 rounded-xl transition-all">
+>>>>>>> main
                               <Download size={16} />
                             </button>
                             <button className="p-3 text-slate-400 hover:text-emerald-500 hover:bg-emerald-50 rounded-xl transition-all">
@@ -164,7 +220,11 @@ export default function TeacherGradesPage() {
               </div>
             </div>
             <div className="text-center pt-8">
+<<<<<<< HEAD
               <button className="px-6 py-4 bg-slate-900 text-white rounded-xl font-black text-md uppercase tracking-widest hover:bg-brand-orange shadow-2xl transition-all">
+=======
+              <button className="px-6 py-4 bg-slate-900 text-white rounded-xl font-black text-md uppercase tracking-widest hover:bg-blue-900 shadow-2xl transition-all">
+>>>>>>> main
                 View Complete Gradebook →
               </button>
             </div>
@@ -184,7 +244,11 @@ export default function TeacherGradesPage() {
                 </div>
                 <div className="flex items-center justify-between p-6 bg-white rounded-xl border border-slate-100 shadow-sm">
                   <span className="text-sm font-bold text-slate-500 uppercase tracking-wider">Top Performer</span>
+<<<<<<< HEAD
                   <div className="text-2xl font-black text-brand-orange">Arjun S. (94%)</div>
+=======
+                  <div className="text-2xl font-black text-blue-900">Arjun S. (94%)</div>
+>>>>>>> main
                 </div>
               </div>
             </div>
@@ -193,6 +257,7 @@ export default function TeacherGradesPage() {
                 Risk Indicators
               </h3>
               <div className="space-y-4">
+<<<<<<< HEAD
                 <div className="flex items-center justify-between p-6 bg-gradient-to-r from-orange-50 to-orange-100 rounded-xl border border-orange-200">
                   <span className="font-bold text-slate-900">Rahul Das</span>
                   <span className="px-3 py-1 bg-orange-200 text-orange-800 text-xs font-black uppercase tracking-widest rounded-full">High Risk (45%)</span>
@@ -200,6 +265,15 @@ export default function TeacherGradesPage() {
                 <div className="flex items-center justify-between p-6 bg-gradient-to-r from-amber-50 to-amber-100 rounded-xl border border-amber-200">
                   <span className="font-bold text-slate-900">Priya N.</span>
                   <span className="px-3 py-1 bg-amber-200 text-amber-800 text-xs font-black uppercase tracking-widest rounded-full">Medium Risk (68%)</span>
+=======
+                <div className="flex items-center justify-between p-6 bg-gradient-to-r from-blue-50 to-red-100 rounded-xl border border-blue-200">
+                  <span className="font-bold text-slate-900">Rahul Das</span>
+                  <span className="px-3 py-1 bg-blue-200 text-blue-800 text-xs font-black uppercase tracking-widest rounded-full">High Risk (45%)</span>
+                </div>
+                <div className="flex items-center justify-between p-6 bg-gradient-to-r from-blue-50 to-red-100 rounded-xl border border-blue-200">
+                  <span className="font-bold text-slate-900">Priya N.</span>
+                  <span className="px-3 py-1 bg-blue-200 text-blue-800 text-xs font-black uppercase tracking-widest rounded-full">Medium Risk (68%)</span>
+>>>>>>> main
                 </div>
               </div>
             </div>
@@ -210,18 +284,31 @@ export default function TeacherGradesPage() {
           <div className="space-y-6">
             <div className="flex items-center gap-4">
               <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight flex-1">Recent Reports</h3>
+<<<<<<< HEAD
               <button className="px-8 py-4 bg-slate-900 text-white rounded-xl font-black text-sm uppercase tracking-widest hover:bg-brand-orange shadow-xl transition-all">
+=======
+              <button className="px-8 py-4 bg-slate-900 text-white rounded-xl font-black text-sm uppercase tracking-widest hover:bg-blue-900 shadow-xl transition-all">
+>>>>>>> main
                 Generate New
               </button>
             </div>
             <div className="grid gap-4">
               {MOCK_TEACHER_REPORTS.map((report) => (
+<<<<<<< HEAD
                 <div key={report.id} className="group flex items-center p-8 rounded-xl bg-white border border-slate-100 hover:border-brand-orange hover:shadow-xl hover:shadow-orange-500/10 transition-all gap-6">
                   <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-red-500 text-white rounded-xl flex items-center justify-center flex-shrink-0">
                     <FileText size={20} />
                   </div>
                   <div className="flex-1 min-w-0">
                     <h4 className="font-black text-lg text-slate-900 group-hover:text-brand-orange transition-colors">{report.title}</h4>
+=======
+                <div key={report.id} className="group flex items-center p-8 rounded-xl bg-white border border-slate-100 hover:border-blue-900 hover:shadow-xl hover:shadow-blue-500/10 transition-all gap-6">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-red-500 text-white rounded-xl flex items-center justify-center flex-shrink-0">
+                    <FileText size={20} />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-black text-lg text-slate-900 group-hover:text-blue-900 transition-colors">{report.title}</h4>
+>>>>>>> main
                     <div className="flex items-center gap-4 text-sm text-slate-500 mt-1">
                       <span>{report.type}</span>
                       <span>•</span>

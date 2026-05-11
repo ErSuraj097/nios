@@ -56,7 +56,11 @@ export default function DashboardLayout({
   if (!isAuthenticated) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-slate-50">
+<<<<<<< HEAD
         <div className="w-12 h-12 border-4 border-orange-500 border-t-transparent rounded-full animate-spin" />
+=======
+        <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" />
+>>>>>>> main
       </div>
     );
   }
@@ -68,6 +72,7 @@ export default function DashboardLayout({
         <Sidebar />
         <div className="flex-1 ml-[280px] min-h-screen flex flex-col items-center justify-center">
           <div className="text-center space-y-4 p-8">
+<<<<<<< HEAD
             <div className="w-20 h-20 rounded-xl bg-red-50 flex items-center justify-center mx-auto">
               <ShieldX size={36} className="text-red-400" />
             </div>
@@ -78,6 +83,18 @@ export default function DashboardLayout({
             <button
               onClick={() => router.replace(`/dashboard/${user.role}`)}
               className="mt-4 px-6 py-3 bg-slate-900 text-white rounded-xl font-black text-sm uppercase tracking-widest hover:bg-orange-500 transition-all"
+=======
+            <div className="w-20 h-20 rounded-xl bg-blue-50 flex items-center justify-center mx-auto">
+              <ShieldX size={36} className="text-blue-400" />
+            </div>
+            <h2 className="text-2xl font-black text-slate-900">Access Restricted</h2>
+            <p className="text-slate-500 text-sm max-w-xs">
+              This area is reserved for <span className="font-bold text-blue-600">{allowedRoles.join(' / ')}</span> accounts only.
+            </p>
+            <button
+              onClick={() => router.replace(`/dashboard/${user.role}`)}
+              className="mt-4 px-6 py-3 bg-slate-900 text-white rounded-xl font-black text-sm uppercase tracking-widest hover:bg-blue-500 transition-all"
+>>>>>>> main
             >
               Go to My Dashboard
             </button>
@@ -87,11 +104,20 @@ export default function DashboardLayout({
     );
   }
 
+<<<<<<< HEAD
   // Redirect check for dashboard path mismatch (show spinner while redirecting)
   if (pathname.startsWith('/dashboard/') && user?.role !== pathname.split('/')[2]) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-slate-50">
         <div className="w-12 h-12 border-4 border-orange-500 border-t-transparent rounded-full animate-spin" />
+=======
+  // redirect check for dashboard path mismatch (show spinner while redirecting)
+  const isFeaturePath = ['ai-support'].includes(pathname.split('/')[2]);
+  if (pathname.startsWith('/dashboard/') && !isFeaturePath && user?.role !== pathname.split('/')[2]) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-slate-50">
+        <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" />
+>>>>>>> main
       </div>
     );
   }

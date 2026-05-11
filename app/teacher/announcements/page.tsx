@@ -14,7 +14,11 @@ export default function TeacherAnnouncementsPage() {
 
   if (!user || user.role !== 'teacher') return null;
 
+<<<<<<< HEAD
   const filteredAnnouncements = MOCK_ANNOUNCEMENTS.filter(a => 
+=======
+  const filteredAnnouncements = MOCK_ANNOUNCEMENTS.filter(a =>
+>>>>>>> main
     a.title.toLowerCase().includes(search.toLowerCase()) ||
     a.message.toLowerCase().includes(search.toLowerCase())
   );
@@ -45,9 +49,15 @@ export default function TeacherAnnouncementsPage() {
             <div className="text-sm font-bold text-blue-700 uppercase tracking-wider">Avg Read Rate</div>
           </div>
           <div className="p-8 rounded-xl bg-white border-2 border-slate-200 shadow-lg text-center">
+<<<<<<< HEAD
             <Users className="w-16 h-16 text-orange-500 rounded-full p-4 bg-orange-200 mx-auto mb-4" />
             <div className="text-3xl font-black text-orange-600 mb-2">1,284</div>
             <div className="text-sm font-bold text-orange-700 uppercase tracking-wider">Reach</div>
+=======
+            <Users className="w-16 h-16 text-blue-500 rounded-full p-4 bg-blue-200 mx-auto mb-4" />
+            <div className="text-3xl font-black text-blue-600 mb-2">1,284</div>
+            <div className="text-sm font-bold text-blue-700 uppercase tracking-wider">Reach</div>
+>>>>>>> main
           </div>
           <div className="p-8 rounded-xl bg-white border-2 border-slate-200 shadow-lg text-center">
             <MessageCircle className="w-16 h-16 text-purple-500 mx-auto mb-4 p-4 rounded-full bg-purple-200" />
@@ -58,9 +68,15 @@ export default function TeacherAnnouncementsPage() {
 
         {/* Create Announcement */}
         <div className=" ">
+<<<<<<< HEAD
           <button 
             onClick={() => setIsCreating(!isCreating)}  
             className="flex items-center gap-3 px-4 py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-xl  text-md uppercase tracking-widest hover:from-brand-orange hover:to-orange-500 transition-all shadow-2xl mb-6 hover:shadow-orange-500/25"
+=======
+          <button
+            onClick={() => setIsCreating(!isCreating)}
+            className="flex items-center gap-3 px-4 py-4 bg-gradient-to-r from-blue-500 to-red-500 text-white rounded-xl  text-md uppercase tracking-widest hover:from-blue-900 hover:to-red-500 transition-all shadow-2xl mb-6 hover:shadow-blue-500/25"
+>>>>>>> main
           >
             <Plus size={24} />
             Create New Announcement
@@ -73,9 +89,15 @@ export default function TeacherAnnouncementsPage() {
                 <input
                   type="text"
                   value={newAnnouncement.title}
+<<<<<<< HEAD
                   onChange={(e) => setNewAnnouncement({...newAnnouncement, title: e.target.value})}
                   placeholder="e.g. Midterm Exam Rescheduled to April 15"
                   className="w-full px-6 py-5 bg-slate-50 border-2 border-slate-200 rounded-xl text-lg font-semibold focus:ring-4 focus:ring-brand-orange/30 focus:border-transparent transition-all shadow-sm"
+=======
+                  onChange={(e) => setNewAnnouncement({ ...newAnnouncement, title: e.target.value })}
+                  placeholder="e.g. Midterm Exam Rescheduled to April 15"
+                  className="w-full px-6 py-5 bg-slate-50 border-2 border-slate-200 rounded-xl text-lg font-semibold focus:ring-4 focus:ring-blue-900/30 focus:border-transparent transition-all shadow-sm"
+>>>>>>> main
                   required
                 />
               </div>
@@ -83,10 +105,17 @@ export default function TeacherAnnouncementsPage() {
                 <label className="block text-sm font-bold text-slate-700 uppercase tracking-wider mb-3">Message</label>
                 <textarea
                   value={newAnnouncement.message}
+<<<<<<< HEAD
                   onChange={(e) => setNewAnnouncement({...newAnnouncement, message: e.target.value})}
                   placeholder="Type your message here. Use @mentions for students or #hashtags for topics. Supports formatting."
                   rows={6}
                   className="w-full px-6 py-5 bg-slate-50 border-2 border-slate-200 rounded-xl text-lg leading-relaxed focus:ring-4 focus:ring-brand-orange/30 focus:border-transparent transition-all shadow-sm resize-vertical"
+=======
+                  onChange={(e) => setNewAnnouncement({ ...newAnnouncement, message: e.target.value })}
+                  placeholder="Type your message here. Use @mentions for students or #hashtags for topics. Supports formatting."
+                  rows={6}
+                  className="w-full px-6 py-5 bg-slate-50 border-2 border-slate-200 rounded-xl text-lg leading-relaxed focus:ring-4 focus:ring-blue-900/30 focus:border-transparent transition-all shadow-sm resize-vertical"
+>>>>>>> main
                   required
                 />
               </div>
@@ -95,15 +124,24 @@ export default function TeacherAnnouncementsPage() {
                   <label className="block text-sm font-bold text-slate-700 uppercase tracking-wider mb-3">Target Audience</label>
                   <select
                     value={newAnnouncement.target}
+<<<<<<< HEAD
                     onChange={(e) => setNewAnnouncement({...newAnnouncement, target: e.target.value})}
                     className="w-full px-6 py-5 bg-slate-50 border-2 border-slate-200 rounded-xl font-semibold focus:ring-4 focus:ring-brand-orange/30 focus:border-transparent transition-all shadow-sm"
+=======
+                    onChange={(e) => setNewAnnouncement({ ...newAnnouncement, target: e.target.value })}
+                    className="w-full px-6 py-5 bg-slate-50 border-2 border-slate-200 rounded-xl font-semibold focus:ring-4 focus:ring-blue-900/30 focus:border-transparent transition-all shadow-sm"
+>>>>>>> main
                   >
                     {targets.map(target => (
                       <option key={target} value={target}>{target}</option>
                     ))}
                   </select>
                 </div>
+<<<<<<< HEAD
                 <button 
+=======
+                <button
+>>>>>>> main
                   type="submit"
                   className="flex h-16 mt-8  px-8 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-xl font-black text-md
                    uppercase   transition-all whitespace-nowrap items-center justify-center gap-3 "
@@ -126,12 +164,17 @@ export default function TeacherAnnouncementsPage() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search announcements..."
+<<<<<<< HEAD
                 className="pl-12 pr-6 py-4 w-72 bg-white/50 backdrop-blur-sm rounded-xl border border-slate-200 shadow-sm focus:ring-4 focus:ring-brand-orange/20"
+=======
+                className="pl-12 pr-6 py-4 w-72 bg-white/50 backdrop-blur-sm rounded-xl border border-slate-200 shadow-sm focus:ring-4 focus:ring-blue-900/20"
+>>>>>>> main
               />
             </div>
           </div>
           <div className="space-y-4">
             {filteredAnnouncements.map((announcement) => (
+<<<<<<< HEAD
               <div key={announcement.id} className="group p-8 rounded-xl bg-white border border-slate-100 hover:border-orange-200 hover:shadow-xl hover:shadow-orange-500/10 transition-all">
                 <div className="flex flex-col lg:flex-row lg:items-center gap-6 pb-6 border-b border-slate-100 mb-6">
                   <div className="flex items-center gap-3">
@@ -140,6 +183,16 @@ export default function TeacherAnnouncementsPage() {
                     </div>
                     <div>
                       <h4 className="text-xl font-black text-slate-900 group-hover:text-brand-orange transition-colors">{announcement.title}</h4>
+=======
+              <div key={announcement.id} className="group p-8 rounded-xl bg-white border border-slate-100 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-500/10 transition-all">
+                <div className="flex flex-col lg:flex-row lg:items-center gap-6 pb-6 border-b border-slate-100 mb-6">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-red-500 text-white rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                      <Megaphone size={20} />
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-black text-slate-900 group-hover:text-blue-900 transition-colors">{announcement.title}</h4>
+>>>>>>> main
                       <div className="flex items-center gap-4 text-sm text-slate-500 mt-1">
                         <span>Sent to: <span className="font-bold text-slate-900">{announcement.target}</span></span>
                         <span>{announcement.createdAt}</span>
@@ -151,6 +204,7 @@ export default function TeacherAnnouncementsPage() {
                       <Eye size={14} />
                       {announcement.readCount} views
                     </div>
+<<<<<<< HEAD
                     <button className="p-3 text-slate-400 hover:text-orange-500 hover:bg-orange-50 rounded-xl transition-all">
                       <Edit3 size={16} />
                     </button>
@@ -158,6 +212,15 @@ export default function TeacherAnnouncementsPage() {
                       <Trash2 size={16} />
                     </button>
                     <button className="px-6 py-3 bg-slate-900 text-white rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-brand-orange transition-all shadow-lg whitespace-nowrap">
+=======
+                    <button className="p-3 text-slate-400 hover:text-blue-500 hover:bg-blue-50 rounded-xl transition-all">
+                      <Edit3 size={16} />
+                    </button>
+                    <button className="p-3 text-slate-400 hover:text-blue-500 hover:bg-blue-50 rounded-xl transition-all">
+                      <Trash2 size={16} />
+                    </button>
+                    <button className="px-6 py-3 bg-slate-900 text-white rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-blue-900 transition-all shadow-lg whitespace-nowrap">
+>>>>>>> main
                       Resend
                     </button>
                   </div>
