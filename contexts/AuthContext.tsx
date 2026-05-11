@@ -6,6 +6,7 @@ interface AuthContextType {
   user: MockUser | null;
   login: (id: string | MockUser) => boolean;
   logout: () => void;
+  updateLinguisticProfile: (motherLang: string | null, targetLang?: string | null) => void;
   isAuthenticated: boolean;
 }
 
@@ -47,8 +48,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem('user');
   };
 
+  const updateLinguisticProfile = (motherLang: string | null, targetLang?: string | null) => {
+    if (user) {
+      const updatedUser = { 
+        ...user, 
+        motherLang: motherLang || user.motherLang,
+        targetLang: targetLang !== undefined ? targetLang : user.targetLang 
+      };
+      setUser(updatedUser);
+      localStorage.setItem('user', JSON.stringify(updatedUser));
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ user, login, logout, isAuthenticated: !!user }}>
+    <AuthContext.Provider value={{ user, login, logout, updateLinguisticProfile, isAuthenticated: !!user }}>
       {children}
     </AuthContext.Provider>
   );

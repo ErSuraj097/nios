@@ -13,23 +13,25 @@ import {
   Video,
   ArrowRight,
   Brain,
-  ShieldCheck
+  ShieldCheck,
+  Globe
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { MOCK_USERS } from '@/lib/mock-data';
 
 const teacherStats = [
   { icon: Users, label: 'Total Students', value: '2,847', change: '+124', up: true, color: 'from-blue-500 to-indigo-600' },
-  { icon: BookOpen, label: 'Active Courses', value: '6', change: '3 pending', up: true, color: 'from-emerald-500 to-teal-600' },
-  { icon: ClipboardList, label: 'Pending TMAs', value: '38', change: '12 overdue', up: false, color: 'from-blue-500 to-red-600' },
-  { icon: Star, label: 'Avg. Score', value: '74%', change: '+3%', up: true, color: 'from-purple-500 to-pink-600' },
+  { icon: BookOpen, label: 'Active Courses', value: '12', change: '4 Multilingual', up: true, color: 'from-emerald-500 to-teal-600' },
+  { icon: Globe, label: 'Language Pairs', value: '18', change: '+2 new', up: true, color: 'from-amber-500 to-orange-600' },
+  { icon: Star, label: 'AI Feedback Score', value: '4.8', change: 'Top 1%', up: true, color: 'from-purple-500 to-pink-600' },
 ];
 
 const students = [
-  { name: 'Priya Nair', id: '10041', course: 'Physics', progress: 88, risk: 'low' },
-  { name: 'Rahul Das', id: '10042', course: 'Maths', progress: 32, risk: 'high' },
-  { name: 'Sonal Mehta', id: '10043', course: 'English', progress: 67, risk: 'medium' },
-  { name: 'Arjun Sharma', id: 'L10023', course: 'Physics', progress: 72, risk: 'low' },
+  { name: 'Priya Nair', id: '10041', course: 'Physics (Eng → Hin)', progress: 88, risk: 'low' },
+  { name: 'Rahul Das', id: '10042', course: 'Maths (Hin → Ben)', progress: 32, risk: 'high' },
+  { name: 'Sonal Mehta', id: '10043', course: 'English (Eng → Tam)', progress: 67, risk: 'medium' },
+  { name: 'Arjun Sharma', id: 'L10023', course: 'Physics (Eng → Hin)', progress: 72, risk: 'low' },
+  { name: 'Meera Bai', id: 'L10024', course: 'Science (Pun → Hin)', progress: 95, risk: 'low' },
 ];
 
 const quickActions = [

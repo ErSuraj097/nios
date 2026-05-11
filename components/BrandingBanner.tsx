@@ -67,7 +67,7 @@ export default function BrandingBanner() {
                 <p className="text-[10px] font-medium text-slate-500 uppercase tracking-tighter mt-1">Certified Institution</p>
               </div>
               <img 
-                src="/NIOS.png" 
+                src="/pngwing.com.png" 
                 alt="NIOS Official Logo"
                 className="h-12 sm:h-16 w-auto object-contain"
               />

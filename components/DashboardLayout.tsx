@@ -88,7 +88,8 @@ export default function DashboardLayout({
   }
 
   // redirect check for dashboard path mismatch (show spinner while redirecting)
-  if (pathname.startsWith('/dashboard/') && user?.role !== pathname.split('/')[2]) {
+  const isFeaturePath = ['ai-support'].includes(pathname.split('/')[2]);
+  if (pathname.startsWith('/dashboard/') && !isFeaturePath && user?.role !== pathname.split('/')[2]) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-slate-50">
         <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" />

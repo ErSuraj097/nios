@@ -22,8 +22,8 @@ import Link from 'next/link';
 
 const platformStats = [
   { icon: Users, label: 'Total Learners', value: '1.24M', change: '+8,421', up: true, color: 'from-blue-500 to-indigo-600' },
-  { icon: Users, label: 'Active Teachers', value: '3,208', change: '+112', up: true, color: 'from-emerald-500 to-teal-600' },
-  { icon: BookOpen, label: 'Published Courses', value: '642', change: '24 pending', up: true, color: 'from-blue-500 to-red-600' },
+  { icon: Globe, label: 'Active Language Pairs', value: '484', change: 'Max Capacity', up: true, color: 'from-emerald-500 to-teal-600' },
+  { icon: BookOpen, label: 'MLP Active Courses', value: '1,240', change: '+45 pending', up: true, color: 'from-blue-500 to-red-600' },
   { icon: CreditCard, label: 'Revenue (MTD)', value: '₹48.6L', change: '+12%', up: true, color: 'from-purple-500 to-pink-600' },
 ];
 

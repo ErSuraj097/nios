@@ -24,7 +24,8 @@ import {
    ChevronRight,
    Edit3,
    ArrowUpRight,
-   Accessibility
+   Accessibility,
+   Languages
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 
@@ -47,7 +48,7 @@ const projects = [
 ];
 
 export default function ProfilePage() {
-   const { user } = useAuth();
+   const { user, updateLinguisticProfile } = useAuth();
 
    if (!user) return null;
 
@@ -153,6 +154,51 @@ export default function ProfilePage() {
             {/* Right Column - Results & Portfolio */}
             <div className="space-y-12">
 
+
+               {/* Linguistic Identity Section */}
+               <div className="p-12 rounded-[32px] bg-white border border-slate-100 shadow-xl relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl group-hover:scale-150 transition-all duration-1000" />
+                  <div className="flex flex-col lg:flex-row items-center gap-12 relative z-10">
+                     <div className="w-16 h-16 rounded-2xl bg-blue-900 text-white flex items-center justify-center shrink-0 shadow-xl shadow-blue-900/20 rotate-3">
+                        <Languages size={28} />
+                     </div>
+                     <div className="flex-1 text-center lg:text-left">
+                        <h3 className="text-xl font-black text-slate-900 mb-2 uppercase tracking-tight">Linguistic Identity</h3>
+                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-relaxed mb-6">
+                           Your preferred primary language and desired target for multi-lingual learning pathways.
+                        </p>
+                        
+                        <div className="grid sm:grid-cols-2 gap-6">
+                           <div className="space-y-2">
+                              <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest block">Primary Language</label>
+                              <select 
+                                 value={user.motherLang || ''}
+                                 onChange={(e) => updateLinguisticProfile(e.target.value)}
+                                 className="w-full p-4 bg-slate-50 border border-slate-100 rounded-xl text-xs font-bold text-slate-700 focus:outline-none focus:ring-4 focus:ring-blue-900/5 transition-all"
+                              >
+                                 <option value="">Select Language</option>
+                                 {['Hindi', 'English', 'Tamil', 'Telugu', 'Bengali', 'Marathi', 'Gujarati', 'Kannada', 'Malayalam', 'Punjabi', 'Odia', 'Assamese', 'Urdu', 'Sanskrit', 'Kashmiri', 'Konkani', 'Maithili', 'Manipuri', 'Nepali', 'Bodo', 'Santali', 'Dogri'].map(l => (
+                                    <option key={l} value={l}>{l}</option>
+                                 ))}
+                              </select>
+                           </div>
+                           <div className="space-y-2">
+                              <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest block">Target Language</label>
+                              <select 
+                                 value={user.targetLang || ''}
+                                 onChange={(e) => updateLinguisticProfile(user.motherLang || null, e.target.value)}
+                                 className="w-full p-4 bg-slate-50 border border-slate-100 rounded-xl text-xs font-bold text-slate-700 focus:outline-none focus:ring-4 focus:ring-blue-900/5 transition-all"
+                              >
+                                 <option value="">Select Language</option>
+                                 {['English', 'Hindi', 'Tamil', 'Telugu', 'Bengali', 'Marathi', 'Gujarati', 'Kannada', 'Malayalam', 'Punjabi', 'Odia', 'Assamese', 'Urdu', 'Sanskrit', 'Kashmiri', 'Konkani', 'Maithili', 'Manipuri', 'Nepali', 'Bodo', 'Santali', 'Dogri'].map(l => (
+                                    <option key={l} value={l}>{l}</option>
+                                 ))}
+                              </select>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
                {/* Achievements Section */}
                <div className="space-y-8">
                   <div className="flex items-center justify-between px-4">
@@ -220,6 +266,7 @@ export default function ProfilePage() {
                   </div>
                </div>
 
+
                {/* Accessibility & Governance Section */}
                <div className="p-12 rounded-xl bg-gradient-to-br from-blue-50 to-white border border-blue-100 shadow-sm text-center relative overflow-hidden group">
                   <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl group-hover:scale-150 transition-all duration-1000" />
@@ -230,7 +277,7 @@ export default function ProfilePage() {
                      <div className="flex-1 text-center lg:text-left">
                         <h3 className="text-xl font-black text-slate-900 mb-2 uppercase tracking-tight">Accessibility Preferences</h3>
                         <p className="text-[10px] font-medium text-slate-500 uppercase tracking-widest leading-relaxed">
-                           Language: Hindi (Native) · Font: Standard · Contrast: Standard · ISL Aids: Off
+                           Language: {user.motherLang || 'Unset'} · Font: Standard · Contrast: Standard · ISL Aids: Off
                         </p>
                      </div>
                      <button className="px-10 py-5 bg-white border border-blue-100 text-blue-600 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-blue-600 hover:text-white transition-all shadow-xl shadow-blue-500/10">

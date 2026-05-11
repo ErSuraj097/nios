@@ -33,6 +33,8 @@ export interface MockUser {
   role: UserRole;
   avatar?: string;
   email: string;
+  motherLang?: string | null;
+  targetLang?: string | null;
   details: {
     class?: string;
     enrollmentNo?: string;
@@ -309,6 +311,156 @@ export const MOCK_COURSES: MockCourse[] = [
     status: 'published',
     lessons: 15,
     duration: '7.5 hours'
+  },
+  {
+    id: 'mlp-001',
+    title: 'English to Hindi: Conversational Mastery',
+    subject: 'English-Hindi',
+    enrolled: true,
+    tags: ['Conversational', 'Multilingual', 'AI-Powered'],
+    icon: Globe,
+    description: 'Master English to Hindi translation and daily conversational skills using AI-automated content.',
+    objectives: [
+      'Bridge the language gap between English and Hindi',
+      'Learn context-aware translations',
+      'Practice with real-world scenarios'
+    ],
+    modules: [
+      { id: 'ml1', type: 'listening', title: 'Basic Greetings & Introductions', completed: false, progress: 0, contentPreview: 'Learn how to introduce yourself in Hindi using English prompts.' }
+    ],
+    currentStage: 'content',
+    overallProgress: 15,
+    rating: 4.9,
+    level: 'Beginner',
+    teacher: 'AI Multilingual Engine',
+    status: 'published',
+    lessons: 20,
+    duration: '10 hours'
+  },
+  {
+    id: 'mlp-002',
+    title: 'Hindi to Tamil: Essential Communication',
+    subject: 'Hindi-Tamil',
+    enrolled: true,
+    tags: ['Regional', 'Communication', 'AI-Powered'],
+    icon: Globe,
+    description: 'Specialized course for Hindi speakers to master essential Tamil communication.',
+    objectives: [
+      'Understand Tamil phonetic structures',
+      'Learn basic Tamil grammar through Hindi',
+      'Navigate daily interactions in Tamil Nadu'
+    ],
+    modules: [
+      { id: 'ht1', type: 'reading', title: 'Introduction to Tamil Script', completed: true, progress: 100, contentPreview: 'Learn to recognize and read basic Tamil characters.' }
+    ],
+    currentStage: 'content',
+    overallProgress: 45,
+    rating: 4.8,
+    level: 'Beginner',
+    teacher: 'AI Multilingual Engine',
+    status: 'published',
+    lessons: 18,
+    duration: '9 hours'
+  },
+  {
+    id: 'mlp-003',
+    title: 'Bengali to Marathi: Professional Exchange',
+    subject: 'Bengali-Marathi',
+    enrolled: false,
+    tags: ['Professional', 'Exchange', 'AI-Powered'],
+    icon: Globe,
+    description: 'A comprehensive guide for Bengali speakers to excel in Marathi-speaking professional environments.',
+    objectives: [
+      'Business terminology in Marathi',
+      'Comparative grammar: Bengali vs Marathi',
+      'Cultural nuances in professional communication'
+    ],
+    modules: [
+      { id: 'bm1', type: 'reading', title: 'Marathi Business Etiquette', completed: false, progress: 0, contentPreview: 'Mastering formal address and professional greetings.' }
+    ],
+    currentStage: 'content',
+    overallProgress: 0,
+    rating: 4.7,
+    level: 'Intermediate',
+    teacher: 'AI Multilingual Engine',
+    status: 'published',
+    lessons: 24,
+    duration: '12 hours'
+  },
+  {
+    id: 'mlp-004',
+    title: 'Telugu to Kannada: Neighboring Tongues',
+    subject: 'Telugu-Kannada',
+    enrolled: true,
+    tags: ['Regional', 'Dialect', 'AI-Powered'],
+    icon: Globe,
+    description: 'Leveraging the similarities between Telugu and Kannada to accelerate learning.',
+    objectives: [
+      'Identifying common Sanskrit roots',
+      'Grammar shortcuts for Telugu speakers',
+      'Regional dialect variations'
+    ],
+    modules: [
+      { id: 'tk1', type: 'speaking', title: 'Daily Market Conversations', completed: false, progress: 20, contentPreview: 'Practical phrases for everyday shopping and navigation.' }
+    ],
+    currentStage: 'content',
+    overallProgress: 10,
+    rating: 4.9,
+    level: 'Beginner',
+    teacher: 'AI Multilingual Engine',
+    status: 'published',
+    lessons: 15,
+    duration: '8 hours'
+  },
+  {
+    id: 'mlp-005',
+    title: 'English to Odia: Heritage & Foundation',
+    subject: 'English-Odia',
+    enrolled: false,
+    tags: ['Heritage', 'Foundation', 'AI-Powered'],
+    icon: Globe,
+    description: 'Connect with your roots through this comprehensive English to Odia foundational course.',
+    objectives: [
+      'Mastering Odia script through English',
+      'Basic sentence construction',
+      'Classical Odia literature overview'
+    ],
+    modules: [
+      { id: 'eo1', type: 'reading', title: 'Odia Alphabet Mastery', completed: false, progress: 0, contentPreview: 'Visual guides to writing and reading Odia characters.' }
+    ],
+    currentStage: 'content',
+    overallProgress: 0,
+    rating: 4.6,
+    level: 'Beginner',
+    teacher: 'AI Multilingual Engine',
+    status: 'published',
+    lessons: 30,
+    duration: '15 hours'
+  },
+  {
+    id: 'mlp-006',
+    title: 'Punjabi to Hindi: Harmonic Bridge',
+    subject: 'Punjabi-Hindi',
+    enrolled: true,
+    tags: ['Linguistic', 'Bridge', 'AI-Powered'],
+    icon: Globe,
+    description: 'A transition course for Punjabi speakers to master standard Hindi for academic and official use.',
+    objectives: [
+      'Standardizing vocabulary differences',
+      'Advanced Devanagari script for Punjabi speakers',
+      'Official letter writing in Hindi'
+    ],
+    modules: [
+      { id: 'ph1', type: 'writing', title: 'Formal Hindi Correspondence', completed: false, progress: 60, contentPreview: 'Drafting applications and official letters in Hindi.' }
+    ],
+    currentStage: 'content',
+    overallProgress: 55,
+    rating: 4.8,
+    level: 'Advanced',
+    teacher: 'AI Multilingual Engine',
+    status: 'published',
+    lessons: 12,
+    duration: '6 hours'
   }
 ];
 

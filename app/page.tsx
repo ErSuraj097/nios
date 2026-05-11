@@ -14,6 +14,7 @@ import KeyPersonnel from "@/components/KeyPersonnel";
 import OfficialFooter from "@/components/OfficialFooter";
 import Hero from "@/components/Hero";
 import LMSPopup from "@/components/LMSPopup";
+import Chatbot from "@/components/Chatbot";
 
 const stats = [
   { label: "Active Learners", value: "2.4M+" },
@@ -362,6 +363,7 @@ export default function Home() {
       <OfficialNav />
       <NewsTicker />
       
+      
       {/* Hero Section */}
       {/* <Hero /> */}
       <section className="relative text-white overflow-hidden">
@@ -512,6 +514,7 @@ export default function Home() {
       </section>
 
       <OfficialFooter />
+      <Chatbot/>
     </div>
   );
 }

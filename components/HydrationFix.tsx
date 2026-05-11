@@ -1,16 +1,18 @@
 'use client';
 
 import React from 'react';
+import Script from 'next/script';
 
 export function HydrationFix() {
     return (
-        <script
+        <Script
             id="hydration-fix"
+            strategy="afterInteractive"
             dangerouslySetInnerHTML={{
                 __html: `
           (function() {
             function removeCzAttribute() {
-              if (document.body.hasAttribute('cz-shortcut-listen')) {
+              if (typeof document !== 'undefined' && document.body && document.body.hasAttribute('cz-shortcut-listen')) {
                 document.body.removeAttribute('cz-shortcut-listen');
               }
             }
@@ -27,10 +29,12 @@ export function HydrationFix() {
               });
             });
 
-            observer.observe(document.body, { 
-              attributes: true, 
-              attributeFilter: ['cz-shortcut-listen'] 
-            });
+            if (typeof document !== 'undefined' && document.body) {
+                observer.observe(document.body, { 
+                  attributes: true, 
+                  attributeFilter: ['cz-shortcut-listen'] 
+                });
+            }
 
             // Also clean on load
             window.addEventListener('load', removeCzAttribute);
